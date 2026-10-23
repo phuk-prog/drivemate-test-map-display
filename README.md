@@ -1,13 +1,24 @@
 # DriveMate Category 2 — public test contracts
 
-Tests for checklist items **02.01–02.09** (map display, route line, vehicle arrow).
+Tests for checklist items **02.01–02.09**, including simulated TomTom incident parsing and route-line colouring.
 
-The **application remains private**: `phuk-prog/drivemate-app`. This repository contains synthetic, non-user fixtures, a Kotlin unit-test source file and a result-summary script only. The Kotlin file must be compiled and executed **against the actual app classes** in an authorised private GitHub Actions checkout. Standalone tests in this public repository cannot establish production behaviour.
+The Android application remains **private** in `phuk-prog/drivemate-app`. This public repository holds **only reusable tests, synthetic fixtures, contracts and bounded results**. Tests compile and execute against the real application classes **inside the private app's GitHub Actions run**. No production source or private app build is copied here.
 
-- `contracts/category2.json`: all nine preferences, expected test identities and visual/real-data limitations.
-- `tests/Category2MapDisplayContractTest.kt`: Kotlin logic tests (public tests; not production source).
-- `ci/summarize.py`: validates the executed test identities, detects missing outcomes, and records a bounded source-integration check for traffic (without exporting app code).
+## TomTom testing — simulation only
 
-Execution: A private app-only workflow pins the public commit, downloads these files into its private checkout, runs the actual Android/Kotlin JUnit task, and uploads **only** summary data. Preserve the baseline SHA and results before modifying app behaviour.
+- `fixtures/tomtom-v5-simulated-traffic.json` is **invented**: no TomTom account, API response, credential, phone location or real journey is used.
+- `tests/Category2TomTomLiveTrafficTest.kt` and `tests/Category2SimulatedTrafficFixtureTest.kt` call the real production **JSON parser and overlay policy**, passing simulated input directly without networking.
+- Red heavy congestion, amber moderate congestion, wrong-direction traffic, adjacent roads, expired/future events, incomplete geometry and malformed records are explicitly tested.
+- The private workflow fetches the **pinned public fixture/test commit** and runs Kotlin JUnit and lint against the private app without passing secrets. It uploads only the short result classifier JSON, not keys, route histories, app source or raw API responses.
+- The TomTom API key is **never required or permitted in this public repository**. A user can configure their own key in the installed app if they want real live traffic. This testing does not validate live TomTom authentication or availability.
 
-**Evidence boundaries:** synthetic coordinates demonstrate geometry calculations but cannot prove legal carriageway choice, live positioning, actual UK road geometry or screenshot output. Unit-tested camera targets are not a rendered-map check. Absent or unverified evidence remains visible, never counted as implemented.
+## Files
+
+- `contracts/category2.json`: all nine preferences and exact expected test method names.
+- `tests/Category2MapDisplayContractTest.kt`: camera and geometry logic.
+- `tests/Category2TomTomLiveTrafficTest.kt`: synthetic incident parser and overlay tests.
+- `tests/Category2SimulatedTrafficFixtureTest.kt`: declared synthetic example matrix.
+- `fixtures/tomtom-v5-simulated-traffic.json`: published fictitious inputs.
+- `ci/summarize.py`: validates executed test identities, classifies traffic source wiring and labels evidence limits.
+
+**Evidence limits:** passing simulated tests establishes only the behaviours exercised in production classes. It **does not establish current live traffic conditions**, live API connectivity, map-rendered traffic colour, correctly chosen UK carriageways, legal road truth or physical-device camera smoothness. Those require separate appropriate evidence and remain unverified until performed. No Android APK release or merge follows merely from these tests.
