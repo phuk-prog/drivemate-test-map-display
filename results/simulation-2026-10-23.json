@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "date": "2026-10-23",
+  "category": "02",
+  "source": "actual private DriveMate app compiled with pinned reusable public synthetic tests",
+  "public_test_sha": "a4d85f2fc54b793f10e709b5e6d85a3a62cfa96f",
+  "app_candidate_sha": "e281efe56f97d5b8dd7c1d652a4f4c76540a1d0c",
+  "ci_run": "https://github.com/phuk-prog/drivemate-app/actions/runs/39985430752",
+  "before": {
+    "tests_passed": 18,
+    "tests_expected": 18,
+    "traffic_layer": "missing",
+    "run": "https://github.com/phuk-prog/drivemate-app/actions/runs/39979341011"
+  },
+  "after": {
+    "tests_passed": 36,
+    "tests_expected": 36,
+    "missing_tests": 0,
+    "unexpected_tests": 0,
+    "gradle": "success",
+    "android_lint": "success",
+    "traffic_layer": "wired",
+    "simulation_only": true,
+    "live_provider_tested": false
+  },
+  "traffic_scenarios": [
+    "Severe synthetic incident colours an on-route segment red",
+    "Moderate synthetic incident colours an on-route segment amber",
+    "Opposite-direction traffic is excluded",
+    "Off-road traffic is excluded",
+    "Unknown-direction event is not assigned to a carriageway",
+    "Expired and future events are excluded",
+    "Noncongestion incidents are not claimed as traffic speed",
+    "Invalid coordinates and missing event IDs are rejected",
+    "Missing trustworthy extent cannot colour the route",
+    "Public fixture is explicitly synthetic and has no key field"
+  ],
+  "evidence_limit": "Keyless tests exercise parser and route-overlay policy in private app, not TomTom live authentication, provider licensing/quota behaviour, real-time live traffic or rendered real-UK-carriageway correctness.",
+  "items": [
+    {
+      "id": "02.01",
+      "synthetic_logic_tests": 2,
+      "logic": "passed",
+      "rendered_acceptance": "not_verified"
+    },
+    {
+      "id": "02.02",
+      "synthetic_logic_tests": 2,
+      "logic": "passed",
+      "rendered_acceptance": "not_verified"
+    },
+    {
+      "id": "02.03",
+      "synthetic_logic_tests": 19,
+      "logic": "passed",
+      "rendered_acceptance": "not_verified"
+    },
+    {
+      "id": "02.04",
+      "synthetic_logic_tests": 2,
+      "logic": "passed",
+      "rendered_acceptance": "not_verified"
+    },
+    {
+      "id": "02.05",
+      "synthetic_logic_tests": 2,
+      "logic": "passed",
+      "rendered_acceptance": "not_verified"
+    },
+    {
+      "id": "02.06",
+      "synthetic_logic_tests": 2,
+      "logic": "passed",
+      "rendered_acceptance": "not_verified"
+    },
+    {
+      "id": "02.07",
+      "synthetic_logic_tests": 2,
+      "logic": "passed",
+      "rendered_acceptance": "not_verified"
+    },
+    {
+      "id": "02.08",
+      "synthetic_logic_tests": 3,
+      "logic": "passed",
+      "rendered_acceptance": "not_verified"
+    },
+    {
+      "id": "02.09",
+      "synthetic_logic_tests": 2,
+      "logic": "passed",
+      "rendered_acceptance": "not_verified"
+    }
+  ],
+  "credentials_policy": "No API keys, provider responses, private user routes or source code in the public test repo. Driver-only key configuration remains local to the installed private app.",
+  "apk": "not built or released",
+  "pr": "https://github.com/phuk-prog/drivemate-app/pull/5"
+}
