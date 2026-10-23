@@ -1,0 +1,281 @@
+{
+  "schema_version": 1,
+  "title": "Batch A consolidated integration and remaining gates",
+  "created": "2026-10-23",
+  "app_repository": "phuk-prog/drivemate-app",
+  "staged_pr": "https://github.com/phuk-prog/drivemate-app/pull/10",
+  "staged_source_sha": "c02bd093332efd614119142ee1939bfbb8b3b359",
+  "merged_to_main": false,
+  "app_compilation": {
+    "run_id": 40028501536,
+    "run_url": "https://github.com/phuk-prog/drivemate-app/actions/runs/40028501536",
+    "status": "in_progress_after_scope_fix",
+    "tests_public_only": true
+  },
+  "batch": "A",
+  "categories": [
+    "01",
+    "02",
+    "04",
+    "05"
+  ],
+  "requirement_count": 22,
+  "reference_source": {
+    "owner_checklist": "https://github.com/phuk-prog/drivemate-app/blob/main/APP_CHECKLIST.md",
+    "public_contract": "https://github.com/phuk-prog/drivemate-test-map-display/blob/main/batches/A-roundabouts-maps-positioning/contracts/checklist.json"
+  },
+  "test_evidence": {
+    "public_combined_components": {
+      "baseline": {
+        "01": "11/27",
+        "02": "22/22",
+        "04": "14/14",
+        "05": "5/5"
+      },
+      "candidate": {
+        "01": "27/27",
+        "02": "22/22",
+        "04": "14/14",
+        "05": "5/5"
+      },
+      "url": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40021527920",
+      "scope": "exact selected components, not combined-app"
+    },
+    "android_sensor_adapter": {
+      "baseline": "4/6",
+      "candidate": "6/6",
+      "source": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40019062694"
+    },
+    "avoided_routes": {
+      "candidate": "43/43",
+      "baseline": null,
+      "source": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40024858622"
+    },
+    "map_presentation": {
+      "candidate": "12/12",
+      "baseline": null,
+      "source": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40027216043"
+    }
+  },
+  "app_coverage_note": {
+    "map_publisher": "https://github.com/phuk-prog/DriveMate-Map",
+    "publisher_scope": "progressive region-first; current publication says partial; no whole-UK PMTiles source built by current rollout",
+    "observed_screenshot": "blank perimeter and clustered markers provided in chat; no user image/GPS posted to public GitHub"
+  },
+  "release_gate": {
+    "on_main_sha": "d8969fcce26d587dd215e15edbafef9eba2dc26a",
+    "enforcement": "no APK assembly without exact source-bound passes for automated, navigation replay, navigation robot, rendered map and verified road legality",
+    "run": "https://github.com/phuk-prog/drivemate-app/actions/runs/40028845983",
+    "effect": "gate stopped; APK build skipped"
+  },
+  "requirements": [
+    {
+      "id": "01.01",
+      "category": "01",
+      "owner_exact_requirement": "Show “Position uncertain” after three seconds of continuous uncertainty.",
+      "component_evidence_available": true,
+      "integrated_behaviour_accepted": false,
+      "real_road_legality_verified": false,
+      "remaining_scope": "GPS position uncertainty, sensor fusion and recenter integration across actual app lifecycle/GPS replay unverified."
+    },
+    {
+      "id": "01.02",
+      "category": "01",
+      "owner_exact_requirement": "Hide lane-level guidance immediately when positioning becomes unreliable.",
+      "component_evidence_available": true,
+      "integrated_behaviour_accepted": false,
+      "real_road_legality_verified": false,
+      "remaining_scope": "GPS position uncertainty, sensor fusion and recenter integration across actual app lifecycle/GPS replay unverified."
+    },
+    {
+      "id": "01.03",
+      "category": "01",
+      "owner_exact_requirement": "While waiting for GPS, retain the last location view, allow panning and provide recentering without forced snap-backs.",
+      "component_evidence_available": true,
+      "integrated_behaviour_accepted": false,
+      "real_road_legality_verified": false,
+      "remaining_scope": "GPS position uncertainty, sensor fusion and recenter integration across actual app lifecycle/GPS replay unverified."
+    },
+    {
+      "id": "01.04",
+      "category": "01",
+      "owner_exact_requirement": "Use available phone sensors, including the gyroscope, to support positioning and direction.",
+      "component_evidence_available": true,
+      "integrated_behaviour_accepted": false,
+      "real_road_legality_verified": false,
+      "remaining_scope": "GPS position uncertainty, sensor fusion and recenter integration across actual app lifecycle/GPS replay unverified."
+    },
+    {
+      "id": "02.01",
+      "category": "02",
+      "owner_exact_requirement": "Keep the route line on your carriageway, leaving the opposite carriageway visible where possible.",
+      "component_evidence_available": true,
+      "integrated_behaviour_accepted": false,
+      "real_road_legality_verified": false,
+      "remaining_scope": "Rendered native MapLibre tile/carriageway and marker/traffic layout unverified; current region-first map publisher explicitly has partial UK coverage."
+    },
+    {
+      "id": "02.02",
+      "category": "02",
+      "owner_exact_requirement": "Place the vehicle marker near the bottom of the map so more road ahead is visible.",
+      "component_evidence_available": true,
+      "integrated_behaviour_accepted": false,
+      "real_road_legality_verified": false,
+      "remaining_scope": "Rendered native MapLibre tile/carriageway and marker/traffic layout unverified; current region-first map publisher explicitly has partial UK coverage."
+    },
+    {
+      "id": "02.03",
+      "category": "02",
+      "owner_exact_requirement": "Colour affected route sections amber for slower traffic and red for heavy congestion.",
+      "component_evidence_available": true,
+      "integrated_behaviour_accepted": false,
+      "real_road_legality_verified": false,
+      "remaining_scope": "Rendered native MapLibre tile/carriageway and marker/traffic layout unverified; current region-first map publisher explicitly has partial UK coverage."
+    },
+    {
+      "id": "02.04",
+      "category": "02",
+      "owner_exact_requirement": "Keep the vehicle arrow centred on your carriageway, following the road direction and proportional to the map.",
+      "component_evidence_available": true,
+      "integrated_behaviour_accepted": false,
+      "real_road_legality_verified": false,
+      "remaining_scope": "Rendered native MapLibre tile/carriageway and marker/traffic layout unverified; current region-first map publisher explicitly has partial UK coverage."
+    },
+    {
+      "id": "02.05",
+      "category": "02",
+      "owner_exact_requirement": "Adjust the driving camera using location, road type, actual speed and distance to the next turn.",
+      "component_evidence_available": true,
+      "integrated_behaviour_accepted": false,
+      "real_road_legality_verified": false,
+      "remaining_scope": "Rendered native MapLibre tile/carriageway and marker/traffic layout unverified; current region-first map publisher explicitly has partial UK coverage."
+    },
+    {
+      "id": "02.06",
+      "category": "02",
+      "owner_exact_requirement": "Far from a junction, tilt toward the horizon and zoom out to show more of the path ahead.",
+      "component_evidence_available": true,
+      "integrated_behaviour_accepted": false,
+      "real_road_legality_verified": false,
+      "remaining_scope": "Rendered native MapLibre tile/carriageway and marker/traffic layout unverified; current region-first map publisher explicitly has partial UK coverage."
+    },
+    {
+      "id": "02.07",
+      "category": "02",
+      "owner_exact_requirement": "Near a junction, zoom in gradually and tilt toward an overhead view, keeping the vehicle and turn visible.",
+      "component_evidence_available": true,
+      "integrated_behaviour_accepted": false,
+      "real_road_legality_verified": false,
+      "remaining_scope": "Rendered native MapLibre tile/carriageway and marker/traffic layout unverified; current region-first map publisher explicitly has partial UK coverage."
+    },
+    {
+      "id": "02.08",
+      "category": "02",
+      "owner_exact_requirement": "Keep camera and zoom movement smooth, without sudden jumps.",
+      "component_evidence_available": true,
+      "integrated_behaviour_accepted": false,
+      "real_road_legality_verified": false,
+      "remaining_scope": "Rendered native MapLibre tile/carriageway and marker/traffic layout unverified; current region-first map publisher explicitly has partial UK coverage."
+    },
+    {
+      "id": "02.09",
+      "category": "02",
+      "owner_exact_requirement": "Include the following turn in the visible map when two turns are close together.",
+      "component_evidence_available": true,
+      "integrated_behaviour_accepted": false,
+      "real_road_legality_verified": false,
+      "remaining_scope": "Rendered native MapLibre tile/carriageway and marker/traffic layout unverified; current region-first map publisher explicitly has partial UK coverage."
+    },
+    {
+      "id": "04.01",
+      "category": "04",
+      "owner_exact_requirement": "Highlight all suitable lanes, favouring those needed for a closely following turn.",
+      "component_evidence_available": true,
+      "integrated_behaviour_accepted": false,
+      "real_road_legality_verified": false,
+      "remaining_scope": "Actual verified legal lane markings/lane links and immersive diagram timing at current Manchester junctions absent; simulated scene alone not proof."
+    },
+    {
+      "id": "04.02",
+      "category": "04",
+      "owner_exact_requirement": "Provide detailed lane diagrams to make driving easier.",
+      "component_evidence_available": true,
+      "integrated_behaviour_accepted": false,
+      "real_road_legality_verified": false,
+      "remaining_scope": "Actual verified legal lane markings/lane links and immersive diagram timing at current Manchester junctions absent; simulated scene alone not proof."
+    },
+    {
+      "id": "04.03",
+      "category": "04",
+      "owner_exact_requirement": "Initially show detailed lane diagrams at complex junctions.",
+      "component_evidence_available": true,
+      "integrated_behaviour_accepted": false,
+      "real_road_legality_verified": false,
+      "remaining_scope": "Actual verified legal lane markings/lane links and immersive diagram timing at current Manchester junctions absent; simulated scene alone not proof."
+    },
+    {
+      "id": "04.04",
+      "category": "04",
+      "owner_exact_requirement": "Prepare lane guidance early enough to allow time to get into position.",
+      "component_evidence_available": true,
+      "integrated_behaviour_accepted": false,
+      "real_road_legality_verified": false,
+      "remaining_scope": "Actual verified legal lane markings/lane links and immersive diagram timing at current Manchester junctions absent; simulated scene alone not proof."
+    },
+    {
+      "id": "04.05",
+      "category": "04",
+      "owner_exact_requirement": "Vary lane-guidance timing with speed: earlier on motorways and later in town.",
+      "component_evidence_available": true,
+      "integrated_behaviour_accepted": false,
+      "real_road_legality_verified": false,
+      "remaining_scope": "Actual verified legal lane markings/lane links and immersive diagram timing at current Manchester junctions absent; simulated scene alone not proof."
+    },
+    {
+      "id": "04.06",
+      "category": "04",
+      "owner_exact_requirement": "Provide 3D immersive driving guidance.",
+      "component_evidence_available": true,
+      "integrated_behaviour_accepted": false,
+      "real_road_legality_verified": false,
+      "remaining_scope": "Actual verified legal lane markings/lane links and immersive diagram timing at current Manchester junctions absent; simulated scene alone not proof."
+    },
+    {
+      "id": "05.01",
+      "category": "05",
+      "owner_exact_requirement": "Show a faster route using an avoided road as a clearly warned alternative, and use it only when explicitly selected.",
+      "component_evidence_available": true,
+      "integrated_behaviour_accepted": false,
+      "real_road_legality_verified": false,
+      "remaining_scope": "Missed turn/off-route reroute replay, route adoption/cancellation, safe avoided-road alternatives integrated with live route provider unverified."
+    },
+    {
+      "id": "05.02",
+      "category": "05",
+      "owner_exact_requirement": "Allow the route-results panel to be dragged down to reveal more of the map and the routes beneath it.",
+      "component_evidence_available": true,
+      "integrated_behaviour_accepted": false,
+      "real_road_legality_verified": false,
+      "remaining_scope": "Missed turn/off-route reroute replay, route adoption/cancellation, safe avoided-road alternatives integrated with live route provider unverified."
+    },
+    {
+      "id": "05.03",
+      "category": "05",
+      "owner_exact_requirement": "Reroute automatically and straight away when the driver goes off-route.",
+      "component_evidence_available": true,
+      "integrated_behaviour_accepted": false,
+      "real_road_legality_verified": false,
+      "remaining_scope": "Missed turn/off-route reroute replay, route adoption/cancellation, safe avoided-road alternatives integrated with live route provider unverified."
+    }
+  ],
+  "conditions_to_complete": [
+    "verified current UK map asset availability and correct regional style/viewport; screenshot against independent map landmarks; no incomplete coverage reported complete",
+    "real Android GPU map and camera/arrow/traffic/markers robot against actual released rendering component",
+    "GPS uncertainty/gyroscope/panning plus lane validity in live app lifecycle and public replays",
+    "independent official local road signs, junction restrictions and verified lane directions; mark contradictions unknown",
+    "automatic safe reroute, missed-turn, route choice, avoidance, cancellation and arrival end-to-end regression; test the integrated Android route handler",
+    "mandatory automated, replay and navigation robot passes tied to exact final source, otherwise no APK"
+  ],
+  "batch_accepted": false,
+  "apk_built_or_released": false
+}
