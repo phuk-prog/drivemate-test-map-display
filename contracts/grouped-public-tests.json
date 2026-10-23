@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "policy_id": "DRIVEMATE-PUBLIC-GROUPED-TESTS-2026-10-23",
+  "effective_date": "2026-10-23",
+  "owner_directive": "Run related test categories together in public-facing test suites; two to four categories per coherent batch (e.g. map + roundabout + GPS), reducing duplicate test runs/APK builds while reporting each checklist item independently.",
+  "visibility": {
+    "test_contracts": "public GitHub repository, including source-backed expected outcomes, safe fixtures, non-secret test harnesses and sanitized results",
+    "app_source": "private phuk-prog/drivemate-app; never copy proprietary app source to public repos",
+    "app_integrated_execution": "authorized private CI checkout runs the publicly available test code against actual private app classes; posts only safe metadata/results back to public",
+    "credentials": "No TomTom API key, signing material, access tokens, private journeys, or identifiable location logs in public repositories or artifacts",
+    "external_reference_rule": "Expected road layout and legality derive from independent official UK sources and corroborated externally sourced road data, not copied DriveMate outputs or simulated competitor claims",
+    "evidence_classes": [
+      "legal_regulatory",
+      "external_real_road_geometry",
+      "simulation",
+      "unit_or_integration",
+      "emulator_render",
+      "navigation_robot",
+      "physical_device_advisory"
+    ]
+  },
+  "grouped_execution": {
+    "minimum_categories": 2,
+    "maximum_categories": 4,
+    "allow_subset_of_group": true,
+    "selection_rule": "Choose 2, 3, or 4 logically related categories; prefer a single coherent workflow/build instead of separate APKs. The full group need not be run if smaller subset suffices. A one-category run remains permitted for targeted failure isolation.",
+    "reporting_rule": "For every category and checklist ID: report independently its baseline, source truth, tests, failures, after-fix result, provenance and unknowns. Show combined batch results only in addition.",
+    "acceptance_rule": "Batch fails if any mandatory relevant test is missing, skipped or failed; verified-illegal manoeuvres always block release. A passing simulation never establishes UK-road truth or real API integration.",
+    "release_rule": "Test binaries are not released or published merely to run tests. Any APK output requires the mandatory automated/replay/navigation-robot release gates; keep production app private and release nothing while failing or unverified.",
+    "ci_rule": "Use pinned public test commits and a single authorized app CI execution per coherent batch; avoid overlapping/cancelled builds. Run independent public-only contract/schema checks in the public repo."
+  },
+  "batches": [
+    {
+      "id": "A",
+      "title": "Roundabouts, maps and positioning",
+      "categories": [
+        "01",
+        "02",
+        "04",
+        "05"
+      ],
+      "scope": "GPS/map matching, the correct carriageway, roundabout lane guidance and legal routing/rerouting",
+      "example_test_case": "At a Greater Manchester roundabout, compare externally verified road geometry and legal signs with GPS matching, drawn route, lane advice and route legality",
+      "public_test_repos": [
+        "https://github.com/phuk-prog/drivemate-test-gps-navigation",
+        "https://github.com/phuk-prog/drivemate-test-map-display"
+      ],
+      "status": "partial_existing_tests; integration/unified run not yet established"
+    },
+    {
+      "id": "B",
+      "title": "On-road guidance and alerts",
+      "categories": [
+        "03",
+        "08",
+        "09",
+        "16"
+      ],
+      "scope": "Turn cards, live traffic and road hazards, limits/signals/camera warnings and Android Auto projection",
+      "example_test_case": "At a verified junction, display the correct next turn, road alerts and guidance on phone and Android Auto",
+      "public_test_repos": [
+        "https://github.com/phuk-prog/drivemate-test-map-display"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "C",
+      "title": "Plan, search, stop and arrive",
+      "categories": [
+        "06",
+        "07",
+        "15",
+        "17"
+      ],
+      "scope": "Search, multiple stops, arrival-point handling and first-time trip help",
+      "example_test_case": "Find a UK property, build a legal multi-stop trip and end at an externally checked vehicle-accessible arrival point",
+      "public_test_repos": [],
+      "status": "planned"
+    },
+    {
+      "id": "D",
+      "title": "Interaction, accessibility and privacy",
+      "categories": [
+        "10",
+        "13",
+        "14"
+      ],
+      "scope": "Audio guidance, controls/accessibility, personal data and incident-report privacy",
+      "example_test_case": "Speak a complex instruction while Bluetooth music ducks and sensitive journey data is kept local",
+      "public_test_repos": [],
+      "status": "planned"
+    },
+    {
+      "id": "E",
+      "title": "Offline map packages and downloads",
+      "categories": [
+        "11",
+        "12"
+      ],
+      "scope": "UK offline map availability, updates, storage, download progress and recovery",
+      "example_test_case": "Download compatible Greater Manchester region, verify hashes and then test offline routing and map render with interrupted update",
+      "public_test_repos": [],
+      "status": "planned"
+    }
+  ],
+  "checklist_categories": [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17"
+  ],
+  "boundaries": "The word public refers to public test contracts/fixtures/standards and sanitized evidence. Do not publicly publish an APK or the closed-source app as a shortcut to making its tests public. No true combined run is claimed until executed and checked."
+}
