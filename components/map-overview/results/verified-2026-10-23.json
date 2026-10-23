@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "date": "2026-10-23",
+  "batch": "A",
+  "issue": "Visible map confined to a smaller Manchester region, with blank surroundings, oversized marker and clustered hazard symbols in owner-supplied screenshot",
+  "user_screenshot_uploaded_to_public_repo": false,
+  "visual_observation_origin": "owner-supplied in-chat screenshot; no personal screenshot/GPS coordinate copied to repository",
+  "source_inspection_before": {
+    "app_main_sha": "e1402e8a2723ad7e8c274e8ef9d183d90589e9c8",
+    "arrow_vector_dp": 44,
+    "arrow_max_scale": 1.7,
+    "arrow_min_scale": 1.1,
+    "hazard_icon_allow_overlap": true,
+    "hazard_icon_ignore_placement": true,
+    "hazard_layer_min_zoom": null,
+    "partial_regional_viewport_warning": false,
+    "notes": "Source-level configuration values only; earlier screenshot showed a real UI fault but root cause of blank tiles not independently established."
+  },
+  "candidate_after": {
+    "app_branch": "codex/batch-a-map-overview-defect-20261023",
+    "app_sha": "00b540ffae77d1248049c0373c2bc87c1860ba48",
+    "app_draft_pr": "https://github.com/phuk-prog/drivemate-app/pull/9",
+    "arrow_vector_dp": 32,
+    "arrow_max_scale": 1.25,
+    "arrow_min_scale": 0.8,
+    "hazard_icon_allow_overlap": false,
+    "hazard_icon_ignore_placement": false,
+    "hazard_layer_min_zoom": 11,
+    "partial_regional_viewport_warning": true,
+    "gap": "No new PMTiles, no nationwide coverage restoration, no integrated Android GPU run."
+  },
+  "public_exact_component": {
+    "source_file": "components/map-overview/src/main/kotlin/com/drivemate/app/map/MapOverviewPolicy.kt",
+    "app_source_git_blob_sha": "f1f1561e3c7f20db294fa9280c67c04a0e1d8768",
+    "public_commit": "c41e54194179fe057c64e1e37bb0ea6d6f793c71",
+    "run_id": 40027216043,
+    "run_url": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40027216043",
+    "result": "success",
+    "cases_passed": 12,
+    "cases_expected": 12,
+    "missing": 0,
+    "duplicate": 0
+  },
+  "coverage": {
+    "02.01": "not_verified_real_carriageway_geometry",
+    "02.02": "candidate_policy_tested_rendering_pending",
+    "02.04": "candidate_policy_tested_marker_on_road_pending",
+    "09.07": "related_browsing_icons_decluttered_camera_on_route_confirmation_pending",
+    "11_and_12": "map_section availability and whole-UK source coverage unverified"
+  },
+  "acceptance": {
+    "category2_complete": false,
+    "rendered_android_map_tested": false,
+    "current_manchester_map_coverage_verified": false,
+    "mandatory_nav_robot_passed": false,
+    "apk_built_or_released": false
+  },
+  "next": "Run Android MapLibre screenshot/coverage audit on authorized public component emulator, verify exact PMTiles and tile bounds, then integrated app + replay/robot gates. Keep candidate unmerged until reliable."
+}
