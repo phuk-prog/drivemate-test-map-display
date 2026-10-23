@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "verified_at": "2026-10-23T21:54:49.086459Z",
+  "test_name": "Batch A map coverage — public publication metadata sample",
+  "run_id": 40030038032,
+  "run_url": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40030038032",
+  "source_url": "https://github.com/phuk-prog/DriveMate-Map/releases/download/map-regions/catalog.json",
+  "source_category": "live public GitHub map release metadata, not legal or rendered-road proof",
+  "published_region_count": 19,
+  "declared_coverage": "partial",
+  "published_region_ids": [
+    "cheshire",
+    "derbyshire",
+    "greater-manchester",
+    "lancashire",
+    "leicestershire",
+    "manchester",
+    "merseyside",
+    "north-yorkshire",
+    "northern-ireland-area",
+    "nottinghamshire",
+    "scotland",
+    "shropshire",
+    "south-yorkshire",
+    "staffordshire",
+    "stockport",
+    "wales",
+    "warwickshire",
+    "west-midlands",
+    "west-yorkshire"
+  ],
+  "example_manchester_overview": {
+    "representative_not_user_location": true,
+    "centre_lat": 53.4774,
+    "centre_lon": -2.2309,
+    "viewport": [
+      -2.45,
+      53.2,
+      -2,
+      53.6
+    ],
+    "smallest_region_at_centre": "manchester",
+    "published_regions_covering_entire_viewport": [],
+    "single_region_full_extent": false
+  },
+  "diagnosis": "At this example zoom a single selected PMTiles region does not span the full camera extent, even though multiple nearby regions are published. A viewport-aware selector can prefer one larger covering region when it exists, but must not be described as a complete fix here. Seamless mosaic of adjacent published regional tiles and/or further verified publication remains necessary.",
+  "verified_code_component": {
+    "public_run": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40029842386",
+    "exact_source_git_blob": "2bbf4b3ee5b7a5f11a235775d717d4cdde2f0c0f",
+    "passed": 12,
+    "total": 12
+  },
+  "unknowns": [
+    "Whether every listed archive has valid road tiles",
+    "Actual phone cache, PMTiles read failures and MapLibre GPU style resource health",
+    "Precise geographic footprint of the user's screenshot; no personal location used",
+    "Current road restriction truth and navigation robot results"
+  ],
+  "category02_accepted": false,
+  "app_integration_verified": false,
+  "all_UK_mapped": false,
+  "apk_released": false
+}
