@@ -1,0 +1,1204 @@
+{
+  "schema_version": 1,
+  "source": {
+    "repository": "phuk-prog/drivemate-app",
+    "app_commit_sha": "c8bf824d04030930fc32a56d3ad7594555e8c70c",
+    "path": "tests/categories/batches.json",
+    "checklist_blob_sha": "64597f03a749bf7951f0156247e7df203306e6ab"
+  },
+  "scope": "Test category metadata and user-approved checklist wording only. No app source, secrets, private journeys, APKs or proprietary provider datasets.",
+  "release_policy": "Public component test pass does not approve combined app. Full automation, replay and navigation robot must pass before APK release.",
+  "public_testing_rule": "Execute component tests and safe before/after evidence in public test repositories, group 2 to 4 related categories, report checklist items separately",
+  "source_of_expected_behaviour": "Owner checklist for UI preferences; dated UK legal/traffic order sources and verified road signs for road legality; independent lawful geospatial data for road shape.",
+  "categories_total": 17,
+  "checklist_total": 157,
+  "batches": [
+    {
+      "id": "A",
+      "title": "Roundabouts, maps and positioning",
+      "category_ids": [
+        "01",
+        "02",
+        "04",
+        "05"
+      ],
+      "requires_separate_category_acceptance": true,
+      "source_index": "https://github.com/phuk-prog/drivemate-app/blob/c8bf824d04030930fc32a56d3ad7594555e8c70c/tests/categories/batches/A-roundabouts-maps-gps-routing.md",
+      "items": [
+        {
+          "id": "01.01",
+          "category": "01",
+          "requirement": "Show “Position uncertain” after three seconds of continuous uncertainty.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "01.02",
+          "category": "01",
+          "requirement": "Hide lane-level guidance immediately when positioning becomes unreliable.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "01.03",
+          "category": "01",
+          "requirement": "While waiting for GPS, retain the last location view, allow panning and provide recentering without forced snap-backs.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "01.04",
+          "category": "01",
+          "requirement": "Use available phone sensors, including the gyroscope, to support positioning and direction.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "02.01",
+          "category": "02",
+          "requirement": "Keep the route line on your carriageway, leaving the opposite carriageway visible where possible.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "02.02",
+          "category": "02",
+          "requirement": "Place the vehicle marker near the bottom of the map so more road ahead is visible.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "02.03",
+          "category": "02",
+          "requirement": "Colour affected route sections amber for slower traffic and red for heavy congestion.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "02.04",
+          "category": "02",
+          "requirement": "Keep the vehicle arrow centred on your carriageway, following the road direction and proportional to the map.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "02.05",
+          "category": "02",
+          "requirement": "Adjust the driving camera using location, road type, actual speed and distance to the next turn.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "02.06",
+          "category": "02",
+          "requirement": "Far from a junction, tilt toward the horizon and zoom out to show more of the path ahead.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "02.07",
+          "category": "02",
+          "requirement": "Near a junction, zoom in gradually and tilt toward an overhead view, keeping the vehicle and turn visible.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "02.08",
+          "category": "02",
+          "requirement": "Keep camera and zoom movement smooth, without sudden jumps.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "02.09",
+          "category": "02",
+          "requirement": "Include the following turn in the visible map when two turns are close together.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "04.01",
+          "category": "04",
+          "requirement": "Highlight all suitable lanes, favouring those needed for a closely following turn.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "04.02",
+          "category": "04",
+          "requirement": "Provide detailed lane diagrams to make driving easier.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "04.03",
+          "category": "04",
+          "requirement": "Initially show detailed lane diagrams at complex junctions.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "04.04",
+          "category": "04",
+          "requirement": "Prepare lane guidance early enough to allow time to get into position.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "04.05",
+          "category": "04",
+          "requirement": "Vary lane-guidance timing with speed: earlier on motorways and later in town.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "04.06",
+          "category": "04",
+          "requirement": "Provide 3D immersive driving guidance.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "05.01",
+          "category": "05",
+          "requirement": "Show a faster route using an avoided road as a clearly warned alternative, and use it only when explicitly selected.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "05.02",
+          "category": "05",
+          "requirement": "Allow the route-results panel to be dragged down to reveal more of the map and the routes beneath it.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "05.03",
+          "category": "05",
+          "requirement": "Reroute automatically and straight away when the driver goes off-route.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "title": "On-road guidance and alerts",
+      "category_ids": [
+        "03",
+        "08",
+        "09",
+        "16"
+      ],
+      "requires_separate_category_acceptance": true,
+      "source_index": "https://github.com/phuk-prog/drivemate-app/blob/c8bf824d04030930fc32a56d3ad7594555e8c70c/tests/categories/batches/B-guidance-traffic-warnings-android-auto.md",
+      "items": [
+        {
+          "id": "03.01",
+          "category": "03",
+          "requirement": "Use a compact instruction card with one large turn arrow on the left and distance plus road name or road-style sign on the right.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "03.02",
+          "category": "03",
+          "requirement": "Between junctions, show the distance to the next turn; reveal the large turn arrow as the junction approaches.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "03.03",
+          "category": "03",
+          "requirement": "Use clear lane wording such as “Use the right 3 lanes to continue straight”.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "08.01",
+          "category": "08",
+          "requirement": "Provide live traffic information and use live data for calculations affected by current conditions.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "08.02",
+          "category": "08",
+          "requirement": "Allow the privacy settings to support the chosen live-traffic feature; entering/saving the provider code or key grants permission without a separate opt-in step.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "08.03",
+          "category": "08",
+          "requirement": "Prioritise official road information over conflicting driver feedback and show a small “reported issue” note.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "09.01",
+          "category": "09",
+          "requirement": "In Full sound mode, announce a group of nearby speed bumps once.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "09.02",
+          "category": "09",
+          "requirement": "Show each speed bump separately on the map.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "09.03",
+          "category": "09",
+          "requirement": "Warn as soon as the driver exceeds the speed limit.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "09.04",
+          "category": "09",
+          "requirement": "Repeat the audio speeding warning once a minute while the driver remains over the limit, respecting sound mode.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "09.05",
+          "category": "09",
+          "requirement": "Announce an approaching lower limit with wording such as “Speed limit drops to 30”.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "09.06",
+          "category": "09",
+          "requirement": "Show the lower-limit sign on the route at the point where the limit changes.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "09.07",
+          "category": "09",
+          "requirement": "Show relevant speed cameras ahead on the route and trigger the enabled warning at an approach distance.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "09.08",
+          "category": "09",
+          "requirement": "Choose the camera-warning approach distance using the delegated recommendation, then test it.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "09.09",
+          "category": "09",
+          "requirement": "Announce a speed camera ahead and give an additional camera warning when approaching it while speeding.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "09.10",
+          "category": "09",
+          "requirement": "Show calculated average speed alongside the limit while inside an average-speed zone.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "09.11",
+          "category": "09",
+          "requirement": "Announce approach to an average-speed check and announce entry into it.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "09.12",
+          "category": "09",
+          "requirement": "Announce leaving an average-speed check.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "09.13",
+          "category": "09",
+          "requirement": "Display variable or temporary speed limits only when reliably confirmed active.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "16.01",
+          "category": "16",
+          "requirement": "Prioritise the map, next instruction, lane guidance and main alerts in the car's supported Android Auto layout.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "title": "Plan, search, stop and arrive",
+      "category_ids": [
+        "06",
+        "07",
+        "15",
+        "17"
+      ],
+      "requires_separate_category_acceptance": true,
+      "source_index": "https://github.com/phuk-prog/drivemate-app/blob/c8bf824d04030930fc32a56d3ad7594555e8c70c/tests/categories/batches/C-search-stops-arrival-first-use.md",
+      "items": [
+        {
+          "id": "06.01",
+          "category": "06",
+          "requirement": "Search as the user types, match partial names and prioritise the closest relevant locations.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "06.02",
+          "category": "06",
+          "requirement": "Show an approximate destination entrance when an exact one is unavailable, clearly labelled as approximate.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "06.03",
+          "category": "06",
+          "requirement": "Offer separate Go/Start and full-screen Preview actions before navigation.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "06.04",
+          "category": "06",
+          "requirement": "Support a wake phrase for voice search.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "06.05",
+          "category": "06",
+          "requirement": "Add destination sharing from other apps after the core features are stable; retain this as deferred work.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "07.01",
+          "category": "07",
+          "requirement": "Let Add stop find places along the route and show the extra journey time for each.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "07.02",
+          "category": "07",
+          "requirement": "Show opening hours and “open now” for stop options.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "07.03",
+          "category": "07",
+          "requirement": "Show live fuel prices where available.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "07.04",
+          "category": "07",
+          "requirement": "Filter stops by categories such as fuel, food, toilets and parking.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "07.05",
+          "category": "07",
+          "requirement": "Allow another destination or intermediate stop to be added.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "07.06",
+          "category": "07",
+          "requirement": "Allow stops to be dragged into the preferred order, with the final destination last.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "07.07",
+          "category": "07",
+          "requirement": "Continue navigation automatically to the next stop after finishing a stop.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "07.08",
+          "category": "07",
+          "requirement": "Show parking options when requested, with a small nearby-parking button near the destination.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "15.01",
+          "category": "15",
+          "requirement": "Announce the destination ahead shortly before arrival, including left or right when known, then announce arrival.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "15.02",
+          "category": "15",
+          "requirement": "Keep the map visible after arrival with Finish journey and Find parking actions.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "15.03",
+          "category": "15",
+          "requirement": "Offer an optional trip summary showing journey time, distance and delays.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "15.04",
+          "category": "15",
+          "requirement": "Do not save the journey summary unless journey history is enabled.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "17.01",
+          "category": "17",
+          "requirement": "Show a short first-use tutorial.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        }
+      ]
+    },
+    {
+      "id": "D",
+      "title": "Interaction, accessibility and privacy",
+      "category_ids": [
+        "10",
+        "13",
+        "14"
+      ],
+      "requires_separate_category_acceptance": true,
+      "source_index": "https://github.com/phuk-prog/drivemate-app/blob/c8bf824d04030930fc32a56d3ad7594555e8c70c/tests/categories/batches/D-sound-settings-privacy.md",
+      "items": [
+        {
+          "id": "10.01",
+          "category": "10",
+          "requirement": "Enable spoken turn guidance by default.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "10.02",
+          "category": "10",
+          "requirement": "Make lowering guidance during a phone call optional/configurable.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "10.03",
+          "category": "10",
+          "requirement": "Keep all visual guidance and warnings visible while muted.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "10.04",
+          "category": "10",
+          "requirement": "Tapping the instruction card repeats the current valid spoken instruction while respecting sound mode and remaining silent when fully muted.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "10.05",
+          "category": "10",
+          "requirement": "When there is no instruction to repeat, tapping the instruction card does nothing, with no sound or visual feedback.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "10.06",
+          "category": "10",
+          "requirement": "Do not show a brief confirmation label or toast when changing sound state.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "10.07",
+          "category": "10",
+          "requirement": "Cycle the map sound control in the order Full → Alerts only → Muted → Full.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "10.08",
+          "category": "10",
+          "requirement": "Open sound settings when the sound icon is long-pressed.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "10.09",
+          "category": "10",
+          "requirement": "Label the three sound states exactly “Full”, “Alerts only” and “Muted”.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "10.10",
+          "category": "10",
+          "requirement": "Use labels alone for the three state choices, without extra descriptions beneath each label.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "10.11",
+          "category": "10",
+          "requirement": "Highlight the whole selected sound-state button.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "10.12",
+          "category": "10",
+          "requirement": "Reflect changes made in sound settings on the map icon after closing settings.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "10.13",
+          "category": "10",
+          "requirement": "Return without confirmation when leaving sound settings without changes.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "10.14",
+          "category": "10",
+          "requirement": "Save sound-setting changes automatically when leaving.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "10.15",
+          "category": "10",
+          "requirement": "Do not add an undo action for sound-state changes.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "10.16",
+          "category": "10",
+          "requirement": "Update the sound icon picture instantly when it is tapped on the map.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "10.17",
+          "category": "10",
+          "requirement": "Keep sound-state switching silent, without a switching sound effect.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "10.18",
+          "category": "10",
+          "requirement": "If a sentence is playing when sound mode changes, let it finish before applying the new audio state; no additional wait-time cap is required.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "10.19",
+          "category": "10",
+          "requirement": "Apply a sound-mode change immediately if no sentence is playing.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "10.20",
+          "category": "10",
+          "requirement": "Swap sound icon pictures without animation.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "10.21",
+          "category": "10",
+          "requirement": "Use a speaker with waves for Full and a speaker with a red slash for Muted.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "10.22",
+          "category": "10",
+          "requirement": "Use a plain speaker without waves or a slash for Alerts only.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "10.23",
+          "category": "10",
+          "requirement": "Full mode speaks all enabled guidance and warnings; Muted shows visuals only.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "10.24",
+          "category": "10",
+          "requirement": "Alerts only uses tones for main alerts: cameras, speeding and immediate road dangers; exclude speed bumps and minor hazards from its tones.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "10.25",
+          "category": "10",
+          "requirement": "Use distinct short default tones for the main alert types; tone patterns are delegated for recommendation.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "10.26",
+          "category": "10",
+          "requirement": "In Full mode, announce all enabled warnings, including minor hazards.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "10.27",
+          "category": "10",
+          "requirement": "Provide a guidance-volume control separate from music volume.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "10.28",
+          "category": "10",
+          "requirement": "Provide voice and speaking-speed choices in Settings.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "13.01",
+          "category": "13",
+          "requirement": "Provide adjustable text and control sizes in Settings.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "13.02",
+          "category": "13",
+          "requirement": "Choose the default text-size behaviour through the delegated recommendation.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "13.03",
+          "category": "13",
+          "requirement": "Represent every warning on the map with a symbol.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "13.04",
+          "category": "13",
+          "requirement": "Keep map warnings symbol-only when tapped, without extra text labels.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "13.05",
+          "category": "13",
+          "requirement": "Provide a symbol legend in Settings.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "13.06",
+          "category": "13",
+          "requirement": "Make the symbol legend available only outside navigation.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "13.07",
+          "category": "13",
+          "requirement": "Present the legend as one simple list.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "13.08",
+          "category": "13",
+          "requirement": "Use a fixed priority order for the legend, with speed cameras first.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "13.09",
+          "category": "13",
+          "requirement": "Keep the sound control visible and place other routine controls in the appropriate menu.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "13.10",
+          "category": "13",
+          "requirement": "Choose measurement units automatically from location.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "14.01",
+          "category": "14",
+          "requirement": "Keep journey recording off until the user enables it.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "14.02",
+          "category": "14",
+          "requirement": "Allow journey-history retention to be varied and support automatic deletion after the chosen period.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "14.03",
+          "category": "14",
+          "requirement": "Support backups to a personal account.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "14.04",
+          "category": "14",
+          "requirement": "Offer backup retention of one week, one month, one year, a custom period, or keep until deleted.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "14.05",
+          "category": "14",
+          "requirement": "Delete timed backups automatically when their chosen retention period ends.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "14.06",
+          "category": "14",
+          "requirement": "Send problem reports automatically without asking the user to review or confirm each report.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        }
+      ]
+    },
+    {
+      "id": "E",
+      "title": "Offline map packages and downloads",
+      "category_ids": [
+        "11",
+        "12"
+      ],
+      "requires_separate_category_acceptance": true,
+      "source_index": "https://github.com/phuk-prog/drivemate-app/blob/c8bf824d04030930fc32a56d3ad7594555e8c70c/tests/categories/batches/E-offline-maps-downloads.md",
+      "items": [
+        {
+          "id": "11.01",
+          "category": "11",
+          "requirement": "Support offline navigation in downloaded areas.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "11.02",
+          "category": "11",
+          "requirement": "Download offline-map updates automatically over Wi-Fi.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "11.03",
+          "category": "11",
+          "requirement": "Warn before large downloads on mobile data.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "11.04",
+          "category": "11",
+          "requirement": "Remind the user before an offline area expires.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "11.05",
+          "category": "11",
+          "requirement": "Require review and confirmation before removing an expired offline area.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "11.06",
+          "category": "11",
+          "requirement": "Keep outdated maps usable, clearly labelled as outdated, until updated or removed.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "11.07",
+          "category": "11",
+          "requirement": "Show the outdated-map label at the top of the map when it is being used.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "11.08",
+          "category": "11",
+          "requirement": "Offer a quick Update now action with that label when online.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "11.09",
+          "category": "11",
+          "requirement": "After prior approval, update offline maps automatically when connectivity returns.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "11.10",
+          "category": "11",
+          "requirement": "Let that approval cover all future offline areas.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "11.11",
+          "category": "11",
+          "requirement": "Allow automatic-update approval to be revoked in Settings.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "11.12",
+          "category": "11",
+          "requirement": "Turning automatic updates off stops queued future updates immediately.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "11.13",
+          "category": "11",
+          "requirement": "Turning automatic updates off also cancels automatic updates already in progress.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "11.14",
+          "category": "11",
+          "requirement": "Do not show a cancellation confirmation message when automatic updates are switched off.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "11.15",
+          "category": "11",
+          "requirement": "Show the toggle's off state instead of adding a cancellation log.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "11.16",
+          "category": "11",
+          "requirement": "Place the automatic-update control in the appropriate Offline maps settings section.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "11.17",
+          "category": "11",
+          "requirement": "Allow a rectangular area to be selected on the map for download and show its size before confirmation.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "11.18",
+          "category": "11",
+          "requirement": "Keep the selected rectangle exactly as drawn, without snapping to administrative boundaries.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "11.19",
+          "category": "11",
+          "requirement": "Update the estimated download size live as the rectangle is resized.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "11.20",
+          "category": "11",
+          "requirement": "Also offer named regional downloads, including counties and whole countries.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "11.21",
+          "category": "11",
+          "requirement": "List nearby downloadable regions first.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "11.22",
+          "category": "11",
+          "requirement": "Provide region search with partial-name matching as the user types.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "11.23",
+          "category": "11",
+          "requirement": "Show download size in region-search results.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "11.24",
+          "category": "11",
+          "requirement": "Show download size rather than estimated download time in area options.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "12.01",
+          "category": "12",
+          "requirement": "Show offline storage use in the appropriate Settings section.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "12.02",
+          "category": "12",
+          "requirement": "Warn when a selected region will not fit in available storage.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "12.03",
+          "category": "12",
+          "requirement": "Suggest removing older offline areas when space is low.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "12.04",
+          "category": "12",
+          "requirement": "Order suggested removals by least recently used first.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "12.05",
+          "category": "12",
+          "requirement": "Show the space freed by removing each area.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "12.06",
+          "category": "12",
+          "requirement": "Allow multiple offline areas to be selected for removal.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "12.07",
+          "category": "12",
+          "requirement": "Show a running total of the space that selected removals will free.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "12.08",
+          "category": "12",
+          "requirement": "Warn when removing an offline area would affect a planned route.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "12.09",
+          "category": "12",
+          "requirement": "Allow that removal after an explicit confirmation.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "12.10",
+          "category": "12",
+          "requirement": "Give Cancel removal the default focus in the confirmation.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "12.11",
+          "category": "12",
+          "requirement": "Show how much storage is still missing in the confirmation.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "12.12",
+          "category": "12",
+          "requirement": "Suggest a smaller region when the requested download will not fit.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "12.13",
+          "category": "12",
+          "requirement": "List several smaller nearby region options with sizes, alongside a draw-a-rectangle option and cleanup options.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "12.14",
+          "category": "12",
+          "requirement": "Show fit and planned-route coverage warnings inline under each relevant download option.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "12.15",
+          "category": "12",
+          "requirement": "Show an active-download progress bar and percentage complete.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "12.16",
+          "category": "12",
+          "requirement": "Allow downloads to be paused and resumed.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "12.17",
+          "category": "12",
+          "requirement": "Automatically resume paused downloads on Wi-Fi.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "12.18",
+          "category": "12",
+          "requirement": "Also allow automatic resumption on mobile data when mobile downloads have been allowed.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "12.19",
+          "category": "12",
+          "requirement": "Do not add a daily mobile-data cap when mobile downloads are allowed.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "12.20",
+          "category": "12",
+          "requirement": "Do not add a network-type label beside the download progress display.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "12.21",
+          "category": "12",
+          "requirement": "Show percentage rather than estimated time remaining.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "12.22",
+          "category": "12",
+          "requirement": "Keep persistent download progress inside Offline Maps.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "12.23",
+          "category": "12",
+          "requirement": "Show a brief banner when a download fails.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "12.24",
+          "category": "12",
+          "requirement": "Include a Retry button in the failure banner.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "12.25",
+          "category": "12",
+          "requirement": "Wait for the user to retry a failed download instead of retrying automatically.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "12.26",
+          "category": "12",
+          "requirement": "Dismiss the failure banner automatically after approximately five to ten seconds.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "12.27",
+          "category": "12",
+          "requirement": "Keep Retry available beside the individual failed item in Offline Maps after the banner disappears.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "12.28",
+          "category": "12",
+          "requirement": "Do not add a failure-reason message under each failed item.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        },
+        {
+          "id": "12.29",
+          "category": "12",
+          "requirement": "Clear a failed download item automatically after it has remained failed for two days.",
+          "accepted": false,
+          "coverage": "not_a_full_acceptance_claim"
+        }
+      ]
+    }
+  ],
+  "baseline_evidence": {
+    "A": {
+      "public_workflow": "https://github.com/phuk-prog/drivemate-test-map-display/actions/workflows/batch-a-public-components.yml",
+      "recent_public_verification": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40024858622",
+      "status": "public_component_checks_passed_but_combined_app_unverified"
+    },
+    "B": {
+      "historical_private_baseline": "https://github.com/phuk-prog/drivemate-app/actions/runs/40005446193",
+      "public_test_contract": "https://github.com/phuk-prog/drivemate-test-map-display/blob/main/batches/B-guidance-alerts/contracts/baseline.json",
+      "status": "16_logic_diagnostics_passed_historically_reexecution_in_public_pending"
+    },
+    "C": {
+      "status": "not_tested"
+    },
+    "D": {
+      "status": "not_tested"
+    },
+    "E": {
+      "status": "not_tested"
+    }
+  }
+}
