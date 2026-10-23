@@ -1,0 +1,276 @@
+{
+  "schema": 1,
+  "kind": "SYNTHETIC_TOMTOM_V5_TRAFFIC_TEST_DATA",
+  "warning": "Invented coordinates and incident metadata. Not a recording, TomTom API response, or live traffic evidence.",
+  "checkedAt": 1700000000000,
+  "road": {
+    "name": "Synthetic eastbound corridor",
+    "coordinates": [
+      [
+        -2,
+        53
+      ],
+      [
+        -1.999,
+        53
+      ],
+      [
+        -1.998,
+        53
+      ]
+    ]
+  },
+  "cases": {
+    "severe": {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -1.9999,
+            53
+          ],
+          [
+            -1.9985,
+            53
+          ]
+        ]
+      },
+      "properties": {
+        "id": "sim-heavy-01",
+        "iconCategory": 6,
+        "timeValidity": "present",
+        "magnitudeOfDelay": 3,
+        "length": 95,
+        "delay": 190,
+        "events": [
+          {
+            "iconCategory": 6,
+            "description": "Synthetic heavy congestion"
+          }
+        ]
+      }
+    },
+    "moderate": {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -1.9999,
+            53
+          ],
+          [
+            -1.9985,
+            53
+          ]
+        ]
+      },
+      "properties": {
+        "id": "sim-amber-01",
+        "iconCategory": 6,
+        "timeValidity": "present",
+        "magnitudeOfDelay": 1,
+        "length": 95,
+        "delay": 20,
+        "events": [
+          {
+            "iconCategory": 6,
+            "description": "Synthetic moderate congestion"
+          }
+        ]
+      }
+    },
+    "opposite": {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -1.9985,
+            53
+          ],
+          [
+            -1.9999,
+            53
+          ]
+        ]
+      },
+      "properties": {
+        "id": "sim-opposite-01",
+        "iconCategory": 6,
+        "timeValidity": "present",
+        "magnitudeOfDelay": 3,
+        "length": 95,
+        "delay": 190
+      }
+    },
+    "offroad": {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -1.9999,
+            53.01
+          ],
+          [
+            -1.9985,
+            53.01
+          ]
+        ]
+      },
+      "properties": {
+        "id": "sim-offroad-01",
+        "iconCategory": 6,
+        "timeValidity": "present",
+        "magnitudeOfDelay": 3,
+        "length": 95,
+        "delay": 190
+      }
+    },
+    "directionUnknown": {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.9997,
+          53
+        ]
+      },
+      "properties": {
+        "id": "sim-no-heading-01",
+        "iconCategory": 6,
+        "timeValidity": "present",
+        "magnitudeOfDelay": 3,
+        "length": 95,
+        "delay": 190
+      }
+    },
+    "stale": {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -1.9999,
+            53
+          ],
+          [
+            -1.9985,
+            53
+          ]
+        ]
+      },
+      "properties": {
+        "id": "sim-expired-01",
+        "iconCategory": 6,
+        "timeValidity": "present",
+        "endTime": "2023-11-13T22:13:20Z",
+        "magnitudeOfDelay": 3,
+        "length": 95,
+        "delay": 190
+      }
+    },
+    "future": {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -1.9999,
+            53
+          ],
+          [
+            -1.9985,
+            53
+          ]
+        ]
+      },
+      "properties": {
+        "id": "sim-future-01",
+        "iconCategory": 6,
+        "timeValidity": "future",
+        "magnitudeOfDelay": 3,
+        "length": 95,
+        "delay": 190
+      }
+    },
+    "noncongestion": {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -1.9999,
+            53
+          ],
+          [
+            -1.9985,
+            53
+          ]
+        ]
+      },
+      "properties": {
+        "id": "sim-accident-01",
+        "iconCategory": 1,
+        "timeValidity": "present",
+        "magnitudeOfDelay": 0,
+        "length": 95,
+        "delay": 0
+      }
+    },
+    "invalidCoordinates": {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -1.9999,
+            103
+          ],
+          [
+            -1.9985,
+            103
+          ]
+        ]
+      },
+      "properties": {
+        "id": "sim-invalid-01",
+        "iconCategory": 6,
+        "timeValidity": "present",
+        "magnitudeOfDelay": 3,
+        "length": 95,
+        "delay": 190
+      }
+    },
+    "unknownExtent": {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.9997,
+          53
+        ]
+      },
+      "properties": {
+        "id": "sim-no-extent-01",
+        "iconCategory": 6,
+        "timeValidity": "present",
+        "magnitudeOfDelay": 2
+      }
+    },
+    "missingId": {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -1.9999,
+            53
+          ],
+          [
+            -1.9985,
+            53
+          ]
+        ]
+      },
+      "properties": {
+        "iconCategory": 6,
+        "timeValidity": "present",
+        "magnitudeOfDelay": 3,
+        "length": 95,
+        "delay": 190
+      }
+    }
+  }
+}
