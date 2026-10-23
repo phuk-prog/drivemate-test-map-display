@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - 'contracts/**'
+      - 'batches/**'
       - 'fixtures/**'
       - 'ci/validate_grouped_tests.py'
       - '.github/workflows/validate-grouped-tests.yml'
@@ -26,6 +27,8 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - name: Verify 2–4 related-category groups, independent UK rules and no-key fixtures
         run: python3 ci/validate_grouped_tests.py
+      - name: Validate next Category 03 + 08 + 09 public sources and 19 checklist records
+        run: python3 batches/B-guidance-alerts/ci/validate.py
       - name: Disclose what is and is not tested publicly
         run: |
           echo "Public contracts, grouping, independent reference metadata and synthetic fixtures validated." >> "$GITHUB_STEP_SUMMARY"
