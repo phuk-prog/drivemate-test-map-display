@@ -4,15 +4,19 @@
   "name": "Map display, route line and vehicle arrow",
   "app_repo": "phuk-prog/drivemate-app",
   "public_repo": "phuk-prog/drivemate-test-map-display",
-  "evidence_policy": "Category 2 traffic is validated with fully synthetic keyless fixtures against private app classes. No real TomTom API key, real provider response, or personal journey data may be uploaded to the public test repository or CI. Simulation verifies expected parser and overlay logic, not live TomTom availability or UK road/rendered-map truth.",
+  "evidence_policy": "Any legal manoeuvre reference must come from external official UK government law/guidance, not app output; geospatial facts require attributed current OSM/authoritative geometry plus local sign corroboration. Simulation is marked as such. Native Android GPU rendered-map tests are separate from Kotlin-only tests. Do not accept category merely because tests execute; record tests and evidence gaps.",
   "items": [
     {
       "id": "02.01",
       "tests": [
         "pref02_01_verifiedRoadGeometryHasLowDrift",
-        "pref02_01_unverifiedRoadCannotBeUsedAsProof"
+        "pref02_01_unverifiedRoadCannotBeUsedAsProof",
+        "pref02_01_externalRoundaboutMustBeRealSourcedAndAttributed",
+        "pref02_01_currentRealRoadPolylineMustHaveLowVisualDrift",
+        "pref02_01_offRoadLineMustNotPassAsValidRealRoundabout",
+        "pref02_01_externalRoadCannotBeClaimedLegallyVerifiedFromOsmAlone"
       ],
-      "remaining": "verified real UK carriageway geometry and live overlay"
+      "remaining": "Real-road geometry checked from external OSM and GPU renderer; independent official road layout/sign/turn confirmation for specific junction still needed."
     },
     {
       "id": "02.02",
@@ -98,5 +102,11 @@
       "remaining": "two nearby turns in rendered viewport"
     }
   ],
-  "traffic_test_mode": "SIMULATION_ONLY_NO_CREDENTIALS"
+  "traffic_test_mode": "SIMULATION_ONLY_NO_CREDENTIALS",
+  "render_expected": [
+    "pref02_01_renderedRealOsmRoundaboutFollowsMapControllerRouteAndCarLayers",
+    "pref02_03_nativeMapSnapshotContainsTrafficAndRouteInk"
+  ],
+  "legal_reference": "contracts/uk-independent-evidence.json",
+  "real_road_source": "OpenStreetMap contributors, ODbL 1.0; Roscoe's Roundabout fresh named-way geometry via Overpass; source geometries are not legal proof"
 }
