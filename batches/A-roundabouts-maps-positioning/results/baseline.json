@@ -1,0 +1,431 @@
+{
+  "batch": "A",
+  "stage": "baseline",
+  "app_sha": "da28a6d90347dddfb45ca8f7faca454b8cdab2c7",
+  "public_tests_sha": "468e8255514717b3b292f95f9adf87e0caab5125",
+  "tested_local_commit": "da28a6d90347dddfb45ca8f7faca454b8cdab2c7",
+  "app_tree": "77e85ec5d30c99a3f88d922a046311081f688f4d",
+  "test_fingerprint": "a074223557d62d459e5e8a41e5d6746e5246386ce295993c7d5d5b1d4a9916ef",
+  "baseline_execution_valid": true,
+  "execution_errors": [],
+  "gradle_exit": 1,
+  "lint_passed": true,
+  "categories": {
+    "01": {
+      "passed": 10,
+      "total": 19,
+      "failed": 9,
+      "missing": 0,
+      "accepted": false
+    },
+    "02": {
+      "passed": 22,
+      "total": 22,
+      "failed": 0,
+      "missing": 0,
+      "accepted": false
+    },
+    "04": {
+      "passed": 9,
+      "total": 9,
+      "failed": 0,
+      "missing": 0,
+      "accepted": false
+    },
+    "05": {
+      "passed": 5,
+      "total": 5,
+      "failed": 0,
+      "missing": 0,
+      "accepted": false
+    }
+  },
+  "items": [
+    {
+      "id": "01.01",
+      "category": "01",
+      "requirement": "Show “Position uncertain” after three seconds of continuous uncertainty.",
+      "runtime_cases": [
+        "com.drivemate.app.nav.GpsAcceptanceTest#uncertainLabelStartsAtThreeSeconds",
+        "com.drivemate.app.nav.GpsAcceptanceTest#recoveredPositionResetsContinuousUncertaintyTimer",
+        "com.drivemate.app.nav.GpsAcceptanceTest#goodPositionClearsUncertaintyImmediately"
+      ],
+      "passed": 0,
+      "total": 3,
+      "diagnostic_status": "failures_or_missing",
+      "accepted": false
+    },
+    {
+      "id": "01.02",
+      "category": "01",
+      "requirement": "Hide lane-level guidance immediately when positioning becomes unreliable.",
+      "runtime_cases": [
+        "com.drivemate.app.nav.GpsAcceptanceTest#reliablePositionAllowsLanes",
+        "com.drivemate.app.nav.GpsAcceptanceTest#inaccuratePositionHidesLanesImmediately",
+        "com.drivemate.app.nav.GpsAcceptanceTest#missingAccuracyCannotClaimLanes",
+        "com.drivemate.app.nav.GpsAcceptanceTest#invalidRouteDistanceCannotClaimLanes",
+        "com.drivemate.app.nav.GpsAcceptanceTest#negativeAccuracyCannotClaimLanes",
+        "com.drivemate.app.nav.GpsAcceptanceTest#stalePositionHidesLanes",
+        "com.drivemate.app.nav.GpsAcceptanceTest#estimatedPositionNeverAllowsLanes",
+        "com.drivemate.app.nav.GpsAcceptanceTest#lanesRecoverOnlyAfterStableFixes"
+      ],
+      "passed": 5,
+      "total": 8,
+      "diagnostic_status": "failures_or_missing",
+      "accepted": false
+    },
+    {
+      "id": "01.03",
+      "category": "01",
+      "requirement": "While waiting for GPS, retain the last location view, allow panning and provide recentering without forced snap-backs.",
+      "runtime_cases": [],
+      "passed": 0,
+      "total": 0,
+      "diagnostic_status": "not_tested",
+      "accepted": false
+    },
+    {
+      "id": "01.04",
+      "category": "01",
+      "requirement": "Use available phone sensors, including the gyroscope, to support positioning and direction.",
+      "runtime_cases": [
+        "com.drivemate.app.nav.GpsAcceptanceTest#gyroSupportsHeadingBetweenMeasuredFixes",
+        "com.drivemate.app.nav.GpsAcceptanceTest#invalidGyroCannotPoisonHeading",
+        "com.drivemate.app.nav.GpsAcceptanceTest#invalidGravityCannotPoisonHeading",
+        "com.drivemate.app.nav.GpsAcceptanceTest#olderGyroSampleCannotRewindIntegrationClock",
+        "com.drivemate.app.nav.GpsAcceptanceTest#sensorsCannotKeepHeadingFreshIndefinitely",
+        "com.drivemate.app.nav.GpsAcceptanceTest#stationaryGpsDoesNotChangeHeading"
+      ],
+      "passed": 3,
+      "total": 6,
+      "diagnostic_status": "failures_or_missing",
+      "accepted": false
+    },
+    {
+      "id": "02.01",
+      "category": "02",
+      "requirement": "Keep the route line on your carriageway, leaving the opposite carriageway visible where possible.",
+      "runtime_cases": [
+        "com.drivemate.app.map.Category2IndependentUkRoadGeometryTest#pref02_01_externalRoundaboutMustBeRealSourcedAndAttributed",
+        "com.drivemate.app.map.Category2IndependentUkRoadGeometryTest#pref02_01_currentRealRoadPolylineMustHaveLowVisualDrift",
+        "com.drivemate.app.map.Category2IndependentUkRoadGeometryTest#pref02_01_offRoadLineMustNotPassAsValidRealRoundabout",
+        "com.drivemate.app.map.Category2IndependentUkRoadGeometryTest#pref02_01_externalRoadCannotBeClaimedLegallyVerifiedFromOsmAlone",
+        "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_01_verifiedRoadGeometryHasLowDrift",
+        "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_01_unverifiedRoadCannotBeUsedAsProof"
+      ],
+      "passed": 6,
+      "total": 6,
+      "diagnostic_status": "logic_diagnostics_passed",
+      "accepted": false
+    },
+    {
+      "id": "02.02",
+      "category": "02",
+      "requirement": "Place the vehicle marker near the bottom of the map so more road ahead is visible.",
+      "runtime_cases": [
+        "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_02_paddedCameraLeavesMoreViewAhead",
+        "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_02_largePanelsCannotConsumeViewport"
+      ],
+      "passed": 2,
+      "total": 2,
+      "diagnostic_status": "logic_diagnostics_passed",
+      "accepted": false
+    },
+    {
+      "id": "02.03",
+      "category": "02",
+      "requirement": "Colour affected route sections amber for slower traffic and red for heavy congestion.",
+      "runtime_cases": [
+        "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_03_routePaletteIsNotATrafficState"
+      ],
+      "passed": 1,
+      "total": 1,
+      "diagnostic_status": "logic_diagnostics_passed",
+      "accepted": false
+    },
+    {
+      "id": "02.04",
+      "category": "02",
+      "requirement": "Keep the vehicle arrow centred on your carriageway, following the road direction and proportional to the map.",
+      "runtime_cases": [
+        "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_04_cameraBearingWrapsShortWayAcrossNorth",
+        "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_04_carLayerIsIdentifiedBelowOwnOverlays"
+      ],
+      "passed": 2,
+      "total": 2,
+      "diagnostic_status": "logic_diagnostics_passed",
+      "accepted": false
+    },
+    {
+      "id": "02.05",
+      "category": "02",
+      "requirement": "Adjust the driving camera using location, road type, actual speed and distance to the next turn.",
+      "runtime_cases": [
+        "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_05_fastRoadHasWiderZoomThanSlowStreet",
+        "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_05_nearTurnRaisesZoomWithoutLosingTurnContext"
+      ],
+      "passed": 2,
+      "total": 2,
+      "diagnostic_status": "logic_diagnostics_passed",
+      "accepted": false
+    },
+    {
+      "id": "02.06",
+      "category": "02",
+      "requirement": "Far from a junction, tilt toward the horizon and zoom out to show more of the path ahead.",
+      "runtime_cases": [
+        "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_06_openFastRoadTiltRequiresSustainedSpeed",
+        "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_06_zoomFollowsRoadSpeedBand"
+      ],
+      "passed": 2,
+      "total": 2,
+      "diagnostic_status": "logic_diagnostics_passed",
+      "accepted": false
+    },
+    {
+      "id": "02.07",
+      "category": "02",
+      "requirement": "Near a junction, zoom in gradually and tilt toward an overhead view, keeping the vehicle and turn visible.",
+      "runtime_cases": [
+        "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_07_junctionTiltsTowardOverhead",
+        "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_07_roundaboutUsesJunctionPerspective"
+      ],
+      "passed": 2,
+      "total": 2,
+      "diagnostic_status": "logic_diagnostics_passed",
+      "accepted": false
+    },
+    {
+      "id": "02.08",
+      "category": "02",
+      "requirement": "Keep camera and zoom movement smooth, without sudden jumps.",
+      "runtime_cases": [
+        "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_08_zoomIsTimeRateLimited",
+        "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_08_tiltDoesNotJumpAcrossOneFix",
+        "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_08_insetChangesGlideInsteadOfJumping"
+      ],
+      "passed": 3,
+      "total": 3,
+      "diagnostic_status": "logic_diagnostics_passed",
+      "accepted": false
+    },
+    {
+      "id": "02.09",
+      "category": "02",
+      "requirement": "Include the following turn in the visible map when two turns are close together.",
+      "runtime_cases": [
+        "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_09_newTurnCanWidenFittedFrame",
+        "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_09_geometrySlicePreservesIntermediateRoute"
+      ],
+      "passed": 2,
+      "total": 2,
+      "diagnostic_status": "logic_diagnostics_passed",
+      "accepted": false
+    },
+    {
+      "id": "04.01",
+      "category": "04",
+      "requirement": "Highlight all suitable lanes, favouring those needed for a closely following turn.",
+      "runtime_cases": [
+        "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref04_01_allSuitableLanesRemainWhenNoFollowingTurn",
+        "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref04_01_followingRightTurnPrefersRightmostSuitableLane",
+        "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref04_01_followingLeftTurnPrefersLeftmostSuitableLane",
+        "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref04_01_busAndUnknownMarkingsNeverBecomeRecommendations",
+        "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref04_01_absentLaneEvidenceDoesNotInventALanePlan"
+      ],
+      "passed": 5,
+      "total": 5,
+      "diagnostic_status": "logic_diagnostics_passed",
+      "accepted": false
+    },
+    {
+      "id": "04.02",
+      "category": "04",
+      "requirement": "Provide detailed lane diagrams to make driving easier.",
+      "runtime_cases": [],
+      "passed": 0,
+      "total": 0,
+      "diagnostic_status": "not_tested",
+      "accepted": false
+    },
+    {
+      "id": "04.03",
+      "category": "04",
+      "requirement": "Initially show detailed lane diagrams at complex junctions.",
+      "runtime_cases": [],
+      "passed": 0,
+      "total": 0,
+      "diagnostic_status": "not_tested",
+      "accepted": false
+    },
+    {
+      "id": "04.04",
+      "category": "04",
+      "requirement": "Prepare lane guidance early enough to allow time to get into position.",
+      "runtime_cases": [
+        "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref04_04_closeFollowingJunctionInfluencesExitLaneChoice"
+      ],
+      "passed": 1,
+      "total": 1,
+      "diagnostic_status": "logic_diagnostics_passed",
+      "accepted": false
+    },
+    {
+      "id": "04.05",
+      "category": "04",
+      "requirement": "Vary lane-guidance timing with speed: earlier on motorways and later in town.",
+      "runtime_cases": [
+        "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref04_05_fastRoadGuidanceBeginsEarlierThanTownGuidance"
+      ],
+      "passed": 1,
+      "total": 1,
+      "diagnostic_status": "logic_diagnostics_passed",
+      "accepted": false
+    },
+    {
+      "id": "04.06",
+      "category": "04",
+      "requirement": "Provide 3D immersive driving guidance.",
+      "runtime_cases": [
+        "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref04_06_scenePersistsWhileCirculating",
+        "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref04_06_arrivalClearsTheImmersiveScene"
+      ],
+      "passed": 2,
+      "total": 2,
+      "diagnostic_status": "logic_diagnostics_passed",
+      "accepted": false
+    },
+    {
+      "id": "05.01",
+      "category": "05",
+      "requirement": "Show a faster route using an avoided road as a clearly warned alternative, and use it only when explicitly selected.",
+      "runtime_cases": [],
+      "passed": 0,
+      "total": 0,
+      "diagnostic_status": "not_tested",
+      "accepted": false
+    },
+    {
+      "id": "05.02",
+      "category": "05",
+      "requirement": "Allow the route-results panel to be dragged down to reveal more of the map and the routes beneath it.",
+      "runtime_cases": [],
+      "passed": 0,
+      "total": 0,
+      "diagnostic_status": "not_tested",
+      "accepted": false
+    },
+    {
+      "id": "05.03",
+      "category": "05",
+      "requirement": "Reroute automatically and straight away when the driver goes off-route.",
+      "runtime_cases": [
+        "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref05_03_confirmedWrongTurnCanTriggerOnFirstReliableFix",
+        "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref05_03_aRoundaboutMustNotBeMistakenForAWrongTurn",
+        "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref05_03_cornerHeadingMustBeComparedWithTheRoadAhead",
+        "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref05_03_parallelRoadEvidenceCanIdentifyOffRouteTravel",
+        "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref05_03_inaccuratePositionMustNotTriggerImmediateWrongTurn"
+      ],
+      "passed": 5,
+      "total": 5,
+      "diagnostic_status": "logic_diagnostics_passed",
+      "accepted": false
+    }
+  ],
+  "case_outcomes": {
+    "com.drivemate.app.map.Category2IndependentUkRoadGeometryTest#pref02_01_externalRoundaboutMustBeRealSourcedAndAttributed": "passed",
+    "com.drivemate.app.map.Category2IndependentUkRoadGeometryTest#pref02_01_externalRoadCannotBeClaimedLegallyVerifiedFromOsmAlone": "passed",
+    "com.drivemate.app.map.Category2IndependentUkRoadGeometryTest#pref02_01_currentRealRoadPolylineMustHaveLowVisualDrift": "passed",
+    "com.drivemate.app.map.Category2IndependentUkRoadGeometryTest#pref02_01_offRoadLineMustNotPassAsValidRealRoundabout": "passed",
+    "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_05_fastRoadHasWiderZoomThanSlowStreet": "passed",
+    "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_02_paddedCameraLeavesMoreViewAhead": "passed",
+    "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_01_verifiedRoadGeometryHasLowDrift": "passed",
+    "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_02_largePanelsCannotConsumeViewport": "passed",
+    "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_06_zoomFollowsRoadSpeedBand": "passed",
+    "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_01_unverifiedRoadCannotBeUsedAsProof": "passed",
+    "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_04_carLayerIsIdentifiedBelowOwnOverlays": "passed",
+    "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_07_roundaboutUsesJunctionPerspective": "passed",
+    "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_08_insetChangesGlideInsteadOfJumping": "passed",
+    "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_03_routePaletteIsNotATrafficState": "passed",
+    "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_09_geometrySlicePreservesIntermediateRoute": "passed",
+    "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_05_nearTurnRaisesZoomWithoutLosingTurnContext": "passed",
+    "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_06_openFastRoadTiltRequiresSustainedSpeed": "passed",
+    "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_09_newTurnCanWidenFittedFrame": "passed",
+    "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_07_junctionTiltsTowardOverhead": "passed",
+    "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_04_cameraBearingWrapsShortWayAcrossNorth": "passed",
+    "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_08_tiltDoesNotJumpAcrossOneFix": "passed",
+    "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_08_zoomIsTimeRateLimited": "passed",
+    "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref04_05_fastRoadGuidanceBeginsEarlierThanTownGuidance": "passed",
+    "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref05_03_confirmedWrongTurnCanTriggerOnFirstReliableFix": "passed",
+    "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref04_04_closeFollowingJunctionInfluencesExitLaneChoice": "passed",
+    "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref04_01_followingLeftTurnPrefersLeftmostSuitableLane": "passed",
+    "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref04_01_allSuitableLanesRemainWhenNoFollowingTurn": "passed",
+    "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref05_03_parallelRoadEvidenceCanIdentifyOffRouteTravel": "passed",
+    "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref04_01_absentLaneEvidenceDoesNotInventALanePlan": "passed",
+    "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref04_06_scenePersistsWhileCirculating": "passed",
+    "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref04_01_busAndUnknownMarkingsNeverBecomeRecommendations": "passed",
+    "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref04_06_arrivalClearsTheImmersiveScene": "passed",
+    "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref05_03_inaccuratePositionMustNotTriggerImmediateWrongTurn": "passed",
+    "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref04_01_followingRightTurnPrefersRightmostSuitableLane": "passed",
+    "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref05_03_aRoundaboutMustNotBeMistakenForAWrongTurn": "passed",
+    "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref05_03_cornerHeadingMustBeComparedWithTheRoadAhead": "passed",
+    "com.drivemate.app.nav.GpsAcceptanceTest#recoveredPositionResetsContinuousUncertaintyTimer": "failed",
+    "com.drivemate.app.nav.GpsAcceptanceTest#briefGpsLossKeepsExistingSpokenWarningQuiet": "passed",
+    "com.drivemate.app.nav.GpsAcceptanceTest#negativeAccuracyCannotClaimLanes": "failed",
+    "com.drivemate.app.nav.GpsAcceptanceTest#stalePositionHidesLanes": "passed",
+    "com.drivemate.app.nav.GpsAcceptanceTest#invalidGyroCannotPoisonHeading": "failed",
+    "com.drivemate.app.nav.GpsAcceptanceTest#missingAccuracyCannotClaimLanes": "failed",
+    "com.drivemate.app.nav.GpsAcceptanceTest#sensorsCannotKeepHeadingFreshIndefinitely": "passed",
+    "com.drivemate.app.nav.GpsAcceptanceTest#uncertainLabelStartsAtThreeSeconds": "failed",
+    "com.drivemate.app.nav.GpsAcceptanceTest#existingSpokenWarningStillStartsAtOneMinute": "passed",
+    "com.drivemate.app.nav.GpsAcceptanceTest#reliablePositionAllowsLanes": "passed",
+    "com.drivemate.app.nav.GpsAcceptanceTest#stationaryGpsDoesNotChangeHeading": "passed",
+    "com.drivemate.app.nav.GpsAcceptanceTest#goodPositionClearsUncertaintyImmediately": "failed",
+    "com.drivemate.app.nav.GpsAcceptanceTest#invalidRouteDistanceCannotClaimLanes": "failed",
+    "com.drivemate.app.nav.GpsAcceptanceTest#inaccuratePositionHidesLanesImmediately": "passed",
+    "com.drivemate.app.nav.GpsAcceptanceTest#estimatedPositionNeverAllowsLanes": "passed",
+    "com.drivemate.app.nav.GpsAcceptanceTest#lanesRecoverOnlyAfterStableFixes": "passed",
+    "com.drivemate.app.nav.GpsAcceptanceTest#olderGyroSampleCannotRewindIntegrationClock": "failed",
+    "com.drivemate.app.nav.GpsAcceptanceTest#gyroSupportsHeadingBetweenMeasuredFixes": "passed",
+    "com.drivemate.app.nav.GpsAcceptanceTest#invalidGravityCannotPoisonHeading": "failed"
+  },
+  "missing": [],
+  "unexpected": [],
+  "external_road_geometry": {
+    "status": "available",
+    "fetch": "success",
+    "legal_turn_permissions": "unknown",
+    "sha256": "8aad998be388994b19e98bfc7a359465f6251b62f1e4e41701b94131e8e41363",
+    "source": "https://api.openstreetmap.org/api/0.6/map?bbox=-2.2040,53.3960,-2.1970,53.4000",
+    "source_kind": "external OSM geometry; not legal sign corroboration"
+  },
+  "static_findings": {
+    "traffic_route_integration": "not_wired_or_unverified"
+  },
+  "mandatory_release_gaps": [
+    "rendered carriageway and marker verification",
+    "navigation replay/robot",
+    "independent current sign and turn-permission corroboration"
+  ],
+  "batch_accepted": false,
+  "apk_built": false,
+  "apk_released": false,
+  "scope": "logic diagnostics and external-geometry audit on current main; not a combined driving acceptance test",
+  "execution_evidence": {
+    "repository": "phuk-prog/drivemate-app",
+    "run_id": 40010900185,
+    "job_id": 120610699839,
+    "run_url": "https://github.com/phuk-prog/drivemate-app/actions/runs/40010900185",
+    "run_head": "da28a6d90347dddfb45ca8f7faca454b8cdab2c7",
+    "conclusion": "success",
+    "baseline_main_sha": "e669dc67df86f0310d47bf0f648ad341db55055f",
+    "production_changes": false
+  },
+  "comparison": {
+    "stage": "before_only",
+    "after": null,
+    "local_map_passed": 18,
+    "ci_map_passed": 22,
+    "reason": "CI obtained external road geometry unavailable locally; no production-code improvement"
+  }
+}
