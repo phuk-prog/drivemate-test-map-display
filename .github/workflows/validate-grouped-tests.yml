@@ -1,0 +1,33 @@
+name: Public grouped DriveMate test contracts
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'contracts/**'
+      - 'fixtures/**'
+      - 'ci/validate_grouped_tests.py'
+      - '.github/workflows/validate-grouped-tests.yml'
+  pull_request:
+    paths:
+      - 'contracts/**'
+      - 'fixtures/**'
+      - 'ci/validate_grouped_tests.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: public-test-batches-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  validate-public-rules:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Verify 2–4 related-category groups, independent UK rules and no-key fixtures
+        run: python3 ci/validate_grouped_tests.py
+      - name: Disclose what is and is not tested publicly
+        run: |
+          echo "Public contracts, grouping, independent reference metadata and synthetic fixtures validated." >> "$GITHUB_STEP_SUMMARY"
+          echo "This workflow does NOT execute the private Android app or prove native emulator rendering." >> "$GITHUB_STEP_SUMMARY"
+          echo "App acceptance requires an identified private production SHA and published sanitized test results." >> "$GITHUB_STEP_SUMMARY"
