@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "category": "02",
+  "date_utc": "2026-10-23",
+  "baseline": {
+    "app_sha": "864b8e5946d93d526515af24f48cf526666196c9",
+    "verified_tests": 18,
+    "passed": 18,
+    "traffic_integration": "missing",
+    "run_url": "https://github.com/phuk-prog/drivemate-app/actions/runs/39979341011"
+  },
+  "candidate": {
+    "app_sha": "b3d672814329650a4f7ca820ba37e0c34cf22043",
+    "public_contract_sha": "97491f13e28f05f6fe76df3e23bad4473387c503",
+    "tests": 26,
+    "passed": 26,
+    "missing": 0,
+    "unexpected": 0,
+    "lint": "passed",
+    "traffic_integration": "wired",
+    "run_url": "https://github.com/phuk-prog/drivemate-app/actions/runs/39982987596",
+    "pull_request": "https://github.com/phuk-prog/drivemate-app/pull/5",
+    "apk": "not built",
+    "tomtom_live_api_connection": "not tested without a user-owned TomTom API key"
+  },
+  "status_by_item": [
+    {
+      "id": "02.01",
+      "logic": "passed",
+      "acceptance": "real rendered map and UK carriageway acceptance not verified",
+      "required": "verified real UK carriageway geometry and live overlay"
+    },
+    {
+      "id": "02.02",
+      "logic": "passed",
+      "acceptance": "real rendered map and UK carriageway acceptance not verified",
+      "required": "rendered marker position on phone"
+    },
+    {
+      "id": "02.03",
+      "logic": "passed",
+      "acceptance": "live provider request and rendered traffic overlay not verified",
+      "required": "live TomTom API key, network response and real rendered map acceptance; no API credentials in public CI"
+    },
+    {
+      "id": "02.04",
+      "logic": "passed",
+      "acceptance": "real rendered map and UK carriageway acceptance not verified",
+      "required": "rendered car marker centred on correct carriageway"
+    },
+    {
+      "id": "02.05",
+      "logic": "passed",
+      "acceptance": "real rendered map and UK carriageway acceptance not verified",
+      "required": "map controller wiring/render replay across all inputs"
+    },
+    {
+      "id": "02.06",
+      "logic": "passed",
+      "acceptance": "real rendered map and UK carriageway acceptance not verified",
+      "required": "rendered far-ahead road visibility"
+    },
+    {
+      "id": "02.07",
+      "logic": "passed",
+      "acceptance": "real rendered map and UK carriageway acceptance not verified",
+      "required": "junction screenshot and actual exit visible"
+    },
+    {
+      "id": "02.08",
+      "logic": "passed",
+      "acceptance": "real rendered map and UK carriageway acceptance not verified",
+      "required": "frame cadence and rendered transitions"
+    },
+    {
+      "id": "02.09",
+      "logic": "passed",
+      "acceptance": "real rendered map and UK carriageway acceptance not verified",
+      "required": "two nearby turns in rendered viewport"
+    }
+  ],
+  "remaining": [
+    "Verify authenticated TomTom response against live service with user API key; do not publish key or response payload.",
+    "Run deterministic UK road/carriageway replay and rendered-map screenshots/visual bounds for all nine preferences.",
+    "Run navigation robot and app integration gates before any APK release. No build or merge claimed.",
+    "TomTom online routing/search remains disabled; only opt-in live incident API is reinstated."
+  ]
+}
