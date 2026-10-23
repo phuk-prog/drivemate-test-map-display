@@ -27,7 +27,7 @@ The Android application remains **private** in `phuk-prog/drivemate-app`. This p
 
 Category 2 is no longer accepted from self-referential app expectations. The governing record is [the UK road-evidence contract](contracts/uk-independent-evidence.json), referencing the official Highway Code (Rules 160, 180 and 184–190, and Rule 264) and Department for Transport road-sign/marking guidance.
 
-- [Public OSM road fetcher](ci/fetch_independent_uk_roads.py) downloads real named roundabout geometry for Roscoe's Roundabout from an OSM Overpass instance when private CI runs. It records OSM way identity and ODbL attribution; it **fails closed** when no source is available.
+- [Public OSM road fetcher](ci/fetch_independent_uk_roads.py) downloads real named roundabout geometry for Roscoe's Roundabout from a bounded official OSM API extract (Overpass fallback) when private CI runs. It records OSM way identity and ODbL attribution; it **fails closed** when no source is available.
 - [Real-source road tests](tests/Category2IndependentUkRoadGeometryTest.kt) assert the independent source and check production geometry drift, negative control, and evidence limits.
 - [Android map-rendering robot](androidTest/Category2RenderedMapRobotTest.kt) runs on a GitHub Android emulator, creates the independently sourced road line, adds actual private production MapController route/traffic layers and queries the native renderer and GPU snapshot.
 - Private CI is **required to pass all 40 Kotlin tests, two emulator map-renderer tests, and Android lint**. No TomTom credential is required or passed.
