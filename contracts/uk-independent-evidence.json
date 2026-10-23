@@ -1,0 +1,138 @@
+{
+  "schema": 1,
+  "title": "UK independent, source-backed expectations for Category 2 map rendering",
+  "reviewed_on": "2026-10-23",
+  "principle": "App-derived outputs are never legal or geographic ground truth. General UK road rules come from GOV.UK; real road shapes require separate current external geodata and local corroboration. Owner UI design preferences are not statutory law.",
+  "sources": [
+    {
+      "id": "HC160",
+      "url": "https://www.gov.uk/guidance/the-highway-code/using-the-road-159-to-203",
+      "publisher": "Department for Transport",
+      "section": "Rule 160",
+      "jurisdiction": "UK Highway Code",
+      "expectation": "Drive on the left unless signs or markings direct otherwise; check carriageway direction rather than assuming roads are interchangeable",
+      "binding": "guidance and related legal rules"
+    },
+    {
+      "id": "HC184",
+      "url": "https://www.gov.uk/guidance/the-highway-code/using-the-road-159-to-203",
+      "publisher": "Department for Transport",
+      "section": "Rules 184–190",
+      "jurisdiction": "UK Highway Code",
+      "expectation": "Approach and use a roundabout according to posted lane markings and signs; observe priority and actual circulation; distinguish segregated exits",
+      "binding": "guidance, subject to relevant statutes and local signs"
+    },
+    {
+      "id": "HC180",
+      "url": "https://www.gov.uk/guidance/the-highway-code/using-the-road-159-to-203",
+      "publisher": "Department for Transport",
+      "section": "Rule 180",
+      "jurisdiction": "UK Highway Code",
+      "expectation": "Do not cut the corner when turning right",
+      "binding": "guidance"
+    },
+    {
+      "id": "DFTMARKINGS",
+      "url": "https://www.gov.uk/government/publications/know-your-traffic-signs/road-markings",
+      "publisher": "Department for Transport",
+      "section": "Along the road; At junctions; Traffic lanes at junctions",
+      "jurisdiction": "England Scotland Wales",
+      "expectation": "Distinguish central reservation, lane separators, directional arrows, continuous and broken boundaries; combined turn/ahead arrows are possible",
+      "binding": "official sign descriptions, legal obligations depend on signs and regulations"
+    },
+    {
+      "id": "DFTSIGNS",
+      "url": "https://www.gov.uk/government/publications/know-your-traffic-signs/regulatory-signs",
+      "publisher": "Department for Transport",
+      "section": "Regulatory signs",
+      "jurisdiction": "England Scotland Wales",
+      "expectation": "A compulsory or prohibited movement shown by a regulatory sign cannot be overwritten by a generic geometric assumption",
+      "binding": "official signs; actual sign presence requires verification"
+    },
+    {
+      "id": "HC264",
+      "url": "https://www.gov.uk/guidance/the-highway-code/motorways-253-to-273",
+      "publisher": "Department for Transport",
+      "section": "Rule 264",
+      "jurisdiction": "UK Highway Code",
+      "expectation": "Keep left on a motorway except when overtaking, subject to safe exceptions",
+      "binding": "guidance"
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "UK-C2-ROAD-01",
+      "items": [
+        "02.01",
+        "02.04"
+      ],
+      "source_ids": [
+        "HC160",
+        "DFTMARKINGS"
+      ],
+      "expected": "Do not draw an opposite-direction separated carriageway as the active route; keep the car on the direction-compatible source geometry",
+      "requires": "Independent georeferenced same/opposite-way centreline and approach direction"
+    },
+    {
+      "id": "UK-C2-ROUNDABOUT-01",
+      "items": [
+        "02.01",
+        "02.07"
+      ],
+      "source_ids": [
+        "HC184",
+        "DFTMARKINGS"
+      ],
+      "expected": "A route drawn around a roundabout follows surveyed drivable circulation geometry; shortcutting across the centre is an error",
+      "requires": "Independently downloaded current OSM roundabout geometry plus lane/sign corroboration for legal claims"
+    },
+    {
+      "id": "UK-C2-ROUNDABOUT-02",
+      "items": [
+        "02.07",
+        "02.09"
+      ],
+      "source_ids": [
+        "HC184",
+        "DFTMARKINGS"
+      ],
+      "expected": "At a close sequence of junction/roundabout exits, the next manoeuvre remains visible and any manoeuvre must respect independently evidenced junction movements",
+      "requires": "External road/layout geometry and a route recording or replay"
+    },
+    {
+      "id": "UK-C2-CAMERA-01",
+      "items": [
+        "02.02",
+        "02.05",
+        "02.06",
+        "02.08"
+      ],
+      "source_ids": [],
+      "expected": "Lower vehicle anchor, smoother transitions and sufficient road ahead are owner product preferences, not statutory requirements",
+      "requires": "Rendered camera and UI occlusion robot measurements"
+    },
+    {
+      "id": "UK-C2-TRAFFIC-01",
+      "items": [
+        "02.03"
+      ],
+      "source_ids": [],
+      "expected": "Amber/red traffic thresholds are display conventions chosen by the owner, not Highway Code rules",
+      "requires": "Simulated test events rendered through real map controller; no TomTom API key"
+    },
+    {
+      "id": "UK-C2-ARROW-01",
+      "items": [
+        "02.04"
+      ],
+      "source_ids": [
+        "HC160",
+        "DFTMARKINGS"
+      ],
+      "expected": "The arrow must occupy the route's carriageway, not the parallel or counterflow one, and heading must match the selected direction",
+      "requires": "Externally sourced geometries with independent sign/marking confirmation"
+    }
+  ],
+  "licensing": "Public records here contain authored rule summaries and source URLs, not copied maps. If OpenStreetMap way geometry is published, preserve ODbL attribution and source identity.",
+  "road_truth_status": "Not proven until third-party street geometry and sign evidence are downloaded/validated in a separate fixture or CI job."
+}
