@@ -1,0 +1,294 @@
+{
+  "test_count": 32,
+  "claims_full_app_correct": false,
+  "tests": [
+    {
+      "id": "com.drivemate.app.nav.GpsIndependentTest#unreliablePositionNeedsContinuousThreeSecondsAcrossManyUpdates",
+      "basis": "Approved GPS preferences, ordered/finite input safety, and explicitly labelled engineering regression settings",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "25m, 2500ms and recovery thresholds are existing engineering configuration, not legal limits or proof of real-road lane accuracy. Synthetic position and permission inputs are not actual Android permission-service tests."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsIndependentTest#backwardClockStartsANewUncertaintyPeriod",
+      "basis": "Approved GPS preferences, ordered/finite input safety, and explicitly labelled engineering regression settings",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "25m, 2500ms and recovery thresholds are existing engineering configuration, not legal limits or proof of real-road lane accuracy. Synthetic position and permission inputs are not actual Android permission-service tests."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsIndependentTest#resetDoesNotCarryUncertaintyAcrossSessions",
+      "basis": "Approved GPS preferences, ordered/finite input safety, and explicitly labelled engineering regression settings",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "25m, 2500ms and recovery thresholds are existing engineering configuration, not legal limits or proof of real-road lane accuracy. Synthetic position and permission inputs are not actual Android permission-service tests."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsIndependentTest#noPermissionCannotBecomeReliable",
+      "basis": "Approved GPS preferences, ordered/finite input safety, and explicitly labelled engineering regression settings",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "25m, 2500ms and recovery thresholds are existing engineering configuration, not legal limits or proof of real-road lane accuracy. Synthetic position and permission inputs are not actual Android permission-service tests."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsIndependentTest#estimatedPositionCannotBecomeReliable",
+      "basis": "Approved GPS preferences, ordered/finite input safety, and explicitly labelled engineering regression settings",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "25m, 2500ms and recovery thresholds are existing engineering configuration, not legal limits or proof of real-road lane accuracy. Synthetic position and permission inputs are not actual Android permission-service tests."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsIndependentTest#missingAccuracyCannotBecomeReliable",
+      "basis": "Approved GPS preferences, ordered/finite input safety, and explicitly labelled engineering regression settings",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "25m, 2500ms and recovery thresholds are existing engineering configuration, not legal limits or proof of real-road lane accuracy. Synthetic position and permission inputs are not actual Android permission-service tests."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsIndependentTest#nonfiniteAccuracyCannotBecomeReliable",
+      "basis": "Approved GPS preferences, ordered/finite input safety, and explicitly labelled engineering regression settings",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "25m, 2500ms and recovery thresholds are existing engineering configuration, not legal limits or proof of real-road lane accuracy. Synthetic position and permission inputs are not actual Android permission-service tests."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsIndependentTest#futureFixCannotBecomeReliable",
+      "basis": "Approved GPS preferences, ordered/finite input safety, and explicitly labelled engineering regression settings",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "25m, 2500ms and recovery thresholds are existing engineering configuration, not legal limits or proof of real-road lane accuracy. Synthetic position and permission inputs are not actual Android permission-service tests."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsIndependentTest#missingTimestampCannotBecomeReliable",
+      "basis": "Approved GPS preferences, ordered/finite input safety, and explicitly labelled engineering regression settings",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "25m, 2500ms and recovery thresholds are existing engineering configuration, not legal limits or proof of real-road lane accuracy. Synthetic position and permission inputs are not actual Android permission-service tests."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsIndependentTest#freshnessBoundaryIsExplicit",
+      "basis": "Approved GPS preferences, ordered/finite input safety, and explicitly labelled engineering regression settings",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "25m, 2500ms and recovery thresholds are existing engineering configuration, not legal limits or proof of real-road lane accuracy. Synthetic position and permission inputs are not actual Android permission-service tests."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsIndependentTest#invalidCoordinatesAreRejected",
+      "basis": "Approved GPS preferences, ordered/finite input safety, and explicitly labelled engineering regression settings",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "25m, 2500ms and recovery thresholds are existing engineering configuration, not legal limits or proof of real-road lane accuracy. Synthetic position and permission inputs are not actual Android permission-service tests."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsIndependentTest#staleFixCannotEstablishPosition",
+      "basis": "Approved GPS preferences, ordered/finite input safety, and explicitly labelled engineering regression settings",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "25m, 2500ms and recovery thresholds are existing engineering configuration, not legal limits or proof of real-road lane accuracy. Synthetic position and permission inputs are not actual Android permission-service tests."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsIndependentTest#farFutureFixCannotEstablishPosition",
+      "basis": "Approved GPS preferences, ordered/finite input safety, and explicitly labelled engineering regression settings",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "25m, 2500ms and recovery thresholds are existing engineering configuration, not legal limits or proof of real-road lane accuracy. Synthetic position and permission inputs are not actual Android permission-service tests."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsIndependentTest#duplicateAndOlderFixesCannotMovePosition",
+      "basis": "Approved GPS preferences, ordered/finite input safety, and explicitly labelled engineering regression settings",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "25m, 2500ms and recovery thresholds are existing engineering configuration, not legal limits or proof of real-road lane accuracy. Synthetic position and permission inputs are not actual Android permission-service tests."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsIndependentTest#implausibleJumpDoesNotReplacePosition",
+      "basis": "Approved GPS preferences, ordered/finite input safety, and explicitly labelled engineering regression settings",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "25m, 2500ms and recovery thresholds are existing engineering configuration, not legal limits or proof of real-road lane accuracy. Synthetic position and permission inputs are not actual Android permission-service tests."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsIndependentTest#longitudeWrapIsAShortMovement",
+      "basis": "Approved GPS preferences, ordered/finite input safety, and explicitly labelled engineering regression settings",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "25m, 2500ms and recovery thresholds are existing engineering configuration, not legal limits or proof of real-road lane accuracy. Synthetic position and permission inputs are not actual Android permission-service tests."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsIndependentTest#networkFixCannotEstablishNavigationPosition",
+      "basis": "Approved GPS preferences, ordered/finite input safety, and explicitly labelled engineering regression settings",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "25m, 2500ms and recovery thresholds are existing engineering configuration, not legal limits or proof of real-road lane accuracy. Synthetic position and permission inputs are not actual Android permission-service tests."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsIndependentTest#poorPrecisionCannotEstablishNavigationPosition",
+      "basis": "Approved GPS preferences, ordered/finite input safety, and explicitly labelled engineering regression settings",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "25m, 2500ms and recovery thresholds are existing engineering configuration, not legal limits or proof of real-road lane accuracy. Synthetic position and permission inputs are not actual Android permission-service tests."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsIndependentTest#lossOfFreshFixExpiresAuthority",
+      "basis": "Approved GPS preferences, ordered/finite input safety, and explicitly labelled engineering regression settings",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "25m, 2500ms and recovery thresholds are existing engineering configuration, not legal limits or proof of real-road lane accuracy. Synthetic position and permission inputs are not actual Android permission-service tests."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsIndependentTest#uncertainPositionNeverAutomaticallyRecentres",
+      "basis": "Approved GPS preferences, ordered/finite input safety, and explicitly labelled engineering regression settings",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "25m, 2500ms and recovery thresholds are existing engineering configuration, not legal limits or proof of real-road lane accuracy. Synthetic position and permission inputs are not actual Android permission-service tests."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsIndependentTest#uncertaintyPreservesTheExistingMapView",
+      "basis": "Approved GPS preferences, ordered/finite input safety, and explicitly labelled engineering regression settings",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "25m, 2500ms and recovery thresholds are existing engineering configuration, not legal limits or proof of real-road lane accuracy. Synthetic position and permission inputs are not actual Android permission-service tests."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsIndependentTest#firstCachedPreviewIsAllowedWithoutForcingALaterSnapBack",
+      "basis": "Approved GPS preferences, ordered/finite input safety, and explicitly labelled engineering regression settings",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "25m, 2500ms and recovery thresholds are existing engineering configuration, not legal limits or proof of real-road lane accuracy. Synthetic position and permission inputs are not actual Android permission-service tests."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsIndependentTest#uncertaintyNoticeRemainsVisibleDuringRerouting",
+      "basis": "Approved GPS preferences, ordered/finite input safety, and explicitly labelled engineering regression settings",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "25m, 2500ms and recovery thresholds are existing engineering configuration, not legal limits or proof of real-road lane accuracy. Synthetic position and permission inputs are not actual Android permission-service tests."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsIndependentTest#invalidationRemovesCachedLaneConfidenceImmediately",
+      "basis": "Approved GPS preferences, ordered/finite input safety, and explicitly labelled engineering regression settings",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "25m, 2500ms and recovery thresholds are existing engineering configuration, not legal limits or proof of real-road lane accuracy. Synthetic position and permission inputs are not actual Android permission-service tests."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsPreferenceFlowTest#lossHidesLanesBeforeShowingTheDelayedVisualWarning",
+      "basis": "Approved GPS preferences, ordered/finite input safety, and explicitly labelled engineering regression settings",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "25m, 2500ms and recovery thresholds are existing engineering configuration, not legal limits or proof of real-road lane accuracy. Synthetic position and permission inputs are not actual Android permission-service tests."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsPreferenceFlowTest#intermittentBadFixesCannotAccumulateIntoAContinuousWarning",
+      "basis": "Approved GPS preferences, ordered/finite input safety, and explicitly labelled engineering regression settings",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "25m, 2500ms and recovery thresholds are existing engineering configuration, not legal limits or proof of real-road lane accuracy. Synthetic position and permission inputs are not actual Android permission-service tests."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsPreferenceFlowTest#recoveryRequiresStableLaneConfidenceButClearsTheLabelImmediately",
+      "basis": "Approved GPS preferences, ordered/finite input safety, and explicitly labelled engineering regression settings",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "25m, 2500ms and recovery thresholds are existing engineering configuration, not legal limits or proof of real-road lane accuracy. Synthetic position and permission inputs are not actual Android permission-service tests."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsPreferenceFlowTest#freshGyroHeadingCannotRestoreLanesForAnEstimatedPosition",
+      "basis": "Approved GPS preferences, ordered/finite input safety, and explicitly labelled engineering regression settings",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "25m, 2500ms and recovery thresholds are existing engineering configuration, not legal limits or proof of real-road lane accuracy. Synthetic position and permission inputs are not actual Android permission-service tests."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsPreferenceFlowTest#uncertainMapRemainsPannableWithoutTimedRecentering",
+      "basis": "Approved GPS preferences, ordered/finite input safety, and explicitly labelled engineering regression settings",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "25m, 2500ms and recovery thresholds are existing engineering configuration, not legal limits or proof of real-road lane accuracy. Synthetic position and permission inputs are not actual Android permission-service tests."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsPreferenceFlowTest#seededUncertaintySequencesMatchTheIndependentElapsedTimeOracle",
+      "basis": "Approved GPS preferences, ordered/finite input safety, and explicitly labelled engineering regression settings",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "25m, 2500ms and recovery thresholds are existing engineering configuration, not legal limits or proof of real-road lane accuracy. Synthetic position and permission inputs are not actual Android permission-service tests."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsPreferenceFlowTest#invalidNumbersAlwaysFailClosedForPositionAndLanes",
+      "basis": "Approved GPS preferences, ordered/finite input safety, and explicitly labelled engineering regression settings",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "25m, 2500ms and recovery thresholds are existing engineering configuration, not legal limits or proof of real-road lane accuracy. Synthetic position and permission inputs are not actual Android permission-service tests."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsPreferenceFlowTest#repeatedSensorResetCannotCarryHeadingBetweenSessions",
+      "basis": "Approved GPS preferences, ordered/finite input safety, and explicitly labelled engineering regression settings",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "25m, 2500ms and recovery thresholds are existing engineering configuration, not legal limits or proof of real-road lane accuracy. Synthetic position and permission inputs are not actual Android permission-service tests."
+    }
+  ]
+}

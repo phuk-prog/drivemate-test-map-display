@@ -7,16 +7,6 @@
   "files": [
     {
       "phase": "common",
-      "published_path": "common/src/main/kotlin/com/drivemate/app/ui/DrivingDisplayPolicy.kt",
-      "app_path": "app/src/main/java/com/drivemate/app/ui/DrivingDisplayPolicy.kt",
-      "origin": "current-main-baseline",
-      "source_file_sha256": "4aa24d1167a450e313111a495696d2f92fe40615b7a2c4141ae89b8d4b3582ad",
-      "compiled_sha256": "4aa24d1167a450e313111a495696d2f92fe40615b7a2c4141ae89b8d4b3582ad",
-      "extraction": "whole original file",
-      "fragment_sha256": "4aa24d1167a450e313111a495696d2f92fe40615b7a2c4141ae89b8d4b3582ad"
-    },
-    {
-      "phase": "common",
       "published_path": "common/src/main/kotlin/com/drivemate/app/nav/Geo.kt",
       "app_path": "app/src/main/java/com/drivemate/app/nav/Geo.kt",
       "origin": "current-main-baseline",
@@ -331,6 +321,42 @@
       "compiled_sha256": "06ecfb91e15522e6ff2e7c454cd6a7298046e639f27660ffc248eab4c29ff5d1",
       "extraction": "whole original file",
       "fragment_sha256": "06ecfb91e15522e6ff2e7c454cd6a7298046e639f27660ffc248eab4c29ff5d1"
+    },
+    {
+      "phase": "baseline",
+      "published_path": "baseline/src/main/kotlin/com/drivemate/app/ui/DrivingDisplayPolicy.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/ui/DrivingDisplayPolicy.kt",
+      "origin": "batch-a-baseline",
+      "source_file_sha256": "4aa24d1167a450e313111a495696d2f92fe40615b7a2c4141ae89b8d4b3582ad",
+      "compiled_sha256": "4aa24d1167a450e313111a495696d2f92fe40615b7a2c4141ae89b8d4b3582ad",
+      "extraction": "whole original file"
+    },
+    {
+      "phase": "candidate",
+      "published_path": "candidate/src/main/kotlin/com/drivemate/app/ui/DrivingDisplayPolicy.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/ui/DrivingDisplayPolicy.kt",
+      "origin": "category1-gps",
+      "source_file_sha256": "e3f0ae67874fde3b2f96cf37195381ffa25ac13e7c817aec0e1c99fc80b45f56",
+      "compiled_sha256": "e3f0ae67874fde3b2f96cf37195381ffa25ac13e7c817aec0e1c99fc80b45f56",
+      "extraction": "whole original file"
+    },
+    {
+      "phase": "common",
+      "published_path": "common/src/main/kotlin/com/drivemate/app/nav/LocationSelectionPolicy.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/nav/LocationSelectionPolicy.kt",
+      "origin": "current-main-baseline",
+      "source_file_sha256": "7df6d7b8be15cd2f3e9159ec6b7c901cf285cb315846bf2b02e5bf5e72ae3546",
+      "compiled_sha256": "7df6d7b8be15cd2f3e9159ec6b7c901cf285cb315846bf2b02e5bf5e72ae3546",
+      "extraction": "whole original file"
+    },
+    {
+      "phase": "common",
+      "published_path": "common/src/main/kotlin/com/drivemate/app/nav/GpsFilter.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/nav/GpsFilter.kt",
+      "origin": "current-main-baseline",
+      "source_file_sha256": "a2ba2be94fe2c352c587132d86c586609c512f7c3f49bbd59839831737bc84d8",
+      "compiled_sha256": "616da99444747b0fcd7eb2dd7fbe388c9d0ac9de66b4439d76450ba85059e038",
+      "extraction": "exact companion methods in JVM-only class shell; Android accept adapter not included"
     }
   ],
   "android_files": [

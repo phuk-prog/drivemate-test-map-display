@@ -15,3 +15,5 @@ The candidate contains already proposed GPS fixes. Passing public component chec
 Generated glyph source preserves its third-party licence in `licenses/replay-lettering.txt`.
 
 The separate public Android library runs the same six Robolectric sensor-registration/stop/restart tests against the entire original adapter file for each phase. This is Android simulation, not a physical device or a full navigation application. Neither public job assembles or publishes a combined-app APK.
+
+The additional GPS verification job executes the existing 24 boundary tests plus 8 multi-policy flow tests on the exact candidate code, including actual source-selection policy. These 32 checks are separate candidate verification, not a replacement baseline score. The paired 68-case comparison remains frozen. The existing 57-case GPS suite is therefore covered publicly (19 original + 24 boundary + 8 flows + 6 Android adapter), plus 8 new GPS boundary cases.
