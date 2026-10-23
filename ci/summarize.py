@@ -11,6 +11,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--app", required=True)
     parser.add_argument("--reports", required=True)
+    parser.add_argument("--render-reports", default=None)
     parser.add_argument("--contracts", required=True)
     parser.add_argument("--app-sha", required=True)
     parser.add_argument("--public-sha", required=True)
@@ -30,6 +31,21 @@ def main():
             if name in tests: status = "duplicate"
             tests[name] = status
     expected = [n for row in contracts["items"] for n in row["tests"]]
+    render_expected = contracts.get("render_expected", [])
+    rendered = {}
+    if args.render_reports:
+        for report in Path(args.render_reports).rglob("TEST-*.xml"):
+            root = ET.parse(report).getroot()
+            for tc in root.iter("testcase"):
+                name = tc.get("name", "")
+                if name not in render_expected: continue
+                status = "passed"
+                if tc.find("failure") is not None: status = "failed"
+                if tc.find("error") is not None: status = "error"
+                if tc.find("skipped") is not None: status = "skipped"
+                if name in rendered: status = "duplicate"
+                rendered[name] = status
+    render_missing = sorted(set(render_expected) - set(rendered))
     extra = sorted(set(tests) - set(expected))
     missing = sorted(set(expected) - set(tests))
     source = (Path(args.app) / "app/src/main/java/com/drivemate/app/map/MapController.kt").read_text()
@@ -49,6 +65,12 @@ def main():
       "traffic_test_mode": contracts.get("traffic_test_mode", "UNSPECIFIED"),
       "tomtom_live_api_verified": False,
       "tomtom_api_key_required_for_testing": False,
+      "real_road_source": contracts.get("real_road_source"),
+      "render_expected": len(render_expected),
+      "render_observed": len(rendered),
+      "render_missing": render_missing,
+      "render_tests": rendered,
+      "render_status": "gpu_renderer_passed" if render_expected and not render_missing and all(x == "passed" for x in rendered.values()) else "renderer_failed_or_unverified",
       "items": {}
     }
     for row in contracts["items"]:
@@ -66,9 +88,14 @@ def main():
       "missing":missing,"unexpected":extra,
       "traffic_integration":traffic,
       "traffic_test_mode":contracts.get("traffic_test_mode"),
-      "notice":"Synthetic, no-key TomTom simulations exercise real app parser/overlay logic only; live traffic and rendered road behaviour remain unverified."
+      "real_osm_road_tests":len([name for name in tests if "external" in name or "RealRoad" in name or "realRoad" in name]),
+      "render_passed":sum(x == "passed" for x in rendered.values()),
+      "render_expected":len(render_expected),
+      "render_missing":render_missing,
+      "notice":"External OSM UK geometry is geographic evidence (not legal proof); official DfT rules are separate; current TomTom traffic remains simulated."
     }, indent=2))
-    return int(bool(missing or extra or any(v != "passed" for v in tests.values())))
+    return int(bool(missing or extra or any(v != "passed" for v in tests.values())
+                    or render_missing or any(v != "passed" for v in rendered.values())))
 
 if __name__ == "__main__":
     sys.exit(main())
