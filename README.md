@@ -4,6 +4,12 @@ Tests for checklist items **02.01–02.09**, including simulated TomTom incident
 
 The Android application remains **private** in `phuk-prog/drivemate-app`. This public repository holds **only reusable tests, synthetic fixtures, contracts and bounded results**. Tests compile and execute against the real application classes **inside the private app's GitHub Actions run**. No production source or private app build is copied here.
 
+## Owner-approved grouped public test batches (23 October 2026)
+
+The [canonical public 2–4-category batch manifest](https://github.com/phuk-prog/drivemate-test-map-display/blob/main/contracts/grouped-public-tests.json) groups **all 17 categories** into related suites. For example, roundabout coverage may combine GPS (01), map drawing (02), lane guidance (04) and routing (05) using one external road dataset, one replay and one app/emulator build. [Public GitHub Actions](https://github.com/phuk-prog/drivemate-test-map-display/actions) validates the grouping contract independently of the private app.
+
+All sharable tests, independent UK rule sources, fixtures and sanitized results belong in public repos; private source integration still executes in the authorised private app checkout. Report **every checklist ID separately**, not simply "4 categories passed." Minimise duplicate APK builds; do not publish APKs to satisfy public testing. A blocked/untested mandatory robot gate is not a passed batch. No TomTom secret required.
+
 ## TomTom testing — simulation only
 
 - `fixtures/tomtom-v5-simulated-traffic.json` is **invented**: no TomTom account, API response, credential, phone location or real journey is used.
