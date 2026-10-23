@@ -1,0 +1,33 @@
+name: Validate public DriveMate category groups
+
+on:
+  push:
+    paths:
+      - "contracts/grouped-public-tests.json"
+      - "ci/validate_public_groups.py"
+      - ".github/workflows/validate-public-groups.yml"
+  pull_request:
+    paths:
+      - "contracts/grouped-public-tests.json"
+      - "ci/validate_public_groups.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: public-test-batch-contracts-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-public-batches:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Check 17 categories and 2–4 per related group
+        run: python3 ci/validate_public_groups.py contracts/grouped-public-tests.json
+      - name: Record evidence scope
+        run: |
+          echo "Only public contract validation ran here. Private app integration must consume these same public contracts from an authorized private CI checkout." >> "$GITHUB_STEP_SUMMARY"
+          echo "No APK, private source, TomTom secret or journey data is required or published." >> "$GITHUB_STEP_SUMMARY"
