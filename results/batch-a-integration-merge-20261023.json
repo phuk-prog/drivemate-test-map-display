@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "recorded_on": "2026-10-23",
+  "batch": "A",
+  "user_authorized_goal": "Integrate and merge all related Batch A changes after improving GPS, map display, lane guidance and routing.",
+  "source_merged_into_main": true,
+  "main_merge_commit": "c583e48df1296a41bc4f98721b9681284c60d72c",
+  "merged_pr": "https://github.com/phuk-prog/drivemate-app/pull/10",
+  "included_candidate_source_head": "d93426df8c17634f917c90fe3fa53dad6f9dac88",
+  "superseded_prs": [
+    4,
+    5,
+    7,
+    8,
+    9
+  ],
+  "unrelated_batch_b_pr": 6,
+  "public_component_evidence": [
+    {
+      "scope": "GPS/map/lane/routing selected components",
+      "url": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40021527920",
+      "status": "passed but not full app"
+    },
+    {
+      "scope": "avoided-route policy candidate",
+      "url": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40024858622",
+      "status": "43/43 passed"
+    },
+    {
+      "scope": "map marker/coverage display policy",
+      "url": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40027216043",
+      "status": "12/12 passed"
+    },
+    {
+      "scope": "region viewport selection original vs improved same-suite",
+      "url": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40030956876",
+      "status": "15/18 → 18/18"
+    },
+    {
+      "scope": "published source metadata, generic UK coverage",
+      "url": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40030682269",
+      "status": "19 published regions; publisher explicitly partial UK; no one region fully covers generic broad Manchester overview"
+    }
+  ],
+  "combined_app_integration": {
+    "url": "https://github.com/phuk-prog/drivemate-app/actions/runs/40030821807",
+    "status": "passed",
+    "scope": "Exact combined candidate compileDebugKotlin and lintDebug only; no APK/tests/robot"
+  },
+  "release_gate": {
+    "url": "https://github.com/phuk-prog/drivemate-app/actions/runs/40031540431",
+    "status": "blocked_as_designed",
+    "build_job": "skipped",
+    "apk_built_or_uploaded": false,
+    "required_evidence_manifest_present": false
+  },
+  "requirements": {
+    "01": "four app/sensor items - component passes, full GPS lifecycle and replay incomplete",
+    "02": "nine map items - coverage partial; native MapLibre, route/marker/traffic rendering not proved",
+    "04": "six lane/immersive items - actual lane scene, real signs and timing unreconciled",
+    "05": "three route items - candidate component tests pass, real rerouting/route adoption and legal access unverifed"
+  },
+  "independent_uk_road_truth_complete": false,
+  "full_navigation_robot_passed": false,
+  "full_app_replay_passed": false,
+  "actual_map_tile_geometry_and_renderer_passed": false,
+  "batch_a_accepted": false,
+  "apk_release_authorized": false,
+  "note": "A merged source branch is not evidence that all 22 checklist requirements have been accepted or legally proven; preserve strict release gates."
+}
