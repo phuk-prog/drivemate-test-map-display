@@ -22,3 +22,16 @@ The Android application remains **private** in `phuk-prog/drivemate-app`. This p
 - `ci/summarize.py`: validates executed test identities, classifies traffic source wiring and labels evidence limits.
 
 **Evidence limits:** passing simulated tests establishes only the behaviours exercised in production classes. It **does not establish current live traffic conditions**, live API connectivity, map-rendered traffic colour, correctly chosen UK carriageways, legal road truth or physical-device camera smoothness. Those require separate appropriate evidence and remain unverified until performed. No Android APK release or merge follows merely from these tests.
+
+## Independent UK-road evidence and Android renderer
+
+Category 2 is no longer accepted from self-referential app expectations. The governing record is [the UK road-evidence contract](contracts/uk-independent-evidence.json), referencing the official Highway Code (Rules 160, 180 and 184–190, and Rule 264) and Department for Transport road-sign/marking guidance.
+
+- [Public OSM road fetcher](ci/fetch_independent_uk_roads.py) downloads real named roundabout geometry for Roscoe's Roundabout from an OSM Overpass instance when private CI runs. It records OSM way identity and ODbL attribution; it **fails closed** when no source is available.
+- [Real-source road tests](tests/Category2IndependentUkRoadGeometryTest.kt) assert the independent source and check production geometry drift, negative control, and evidence limits.
+- [Android map-rendering robot](androidTest/Category2RenderedMapRobotTest.kt) runs on a GitHub Android emulator, creates the independently sourced road line, adds actual private production MapController route/traffic layers and queries the native renderer and GPU snapshot.
+- Private CI is **required to pass all 40 Kotlin tests, two emulator map-renderer tests, and Android lint**. No TomTom credential is required or passed.
+- **Legal and geographical facts are separate:** OSM is independent *geography*, not independently certified current signs or allowed turns. For road-specific legal manoeuvre claims (especially lane arrows, roundabout exits and restricted turns), official current signs/traffic orders and corroboration must be checked separately before the test can certify that manoeuvre.
+- **Evidence limitation:** a native render robot with an offline test style proves production overlay drawing, but not the real app's full UK map style, phone screen occlusion in navigation, or legality at every exit. Do not mark untested driving requirements verified.
+
+Source attribution: © OpenStreetMap contributors, https://www.openstreetmap.org/copyright, ODbL 1.0.
