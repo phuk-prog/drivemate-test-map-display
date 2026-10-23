@@ -161,4 +161,92 @@ class Category2RenderedMapRobotTest {
         assertTrue("No native MapLibre GPU screenshot", done.await(25, TimeUnit.SECONDS))
         error.get()?.let { throw AssertionError("Rendered pixel assertion failed", it) }
     }
+    /** Invoke the real private camera presenter on an emulator, not a copied approximation. */
+    private fun driveCamera(host: RenderHost, point: LatLon, zoom: Double, tilt: Double,
+                            elapsedMs: Long = 1500L, insets: Boolean = false) {
+        activity.scenario.onActivity {
+            val location = android.location.Location("synthetic-gps-only-for-camera").apply {
+                latitude = point.lat; longitude = point.lon
+                accuracy = 3f; bearing = 0f; speed = 8f
+                elapsedRealtimeNanos = android.os.SystemClock.elapsedRealtimeNanos()
+            }
+            val last = MapController::class.java.getDeclaredField("lastLocation")
+            last.isAccessible = true
+            last.set(host.controller, location)
+            if (insets) host.controller.setDrivingViewport(130, 180)
+            host.controller.setNavCamera(zoom, tilt)
+            val method = MapController::class.java.getDeclaredMethod("moveNavCamera",
+                Int::class.javaPrimitiveType, Long::class.javaPrimitiveType)
+            method.isAccessible = true
+            method.invoke(host.controller, 0, elapsedMs)
+        }
+        InstrumentationRegistry.getInstrumentation().waitForIdleSync()
+    }
+
+    @Test fun pref02_02_nativeDrivingCameraPositionsCarLowWithRealRoadAhead() {
+        val host = setUpHost()
+        val p = route[route.size / 2]
+        driveCamera(host, p, 16.2, 50.0, insets = true)
+        activity.scenario.onActivity {
+            val pixel = host.map.projection.toScreenLocation(LatLng(p.lat, p.lon))
+            assertTrue("Vehicle anchor not in lower section of rendered viewport: " + pixel.y,
+                pixel.y > it.mapView.height * 0.50)
+            assertTrue("Vehicle anchor horizontally lost from real UK road", pixel.x > it.mapView.width * 0.20 &&
+                pixel.x < it.mapView.width * 0.80)
+        }
+    }
+
+    @Test fun pref02_05_nativeCameraRespondsToFarAndNearTurnWithoutAbruptZoom() {
+        val host = setUpHost()
+        val p = route[route.size / 2]
+        driveCamera(host, p, 14.6, 55.0, elapsedMs = 1000L)
+        var farZoom = 0.0
+        activity.scenario.onActivity {
+            farZoom = host.map.cameraPosition.zoom
+            assertTrue("Fast/open-road tilt absent", host.map.cameraPosition.tilt > 40.0)
+        }
+        driveCamera(host, p, 17.4, 15.0, elapsedMs = 1000L)
+        activity.scenario.onActivity {
+            val next = host.map.cameraPosition
+            assertTrue("Near junction did not zoom inward", next.zoom > farZoom)
+            assertTrue("Zoom jumped instead of respecting production rate limit", next.zoom - farZoom <= 1.21)
+            assertTrue("Junction view did not tilt closer to overhead", next.tilt < 25.0)
+        }
+    }
+
+    @Test fun pref02_09_nativeCameraFitsTwoUpcomingPointsOnRealRoad() {
+        val host = setUpHost()
+        val points = route
+        val first = points[0]
+        activity.scenario.onActivity {
+            val location = android.location.Location("synthetic-route-replay").apply {
+                latitude = first.lat; longitude = first.lon; accuracy = 4f
+                elapsedRealtimeNanos = android.os.SystemClock.elapsedRealtimeNanos()
+            }
+            val field = MapController::class.java.getDeclaredField("lastLocation")
+            field.isAccessible = true
+            field.set(host.controller, location)
+            host.controller.setNavCamera(16.0, 20.0)
+            host.controller.setDrivingViewport(80, 120)
+            host.controller.setTurnFrame(points)
+            val drive = MapController::class.java.getDeclaredMethod("moveNavCamera",
+                Int::class.javaPrimitiveType, Long::class.javaPrimitiveType)
+            drive.isAccessible = true
+            drive.invoke(host.controller, 0, 1500L)
+        }
+        InstrumentationRegistry.getInstrumentation().waitForIdleSync()
+        activity.scenario.onActivity {
+            val width = it.mapView.width.toFloat()
+            val height = it.mapView.height.toFloat()
+            assertTrue("Map not measured", width >= 200f && height >= 200f)
+            val firstPixel = host.map.projection.toScreenLocation(LatLng(first.lat, first.lon))
+            val last = points.last()
+            val lastPixel = host.map.projection.toScreenLocation(LatLng(last.lat, last.lon))
+            for (pixel in listOf(firstPixel, lastPixel)) {
+                assertTrue("One of the consecutive road points was outside visible map",
+                    pixel.x >= 0f && pixel.x <= width && pixel.y >= 0f && pixel.y <= height)
+            }
+        }
+    }
+
 }
