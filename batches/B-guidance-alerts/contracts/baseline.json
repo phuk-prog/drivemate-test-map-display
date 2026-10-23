@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "batch": "B",
+  "name": "Turn guidance, live-source validity and on-road speed warnings",
+  "categories": [
+    "03",
+    "08",
+    "09"
+  ],
+  "reason": "One UK junction approach can verify the navigation card, timed source/warning state and legal speed/signal interpretation with one test build and common evidence.",
+  "phase": "baseline",
+  "app": "phuk-prog/drivemate-app",
+  "public_repository": "phuk-prog/drivemate-test-map-display",
+  "test_mode": "test definitions/expected results public; execute against actual private app in private GitHub Actions; never upload private app source, TomTom key or APK",
+  "independent_sources": [
+    {
+      "id": "HC160_184",
+      "publisher": "Department for Transport / GOV.UK Highway Code",
+      "url": "https://www.gov.uk/guidance/the-highway-code/using-the-road-159-to-203",
+      "applies_to": "junction lane/sign precedence; turn instructions must not override verified road signs",
+      "meaning": "guidance, specific location truth separately verified"
+    },
+    {
+      "id": "DFT_LANE",
+      "publisher": "Department for Transport Know your traffic signs",
+      "url": "https://www.gov.uk/government/publications/know-your-traffic-signs/road-markings",
+      "applies_to": "combined direction arrows and compulsory lane markings; never invent continuous lane groups",
+      "meaning": "official sign descriptions"
+    },
+    {
+      "id": "DFT_SIGNS",
+      "publisher": "Department for Transport Know your traffic signs",
+      "url": "https://www.gov.uk/government/publications/know-your-traffic-signs/regulatory-signs",
+      "applies_to": "mandatory and prohibited instructions take precedence over generic navigation wording",
+      "meaning": "official regulatory signs"
+    },
+    {
+      "id": "HC124_125",
+      "publisher": "Department for Transport / GOV.UK Highway Code",
+      "url": "https://www.gov.uk/guidance/the-highway-code/general-rules-techniques-and-advice-for-all-drivers-and-riders-103-to-158",
+      "applies_to": "road-speed limit is a legal maximum; no speed advisory above active verified sign limit",
+      "meaning": "statutory road-speed limit rule and guidance"
+    }
+  ],
+  "source_rule": "Independent expected answers derive from current official highway rules, posted signs/orders and source-timed data. App code under test cannot certify a real UK road's signs, legal speed or lane arrangements.",
+  "items": [
+    {
+      "id": "03.01",
+      "tests": [
+        "b03_01_roadTextRetainsStreetAndDestination",
+        "b03_01_roadReferenceIsNotDuplicated"
+      ],
+      "ui_robot": "pending",
+      "acceptance": "User compact card: large arrow left, distance and road/sign right; presentation preference, not law"
+    },
+    {
+      "id": "03.02",
+      "tests": [
+        "b03_02_farApproachNotNow",
+        "b03_02_nearTurnWithFreshSpeedIsNow",
+        "b03_02_staleGpsCannotClaimImminentApproach"
+      ],
+      "ui_robot": "pending",
+      "acceptance": "Show distance between junctions and large turn arrow at approach"
+    },
+    {
+      "id": "03.03",
+      "tests": [
+        "b03_03_contiguousRightLanesWording",
+        "b03_03_nonContiguousLanesNotDescribedAsOneBlock",
+        "b03_03_noEvidenceNoSpecificLane"
+      ],
+      "ui_robot": "pending",
+      "acceptance": "Clear lane wording; do not invent lane connectivity, bound to actual verified signs"
+    },
+    {
+      "id": "08.01",
+      "tests": [
+        "b08_01_onlyFreshTrafficCanBeCurrent",
+        "b08_01_unverifiedTrafficNeverClaimsReliableLiveRanking"
+      ],
+      "network_live": "not_tested_no_key",
+      "acceptance": "Live route calculations require genuinely timely comparable provider data"
+    },
+    {
+      "id": "08.02",
+      "tests": [],
+      "source_check": "pending",
+      "network_live": "not_tested_no_key",
+      "acceptance": "User-entered key is stored privately; no public key or separate unauthorized network call"
+    },
+    {
+      "id": "08.03",
+      "tests": [
+        "b08_03_officialSourceUnavailabilityIsExplicit",
+        "b08_03_cachedResultCannotMasqueradeAsNewOfficialReport"
+      ],
+      "source_priority": "needs_provider_corrob",
+      "acceptance": "Official verified road information outranks unverified driver report; distinguish stale/unavailable"
+    },
+    {
+      "id": "09.01",
+      "tests": [],
+      "status": "not_yet_tested",
+      "acceptance": "Announce grouped bumps once in Full sound mode"
+    },
+    {
+      "id": "09.02",
+      "tests": [],
+      "status": "not_yet_tested",
+      "acceptance": "Individual bumps on map"
+    },
+    {
+      "id": "09.03",
+      "tests": [
+        "b09_03_missingSpeedCannotBeClaimedMeasured",
+        "b09_03_estimatedPositionCannotCreateSpeedingClaim"
+      ],
+      "acceptance": "Compare verified active legal limit with recent actual measured speed"
+    },
+    {
+      "id": "09.04",
+      "tests": [],
+      "status": "not_yet_tested",
+      "acceptance": "Repeat speeding audio once a minute per setting"
+    },
+    {
+      "id": "09.05",
+      "tests": [],
+      "status": "not_yet_tested",
+      "acceptance": "Approaching verified limit drop guidance"
+    },
+    {
+      "id": "09.06",
+      "tests": [],
+      "status": "not_yet_tested",
+      "acceptance": "Show verified lower-limit sign exactly at change point"
+    },
+    {
+      "id": "09.07",
+      "tests": [],
+      "status": "not_yet_tested",
+      "acceptance": "Route relevant verified speed-camera locations"
+    },
+    {
+      "id": "09.08",
+      "tests": [],
+      "status": "not_yet_tested",
+      "acceptance": "Camera approach warning distance"
+    },
+    {
+      "id": "09.09",
+      "tests": [],
+      "status": "not_yet_tested",
+      "acceptance": "Extra warning when approaching while speeding"
+    },
+    {
+      "id": "09.10",
+      "tests": [],
+      "status": "not_yet_tested",
+      "acceptance": "Average speed and limit zone display"
+    },
+    {
+      "id": "09.11",
+      "tests": [],
+      "status": "not_yet_tested",
+      "acceptance": "Average-speed zone entry announcement"
+    },
+    {
+      "id": "09.12",
+      "tests": [],
+      "status": "not_yet_tested",
+      "acceptance": "Average-speed zone exit announcement"
+    },
+    {
+      "id": "09.13",
+      "tests": [
+        "b09_13_unverifiedUnknownLimitsCannotClaimCertainty",
+        "b09_13_officialTemporaryLowerLimitOverridesStaticLimit"
+      ],
+      "source_gate": "provider_active_verification_pending",
+      "acceptance": "Variable/temporary speed limits only when officially confirmed active"
+    }
+  ],
+  "test_boundary": "Logic assertions and static code inspections are baseline diagnostic only. Real junction truth and UI visual/audio/Android Auto robot acceptance remain separate; no category completion or APK release from this suite alone.",
+  "current_reference_status": "Independent official guidance URLs recorded; actual local junction sign/traffic orders and active temporary limits not yet obtained."
+}
