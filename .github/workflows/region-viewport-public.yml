@@ -25,10 +25,15 @@ jobs:
           gradle-version: '8.14.3'
       - name: Test same production region-catalog Kotlin source with synthetic viewport boundaries
         run: python3 components/region-viewport/ci/run.py
+      - name: Independently audit actually published UK map region catalog
+        continue-on-error: true
+        run: python3 components/region-viewport/ci/audit_published_regions.py
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
           name: batch-a-region-viewport-selection
-          path: components/region-viewport/results/viewport-selection.json
+          path: |
+            components/region-viewport/results/viewport-selection.json
+            components/region-viewport/results/public-catalog-audit.json
           if-no-files-found: error
           retention-days: 30
