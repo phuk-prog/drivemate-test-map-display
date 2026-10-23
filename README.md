@@ -29,6 +29,14 @@ All sharable tests, independent UK rule sources, fixtures and sanitized results 
 
 **Evidence limits:** passing simulated tests establishes only the behaviours exercised in production classes. It **does not establish current live traffic conditions**, live API connectivity, map-rendered traffic colour, correctly chosen UK carriageways, legal road truth or physical-device camera smoothness. Those require separate appropriate evidence and remain unverified until performed. No Android APK release or merge follows merely from these tests.
 
+## Shared public test batches (standing owner policy)
+
+The authoritative, owner-approved plan is [grouped public test contracts](contracts/grouped-public-tests.json), verified by [public contract CI](.github/workflows/validate-grouped-tests.yml). Tests and source-backed expected outputs are **public**; the private app is never copied into public repositories. If private app code is required, public contracts run in authorized private GitHub Actions, and only sanitized per-item results and exact commit identities are published.
+
+**Run 2–4 related categories in one coherent test build or internal test APK whenever they share an identical road scenario, GPS trace, emulator, map image or timed event replay.** One-category retests may isolate a failure. Every checklist ID retains baseline, post-change, source evidence, pass/fail, uncertainty and release gate—shared APK does not mean shared score. No APK may be publicly published before all mandatory automated, replay and navigation-robot release gates pass.
+
+Example: one *externally sourced Greater Manchester roundabout* can test **01 GPS positioning + 02 rendered map/carriageway + 04 lane guidance + 05 route/turn legality**, using the same exact road data and approach trace. Only 01/02 have existing tests here or in the [public GPS/navigation repository](https://github.com/phuk-prog/drivemate-test-gps-navigation); this does **not** claim 04/05 tests or app features are complete. UK legal manoeuvres require applicable official rules, signs/orders and corroboration, not OSM geometry or DriveMate's predictions alone.
+
 ## Independent UK-road evidence and Android renderer
 
 Category 2 is no longer accepted from self-referential app expectations. The governing record is [the UK road-evidence contract](contracts/uk-independent-evidence.json), referencing the official Highway Code (Rules 160, 180 and 184–190, and Rule 264) and Department for Transport road-sign/marking guidance.
@@ -36,7 +44,7 @@ Category 2 is no longer accepted from self-referential app expectations. The gov
 - [Public OSM road fetcher](ci/fetch_independent_uk_roads.py) downloads real named roundabout geometry for Roscoe's Roundabout from a bounded official OSM API extract (Overpass fallback) when private CI runs. It records OSM way identity and ODbL attribution; it **fails closed** when no source is available.
 - [Real-source road tests](tests/Category2IndependentUkRoadGeometryTest.kt) assert the independent source and check production geometry drift, negative control, and evidence limits.
 - [Android map-rendering robot](androidTest/Category2RenderedMapRobotTest.kt) runs on a GitHub Android emulator, creates the independently sourced road line, adds actual private production MapController route/traffic layers and queries the native renderer and GPU snapshot.
-- Private CI is **required to pass all 40 Kotlin tests, two emulator map-renderer tests, and Android lint**. No TomTom credential is required or passed.
+- Private CI is **required to pass all 40 Kotlin tests, five expected emulator map/camera robot checks, and Android lint**. No TomTom credential is required or passed.
 - **Legal and geographical facts are separate:** OSM is independent *geography*, not independently certified current signs or allowed turns. For road-specific legal manoeuvre claims (especially lane arrows, roundabout exits and restricted turns), official current signs/traffic orders and corroboration must be checked separately before the test can certify that manoeuvre.
 - **Evidence limitation:** a native render robot with an offline test style proves production overlay drawing, but not the real app's full UK map style, phone screen occlusion in navigation, or legality at every exit. Do not mark untested driving requirements verified.
 
