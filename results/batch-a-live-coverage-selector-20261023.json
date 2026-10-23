@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-23",
+  "batch": "A",
+  "categories": [
+    "01",
+    "02",
+    "04",
+    "05"
+  ],
+  "issue": "Partial Manchester map coverage in wide-viewport browse mode",
+  "source_user_evidence": "User-provided visual screenshot (not uploaded to public GitHub)",
+  "public_live_catalog_audit": {
+    "run_url": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40030682269",
+    "publisher": "phuk-prog/DriveMate-Map",
+    "published_region_count": 19,
+    "coverage": "partial",
+    "generic_manchester_overview_fully_contained_by_any_single_region": false,
+    "missing_generic_reference_cities": [
+      "Norwich",
+      "Exeter"
+    ],
+    "asserts_current_full_uk_coverage": false,
+    "verifies_actual_pmtiles_tile_geometry": false
+  },
+  "policy_behavior": {
+    "original": "If no source region covered the full viewport, choose smallest region containing focus, leaving more available geometry unused",
+    "candidate": "If no source region covers full viewport, choose source with greatest visible overlap while still containing focus; fully covering regions still prioritized",
+    "privacy": "No user's coordinates, home/work points or screenshot uploaded; generic reference location geometry only",
+    "limitations": "Single-region choice does not stitch adjacent archives or create missing map squares."
+  },
+  "run": {
+    "url": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40030956876",
+    "app_candidate_commit": "d93426df8c17634f917c90fe3fa53dad6f9dac88",
+    "frozen_original_source_blob": "2bbf4b3ee5b7a5f11a235775d717d4cdde2f0c0f",
+    "candidate_source_blob": "f8343000d071bfc8802c0e6ce5f5867922378431",
+    "same_expected_cases": 18,
+    "before_passed": 15,
+    "after_passed": 18,
+    "before_compiler": "nonzero_due_to_failed_assertions",
+    "after_compiler": "success",
+    "before_and_after_result_artifact": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40030956876",
+    "scope": "Exact published Kotlin selector component tests, not Android GPU renderer"
+  },
+  "acceptance": {
+    "maplab_maplibre_rendering": "not_verified",
+    "whole_uk_map_downloads": "not_complete",
+    "GPS_lane_routing_full_app_replay": "not_verified",
+    "road_sign_and_turn_legality": "not_verified",
+    "batch_a_accepted": false,
+    "merge_safe": false,
+    "apk_built_or_released": false
+  }
+}
