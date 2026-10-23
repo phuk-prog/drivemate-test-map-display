@@ -16,6 +16,10 @@ import org.maplibre.android.camera.CameraUpdateFactory
 import org.maplibre.android.geometry.LatLng
 import org.maplibre.android.maps.MapLibreMap
 import org.maplibre.android.maps.Style
+import org.maplibre.android.style.sources.GeoJsonSource
+import org.maplibre.android.style.layers.LineLayer
+import org.maplibre.android.style.layers.PropertyFactory.lineColor
+import org.maplibre.android.style.layers.PropertyFactory.lineWidth
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicReference
@@ -30,10 +34,12 @@ import java.util.concurrent.atomic.AtomicReference
 class Category2RenderedMapRobotTest {
     @get:Rule val activity = ActivityScenarioRule(MapRobotActivity::class.java)
 
-    private val route: List<LatLon> by lazy {
+    private val doc: JSONObject by lazy {
         val stream = InstrumentationRegistry.getInstrumentation().context.assets
             .open("independent-osm-roads.json")
-        val doc = JSONObject(stream.bufferedReader().use { it.readText() })
+        JSONObject(stream.bufferedReader().use { it.readText() })
+    }
+    private val route: List<LatLon> by lazy {
         assertEquals("EXTERNALLY_SOURCED_OSM_UK_ROAD_GEOMETRY", doc.getString("kind"))
         assertTrue(doc.getJSONArray("ways").length() > 0)
         val points = doc.getJSONArray("ways").getJSONObject(0).getJSONArray("coordinates")
@@ -58,6 +64,22 @@ class Category2RenderedMapRobotTest {
                         val json = """{"version":8,"name":"uk-map-robot","sources":{},"layers":[{"id":"robot-bg","type":"background","paint":{"background-color":"#182432"}}]}"""
                         map.setStyle(Style.Builder().fromJson(json)) { style ->
                             try {
+                                // Independent actual OSM map geometry is a grey base road, and the
+                                // app's own separate blue route line must be drawn directly over it.
+                                val features = org.json.JSONArray()
+                                val ways = doc.getJSONArray("ways")
+                                for (i in 0 until ways.length()) {
+                                    features.put(JSONObject()
+                                        .put("type", "Feature")
+                                        .put("properties", JSONObject().put("osm_way_id", ways.getJSONObject(i).getLong("osm_id")))
+                                        .put("geometry", JSONObject()
+                                            .put("type", "LineString")
+                                            .put("coordinates", ways.getJSONObject(i).getJSONArray("coordinates"))))
+                                }
+                                val reference = JSONObject().put("type", "FeatureCollection").put("features", features)
+                                style.addSource(GeoJsonSource("real-osm-road-src", reference.toString()))
+                                style.addLayer(LineLayer("real-osm-roundabout", "real-osm-road-src").withProperties(
+                                    lineColor("#8C98A6"), lineWidth(16f)))
                                 val styleField = MapController::class.java.getDeclaredField("style")
                                 styleField.isAccessible = true
                                 styleField.set(c, style)
@@ -100,6 +122,7 @@ class Category2RenderedMapRobotTest {
                 val map = host.map
                 val style = map.style!!
                 assertNotNull(style.getLayer("dm-route"))
+                assertNotNull(style.getLayer("real-osm-roundabout"))
                 assertNotNull(style.getSource("dm-route-src"))
                 assertNotNull(style.getLayer("dm-traffic"))
                 assertNotNull(style.getSource("dm-traffic-src"))
@@ -108,6 +131,7 @@ class Category2RenderedMapRobotTest {
                 assertTrue(screen.x in 0f..it.mapView.width.toFloat())
                 assertTrue(screen.y in 0f..it.mapView.height.toFloat())
                 val rect = RectF(screen.x - 20f, screen.y - 20f, screen.x + 20f, screen.y + 20f)
+                assertTrue("Native renderer cannot see independently sourced real UK road", map.queryRenderedFeatures(rect, "real-osm-roundabout").isNotEmpty())
                 assertTrue("Native renderer cannot see real UK road route", map.queryRenderedFeatures(rect, "dm-route").isNotEmpty())
                 assertTrue("Native renderer cannot see coloured on-route traffic", map.queryRenderedFeatures(rect, "dm-traffic").isNotEmpty())
             } catch (t: Throwable) { failure.set(t) } finally { checked.countDown() }
