@@ -6,7 +6,7 @@ import org.junit.Test
 class AvoidedRouteOptionsTest {
     private val now=1_000_000L
     private fun route(key:String="strict",seconds:Double=600.0,uses:Set<String> = emptySet(),relaxed:Set<String> = emptySet())=
-        AvoidedRouteOptions.Evidence(key,key,seconds,uses,relaxed,liveCheckedAtMs=now,timingSource="TomTom",timingReliable=true)
+        AvoidedRouteOptions.Evidence(key,key,seconds,uses,relaxed,liveCheckedAtMs=now,timingSource="TomTom",timingReliable=true,complianceConfirmed=true)
     private fun motorway(seconds:Double=400.0)=route("motorway",seconds,setOf("motorway"),setOf("motorway"))
     @Test fun fasterWarnedAlternativeNeverReplacesCompliantDefault() {
         val r=AvoidedRouteOptions.build(setOf("motorway"),listOf(route()),listOf(motorway()),now)
@@ -101,4 +101,76 @@ class AvoidedRouteOptionsTest {
         assertEquals(RouteShapeKey.of(p),RouteShapeKey.of(p.toList()))
         assertNotEquals(RouteShapeKey.of(p),RouteShapeKey.of(p.reversed()))
     }
+    @Test fun evidenceDefaultsToUnconfirmedCompliance() {
+        val e=AvoidedRouteOptions.Evidence("route","route",600.0,emptySet())
+        assertFalse(e.complianceConfirmed)
+    }
+    @Test fun unknownStrictPreferenceComplianceRequiresChoiceAndNeverDefaults() {
+        val r=AvoidedRouteOptions.build(setOf("motorway"),listOf(route().copy(complianceConfirmed=false)),emptyList(),now)
+        assertNull(r.defaultKey)
+        val choice=r.choices.single()
+        assertEquals("Avoidance compliance not confirmed: motorways.",choice.warning)
+        assertTrue(choice.requiresExplicitChoice);assertFalse(choice.fasterConfirmed)
+        assertFalse(AvoidedRouteOptions.mayStart(choice.requiresExplicitChoice,choice.evidence.key,null))
+        assertTrue(AvoidedRouteOptions.mayStart(choice.requiresExplicitChoice,choice.evidence.key,choice.evidence.key))
+    }
+    @Test fun confirmedOrdinaryRouteKeepsDefaultOverFasterUnknownCompliance() {
+        val unknown=route("unknown",100.0).copy(complianceConfirmed=false)
+        val r=AvoidedRouteOptions.build(setOf("motorway"),listOf(unknown,route()),emptyList(),now)
+        assertEquals("strict",r.defaultKey)
+        assertEquals(listOf("strict"),r.choices.map{it.evidence.key})
+    }
+    @Test fun unknownStrictRouteCannotSupplyAFasterComparisonBaseline() {
+        val unknown=route().copy(complianceConfirmed=false)
+        val r=AvoidedRouteOptions.build(setOf("motorway"),listOf(unknown),listOf(motorway()),now)
+        assertNull(r.defaultKey);assertEquals(2,r.choices.size)
+        assertTrue(r.choices.all{it.requiresExplicitChoice && !it.fasterConfirmed})
+        assertTrue(r.choices.none{it.warning!!.contains("faster")})
+    }
+    @Test fun unknownLegalOrVehicleComplianceCannotBecomeAnAdvisoryWaiver() {
+        for(restriction in listOf("height","weight","closed-road","unknown")) {
+            for(avoid in listOf(setOf(restriction),setOf(restriction,"motorway"))) {
+                val r=AvoidedRouteOptions.build(avoid,listOf(route().copy(complianceConfirmed=false)),emptyList(),now)
+                assertTrue(r.choices.isEmpty());assertNull(r.defaultKey)
+            }
+        }
+    }
+    @Test fun relaxedPreferenceCannotWaiveUnconfirmedRetainedLegalRestrictions() {
+        val r=AvoidedRouteOptions.build(setOf("motorway","height"),emptyList(),listOf(motorway().copy(complianceConfirmed=false)),now)
+        assertTrue(r.choices.isEmpty());assertNull(r.defaultKey)
+    }
+    @Test fun confirmedRetainedRestrictionAllowsOnlyExplicitPreferenceRelaxation() {
+        val r=AvoidedRouteOptions.build(setOf("motorway","height"),emptyList(),listOf(motorway()),now)
+        assertEquals(1,r.choices.size);assertTrue(r.choices.single().requiresExplicitChoice)
+        assertNull(r.defaultKey)
+    }
+    @Test fun noAvoidancesDoNotRequireAvoidanceConfirmation() {
+        val r=AvoidedRouteOptions.build(emptySet(),listOf(route().copy(complianceConfirmed=false)),emptyList(),now)
+        assertEquals("strict",r.defaultKey);assertNull(r.choices.single().warning)
+    }
+    @Test fun duplicateUnknownStrictGeometryAppearsOnceWithoutConsentReuse() {
+        val e=route().copy(complianceConfirmed=false)
+        val r=AvoidedRouteOptions.build(setOf("motorway"),listOf(e,e),emptyList(),now)
+        assertEquals(1,r.choices.size);assertNull(r.defaultKey)
+    }
+    @Test fun explicitAvoidedUseIsNotDisguisedAsUnknownCompliance() {
+        val e=motorway().copy(complianceConfirmed=false,relaxed=emptySet())
+        assertTrue(AvoidedRouteOptions.build(setOf("motorway"),listOf(e),emptyList(),now).choices.isEmpty())
+    }
+
+    @Test fun relaxedWarningDisclosesUnconfirmedRetainedPreference() {
+        val e=motorway().copy(complianceConfirmed=false)
+        val r=AvoidedRouteOptions.build(setOf("motorway","ferry"),emptyList(),listOf(e),now)
+        val choice=r.choices.single()
+        assertEquals("Route data reports motorways. Avoidance settings not applied: motorways. Avoidance compliance not confirmed: ferries.",choice.warning)
+        assertTrue(choice.requiresExplicitChoice);assertNull(r.defaultKey)
+    }
+    @Test fun confirmedRouteSuppressesUnknownStrictAdvisoryAlongsideProvenFasterOption() {
+        val unknown=route("unknown",100.0).copy(complianceConfirmed=false)
+        val r=AvoidedRouteOptions.build(setOf("motorway"),listOf(unknown,route()),listOf(motorway()),now)
+        assertEquals(listOf("strict","motorway"),r.choices.map{it.evidence.key})
+        assertEquals("strict",r.defaultKey)
+        assertTrue(r.choices.last().fasterConfirmed);assertTrue(r.choices.last().requiresExplicitChoice)
+    }
+
 }
