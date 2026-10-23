@@ -1,0 +1,120 @@
+{
+  "schema": 1,
+  "date_utc": "2026-10-23",
+  "category": "02",
+  "app_repository": "phuk-prog/drivemate-app",
+  "app_baseline_sha": "864b8e5946d93d526515af24f48cf526666196c9",
+  "app_test_only_branch": "test/category2-map-display-baseline-20261023",
+  "app_workflow_sha": "e5304ddd8876de1489ad358cce3cb98062c1a140",
+  "workflow_run": "https://github.com/phuk-prog/drivemate-app/actions/runs/39979341011",
+  "public_contract_sha": "ad6fd48c1eba5d7da64836960f11e50f60a7822c",
+  "evidence": "Kotlin tests from public contracts compiled/executed against actual private app in private GitHub Actions. Source-only traffic integration check. No APK generated.",
+  "results": {
+    "expected": 18,
+    "passed": 18,
+    "failed": 0,
+    "skipped": 0,
+    "missing_test_identities": 0,
+    "unexpected_test_identities": 0,
+    "build_status": "success",
+    "traffic_integration": "missing"
+  },
+  "acceptances": [
+    {
+      "id": "02.01",
+      "executed_logic_tests": [
+        "pref02_01_verifiedRoadGeometryHasLowDrift",
+        "pref02_01_unverifiedRoadCannotBeUsedAsProof"
+      ],
+      "logic_status": "passed",
+      "acceptance_status": "not_yet_verified_on_rendered_road",
+      "remaining": "verified real UK carriageway geometry and live overlay"
+    },
+    {
+      "id": "02.02",
+      "executed_logic_tests": [
+        "pref02_02_paddedCameraLeavesMoreViewAhead",
+        "pref02_02_largePanelsCannotConsumeViewport"
+      ],
+      "logic_status": "passed",
+      "acceptance_status": "not_yet_verified_on_rendered_road",
+      "remaining": "rendered marker position on phone"
+    },
+    {
+      "id": "02.03",
+      "executed_logic_tests": [
+        "pref02_03_routePaletteIsNotATrafficState"
+      ],
+      "logic_status": "passed",
+      "acceptance_status": "missing_traffic_route_shading",
+      "remaining": "real traffic data coloured amber/red on route"
+    },
+    {
+      "id": "02.04",
+      "executed_logic_tests": [
+        "pref02_04_cameraBearingWrapsShortWayAcrossNorth",
+        "pref02_04_carLayerIsIdentifiedBelowOwnOverlays"
+      ],
+      "logic_status": "passed",
+      "acceptance_status": "not_yet_verified_on_rendered_road",
+      "remaining": "rendered car marker centred on correct carriageway"
+    },
+    {
+      "id": "02.05",
+      "executed_logic_tests": [
+        "pref02_05_fastRoadHasWiderZoomThanSlowStreet",
+        "pref02_05_nearTurnRaisesZoomWithoutLosingTurnContext"
+      ],
+      "logic_status": "passed",
+      "acceptance_status": "not_yet_verified_on_rendered_road",
+      "remaining": "map controller wiring/render replay across all inputs"
+    },
+    {
+      "id": "02.06",
+      "executed_logic_tests": [
+        "pref02_06_openFastRoadTiltRequiresSustainedSpeed",
+        "pref02_06_zoomFollowsRoadSpeedBand"
+      ],
+      "logic_status": "passed",
+      "acceptance_status": "not_yet_verified_on_rendered_road",
+      "remaining": "rendered far-ahead road visibility"
+    },
+    {
+      "id": "02.07",
+      "executed_logic_tests": [
+        "pref02_07_junctionTiltsTowardOverhead",
+        "pref02_07_roundaboutUsesJunctionPerspective"
+      ],
+      "logic_status": "passed",
+      "acceptance_status": "not_yet_verified_on_rendered_road",
+      "remaining": "junction screenshot and actual exit visible"
+    },
+    {
+      "id": "02.08",
+      "executed_logic_tests": [
+        "pref02_08_zoomIsTimeRateLimited",
+        "pref02_08_tiltDoesNotJumpAcrossOneFix",
+        "pref02_08_insetChangesGlideInsteadOfJumping"
+      ],
+      "logic_status": "passed",
+      "acceptance_status": "not_yet_verified_on_rendered_road",
+      "remaining": "frame cadence and rendered transitions"
+    },
+    {
+      "id": "02.09",
+      "executed_logic_tests": [
+        "pref02_09_newTurnCanWidenFittedFrame",
+        "pref02_09_geometrySlicePreservesIntermediateRoute"
+      ],
+      "logic_status": "passed",
+      "acceptance_status": "not_yet_verified_on_rendered_road",
+      "remaining": "two nearby turns in rendered viewport"
+    }
+  ],
+  "caveats": [
+    "Passing synthetic logic tests do not prove legal carriageway selection, physical route-line adherence or an actual Manchester road overlay.",
+    "No rendered-map screenshots, real-device tests or live-traffic data tests were executed.",
+    "No before/after improvement has been made. Checklist implementation status remains unmarked.",
+    "Source-only traffic finding does not substitute for a live-traffic provider verification."
+  ]
+}
