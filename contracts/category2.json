@@ -1,0 +1,83 @@
+{
+  "schema": 1,
+  "category": "02",
+  "name": "Map display, route line and vehicle arrow",
+  "app_repo": "phuk-prog/drivemate-app",
+  "public_repo": "phuk-prog/drivemate-test-map-display",
+  "evidence_policy": "All tests compile against actual private app. Logic/static evidence is not rendered-map or live traffic acceptance. No synthetic roads count as real UK carriageway evidence.",
+  "items": [
+    {
+      "id": "02.01",
+      "tests": [
+        "pref02_01_verifiedRoadGeometryHasLowDrift",
+        "pref02_01_unverifiedRoadCannotBeUsedAsProof"
+      ],
+      "remaining": "verified real UK carriageway geometry and live overlay"
+    },
+    {
+      "id": "02.02",
+      "tests": [
+        "pref02_02_paddedCameraLeavesMoreViewAhead",
+        "pref02_02_largePanelsCannotConsumeViewport"
+      ],
+      "remaining": "rendered marker position on phone"
+    },
+    {
+      "id": "02.03",
+      "tests": [
+        "pref02_03_routePaletteIsNotATrafficState"
+      ],
+      "static_check": "traffic_layer_integration",
+      "remaining": "real traffic data coloured amber/red on route"
+    },
+    {
+      "id": "02.04",
+      "tests": [
+        "pref02_04_cameraBearingWrapsShortWayAcrossNorth",
+        "pref02_04_carLayerIsIdentifiedBelowOwnOverlays"
+      ],
+      "remaining": "rendered car marker centred on correct carriageway"
+    },
+    {
+      "id": "02.05",
+      "tests": [
+        "pref02_05_fastRoadHasWiderZoomThanSlowStreet",
+        "pref02_05_nearTurnRaisesZoomWithoutLosingTurnContext"
+      ],
+      "remaining": "map controller wiring/render replay across all inputs"
+    },
+    {
+      "id": "02.06",
+      "tests": [
+        "pref02_06_openFastRoadTiltRequiresSustainedSpeed",
+        "pref02_06_zoomFollowsRoadSpeedBand"
+      ],
+      "remaining": "rendered far-ahead road visibility"
+    },
+    {
+      "id": "02.07",
+      "tests": [
+        "pref02_07_junctionTiltsTowardOverhead",
+        "pref02_07_roundaboutUsesJunctionPerspective"
+      ],
+      "remaining": "junction screenshot and actual exit visible"
+    },
+    {
+      "id": "02.08",
+      "tests": [
+        "pref02_08_zoomIsTimeRateLimited",
+        "pref02_08_tiltDoesNotJumpAcrossOneFix",
+        "pref02_08_insetChangesGlideInsteadOfJumping"
+      ],
+      "remaining": "frame cadence and rendered transitions"
+    },
+    {
+      "id": "02.09",
+      "tests": [
+        "pref02_09_newTurnCanWidenFittedFrame",
+        "pref02_09_geometrySlicePreservesIntermediateRoute"
+      ],
+      "remaining": "two nearby turns in rendered viewport"
+    }
+  ]
+}
