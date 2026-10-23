@@ -30,11 +30,29 @@ internal class PublishedRegionCatalog private constructor(val coverage: String, 
         val view = viewport ?: return centre
         if (listOf(view.west, view.south, view.east, view.north).any { !it.isFinite() } ||
             view.west >= view.east || view.south >= view.north) return centre
-        return regions.asSequence()
-            .filter { it.bounds.contains(lat, lon) &&
-                it.bounds.west <= view.west && it.bounds.east >= view.east &&
-                it.bounds.south <= view.south && it.bounds.north >= view.north }
-            .minWithOrNull(compareBy<Region> { it.bounds.area }.thenBy { it.id }) ?: centre
+        val atFocus = regions.filter { it.bounds.contains(lat, lon) }
+        val fullyCovering = atFocus.filter {
+            it.bounds.west <= view.west && it.bounds.east >= view.east &&
+                it.bounds.south <= view.south && it.bounds.north >= view.north
+        }
+        if (fullyCovering.isNotEmpty())
+            return fullyCovering.minWithOrNull(compareBy<Region> { it.bounds.area }.thenBy { it.id })
+        // Do not fall back to the tiniest Stockport map when zoomed out across
+        // Manchester: use the published region displaying the LARGEST part of
+        // the requested view, as long as it contains the focus. Unpublished
+        // surroundings remain uncovered; this is not a substitute for tiles.
+        fun overlapArea(region: Region): Double {
+            val b = region.bounds
+            val w = maxOf(b.west, view.west)
+            val e = minOf(b.east, view.east)
+            val s = maxOf(b.south, view.south)
+            val n = minOf(b.north, view.north)
+            return maxOf(0.0, e - w) * maxOf(0.0, n - s)
+        }
+        return atFocus.sortedWith(
+            compareByDescending<Region> { overlapArea(it) }
+                .thenBy { it.bounds.area }.thenBy { it.id }
+        ).firstOrNull() ?: centre
     }
 
     companion object {

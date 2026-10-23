@@ -38,8 +38,8 @@ class PublishedRegionViewportTest {
     @Test fun exactRegionBoundaryCountsAsCovered() {
         assertEquals("stockport",catalog().selectForViewport(53.40,-2.20,view(-2.30,53.30,-2.10,53.50))?.id)
     }
-    @Test fun noPublishedRegionCanCoverWideViewReturnsSmallestAtFocus() {
-        assertEquals("stockport",catalog().selectForViewport(53.40,-2.20,view(-4.0,51.0,0.1,54.0))?.id)
+    @Test fun noPublishedRegionCanCoverWideViewReturnsLargestAvailableOverlap() {
+        assertEquals("greater",catalog().selectForViewport(53.40,-2.20,view(-4.0,51.0,0.1,54.0))?.id)
     }
     @Test fun neverChooseBiggerRegionThatDoesNotContainActualFocus() {
         assertEquals("east",catalog().selectForViewport(53.40,-1.85,view(-2.0,53.35,-1.7,53.55))?.id)
