@@ -44,10 +44,11 @@ class Category2TomTomLiveTrafficTest {
         assertTrue(bands[0].points.size >= 2)
     }
     @Test fun pref02_03_moderateJamIsAmber() {
-        val reports = TomTom.parseIncidents(liveJson(magnitude=1),now)
+        val response = liveJson(magnitude=1)
+        response.getJSONArray("incidents").getJSONObject(0).getJSONObject("properties").put("delay",25)
+        val reports = TomTom.parseIncidents(response,now)
         val bands = TrafficRouteOverlay.sections(road,reports,now)
-        // A sufficiently large measured delay also qualifies as heavy; no false amber.
-        assertEquals(TrafficRouteOverlay.Level.HEAVY,bands.single().level)
+        assertEquals(TrafficRouteOverlay.Level.SLOW,bands.single().level)
     }
     @Test fun pref02_03_staleTomTomReportsAreNotColoured() {
         val reports = TomTom.parseIncidents(liveJson(),now)
