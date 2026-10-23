@@ -332,5 +332,21 @@
       "extraction": "whole original file",
       "fragment_sha256": "06ecfb91e15522e6ff2e7c454cd6a7298046e639f27660ffc248eab4c29ff5d1"
     }
+  ],
+  "android_files": [
+    {
+      "phase": "baseline",
+      "published_path": "android/baseline/MotionHeading.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/nav/MotionHeading.kt",
+      "sha256": "2571039ef99a0583610eab60d413acae141c4d0990cc3dd583e5a1ea02123e5a",
+      "kind": "whole original Android adapter and estimator file"
+    },
+    {
+      "phase": "candidate",
+      "published_path": "android/candidate/MotionHeading.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/nav/MotionHeading.kt",
+      "sha256": "c34740c1c33e7079095030f3615ed7eff245754835854b0e1014cbe4ba0544bb",
+      "kind": "whole original Android adapter and estimator file"
+    }
   ]
 }

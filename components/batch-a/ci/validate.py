@@ -3,6 +3,7 @@ import hashlib,json,pathlib,re
 r=pathlib.Path(__file__).resolve().parents[1];repo=r.parents[1]
 m=json.loads((r/'source-manifest.json').read_text())
 for f in m['files']:assert hashlib.sha256((r/f['published_path']).read_bytes()).hexdigest()==f['compiled_sha256'],f['published_path']
+for f in m.get('android_files',[]):assert hashlib.sha256((r/f['published_path']).read_bytes()).hexdigest()==f['sha256']
 expected={x['id'] for x in json.loads((repo/'batches/A-roundabouts-maps-positioning/contracts/expected.json').read_text())['cases']}
 for f in (r/'tests-expanded').glob('*.kt'):
  s=f.read_text();pkg=re.search(r'^package ([\w.]+)',s,re.M)[1];cls=re.search(r'class (\w+)',s)[1]

@@ -1,0 +1,59 @@
+{
+  "test_count": 6,
+  "tests": [
+    {
+      "id": "com.drivemate.app.nav.GpsSensorAdapterTest#missingSensorsDoNotRegisterAndStillAllowMeasuredGpsHeading",
+      "basis": "actual Android adapter recovery/lifecycle simulation",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "Robolectric plus mocked sensor registration, not real hardware measurements or full navigation service lifecycle. No legal or road-readiness assertion."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsSensorAdapterTest#stopClearsHeadingEvenWhenSensorsWereUnavailable",
+      "basis": "actual Android adapter recovery/lifecycle simulation",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "Robolectric plus mocked sensor registration, not real hardware measurements or full navigation service lifecycle. No legal or road-readiness assertion."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsSensorAdapterTest#deniedRegistrationFallsBackWithoutCrashing",
+      "basis": "actual Android adapter recovery/lifecycle simulation",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "Robolectric plus mocked sensor registration, not real hardware measurements or full navigation service lifecycle. No legal or road-readiness assertion."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsSensorAdapterTest#bothRegistrationFailuresAreContainedAndPartialListenersRemoved",
+      "basis": "actual Android adapter recovery/lifecycle simulation",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "Robolectric plus mocked sensor registration, not real hardware measurements or full navigation service lifecycle. No legal or road-readiness assertion."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsSensorAdapterTest#accelerometerIsUsedWhenGravitySensorIsMissing",
+      "basis": "actual Android adapter recovery/lifecycle simulation",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "Robolectric plus mocked sensor registration, not real hardware measurements or full navigation service lifecycle. No legal or road-readiness assertion."
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsSensorAdapterTest#successfulStopAndRestartDoNotReusePreviousHeading",
+      "basis": "actual Android adapter recovery/lifecycle simulation",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "Robolectric plus mocked sensor registration, not real hardware measurements or full navigation service lifecycle. No legal or road-readiness assertion."
+    }
+  ]
+}

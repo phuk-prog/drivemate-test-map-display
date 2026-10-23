@@ -13,3 +13,5 @@ The lane diagram tests execute the real scene model and its changing geometry. T
 The candidate contains already proposed GPS fixes. Passing public component checks does not mean those fixes are merged into the private app, nor does it approve Batch A, legal compliance or road readiness. Sensor adapter/lifecycle, actual UI wiring/rendering, routing response integration and road-specific legal evidence remain open. Final app integration and APK generation stay in the private repository.
 
 Generated glyph source preserves its third-party licence in `licenses/replay-lettering.txt`.
+
+The separate public Android library runs the same six Robolectric sensor-registration/stop/restart tests against the entire original adapter file for each phase. This is Android simulation, not a physical device or a full navigation application. Neither public job assembles or publishes a combined-app APK.
