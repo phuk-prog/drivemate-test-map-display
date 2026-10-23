@@ -7,12 +7,14 @@ on:
       - 'batches/**'
       - 'fixtures/**'
       - 'ci/validate_grouped_tests.py'
+      - 'ci/validate_app_batch_register.py'
       - '.github/workflows/validate-grouped-tests.yml'
   pull_request:
     paths:
       - 'contracts/**'
       - 'fixtures/**'
       - 'ci/validate_grouped_tests.py'
+      - 'ci/validate_app_batch_register.py'
   workflow_dispatch:
 permissions:
   contents: read
@@ -27,6 +29,8 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - name: Verify 2–4 related-category groups, independent UK rules and no-key fixtures
         run: python3 ci/validate_grouped_tests.py
+      - name: Assert all 157 in-app checklist items appear exactly once in five public batches
+        run: python3 ci/validate_app_batch_register.py
       - name: Validate next Category 03 + 08 + 09 public sources and 19 checklist records
         run: python3 batches/B-guidance-alerts/ci/validate.py
       - name: Validate Batch A case identities and all 22 checklist records
@@ -34,5 +38,6 @@ jobs:
       - name: Disclose what is and is not tested publicly
         run: |
           echo "Public contracts, grouping, independent reference metadata and synthetic fixtures validated." >> "$GITHUB_STEP_SUMMARY"
+          echo "All 157 app checklist requirements are mapped to five public batches; individual acceptance remains unverified." >> "$GITHUB_STEP_SUMMARY"
           echo "This workflow does NOT execute the private Android app or prove native emulator rendering." >> "$GITHUB_STEP_SUMMARY"
           echo "App acceptance requires an identified private production SHA and published sanitized test results." >> "$GITHUB_STEP_SUMMARY"
