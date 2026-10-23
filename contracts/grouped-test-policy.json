@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "policy_id": "DRIVEMATE_PUBLIC_GROUPED_TESTS_2026_10_23",
+  "owner_decision_date": "2026-10-23",
+  "intent": "Publish test definitions, independent expected outcomes, evidence references and sanitized results in public test repositories. Consolidate closely related checks into one execution/test APK when practical, normally two to four categories, while preserving separately accountable acceptance per checklist item.",
+  "public_contracts_required": true,
+  "public_expected_results_required": true,
+  "private_app_source_allowed_in_public": false,
+  "public_secrets_allowed": false,
+  "private_execution_exception": "When testing private app source or an unapproved test APK, run public tests in the authorized private-app GitHub Actions runner and publish bounded non-sensitive evidence back to public test repositories. Do not claim a private runner is public execution.",
+  "evidence_rules": {
+    "road_legality": "Relevant current UK legislation, traffic orders, Highway Code, DfT signs/markings, corroborated sign/layout records—not DriveMate output or a competitor's output.",
+    "road_geometry": "Third-party real UK road data with contributor/record identity, date and licence, plus corroboration of signs and lawful movements where needed.",
+    "simulation": "Allowed for TomTom/network failures and GPS replay, but must be labelled synthetic; never substitute simulated roads for externally verified road truth.",
+    "pass_condition": "Actual app classes or identified APK exercised; independent expected results; exact build SHA, public test SHA, detailed per-item pass/fail/missing; results from only test code or an invented road cannot sign off road correctness."
+  },
+  "batching": {
+    "preferred_category_count_min": 2,
+    "preferred_category_count_max": 4,
+    "allow_single_category_if_no_related_active_checks": true,
+    "one_shared_candidate_build_and_test_apk_per_batch": true,
+    "per_category_pretest_after_retest_required": true,
+    "separate_category_release_gates": true,
+    "same_route_same_replay_same_source_snapshot": true,
+    "allow_related_cross_category_regression_without_starting_unapproved_category_development": true,
+    "do_not_merge_unrelated_tests_to_meet_a_count": true,
+    "batch_key": "immutable-app-sha + public-suite-shas + dataset-ids + emulator-image + config"
+  },
+  "apk_policy": {
+    "test_apk_grouping": "Prefer one internal debug/test APK pair for 2–4 related categories, built once after shared source/fixture setup. Do not build one APK per checklist item.",
+    "public_release": "No APK (including debug/test APK) may be published publicly until required automated, replay and navigation-robot release gates pass and distributable contents are explicitly approved. Public test sources/results are not public APK releases.",
+    "private_binary": "Private app source, credentials and raw personal drive data stay private; test APKs requiring the private app may run inside authorized private CI.",
+    "no_tomtom_key": "TomTom network fixtures must be simulated, clearly labelled, and contain no provider key."
+  },
+  "batch_templates": [
+    {
+      "id": "uk-road-scene",
+      "categories": [
+        "01",
+        "02",
+        "04",
+        "05"
+      ],
+      "name": "GPS + map geometry + lane/roundabout guidance + routing",
+      "shared_fixture": "Independent dated UK-road geometry with approach bearings, lawful signs/turns and one identical GPS trace; GPS may be checked while testing the map around a roundabout",
+      "public_repos": [
+        "https://github.com/phuk-prog/drivemate-test-gps-navigation",
+        "https://github.com/phuk-prog/drivemate-test-map-display"
+      ],
+      "status": "current test definitions available for 01 and 02; Category 04/05 acceptance remains unverified"
+    },
+    {
+      "id": "driver-guidance",
+      "categories": [
+        "03",
+        "09",
+        "10"
+      ],
+      "name": "Navigation card + road warnings + audio timing",
+      "shared_fixture": "One junction approach and timed manoeuvre event stream",
+      "public_repos": [],
+      "status": "template only; no dedicated test repository verified"
+    },
+    {
+      "id": "journey-lifecycle",
+      "categories": [
+        "06",
+        "07",
+        "15",
+        "17"
+      ],
+      "name": "Destination search + intermediate stops/parking + arrival + first use",
+      "shared_fixture": "One place-to-place journey lifecycle with property vehicle arrival and onboarding cases",
+      "public_repos": [],
+      "status": "template only; no dedicated test repository verified"
+    },
+    {
+      "id": "map-data-delivery",
+      "categories": [
+        "08",
+        "11",
+        "12"
+      ],
+      "name": "Traffic + online/offline maps + download/update/storage",
+      "shared_fixture": "One geographically bounded UK road area and timed map-data update/availability replay",
+      "public_repos": [],
+      "status": "template only; no dedicated test repository verified"
+    },
+    {
+      "id": "settings-privacy-projection",
+      "categories": [
+        "13",
+        "14",
+        "16"
+      ],
+      "name": "Settings/accessibility + privacy/backups + Android Auto integration",
+      "shared_fixture": "One settings matrix and lifecycle/privacy projection replay",
+      "public_repos": [],
+      "status": "template only; no dedicated test repository verified"
+    }
+  ],
+  "current_focus": {
+    "primary_category": "02",
+    "permitted_related_test_categories": [
+      "01",
+      "04",
+      "05"
+    ],
+    "shared_scene": "Roscoe's Roundabout, Greater Manchester; map drawing, carriageway matching, GPS replays, and independently evidenced roundabout maneuvers",
+    "explicit_not_started": [
+      "03",
+      "04",
+      "05"
+    ],
+    "category_01_status": "Category 1 GPS tests are independently tracked in the existing public GPS repo; related checks may be reused without automatically merging PR #4",
+    "category_02_status": "Category 2 remains unsiged-off pending native-render and independent legal/road acceptance; PR #5 stays draft",
+    "no_automatic_acceptance": true
+  }
+}
