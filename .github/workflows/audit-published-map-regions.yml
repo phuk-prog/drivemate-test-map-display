@@ -1,0 +1,32 @@
+name: Audit published UK map region coverage
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'ci/audit_live_map_catalog.py'
+      - 'ci/test_audit_live_map_catalog.py'
+      - '.github/workflows/audit-published-map-regions.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  catalog-extent:
+    name: Published map coverage truth (metadata only)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Validate audit with positive and negative fixtures
+        run: python3 ci/test_audit_live_map_catalog.py
+      - name: Fetch current signed catalog metadata and audit general UK coverage
+        run: python3 ci/audit_live_map_catalog.py --out results/live-published-map-regions.json
+      - name: Preserve factual coverage gaps (do not assert GPS or MapLibre completeness)
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: published-region-coverage-audit
+          path: results/live-published-map-regions.json
+          if-no-files-found: warn
+          retention-days: 30
