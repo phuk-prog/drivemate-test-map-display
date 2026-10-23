@@ -1,0 +1,336 @@
+{
+  "schema": 1,
+  "purpose": "Selected component code only, no combined app or APK",
+  "baseline_app_sha": "e669dc67df86f0310d47bf0f648ad341db55055f",
+  "candidate_source_local_commit": "353ff8ce387344964b7c68364ab929ded3058cc9",
+  "candidate_private_pr": 4,
+  "files": [
+    {
+      "phase": "common",
+      "published_path": "common/src/main/kotlin/com/drivemate/app/ui/DrivingDisplayPolicy.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/ui/DrivingDisplayPolicy.kt",
+      "origin": "current-main-baseline",
+      "source_file_sha256": "4aa24d1167a450e313111a495696d2f92fe40615b7a2c4141ae89b8d4b3582ad",
+      "compiled_sha256": "4aa24d1167a450e313111a495696d2f92fe40615b7a2c4141ae89b8d4b3582ad",
+      "extraction": "whole original file",
+      "fragment_sha256": "4aa24d1167a450e313111a495696d2f92fe40615b7a2c4141ae89b8d4b3582ad"
+    },
+    {
+      "phase": "common",
+      "published_path": "common/src/main/kotlin/com/drivemate/app/nav/Geo.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/nav/Geo.kt",
+      "origin": "current-main-baseline",
+      "source_file_sha256": "4aa42c796ccb9f89d2384b5f84394215a54574e0b41e574e763c2d62031eea12",
+      "compiled_sha256": "4aa42c796ccb9f89d2384b5f84394215a54574e0b41e574e763c2d62031eea12",
+      "extraction": "whole original file",
+      "fragment_sha256": "4aa42c796ccb9f89d2384b5f84394215a54574e0b41e574e763c2d62031eea12"
+    },
+    {
+      "phase": "common",
+      "published_path": "common/src/main/kotlin/com/drivemate/app/nav/ReplayLettering.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/nav/ReplayLettering.kt",
+      "origin": "current-main-baseline",
+      "source_file_sha256": "e64a5f11a1033df9172da15a0566ab6b052e2391db8610a86ccae811f690b8e9",
+      "compiled_sha256": "e64a5f11a1033df9172da15a0566ab6b052e2391db8610a86ccae811f690b8e9",
+      "extraction": "whole original file",
+      "fragment_sha256": "e64a5f11a1033df9172da15a0566ab6b052e2391db8610a86ccae811f690b8e9"
+    },
+    {
+      "phase": "common",
+      "published_path": "common/src/main/kotlin/com/drivemate/app/nav/ScenePresentation.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/nav/ScenePresentation.kt",
+      "origin": "current-main-baseline",
+      "source_file_sha256": "156b370be6c0a4d784c5696c031c96bc26c803ee60d2daa275d20d0617eadf4a",
+      "compiled_sha256": "156b370be6c0a4d784c5696c031c96bc26c803ee60d2daa275d20d0617eadf4a",
+      "extraction": "whole original file",
+      "fragment_sha256": "156b370be6c0a4d784c5696c031c96bc26c803ee60d2daa275d20d0617eadf4a"
+    },
+    {
+      "phase": "common",
+      "published_path": "common/src/main/kotlin/com/drivemate/app/nav/LanePerspective.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/nav/LanePerspective.kt",
+      "origin": "current-main-baseline",
+      "source_file_sha256": "bf7ecd5ae67a0cfa923f64b22dd8ed24bedfca0263c608ad88c5a7ee133dfb79",
+      "compiled_sha256": "bf7ecd5ae67a0cfa923f64b22dd8ed24bedfca0263c608ad88c5a7ee133dfb79",
+      "extraction": "whole original file",
+      "fragment_sha256": "bf7ecd5ae67a0cfa923f64b22dd8ed24bedfca0263c608ad88c5a7ee133dfb79"
+    },
+    {
+      "phase": "common",
+      "published_path": "common/src/main/kotlin/com/drivemate/app/nav/RoadGeometry.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/nav/RoadGeometry.kt",
+      "origin": "current-main-baseline",
+      "source_file_sha256": "bcb8edc312a0adaec2d4804d486c1d6e18d09bc50e588bc43105db13a8c0279a",
+      "compiled_sha256": "bcb8edc312a0adaec2d4804d486c1d6e18d09bc50e588bc43105db13a8c0279a",
+      "extraction": "whole original file",
+      "fragment_sha256": "bcb8edc312a0adaec2d4804d486c1d6e18d09bc50e588bc43105db13a8c0279a"
+    },
+    {
+      "phase": "common",
+      "published_path": "common/src/main/kotlin/com/drivemate/app/nav/JunctionScene.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/nav/JunctionScene.kt",
+      "origin": "current-main-baseline",
+      "source_file_sha256": "553fbb39979f9cb5be42c2cf1bf1e93202b76048065a0e28343e16fd1e1bb133",
+      "compiled_sha256": "553fbb39979f9cb5be42c2cf1bf1e93202b76048065a0e28343e16fd1e1bb133",
+      "extraction": "whole original file",
+      "fragment_sha256": "553fbb39979f9cb5be42c2cf1bf1e93202b76048065a0e28343e16fd1e1bb133"
+    },
+    {
+      "phase": "common",
+      "published_path": "common/src/main/kotlin/com/drivemate/app/nav/LocalRoadMatcher.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/nav/LocalRoadMatcher.kt",
+      "origin": "current-main-baseline",
+      "source_file_sha256": "409279fa77cb7d7a013b67a77119335d182b129d168326e591167cbc03c5e402",
+      "compiled_sha256": "409279fa77cb7d7a013b67a77119335d182b129d168326e591167cbc03c5e402",
+      "extraction": "whole original file",
+      "fragment_sha256": "409279fa77cb7d7a013b67a77119335d182b129d168326e591167cbc03c5e402"
+    },
+    {
+      "phase": "common",
+      "published_path": "common/src/main/kotlin/com/drivemate/app/nav/LaneGuidance.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/nav/LaneGuidance.kt",
+      "origin": "current-main-baseline",
+      "source_file_sha256": "76be54e8735f215fbdcc9bc81aaeb75c947a8ad2e6acb6db64114d6c984c1a05",
+      "compiled_sha256": "76be54e8735f215fbdcc9bc81aaeb75c947a8ad2e6acb6db64114d6c984c1a05",
+      "extraction": "whole original file",
+      "fragment_sha256": "76be54e8735f215fbdcc9bc81aaeb75c947a8ad2e6acb6db64114d6c984c1a05"
+    },
+    {
+      "phase": "common",
+      "published_path": "common/src/main/kotlin/com/drivemate/app/nav/GpsLossPolicy.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/nav/GpsLossPolicy.kt",
+      "origin": "current-main-baseline",
+      "source_file_sha256": "3af43c7f7c3364cae72607efd46a5799961b516abf4d79f9499f0d6859d185d3",
+      "compiled_sha256": "3af43c7f7c3364cae72607efd46a5799961b516abf4d79f9499f0d6859d185d3",
+      "extraction": "whole original file",
+      "fragment_sha256": "3af43c7f7c3364cae72607efd46a5799961b516abf4d79f9499f0d6859d185d3"
+    },
+    {
+      "phase": "common",
+      "published_path": "common/src/main/kotlin/com/drivemate/app/nav/LanePlan.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/nav/LanePlan.kt",
+      "origin": "current-main-baseline",
+      "source_file_sha256": "f5615c818fe8819ed7c8c7f1e52b837b3aac006dc21c60fe68abe6d44809db57",
+      "compiled_sha256": "f5615c818fe8819ed7c8c7f1e52b837b3aac006dc21c60fe68abe6d44809db57",
+      "extraction": "whole original file",
+      "fragment_sha256": "f5615c818fe8819ed7c8c7f1e52b837b3aac006dc21c60fe68abe6d44809db57"
+    },
+    {
+      "phase": "common",
+      "published_path": "common/src/main/kotlin/com/drivemate/app/nav/LaneDirections.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/nav/LaneDirections.kt",
+      "origin": "current-main-baseline",
+      "source_file_sha256": "7549043fcf065ba80283f75cebc62e7e5de93f761a23870b1b4c3fb217c9229d",
+      "compiled_sha256": "7549043fcf065ba80283f75cebc62e7e5de93f761a23870b1b4c3fb217c9229d",
+      "extraction": "whole original file",
+      "fragment_sha256": "7549043fcf065ba80283f75cebc62e7e5de93f761a23870b1b4c3fb217c9229d"
+    },
+    {
+      "phase": "common",
+      "published_path": "common/src/main/kotlin/com/drivemate/app/nav/JunctionPlan.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/nav/JunctionPlan.kt",
+      "origin": "current-main-baseline",
+      "source_file_sha256": "0d76b5fe59ddae27ee9218d50f5b9456ae64ab4c2b411c6a4ce5fce3ee03f02d",
+      "compiled_sha256": "0d76b5fe59ddae27ee9218d50f5b9456ae64ab4c2b411c6a4ce5fce3ee03f02d",
+      "extraction": "whole original file",
+      "fragment_sha256": "0d76b5fe59ddae27ee9218d50f5b9456ae64ab4c2b411c6a4ce5fce3ee03f02d"
+    },
+    {
+      "phase": "common",
+      "published_path": "common/src/main/kotlin/com/drivemate/app/nav/JunctionModel.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/nav/JunctionModel.kt",
+      "origin": "current-main-baseline",
+      "source_file_sha256": "71047bc73bf80d5b78123ed120d3cb7dade5db0e4b4df8fbc63eefef76f33a6e",
+      "compiled_sha256": "71047bc73bf80d5b78123ed120d3cb7dade5db0e4b4df8fbc63eefef76f33a6e",
+      "extraction": "whole original file",
+      "fragment_sha256": "71047bc73bf80d5b78123ed120d3cb7dade5db0e4b4df8fbc63eefef76f33a6e"
+    },
+    {
+      "phase": "common",
+      "published_path": "common/src/main/kotlin/com/drivemate/app/nav/JunctionLayoutPolicy.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/nav/JunctionLayoutPolicy.kt",
+      "origin": "current-main-baseline",
+      "source_file_sha256": "6f00a02bc2e309fd62446ddf212e3cfeeeb3349ad1523a61ddaf719c099f36b9",
+      "compiled_sha256": "6f00a02bc2e309fd62446ddf212e3cfeeeb3349ad1523a61ddaf719c099f36b9",
+      "extraction": "whole original file",
+      "fragment_sha256": "6f00a02bc2e309fd62446ddf212e3cfeeeb3349ad1523a61ddaf719c099f36b9"
+    },
+    {
+      "phase": "common",
+      "published_path": "common/src/main/kotlin/com/drivemate/app/nav/Wording.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/nav/Wording.kt",
+      "origin": "current-main-baseline",
+      "source_file_sha256": "3e10bc43b0dde463836cfc5564a4248d50f9120b7da9f58854b1aee35242a8dd",
+      "compiled_sha256": "3e10bc43b0dde463836cfc5564a4248d50f9120b7da9f58854b1aee35242a8dd",
+      "extraction": "whole original file",
+      "fragment_sha256": "3e10bc43b0dde463836cfc5564a4248d50f9120b7da9f58854b1aee35242a8dd"
+    },
+    {
+      "phase": "common",
+      "published_path": "common/src/main/kotlin/com/drivemate/app/nav/ImmersiveJunction.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/nav/ImmersiveJunction.kt",
+      "origin": "current-main-baseline",
+      "source_file_sha256": "41ccc5fbe59f6eff31ddd748f88e1baa258a76684bbcdef4108fabd27669c4bb",
+      "compiled_sha256": "41ccc5fbe59f6eff31ddd748f88e1baa258a76684bbcdef4108fabd27669c4bb",
+      "extraction": "whole original file",
+      "fragment_sha256": "41ccc5fbe59f6eff31ddd748f88e1baa258a76684bbcdef4108fabd27669c4bb"
+    },
+    {
+      "phase": "common",
+      "published_path": "common/src/main/kotlin/com/drivemate/app/nav/OffRouteRule.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/nav/OffRouteRule.kt",
+      "origin": "current-main-baseline",
+      "source_file_sha256": "a4af151a06a141ac8525d798c92bbfe9795deb045d094c97e6a4b78b8e838070",
+      "compiled_sha256": "a4af151a06a141ac8525d798c92bbfe9795deb045d094c97e6a4b78b8e838070",
+      "extraction": "whole original file",
+      "fragment_sha256": "a4af151a06a141ac8525d798c92bbfe9795deb045d094c97e6a4b78b8e838070"
+    },
+    {
+      "phase": "common",
+      "published_path": "common/src/main/kotlin/com/drivemate/app/nav/RouteGeometryAudit.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/nav/RouteGeometryAudit.kt",
+      "origin": "current-main-baseline",
+      "source_file_sha256": "391f8872af5b15dab29fceed5bab2314e1a11ba3b4f2da18bd83b11f3525c113",
+      "compiled_sha256": "391f8872af5b15dab29fceed5bab2314e1a11ba3b4f2da18bd83b11f3525c113",
+      "extraction": "whole original file",
+      "fragment_sha256": "391f8872af5b15dab29fceed5bab2314e1a11ba3b4f2da18bd83b11f3525c113"
+    },
+    {
+      "phase": "common",
+      "published_path": "common/src/main/kotlin/com/drivemate/app/nav/RouteGeometryIndex.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/nav/RouteGeometryIndex.kt",
+      "origin": "current-main-baseline",
+      "source_file_sha256": "763d1c2bc3dc04ec785b387dfc89cf5e0aa8d4fb96c3948b18778c3905a0a6c1",
+      "compiled_sha256": "763d1c2bc3dc04ec785b387dfc89cf5e0aa8d4fb96c3948b18778c3905a0a6c1",
+      "extraction": "whole original file",
+      "fragment_sha256": "763d1c2bc3dc04ec785b387dfc89cf5e0aa8d4fb96c3948b18778c3905a0a6c1"
+    },
+    {
+      "phase": "common",
+      "published_path": "common/src/main/kotlin/com/drivemate/app/nav/RoutePalette.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/nav/RoutePalette.kt",
+      "origin": "current-main-baseline",
+      "source_file_sha256": "7ea2f1433ceaf2502032d3395d821b55f7008e3af3efb31f759e664c92e66b8b",
+      "compiled_sha256": "7ea2f1433ceaf2502032d3395d821b55f7008e3af3efb31f759e664c92e66b8b",
+      "extraction": "whole original file",
+      "fragment_sha256": "7ea2f1433ceaf2502032d3395d821b55f7008e3af3efb31f759e664c92e66b8b"
+    },
+    {
+      "phase": "common",
+      "published_path": "common/src/main/kotlin/com/drivemate/app/map/DrivingCamera.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/map/DrivingCamera.kt",
+      "origin": "current-main-baseline",
+      "source_file_sha256": "b208c3d22e50a2cc4fbd184d758e2a1100aef3104952d07caee1f2fa6a5ccb87",
+      "compiled_sha256": "b208c3d22e50a2cc4fbd184d758e2a1100aef3104952d07caee1f2fa6a5ccb87",
+      "extraction": "whole original file",
+      "fragment_sha256": "b208c3d22e50a2cc4fbd184d758e2a1100aef3104952d07caee1f2fa6a5ccb87"
+    },
+    {
+      "phase": "common",
+      "published_path": "common/src/main/kotlin/com/drivemate/app/map/MapLayerOrder.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/map/MapLayerOrder.kt",
+      "origin": "current-main-baseline",
+      "source_file_sha256": "ad8a9ed70ba0170034658021755a2a76d53567723568b4b9adfb652c866ec9b2",
+      "compiled_sha256": "ad8a9ed70ba0170034658021755a2a76d53567723568b4b9adfb652c866ec9b2",
+      "extraction": "whole original file",
+      "fragment_sha256": "ad8a9ed70ba0170034658021755a2a76d53567723568b4b9adfb652c866ec9b2"
+    },
+    {
+      "phase": "common",
+      "published_path": "common/src/main/kotlin/com/drivemate/app/data/Models.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/data/Models.kt",
+      "origin": "current-main-baseline",
+      "source_file_sha256": "3fd5b4b5fdc585b3d5ad2a20f1a7b23de83aa69b0cb2176958e1256d454ac7d7",
+      "compiled_sha256": "4e560487e2f303c16048c895a5eb2f52827ca580689d51737f5a7142f723a4fb",
+      "extraction": "exact source fragment with JVM-only imports",
+      "fragment_sha256": "4e560487e2f303c16048c895a5eb2f52827ca580689d51737f5a7142f723a4fb"
+    },
+    {
+      "phase": "common",
+      "published_path": "common/src/main/kotlin/com/drivemate/app/data/MapView.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/data/Settings.kt",
+      "origin": "current-main-baseline",
+      "source_file_sha256": "50e4d15a5cab897c459c28804ad587336052c8962a9cc4fecafd1a4e525870fd",
+      "compiled_sha256": "254fc54c618b074a324ddda66ed370d95f68302e79de723c7d97ac908087ea79",
+      "extraction": "exact MapView enum, package declaration only"
+    },
+    {
+      "phase": "common",
+      "published_path": "common/src/main/kotlin/com/drivemate/app/ui/PreferLanes.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/ui/ManeuverIcon.kt",
+      "origin": "current-main-baseline",
+      "source_file_sha256": "7496008fcf2c6a60e41373884b5778724e65b81b697bc0e86c0364d5fb8fc398",
+      "compiled_sha256": "ccfd9ce5e7af9ff0de51bc6b648919b1156b6fbc8a36355448663cd005715ea4",
+      "extraction": "exact preferLanes function, package and Lane import only"
+    },
+    {
+      "phase": "common",
+      "published_path": "common/src/main/kotlin/com/drivemate/app/nav/Progress.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/nav/NavigationEngine.kt",
+      "origin": "current-main-baseline",
+      "source_file_sha256": "2a67a71cf718a77a1f1fbec0a2d993f4a6b5a48a80c4ef0973c70a2b2cc532a3",
+      "compiled_sha256": "5363bbc69c701a8b31e27db9e94340336aecafb6eceaeb4b04ad518c403f01aa",
+      "extraction": "exact Progress data class, package declaration only"
+    },
+    {
+      "phase": "baseline",
+      "published_path": "baseline/src/main/kotlin/com/drivemate/app/nav/SharedProgress.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/nav/SharedProgress.kt",
+      "origin": "current-main-baseline",
+      "source_file_sha256": "03c08f3405eb8d20a18e85bb804e446628a002f4878d1d082201009564725c15",
+      "compiled_sha256": "03c08f3405eb8d20a18e85bb804e446628a002f4878d1d082201009564725c15",
+      "extraction": "whole original file",
+      "fragment_sha256": "03c08f3405eb8d20a18e85bb804e446628a002f4878d1d082201009564725c15"
+    },
+    {
+      "phase": "baseline",
+      "published_path": "baseline/src/main/kotlin/com/drivemate/app/nav/MotionHeading.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/nav/MotionHeading.kt",
+      "origin": "current-main-baseline",
+      "source_file_sha256": "2571039ef99a0583610eab60d413acae141c4d0990cc3dd583e5a1ea02123e5a",
+      "compiled_sha256": "a704ac7869f54bd451ca3bea6769ebe55b9653c71a4b6a41c55144267f7db49b",
+      "extraction": "exact source fragment with JVM-only imports",
+      "fragment_sha256": "1427ee4ebcb1e7537dcda05dcc72e8b479b985a8340f699c393ef828d0a486e7"
+    },
+    {
+      "phase": "candidate",
+      "published_path": "candidate/src/main/kotlin/com/drivemate/app/nav/SharedProgress.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/nav/SharedProgress.kt",
+      "origin": "existing-gps-candidate-PR4",
+      "source_file_sha256": "e4ff83463cf28e7ea17c3390588963b3b1ad579ad21d937ef3886236e492a69e",
+      "compiled_sha256": "e4ff83463cf28e7ea17c3390588963b3b1ad579ad21d937ef3886236e492a69e",
+      "extraction": "whole original file",
+      "fragment_sha256": "e4ff83463cf28e7ea17c3390588963b3b1ad579ad21d937ef3886236e492a69e"
+    },
+    {
+      "phase": "candidate",
+      "published_path": "candidate/src/main/kotlin/com/drivemate/app/nav/MotionHeading.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/nav/MotionHeading.kt",
+      "origin": "existing-gps-candidate-PR4",
+      "source_file_sha256": "c34740c1c33e7079095030f3615ed7eff245754835854b0e1014cbe4ba0544bb",
+      "compiled_sha256": "6221973bf34471f0bc87fe09055c9c5e3b27e32b5300f71838f03e12e7f8a5c8",
+      "extraction": "exact source fragment with JVM-only imports",
+      "fragment_sha256": "44db51efd9029db047c5757794bf3700be359f689f203aeffbd4befbb478ff80"
+    },
+    {
+      "phase": "candidate",
+      "published_path": "candidate/src/main/kotlin/com/drivemate/app/nav/PositionUncertainty.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/nav/PositionUncertainty.kt",
+      "origin": "existing-gps-candidate-PR4",
+      "source_file_sha256": "9dce95d8184a3271055b968f11f037c69c39ba7cb98e1b0d216fe938830c1b4c",
+      "compiled_sha256": "9dce95d8184a3271055b968f11f037c69c39ba7cb98e1b0d216fe938830c1b4c",
+      "extraction": "whole original file",
+      "fragment_sha256": "9dce95d8184a3271055b968f11f037c69c39ba7cb98e1b0d216fe938830c1b4c"
+    },
+    {
+      "phase": "candidate",
+      "published_path": "candidate/src/main/kotlin/com/drivemate/app/nav/PositionCameraPolicy.kt",
+      "app_path": "app/src/main/java/com/drivemate/app/nav/PositionCameraPolicy.kt",
+      "origin": "existing-gps-candidate-PR4",
+      "source_file_sha256": "06ecfb91e15522e6ff2e7c454cd6a7298046e639f27660ffc248eab4c29ff5d1",
+      "compiled_sha256": "06ecfb91e15522e6ff2e7c454cd6a7298046e639f27660ffc248eab4c29ff5d1",
+      "extraction": "whole original file",
+      "fragment_sha256": "06ecfb91e15522e6ff2e7c454cd6a7298046e639f27660ffc248eab4c29ff5d1"
+    }
+  ]
+}

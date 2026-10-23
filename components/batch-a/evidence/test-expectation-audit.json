@@ -1,0 +1,924 @@
+{
+  "schema": 1,
+  "test_count": 68,
+  "tests": [
+    {
+      "id": "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref04_01_allSuitableLanesRemainWhenNoFollowingTurn",
+      "category": "04",
+      "source": "tests/BatchALanesAndRoutingTest.kt",
+      "item": "04.01",
+      "basis": "supplied_lane_evidence_and_component_policy",
+      "references": [
+        "USER-CHECKLIST-04",
+        "HC-184-186"
+      ],
+      "limitation": "Synthetic lane inputs represent supplied permissions for component tests; they do not verify any real road. Detailed scene shapes/focus policy are not actual UI gating or accessibility/rendered map proof. Lead ranges are implementation defaults, not legal distances.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref04_01_followingRightTurnPrefersRightmostSuitableLane",
+      "category": "04",
+      "source": "tests/BatchALanesAndRoutingTest.kt",
+      "item": "04.01",
+      "basis": "supplied_lane_evidence_and_component_policy",
+      "references": [
+        "USER-CHECKLIST-04",
+        "HC-184-186"
+      ],
+      "limitation": "Synthetic lane inputs represent supplied permissions for component tests; they do not verify any real road. Detailed scene shapes/focus policy are not actual UI gating or accessibility/rendered map proof. Lead ranges are implementation defaults, not legal distances.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref04_01_followingLeftTurnPrefersLeftmostSuitableLane",
+      "category": "04",
+      "source": "tests/BatchALanesAndRoutingTest.kt",
+      "item": "04.01",
+      "basis": "supplied_lane_evidence_and_component_policy",
+      "references": [
+        "USER-CHECKLIST-04",
+        "HC-184-186"
+      ],
+      "limitation": "Synthetic lane inputs represent supplied permissions for component tests; they do not verify any real road. Detailed scene shapes/focus policy are not actual UI gating or accessibility/rendered map proof. Lead ranges are implementation defaults, not legal distances.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref04_01_busAndUnknownMarkingsNeverBecomeRecommendations",
+      "category": "04",
+      "source": "tests/BatchALanesAndRoutingTest.kt",
+      "item": "04.01",
+      "basis": "supplied_lane_evidence_and_component_policy",
+      "references": [
+        "USER-CHECKLIST-04",
+        "HC-184-186"
+      ],
+      "limitation": "Synthetic lane inputs represent supplied permissions for component tests; they do not verify any real road. Detailed scene shapes/focus policy are not actual UI gating or accessibility/rendered map proof. Lead ranges are implementation defaults, not legal distances.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref04_01_absentLaneEvidenceDoesNotInventALanePlan",
+      "category": "04",
+      "source": "tests/BatchALanesAndRoutingTest.kt",
+      "item": "04.01",
+      "basis": "supplied_lane_evidence_and_component_policy",
+      "references": [
+        "USER-CHECKLIST-04",
+        "HC-184-186"
+      ],
+      "limitation": "Synthetic lane inputs represent supplied permissions for component tests; they do not verify any real road. Detailed scene shapes/focus policy are not actual UI gating or accessibility/rendered map proof. Lead ranges are implementation defaults, not legal distances.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref04_04_closeFollowingJunctionInfluencesExitLaneChoice",
+      "category": "04",
+      "source": "tests/BatchALanesAndRoutingTest.kt",
+      "item": "04.04",
+      "basis": "supplied_lane_evidence_and_component_policy",
+      "references": [
+        "USER-CHECKLIST-04",
+        "HC-184-186"
+      ],
+      "limitation": "Synthetic lane inputs represent supplied permissions for component tests; they do not verify any real road. Detailed scene shapes/focus policy are not actual UI gating or accessibility/rendered map proof. Lead ranges are implementation defaults, not legal distances.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref04_05_fastRoadGuidanceBeginsEarlierThanTownGuidance",
+      "category": "04",
+      "source": "tests/BatchALanesAndRoutingTest.kt",
+      "item": "04.05",
+      "basis": "supplied_lane_evidence_and_component_policy",
+      "references": [
+        "USER-CHECKLIST-04",
+        "HC-184-186"
+      ],
+      "limitation": "Synthetic lane inputs represent supplied permissions for component tests; they do not verify any real road. Detailed scene shapes/focus policy are not actual UI gating or accessibility/rendered map proof. Lead ranges are implementation defaults, not legal distances.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref04_06_scenePersistsWhileCirculating",
+      "category": "04",
+      "source": "tests/BatchALanesAndRoutingTest.kt",
+      "item": "04.06",
+      "basis": "supplied_lane_evidence_and_component_policy",
+      "references": [
+        "USER-CHECKLIST-04",
+        "HC-184-186"
+      ],
+      "limitation": "Synthetic lane inputs represent supplied permissions for component tests; they do not verify any real road. Detailed scene shapes/focus policy are not actual UI gating or accessibility/rendered map proof. Lead ranges are implementation defaults, not legal distances.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref04_06_arrivalClearsTheImmersiveScene",
+      "category": "04",
+      "source": "tests/BatchALanesAndRoutingTest.kt",
+      "item": "04.06",
+      "basis": "supplied_lane_evidence_and_component_policy",
+      "references": [
+        "USER-CHECKLIST-04",
+        "HC-184-186"
+      ],
+      "limitation": "Synthetic lane inputs represent supplied permissions for component tests; they do not verify any real road. Detailed scene shapes/focus policy are not actual UI gating or accessibility/rendered map proof. Lead ranges are implementation defaults, not legal distances.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref05_03_confirmedWrongTurnCanTriggerOnFirstReliableFix",
+      "category": "05",
+      "source": "tests/BatchALanesAndRoutingTest.kt",
+      "item": "05.03",
+      "basis": "off_route_component_regression",
+      "references": [
+        "USER-CHECKLIST-05"
+      ],
+      "limitation": "Verifies wrong-turn decision helpers with synthetic evidence. Does not prove routing request cancellation, fresh route response application, restricted alternatives or draggable UI.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref05_03_aRoundaboutMustNotBeMistakenForAWrongTurn",
+      "category": "05",
+      "source": "tests/BatchALanesAndRoutingTest.kt",
+      "item": "05.03",
+      "basis": "off_route_component_regression",
+      "references": [
+        "USER-CHECKLIST-05"
+      ],
+      "limitation": "Verifies wrong-turn decision helpers with synthetic evidence. Does not prove routing request cancellation, fresh route response application, restricted alternatives or draggable UI.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref05_03_cornerHeadingMustBeComparedWithTheRoadAhead",
+      "category": "05",
+      "source": "tests/BatchALanesAndRoutingTest.kt",
+      "item": "05.03",
+      "basis": "off_route_component_regression",
+      "references": [
+        "USER-CHECKLIST-05"
+      ],
+      "limitation": "Verifies wrong-turn decision helpers with synthetic evidence. Does not prove routing request cancellation, fresh route response application, restricted alternatives or draggable UI.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref05_03_parallelRoadEvidenceCanIdentifyOffRouteTravel",
+      "category": "05",
+      "source": "tests/BatchALanesAndRoutingTest.kt",
+      "item": "05.03",
+      "basis": "off_route_component_regression",
+      "references": [
+        "USER-CHECKLIST-05"
+      ],
+      "limitation": "Verifies wrong-turn decision helpers with synthetic evidence. Does not prove routing request cancellation, fresh route response application, restricted alternatives or draggable UI.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.BatchALanesAndRoutingTest#pref05_03_inaccuratePositionMustNotTriggerImmediateWrongTurn",
+      "category": "05",
+      "source": "tests/BatchALanesAndRoutingTest.kt",
+      "item": "05.03",
+      "basis": "off_route_component_regression",
+      "references": [
+        "USER-CHECKLIST-05"
+      ],
+      "limitation": "Verifies wrong-turn decision helpers with synthetic evidence. Does not prove routing request cancellation, fresh route response application, restricted alternatives or draggable UI.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.map.Category2IndependentUkRoadGeometryTest#pref02_01_externalRoundaboutMustBeRealSourcedAndAttributed",
+      "category": "02",
+      "source": "tests/Category2IndependentUkRoadGeometryTest.kt",
+      "item": "02.01",
+      "basis": "implementation_regression_or_fixture_diagnostic",
+      "references": [
+        "USER-CHECKLIST-02",
+        "OSM-GEOMETRY"
+      ],
+      "limitation": "Helper output only. Existing zoom/tilt/rate caps are not approved numeric user targets or legal requirements. No actual map renderer is executed. Same-polyline zero-drift tests measure audit consistency, not app-road alignment. Verified flag is an audit input, not legal permission verification.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.map.Category2IndependentUkRoadGeometryTest#pref02_01_currentRealRoadPolylineMustHaveLowVisualDrift",
+      "category": "02",
+      "source": "tests/Category2IndependentUkRoadGeometryTest.kt",
+      "item": "02.01",
+      "basis": "implementation_regression_or_fixture_diagnostic",
+      "references": [
+        "USER-CHECKLIST-02",
+        "OSM-GEOMETRY"
+      ],
+      "limitation": "Helper output only. Existing zoom/tilt/rate caps are not approved numeric user targets or legal requirements. No actual map renderer is executed. Same-polyline zero-drift tests measure audit consistency, not app-road alignment. Verified flag is an audit input, not legal permission verification.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.map.Category2IndependentUkRoadGeometryTest#pref02_01_offRoadLineMustNotPassAsValidRealRoundabout",
+      "category": "02",
+      "source": "tests/Category2IndependentUkRoadGeometryTest.kt",
+      "item": "02.01",
+      "basis": "implementation_regression_or_fixture_diagnostic",
+      "references": [
+        "USER-CHECKLIST-02",
+        "OSM-GEOMETRY"
+      ],
+      "limitation": "Helper output only. Existing zoom/tilt/rate caps are not approved numeric user targets or legal requirements. No actual map renderer is executed. Same-polyline zero-drift tests measure audit consistency, not app-road alignment. Verified flag is an audit input, not legal permission verification.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.map.Category2IndependentUkRoadGeometryTest#pref02_01_externalRoadCannotBeClaimedLegallyVerifiedFromOsmAlone",
+      "category": "02",
+      "source": "tests/Category2IndependentUkRoadGeometryTest.kt",
+      "item": "02.01",
+      "basis": "implementation_regression_or_fixture_diagnostic",
+      "references": [
+        "USER-CHECKLIST-02",
+        "OSM-GEOMETRY"
+      ],
+      "limitation": "Helper output only. Existing zoom/tilt/rate caps are not approved numeric user targets or legal requirements. No actual map renderer is executed. Same-polyline zero-drift tests measure audit consistency, not app-road alignment. Verified flag is an audit input, not legal permission verification.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_01_verifiedRoadGeometryHasLowDrift",
+      "category": "02",
+      "source": "tests/Category2MapDisplayContractTest.kt",
+      "item": "02.01",
+      "basis": "implementation_regression_or_fixture_diagnostic",
+      "references": [
+        "USER-CHECKLIST-02",
+        "OSM-GEOMETRY"
+      ],
+      "limitation": "Helper output only. Existing zoom/tilt/rate caps are not approved numeric user targets or legal requirements. No actual map renderer is executed. Same-polyline zero-drift tests measure audit consistency, not app-road alignment. Verified flag is an audit input, not legal permission verification.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_01_unverifiedRoadCannotBeUsedAsProof",
+      "category": "02",
+      "source": "tests/Category2MapDisplayContractTest.kt",
+      "item": "02.01",
+      "basis": "implementation_regression_or_fixture_diagnostic",
+      "references": [
+        "USER-CHECKLIST-02",
+        "OSM-GEOMETRY"
+      ],
+      "limitation": "Helper output only. Existing zoom/tilt/rate caps are not approved numeric user targets or legal requirements. No actual map renderer is executed. Same-polyline zero-drift tests measure audit consistency, not app-road alignment. Verified flag is an audit input, not legal permission verification.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_02_paddedCameraLeavesMoreViewAhead",
+      "category": "02",
+      "source": "tests/Category2MapDisplayContractTest.kt",
+      "item": "02.02",
+      "basis": "implementation_regression_or_fixture_diagnostic",
+      "references": [
+        "USER-CHECKLIST-02"
+      ],
+      "limitation": "Helper output only. Existing zoom/tilt/rate caps are not approved numeric user targets or legal requirements. No actual map renderer is executed.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_02_largePanelsCannotConsumeViewport",
+      "category": "02",
+      "source": "tests/Category2MapDisplayContractTest.kt",
+      "item": "02.02",
+      "basis": "implementation_regression_or_fixture_diagnostic",
+      "references": [
+        "USER-CHECKLIST-02"
+      ],
+      "limitation": "Helper output only. Existing zoom/tilt/rate caps are not approved numeric user targets or legal requirements. No actual map renderer is executed.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_04_cameraBearingWrapsShortWayAcrossNorth",
+      "category": "02",
+      "source": "tests/Category2MapDisplayContractTest.kt",
+      "item": "02.04",
+      "basis": "implementation_regression_or_fixture_diagnostic",
+      "references": [
+        "USER-CHECKLIST-02"
+      ],
+      "limitation": "Helper output only. Existing zoom/tilt/rate caps are not approved numeric user targets or legal requirements. No actual map renderer is executed.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_04_carLayerIsIdentifiedBelowOwnOverlays",
+      "category": "02",
+      "source": "tests/Category2MapDisplayContractTest.kt",
+      "item": "02.04",
+      "basis": "implementation_regression_or_fixture_diagnostic",
+      "references": [
+        "USER-CHECKLIST-02"
+      ],
+      "limitation": "Helper output only. Existing zoom/tilt/rate caps are not approved numeric user targets or legal requirements. No actual map renderer is executed.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_05_fastRoadHasWiderZoomThanSlowStreet",
+      "category": "02",
+      "source": "tests/Category2MapDisplayContractTest.kt",
+      "item": "02.05",
+      "basis": "implementation_regression_or_fixture_diagnostic",
+      "references": [
+        "USER-CHECKLIST-02"
+      ],
+      "limitation": "Helper output only. Existing zoom/tilt/rate caps are not approved numeric user targets or legal requirements. No actual map renderer is executed.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_05_nearTurnRaisesZoomWithoutLosingTurnContext",
+      "category": "02",
+      "source": "tests/Category2MapDisplayContractTest.kt",
+      "item": "02.05",
+      "basis": "implementation_regression_or_fixture_diagnostic",
+      "references": [
+        "USER-CHECKLIST-02"
+      ],
+      "limitation": "Helper output only. Existing zoom/tilt/rate caps are not approved numeric user targets or legal requirements. No actual map renderer is executed.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_06_openFastRoadTiltRequiresSustainedSpeed",
+      "category": "02",
+      "source": "tests/Category2MapDisplayContractTest.kt",
+      "item": "02.06",
+      "basis": "implementation_regression_or_fixture_diagnostic",
+      "references": [
+        "USER-CHECKLIST-02"
+      ],
+      "limitation": "Helper output only. Existing zoom/tilt/rate caps are not approved numeric user targets or legal requirements. No actual map renderer is executed.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_06_zoomFollowsRoadSpeedBand",
+      "category": "02",
+      "source": "tests/Category2MapDisplayContractTest.kt",
+      "item": "02.06",
+      "basis": "implementation_regression_or_fixture_diagnostic",
+      "references": [
+        "USER-CHECKLIST-02"
+      ],
+      "limitation": "Helper output only. Existing zoom/tilt/rate caps are not approved numeric user targets or legal requirements. No actual map renderer is executed.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_07_junctionTiltsTowardOverhead",
+      "category": "02",
+      "source": "tests/Category2MapDisplayContractTest.kt",
+      "item": "02.07",
+      "basis": "implementation_regression_or_fixture_diagnostic",
+      "references": [
+        "USER-CHECKLIST-02"
+      ],
+      "limitation": "Helper output only. Existing zoom/tilt/rate caps are not approved numeric user targets or legal requirements. No actual map renderer is executed.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_07_roundaboutUsesJunctionPerspective",
+      "category": "02",
+      "source": "tests/Category2MapDisplayContractTest.kt",
+      "item": "02.07",
+      "basis": "implementation_regression_or_fixture_diagnostic",
+      "references": [
+        "USER-CHECKLIST-02"
+      ],
+      "limitation": "Helper output only. Existing zoom/tilt/rate caps are not approved numeric user targets or legal requirements. No actual map renderer is executed.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_08_zoomIsTimeRateLimited",
+      "category": "02",
+      "source": "tests/Category2MapDisplayContractTest.kt",
+      "item": "02.08",
+      "basis": "implementation_regression_or_fixture_diagnostic",
+      "references": [
+        "USER-CHECKLIST-02"
+      ],
+      "limitation": "Helper output only. Existing zoom/tilt/rate caps are not approved numeric user targets or legal requirements. No actual map renderer is executed.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_08_tiltDoesNotJumpAcrossOneFix",
+      "category": "02",
+      "source": "tests/Category2MapDisplayContractTest.kt",
+      "item": "02.08",
+      "basis": "implementation_regression_or_fixture_diagnostic",
+      "references": [
+        "USER-CHECKLIST-02"
+      ],
+      "limitation": "Helper output only. Existing zoom/tilt/rate caps are not approved numeric user targets or legal requirements. No actual map renderer is executed.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_08_insetChangesGlideInsteadOfJumping",
+      "category": "02",
+      "source": "tests/Category2MapDisplayContractTest.kt",
+      "item": "02.08",
+      "basis": "implementation_regression_or_fixture_diagnostic",
+      "references": [
+        "USER-CHECKLIST-02"
+      ],
+      "limitation": "Helper output only. Existing zoom/tilt/rate caps are not approved numeric user targets or legal requirements. No actual map renderer is executed.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_09_newTurnCanWidenFittedFrame",
+      "category": "02",
+      "source": "tests/Category2MapDisplayContractTest.kt",
+      "item": "02.09",
+      "basis": "implementation_regression_or_fixture_diagnostic",
+      "references": [
+        "USER-CHECKLIST-02"
+      ],
+      "limitation": "Helper output only. Existing zoom/tilt/rate caps are not approved numeric user targets or legal requirements. No actual map renderer is executed.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_09_geometrySlicePreservesIntermediateRoute",
+      "category": "02",
+      "source": "tests/Category2MapDisplayContractTest.kt",
+      "item": "02.09",
+      "basis": "implementation_regression_or_fixture_diagnostic",
+      "references": [
+        "USER-CHECKLIST-02"
+      ],
+      "limitation": "Helper output only. Existing zoom/tilt/rate caps are not approved numeric user targets or legal requirements. No actual map renderer is executed.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.map.Category2MapDisplayContractTest#pref02_03_routePaletteIsNotATrafficState",
+      "category": "02",
+      "source": "tests/Category2MapDisplayContractTest.kt",
+      "item": "02.03",
+      "basis": "implementation_regression_or_fixture_diagnostic",
+      "references": [
+        "USER-CHECKLIST-02"
+      ],
+      "limitation": "Helper output only. Existing zoom/tilt/rate caps are not approved numeric user targets or legal requirements. No actual map renderer is executed. This palette test does NOT exercise traffic shading and does not satisfy the traffic-colour requirement.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsAcceptanceTest#reliablePositionAllowsLanes",
+      "category": "01",
+      "source": "tests/GpsAcceptanceTest.kt",
+      "item": null,
+      "basis": "approved_user_preference_or_numerical_safety",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "Sensor finite-number and ordered-time guards are engineering safeguards. Existing 25m/3s confidence recovery and 90s heading-age constants are regression settings, not UK law or proof of lane accuracy.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsAcceptanceTest#inaccuratePositionHidesLanesImmediately",
+      "category": "01",
+      "source": "tests/GpsAcceptanceTest.kt",
+      "item": null,
+      "basis": "approved_user_preference_or_numerical_safety",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "Sensor finite-number and ordered-time guards are engineering safeguards. Existing 25m/3s confidence recovery and 90s heading-age constants are regression settings, not UK law or proof of lane accuracy.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsAcceptanceTest#missingAccuracyCannotClaimLanes",
+      "category": "01",
+      "source": "tests/GpsAcceptanceTest.kt",
+      "item": null,
+      "basis": "approved_user_preference_or_numerical_safety",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "Sensor finite-number and ordered-time guards are engineering safeguards. Existing 25m/3s confidence recovery and 90s heading-age constants are regression settings, not UK law or proof of lane accuracy.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsAcceptanceTest#invalidRouteDistanceCannotClaimLanes",
+      "category": "01",
+      "source": "tests/GpsAcceptanceTest.kt",
+      "item": null,
+      "basis": "approved_user_preference_or_numerical_safety",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "Sensor finite-number and ordered-time guards are engineering safeguards. Existing 25m/3s confidence recovery and 90s heading-age constants are regression settings, not UK law or proof of lane accuracy.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsAcceptanceTest#negativeAccuracyCannotClaimLanes",
+      "category": "01",
+      "source": "tests/GpsAcceptanceTest.kt",
+      "item": null,
+      "basis": "approved_user_preference_or_numerical_safety",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "Sensor finite-number and ordered-time guards are engineering safeguards. Existing 25m/3s confidence recovery and 90s heading-age constants are regression settings, not UK law or proof of lane accuracy.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsAcceptanceTest#stalePositionHidesLanes",
+      "category": "01",
+      "source": "tests/GpsAcceptanceTest.kt",
+      "item": null,
+      "basis": "approved_user_preference_or_numerical_safety",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "Sensor finite-number and ordered-time guards are engineering safeguards. Existing 25m/3s confidence recovery and 90s heading-age constants are regression settings, not UK law or proof of lane accuracy.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsAcceptanceTest#estimatedPositionNeverAllowsLanes",
+      "category": "01",
+      "source": "tests/GpsAcceptanceTest.kt",
+      "item": null,
+      "basis": "approved_user_preference_or_numerical_safety",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "Sensor finite-number and ordered-time guards are engineering safeguards. Existing 25m/3s confidence recovery and 90s heading-age constants are regression settings, not UK law or proof of lane accuracy.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsAcceptanceTest#lanesRecoverOnlyAfterStableFixes",
+      "category": "01",
+      "source": "tests/GpsAcceptanceTest.kt",
+      "item": null,
+      "basis": "approved_user_preference_or_numerical_safety",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "Sensor finite-number and ordered-time guards are engineering safeguards. Existing 25m/3s confidence recovery and 90s heading-age constants are regression settings, not UK law or proof of lane accuracy.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsAcceptanceTest#briefGpsLossKeepsExistingSpokenWarningQuiet",
+      "category": "01",
+      "source": "tests/GpsAcceptanceTest.kt",
+      "item": null,
+      "basis": "approved_user_preference_or_numerical_safety",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "Sensor finite-number and ordered-time guards are engineering safeguards. Existing 25m/3s confidence recovery and 90s heading-age constants are regression settings, not UK law or proof of lane accuracy.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsAcceptanceTest#existingSpokenWarningStillStartsAtOneMinute",
+      "category": "01",
+      "source": "tests/GpsAcceptanceTest.kt",
+      "item": null,
+      "basis": "approved_user_preference_or_numerical_safety",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "Sensor finite-number and ordered-time guards are engineering safeguards. Existing 25m/3s confidence recovery and 90s heading-age constants are regression settings, not UK law or proof of lane accuracy.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsAcceptanceTest#gyroSupportsHeadingBetweenMeasuredFixes",
+      "category": "01",
+      "source": "tests/GpsAcceptanceTest.kt",
+      "item": null,
+      "basis": "approved_user_preference_or_numerical_safety",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "Sensor finite-number and ordered-time guards are engineering safeguards. Existing 25m/3s confidence recovery and 90s heading-age constants are regression settings, not UK law or proof of lane accuracy.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsAcceptanceTest#invalidGyroCannotPoisonHeading",
+      "category": "01",
+      "source": "tests/GpsAcceptanceTest.kt",
+      "item": null,
+      "basis": "approved_user_preference_or_numerical_safety",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "Sensor finite-number and ordered-time guards are engineering safeguards. Existing 25m/3s confidence recovery and 90s heading-age constants are regression settings, not UK law or proof of lane accuracy.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsAcceptanceTest#invalidGravityCannotPoisonHeading",
+      "category": "01",
+      "source": "tests/GpsAcceptanceTest.kt",
+      "item": null,
+      "basis": "approved_user_preference_or_numerical_safety",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "Sensor finite-number and ordered-time guards are engineering safeguards. Existing 25m/3s confidence recovery and 90s heading-age constants are regression settings, not UK law or proof of lane accuracy.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsAcceptanceTest#olderGyroSampleCannotRewindIntegrationClock",
+      "category": "01",
+      "source": "tests/GpsAcceptanceTest.kt",
+      "item": null,
+      "basis": "approved_user_preference_or_numerical_safety",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "Sensor finite-number and ordered-time guards are engineering safeguards. Existing 25m/3s confidence recovery and 90s heading-age constants are regression settings, not UK law or proof of lane accuracy.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsAcceptanceTest#sensorsCannotKeepHeadingFreshIndefinitely",
+      "category": "01",
+      "source": "tests/GpsAcceptanceTest.kt",
+      "item": null,
+      "basis": "approved_user_preference_or_numerical_safety",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "Sensor finite-number and ordered-time guards are engineering safeguards. Existing 25m/3s confidence recovery and 90s heading-age constants are regression settings, not UK law or proof of lane accuracy.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsAcceptanceTest#stationaryGpsDoesNotChangeHeading",
+      "category": "01",
+      "source": "tests/GpsAcceptanceTest.kt",
+      "item": null,
+      "basis": "approved_user_preference_or_numerical_safety",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "Sensor finite-number and ordered-time guards are engineering safeguards. Existing 25m/3s confidence recovery and 90s heading-age constants are regression settings, not UK law or proof of lane accuracy.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsAcceptanceTest#uncertainLabelStartsAtThreeSeconds",
+      "category": "01",
+      "source": "tests/GpsAcceptanceTest.kt",
+      "item": null,
+      "basis": "approved_user_preference_or_numerical_safety",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "Sensor finite-number and ordered-time guards are engineering safeguards. Existing 25m/3s confidence recovery and 90s heading-age constants are regression settings, not UK law or proof of lane accuracy.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsAcceptanceTest#recoveredPositionResetsContinuousUncertaintyTimer",
+      "category": "01",
+      "source": "tests/GpsAcceptanceTest.kt",
+      "item": null,
+      "basis": "approved_user_preference_or_numerical_safety",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "Sensor finite-number and ordered-time guards are engineering safeguards. Existing 25m/3s confidence recovery and 90s heading-age constants are regression settings, not UK law or proof of lane accuracy.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.GpsAcceptanceTest#goodPositionClearsUncertaintyImmediately",
+      "category": "01",
+      "source": "tests/GpsAcceptanceTest.kt",
+      "item": null,
+      "basis": "approved_user_preference_or_numerical_safety",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "Sensor finite-number and ordered-time guards are engineering safeguards. Existing 25m/3s confidence recovery and 90s heading-age constants are regression settings, not UK law or proof of lane accuracy.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.BatchAEvidenceBoundaryTest#pref01_01_threeSecondsIncludesExactBoundaryAndResetsOnRecovery",
+      "category": "01",
+      "source": "components/batch-a/tests-expanded/BatchAEvidenceBoundaryTest.kt",
+      "basis": "approved_user_preference_or_numerical_safety",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "Sensor finite-number and ordered-time guards are engineering safeguards. Existing 25m/3s confidence recovery and 90s heading-age constants are regression settings, not UK law or proof of lane accuracy.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.BatchAEvidenceBoundaryTest#pref01_01_clockRegressionRestartsContinuousObservation",
+      "category": "01",
+      "source": "components/batch-a/tests-expanded/BatchAEvidenceBoundaryTest.kt",
+      "basis": "approved_user_preference_or_numerical_safety",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "Sensor finite-number and ordered-time guards are engineering safeguards. Existing 25m/3s confidence recovery and 90s heading-age constants are regression settings, not UK law or proof of lane accuracy.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.BatchAEvidenceBoundaryTest#pref01_01_seededIntermittentLossUsesIndependentElapsedTimeOracle",
+      "category": "01",
+      "source": "components/batch-a/tests-expanded/BatchAEvidenceBoundaryTest.kt",
+      "basis": "approved_user_preference_or_numerical_safety",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "Sensor finite-number and ordered-time guards are engineering safeguards. Existing 25m/3s confidence recovery and 90s heading-age constants are regression settings, not UK law or proof of lane accuracy.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.BatchAEvidenceBoundaryTest#pref01_03_missingGpsMustNotRecenterAPannedMap",
+      "category": "01",
+      "source": "components/batch-a/tests-expanded/BatchAEvidenceBoundaryTest.kt",
+      "basis": "approved_user_preference_or_numerical_safety",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "Sensor finite-number and ordered-time guards are engineering safeguards. Existing 25m/3s confidence recovery and 90s heading-age constants are regression settings, not UK law or proof of lane accuracy.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.BatchAEvidenceBoundaryTest#pref01_03_waitingForGpsKeepsAnExistingViewport",
+      "category": "01",
+      "source": "components/batch-a/tests-expanded/BatchAEvidenceBoundaryTest.kt",
+      "basis": "approved_user_preference_or_numerical_safety",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "Sensor finite-number and ordered-time guards are engineering safeguards. Existing 25m/3s confidence recovery and 90s heading-age constants are regression settings, not UK law or proof of lane accuracy.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.BatchAEvidenceBoundaryTest#pref01_03_reliableRecoveryCanResumeExistingRecenterPolicy",
+      "category": "01",
+      "source": "components/batch-a/tests-expanded/BatchAEvidenceBoundaryTest.kt",
+      "basis": "approved_user_preference_or_numerical_safety",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "Sensor finite-number and ordered-time guards are engineering safeguards. Existing 25m/3s confidence recovery and 90s heading-age constants are regression settings, not UK law or proof of lane accuracy.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.BatchAEvidenceBoundaryTest#pref01_04_gyroWithoutAMeasuredHeadingCannotInventDirection",
+      "category": "01",
+      "source": "components/batch-a/tests-expanded/BatchAEvidenceBoundaryTest.kt",
+      "basis": "approved_user_preference_or_numerical_safety",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "Sensor finite-number and ordered-time guards are engineering safeguards. Existing 25m/3s confidence recovery and 90s heading-age constants are regression settings, not UK law or proof of lane accuracy.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.BatchAEvidenceBoundaryTest#pref01_04_eachNonFiniteGyroAxisCannotCorruptMeasuredHeading",
+      "category": "01",
+      "source": "components/batch-a/tests-expanded/BatchAEvidenceBoundaryTest.kt",
+      "basis": "approved_user_preference_or_numerical_safety",
+      "references": [
+        "USER-CHECKLIST-01",
+        "ANDROID-SENSOR-EVENT"
+      ],
+      "limitation": "Sensor finite-number and ordered-time guards are engineering safeguards. Existing 25m/3s confidence recovery and 90s heading-age constants are regression settings, not UK law or proof of lane accuracy.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.BatchAEvidenceBoundaryTest#pref04_02_suppliedLaneArrowsReachTheDetailedSceneModel",
+      "category": "04",
+      "source": "components/batch-a/tests-expanded/BatchAEvidenceBoundaryTest.kt",
+      "basis": "supplied_lane_evidence_and_component_policy",
+      "references": [
+        "USER-CHECKLIST-04",
+        "HC-184-186"
+      ],
+      "limitation": "Synthetic lane inputs represent supplied permissions for component tests; they do not verify any real road. Detailed scene shapes/focus policy are not actual UI gating or accessibility/rendered map proof. Lead ranges are implementation defaults, not legal distances.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.BatchAEvidenceBoundaryTest#pref04_02_missingLaneEvidenceMustNotGenerateLaneHighlights",
+      "category": "04",
+      "source": "components/batch-a/tests-expanded/BatchAEvidenceBoundaryTest.kt",
+      "basis": "supplied_lane_evidence_and_component_policy",
+      "references": [
+        "USER-CHECKLIST-04",
+        "HC-184-186"
+      ],
+      "limitation": "Synthetic lane inputs represent supplied permissions for component tests; they do not verify any real road. Detailed scene shapes/focus policy are not actual UI gating or accessibility/rendered map proof. Lead ranges are implementation defaults, not legal distances.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.BatchAEvidenceBoundaryTest#pref04_03_simpleTownTurnDoesNotRequestComplexJunctionFocus",
+      "category": "04",
+      "source": "components/batch-a/tests-expanded/BatchAEvidenceBoundaryTest.kt",
+      "basis": "supplied_lane_evidence_and_component_policy",
+      "references": [
+        "USER-CHECKLIST-04",
+        "HC-184-186"
+      ],
+      "limitation": "Synthetic lane inputs represent supplied permissions for component tests; they do not verify any real road. Detailed scene shapes/focus policy are not actual UI gating or accessibility/rendered map proof. Lead ranges are implementation defaults, not legal distances.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.BatchAEvidenceBoundaryTest#pref04_03_complexRoundaboutRequestsFocusOnlyBeforeArrival",
+      "category": "04",
+      "source": "components/batch-a/tests-expanded/BatchAEvidenceBoundaryTest.kt",
+      "basis": "supplied_lane_evidence_and_component_policy",
+      "references": [
+        "USER-CHECKLIST-04",
+        "HC-184-186"
+      ],
+      "limitation": "Synthetic lane inputs represent supplied permissions for component tests; they do not verify any real road. Detailed scene shapes/focus policy are not actual UI gating or accessibility/rendered map proof. Lead ranges are implementation defaults, not legal distances.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    },
+    {
+      "id": "com.drivemate.app.nav.BatchAEvidenceBoundaryTest#pref04_06_immersiveSceneChangesContinuouslyAsTheCarApproaches",
+      "category": "04",
+      "source": "components/batch-a/tests-expanded/BatchAEvidenceBoundaryTest.kt",
+      "basis": "supplied_lane_evidence_and_component_policy",
+      "references": [
+        "USER-CHECKLIST-04",
+        "HC-184-186"
+      ],
+      "limitation": "Synthetic lane inputs represent supplied permissions for component tests; they do not verify any real road. Detailed scene shapes/focus policy are not actual UI gating or accessibility/rendered map proof. Lead ranges are implementation defaults, not legal distances.",
+      "claims_legal_compliance": false,
+      "claims_complete_requirement": false
+    }
+  ]
+}

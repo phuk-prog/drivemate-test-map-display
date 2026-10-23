@@ -1,2 +1,6 @@
 
 .private-logs/
+**/build/
+**/.gradle/
+**/.kotlin/
+**/__pycache__/

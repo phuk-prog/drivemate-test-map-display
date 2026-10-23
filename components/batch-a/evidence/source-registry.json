@@ -1,0 +1,88 @@
+{
+  "checked_at": "2026-10-23",
+  "scope": "Primary references for test interpretation, not whole-app legal certification",
+  "sources": [
+    {
+      "id": "USER-CHECKLIST-01",
+      "kind": "approved_user_preference",
+      "source": "Conversation and APP_CHECKLIST category 01",
+      "facts": [
+        "Three seconds of continuous uncertainty before the visual label",
+        "Hide lane guidance while position is unreliable",
+        "Retain existing map view and allow pan while GPS is unavailable",
+        "Sensors can support heading; they do not establish reliable lane position"
+      ]
+    },
+    {
+      "id": "USER-CHECKLIST-02",
+      "kind": "approved_user_preference",
+      "source": "Conversation and APP_CHECKLIST category 02",
+      "facts": [
+        "Route and vehicle fit the actual road/carriageway",
+        "Show more map ahead, smooth speed/turn-dependent camera",
+        "Amber/red traffic segments"
+      ],
+      "numeric_camera_caps_approved": false
+    },
+    {
+      "id": "USER-CHECKLIST-04",
+      "kind": "approved_user_preference",
+      "source": "Conversation and APP_CHECKLIST category 04",
+      "facts": [
+        "All suitable lanes, preference for close following turn",
+        "Detailed diagrams at complex junctions initially",
+        "Earlier lane guidance on faster roads",
+        "Immersive guidance with live movement"
+      ],
+      "real_road_lane_permissions_verified": false
+    },
+    {
+      "id": "USER-CHECKLIST-05",
+      "kind": "approved_user_preference",
+      "source": "Conversation and APP_CHECKLIST category 05",
+      "facts": [
+        "Clearly warned faster avoided-road option requiring explicit choice",
+        "Draggable results panel",
+        "Automatic rerouting on reliable off-route evidence"
+      ]
+    },
+    {
+      "id": "ANDROID-SENSOR-EVENT",
+      "kind": "official_technical_specification",
+      "url": "https://developer.android.com/reference/android/hardware/SensorEvent",
+      "retrieved": true,
+      "quotes": [
+        "For a given sensor, each new sensor event should be monotonically increasing using the same time base as SystemClock.elapsedRealtimeNanos().",
+        "All values are in radians/second and measure the rate of rotation"
+      ],
+      "use": "Gyro time ordering and angular integration. Does not set a legal or measured lane confidence threshold."
+    },
+    {
+      "id": "HC-184-186",
+      "kind": "official_highway_code_guidance",
+      "jurisdiction": "Great Britain; do not assume identical Northern Ireland provisions",
+      "url": "https://www.gov.uk/guidance/the-highway-code/using-the-road-159-to-203",
+      "retrieved": true,
+      "quotes": [
+        "On approaching a roundabout take notice and act on all the information available to you, including traffic signs, traffic lights and lane markings which direct you into the correct lane.",
+        "When taking any intermediate exit, unless signs or markings indicate otherwise",
+        "select the appropriate lane on approach to the roundabout"
+      ],
+      "use": "Road-specific signs/markings govern interpretation; no generic lane-count/exit-number rule establishes real legal permissions. These quoted provisions use advisory wording, not universal MUST assertions."
+    },
+    {
+      "id": "RTA-1988-S36",
+      "kind": "primary_legislation",
+      "url": "https://www.legislation.gov.uk/ukpga/1988/52/section/36",
+      "retrieved": true,
+      "use": "Relevant traffic-sign compliance duty subject to statutory qualifications. Current local sign, applicable regulations and territorial scope still need corroboration; no legal-compliance test is claimed by the component suite."
+    },
+    {
+      "id": "OSM-GEOMETRY",
+      "kind": "external_geometry_not_legal_permissions",
+      "url": "https://www.openstreetmap.org/copyright",
+      "licence": "Open Database License (ODbL) 1.0",
+      "use": "Fresh bounded Stockport geometry fetched once per CI comparison; same fixture hash used before and after. Not current traffic-sign/legal-access verification."
+    }
+  ]
+}
