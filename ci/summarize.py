@@ -45,7 +45,10 @@ def main():
       "total_expected_tests": len(expected), "executed": len(tests), "missing": missing,
       "unexpected": extra, "tests": tests,
       "static_findings": {"traffic_layer_integration": traffic},
-      "scope": "private-app Kotlin unit tests and static integration inspection; no rendered route, device or live traffic claims",
+      "scope": "private-app Kotlin unit tests using synthetic keyless traffic fixtures and static integration inspection; no live provider, rendered route or physical-device claims",
+      "traffic_test_mode": contracts.get("traffic_test_mode", "UNSPECIFIED"),
+      "tomtom_live_api_verified": False,
+      "tomtom_api_key_required_for_testing": False,
       "items": {}
     }
     for row in contracts["items"]:
@@ -62,7 +65,8 @@ def main():
       "tests_expected":len(expected),
       "missing":missing,"unexpected":extra,
       "traffic_integration":traffic,
-      "notice":"Unit checks do not establish visual/road truth or whole-app acceptance."
+      "traffic_test_mode":contracts.get("traffic_test_mode"),
+      "notice":"Synthetic, no-key TomTom simulations exercise real app parser/overlay logic only; live traffic and rendered road behaviour remain unverified."
     }, indent=2))
     return int(bool(missing or extra or any(v != "passed" for v in tests.values())))
 
