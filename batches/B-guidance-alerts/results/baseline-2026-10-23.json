@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "batch": "B",
+  "date": "2026-10-23",
+  "phase": "unchanged_application_baseline",
+  "execution": "private GitHub Actions against private application, not a public APK or public production code",
+  "private_app_sha": "d8dc23fb7bad165cb2a4803e3943c35e1baf0191",
+  "public_test_sha": "766ce74533b21eb56d030e63bf8332c96c92b2f2",
+  "run_url": "https://github.com/phuk-prog/drivemate-app/actions/runs/40005446193",
+  "public_contract_url": "https://github.com/phuk-prog/drivemate-test-map-display/blob/main/batches/B-guidance-alerts/contracts/baseline.json",
+  "results": {
+    "kotlin_new_tests_passed": 16,
+    "kotlin_new_tests_expected": 16,
+    "missing": 0,
+    "unexpected": 0,
+    "gradle_testDebugUnitTest": "success",
+    "lintDebug": "success",
+    "test_source": "public pinned commit",
+    "tomtom_test_data": "no live API or API key used",
+    "apk_generated": false,
+    "public_apk_released": false
+  },
+  "per_category": {
+    "03": {
+      "requirements": 3,
+      "logic_tested_requirements": 3,
+      "logic_not_tested_requirements": [],
+      "overall_category_accepted": false
+    },
+    "08": {
+      "requirements": 3,
+      "logic_tested_requirements": 2,
+      "logic_not_tested_requirements": [
+        "08.02"
+      ],
+      "overall_category_accepted": false
+    },
+    "09": {
+      "requirements": 13,
+      "logic_tested_requirements": 2,
+      "logic_not_tested_requirements": [
+        "09.01",
+        "09.02",
+        "09.04",
+        "09.05",
+        "09.06",
+        "09.07",
+        "09.08",
+        "09.09",
+        "09.10",
+        "09.11",
+        "09.12"
+      ],
+      "overall_category_accepted": false
+    }
+  },
+  "per_requirement": {
+    "03.01": {
+      "diagnostic_logic": "passed",
+      "test_count": 2,
+      "full_acceptance": "unverified",
+      "missing_external": "Compose layout or navigation-card robot screenshots; verified actual approach/road sign evidence"
+    },
+    "03.02": {
+      "diagnostic_logic": "passed",
+      "test_count": 3,
+      "full_acceptance": "unverified",
+      "missing_external": "Compose layout or navigation-card robot screenshots; verified actual approach/road sign evidence"
+    },
+    "03.03": {
+      "diagnostic_logic": "passed",
+      "test_count": 3,
+      "full_acceptance": "unverified",
+      "missing_external": "Compose layout or navigation-card robot screenshots; verified actual approach/road sign evidence"
+    },
+    "08.01": {
+      "diagnostic_logic": "passed",
+      "test_count": 2,
+      "full_acceptance": "unverified",
+      "missing_external": "Actual official-source provenance/recency and conflict resolution; user-entered key private/live unavailable"
+    },
+    "08.02": {
+      "diagnostic_logic": "not_tested",
+      "test_count": 0,
+      "full_acceptance": "unverified",
+      "missing_external": "Actual official-source provenance/recency and conflict resolution; user-entered key private/live unavailable"
+    },
+    "08.03": {
+      "diagnostic_logic": "passed",
+      "test_count": 2,
+      "full_acceptance": "unverified",
+      "missing_external": "Actual official-source provenance/recency and conflict resolution; user-entered key private/live unavailable"
+    },
+    "09.01": {
+      "diagnostic_logic": "not_tested",
+      "test_count": 0,
+      "full_acceptance": "unverified",
+      "missing_external": "Official currently applicable road speed/camera evidence plus timed audio/UI replays"
+    },
+    "09.02": {
+      "diagnostic_logic": "not_tested",
+      "test_count": 0,
+      "full_acceptance": "unverified",
+      "missing_external": "Official currently applicable road speed/camera evidence plus timed audio/UI replays"
+    },
+    "09.03": {
+      "diagnostic_logic": "passed",
+      "test_count": 2,
+      "full_acceptance": "unverified",
+      "missing_external": "Official currently applicable road speed/camera evidence plus timed audio/UI replays"
+    },
+    "09.04": {
+      "diagnostic_logic": "not_tested",
+      "test_count": 0,
+      "full_acceptance": "unverified",
+      "missing_external": "Official currently applicable road speed/camera evidence plus timed audio/UI replays"
+    },
+    "09.05": {
+      "diagnostic_logic": "not_tested",
+      "test_count": 0,
+      "full_acceptance": "unverified",
+      "missing_external": "Official currently applicable road speed/camera evidence plus timed audio/UI replays"
+    },
+    "09.06": {
+      "diagnostic_logic": "not_tested",
+      "test_count": 0,
+      "full_acceptance": "unverified",
+      "missing_external": "Official currently applicable road speed/camera evidence plus timed audio/UI replays"
+    },
+    "09.07": {
+      "diagnostic_logic": "not_tested",
+      "test_count": 0,
+      "full_acceptance": "unverified",
+      "missing_external": "Official currently applicable road speed/camera evidence plus timed audio/UI replays"
+    },
+    "09.08": {
+      "diagnostic_logic": "not_tested",
+      "test_count": 0,
+      "full_acceptance": "unverified",
+      "missing_external": "Official currently applicable road speed/camera evidence plus timed audio/UI replays"
+    },
+    "09.09": {
+      "diagnostic_logic": "not_tested",
+      "test_count": 0,
+      "full_acceptance": "unverified",
+      "missing_external": "Official currently applicable road speed/camera evidence plus timed audio/UI replays"
+    },
+    "09.10": {
+      "diagnostic_logic": "not_tested",
+      "test_count": 0,
+      "full_acceptance": "unverified",
+      "missing_external": "Official currently applicable road speed/camera evidence plus timed audio/UI replays"
+    },
+    "09.11": {
+      "diagnostic_logic": "not_tested",
+      "test_count": 0,
+      "full_acceptance": "unverified",
+      "missing_external": "Official currently applicable road speed/camera evidence plus timed audio/UI replays"
+    },
+    "09.12": {
+      "diagnostic_logic": "not_tested",
+      "test_count": 0,
+      "full_acceptance": "unverified",
+      "missing_external": "Official currently applicable road speed/camera evidence plus timed audio/UI replays"
+    },
+    "09.13": {
+      "diagnostic_logic": "passed",
+      "test_count": 2,
+      "full_acceptance": "unverified",
+      "missing_external": "Official currently applicable road speed/camera evidence plus timed audio/UI replays"
+    }
+  },
+  "evidence_limits": "Passing pure Kotlin/static diagnostic tests does not establish actual UI card rendering, audible warnings, signed lane/turn restrictions, active temporary speed limits, priority of independently verified official UK feeds, live traffic API coverage, or Android Auto robot. No category approved.",
+  "source_limit": "Official UK Highway Code/Department for Transport sources establish general rules, not verified current signs on a particular real UK road.",
+  "priority_next": "Produce full external and rendered/sound robot acceptance for 03/08/09; keep draft PR #6 and Category 2 PR #5 unmerged until required gates verified."
+}
