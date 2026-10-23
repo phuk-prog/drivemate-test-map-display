@@ -36,8 +36,10 @@ def main():
     apply = source.split("private fun applyTraffic(s: Style)", 1)
     # A removal-only function is clear evidence that live traffic route shading is missing.
     block = apply[1].split("\n    /**", 1)[0] if len(apply) == 2 else ""
-    traffic = "missing" if not block or ("s.removeLayer(TRAFFIC_LAYER)" in block and
-        not any(marker in block for marker in ("addLayer(", "setProperties(", "addSource(", "setGeoJson("))) else "inconclusive"
+    traffic = ("missing" if not block or ("s.removeLayer(TRAFFIC_LAYER)" in block and
+        "source.setGeoJson(" not in block)
+        else "wired" if "source.setGeoJson(" in block and "trafficEnabled" in block
+        else "inconclusive")
     result = {
       "category": "02", "app_sha": args.app_sha, "public_contract_sha": args.public_sha,
       "total_expected_tests": len(expected), "executed": len(tests), "missing": missing,
