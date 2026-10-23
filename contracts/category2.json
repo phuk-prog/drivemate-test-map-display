@@ -4,7 +4,7 @@
   "name": "Map display, route line and vehicle arrow",
   "app_repo": "phuk-prog/drivemate-app",
   "public_repo": "phuk-prog/drivemate-test-map-display",
-  "evidence_policy": "All tests compile against actual private app. Logic/static evidence is not rendered-map or live traffic acceptance. No synthetic roads count as real UK carriageway evidence.",
+  "evidence_policy": "Category 2 traffic is validated with fully synthetic keyless fixtures against private app classes. No real TomTom API key, real provider response, or personal journey data may be uploaded to the public test repository or CI. Simulation verifies expected parser and overlay logic, not live TomTom availability or UK road/rendered-map truth.",
   "items": [
     {
       "id": "02.01",
@@ -33,10 +33,20 @@
         "pref02_03_oppositeCarriagewayTrafficCannotColourRoute",
         "pref02_03_noExtentNoLiveGeometryMeansNoInventedTrafficBand",
         "pref02_03_futureEventExcluded",
-        "pref02_03_offRoadReportsCannotColourOurRoute"
+        "pref02_03_offRoadReportsCannotColourOurRoute",
+        "pref02_03_fixtureIsExplicitlySyntheticAndContainsNoCredential",
+        "pref02_03_simulatedHeavyCongestionUsesRedRouteBand",
+        "pref02_03_simulatedSlowerTrafficUsesAmberRouteBand",
+        "pref02_03_simulatedWrongDirectionMustNotColourOppositeCarriageway",
+        "pref02_03_simulatedOffRouteIncidentMustNotColourNearbyRoad",
+        "pref02_03_simulatedUnknownDirectionCannotClaimCarriageway",
+        "pref02_03_simulatedExpiredAndFutureEventsAreExcluded",
+        "pref02_03_simulatedNonCongestionAccidentNotPaintedAsTrafficSpeed",
+        "pref02_03_simulatedMalformedCoordinateAndMissingIdAreRejected",
+        "pref02_03_simulatedUnknownExtentDoesNotInventRoadCoverage"
       ],
       "static_check": "traffic_layer_integration",
-      "remaining": "live TomTom API key, network response and real rendered map acceptance; no API credentials in public CI"
+      "remaining": "Simulated API fixtures are acceptance for automated TomTom-parser/traffic-band logic only; authentic live connection and real rendered road mapping remain unverified and require separate evidence, without uploading a credential."
     },
     {
       "id": "02.04",
@@ -87,5 +97,6 @@
       ],
       "remaining": "two nearby turns in rendered viewport"
     }
-  ]
+  ],
+  "traffic_test_mode": "SIMULATION_ONLY_NO_CREDENTIALS"
 }
