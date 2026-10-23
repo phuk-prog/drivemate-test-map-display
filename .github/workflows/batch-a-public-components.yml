@@ -2,9 +2,9 @@ name: Batch A public component tests
 on:
   push:
     branches: [main]
-    paths: ['components/batch-a/**', 'batches/A-roundabouts-maps-positioning/**', '.github/workflows/batch-a-public-components.yml']
+    paths: ['components/batch-a/**', 'components/route-panel/**', 'batches/A-roundabouts-maps-positioning/**', '.github/workflows/batch-a-public-components.yml']
   pull_request:
-    paths: ['components/batch-a/**', 'batches/A-roundabouts-maps-positioning/**', '.github/workflows/batch-a-public-components.yml']
+    paths: ['components/batch-a/**', 'components/route-panel/**', 'batches/A-roundabouts-maps-positioning/**', '.github/workflows/batch-a-public-components.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -81,5 +81,34 @@ jobs:
         with:
           name: batch-a-public-sensors
           path: components/batch-a/results/android-sensor-comparison.json
+          if-no-files-found: error
+          retention-days: 30
+  route-panel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@be39fa834029ff78f1a44aa3bb0819b8fc2bd8fd
+        with:
+          log-accepted-android-sdk-licenses: false
+      - name: Install SDK for isolated Compose component tests
+        run: sdkmanager 'platforms;android-36' 'build-tools;35.0.0'
+      - uses: gradle/actions/setup-gradle@0b6dd653ba04f4f93bf581ec31e66cbd7dcb644d
+        with:
+          gradle-version: '8.14.3'
+      - name: Verify real drag and accessibility interactions publicly
+        run: python3 components/route-panel/ci/run.py
+      - name: Public route-panel evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: batch-a-route-panel
+          path: components/route-panel/results/route-panel.json
           if-no-files-found: error
           retention-days: 30

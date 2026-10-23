@@ -31,8 +31,9 @@ def main():
     visibility = policy["visibility"]
     check("public" in visibility["test_contracts"].lower(), "Tests must remain publicly inspectable")
     check("private" in visibility["app_source"].lower(), "No public private-app source")
-    check("private" in visibility["app_integrated_execution"].lower(),
-          "Public tests run in private CI when true app code is required")
+    check(visibility["test_execution_repository_visibility"] == "public", "All tests execute publicly")
+    check(visibility["component_source_publication"] == "allowed", "Relevant individual code may be public")
+    check(visibility["combined_app_publication"] == "forbidden", "Keep the combined app private")
     check("No TomTom API key" in visibility["credentials"], "No provider secrets in public repositories")
     groups = policy["batches"]
     check(groups, "No coherent batch templates")

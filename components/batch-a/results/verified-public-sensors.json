@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "batch": "A",
+  "category": "01",
+  "scope": "Public Robolectric Android sensor simulation; not physical navigation or full-app lifecycle",
+  "public_commit": "e975fccc1e9322fce41262c9d998686559ce0e68",
+  "run_id": "40019062694",
+  "source_manifest_sha256": "77266e241e029f7a3eedddff9d8ed0b19da28cbbe907a8c94b3a84757d3ffc55",
+  "test_sha256": "1139dcc39d2bc83a46268f0b8012286b21dd1d2b7f4549af072cbfbc3403a6a7",
+  "results": {
+    "baseline": {
+      "passed": 4,
+      "total": 6,
+      "execution_valid": true,
+      "errors": [],
+      "case_outcomes": {
+        "missingSensorsDoNotRegisterAndStillAllowMeasuredGpsHeading": "passed",
+        "bothRegistrationFailuresAreContainedAndPartialListenersRemoved": "failed",
+        "successfulStopAndRestartDoNotReusePreviousHeading": "passed",
+        "accelerometerIsUsedWhenGravitySensorIsMissing": "passed",
+        "stopClearsHeadingEvenWhenSensorsWereUnavailable": "failed",
+        "deniedRegistrationFallsBackWithoutCrashing": "passed"
+      }
+    },
+    "candidate": {
+      "passed": 6,
+      "total": 6,
+      "execution_valid": true,
+      "errors": [],
+      "case_outcomes": {
+        "missingSensorsDoNotRegisterAndStillAllowMeasuredGpsHeading": "passed",
+        "bothRegistrationFailuresAreContainedAndPartialListenersRemoved": "passed",
+        "successfulStopAndRestartDoNotReusePreviousHeading": "passed",
+        "accelerometerIsUsedWhenGravitySensorIsMissing": "passed",
+        "stopClearsHeadingEvenWhenSensorsWereUnavailable": "passed",
+        "deniedRegistrationFallsBackWithoutCrashing": "passed"
+      }
+    }
+  },
+  "execution_valid": true,
+  "batch_accepted": false,
+  "apk_generated": false,
+  "verified_ci": {
+    "run_url": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40019062694",
+    "run_id": 40019062694,
+    "job_id": 120638567802,
+    "head": "e975fccc1e9322fce41262c9d998686559ce0e68",
+    "conclusion": "success"
+  }
+}

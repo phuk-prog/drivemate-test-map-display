@@ -5,8 +5,8 @@
   "owner_directive": "Run related test categories together in public-facing test suites; two to four categories per coherent batch (e.g. map + roundabout + GPS), reducing duplicate test runs/APK builds while reporting each checklist item independently.",
   "visibility": {
     "test_contracts": "public GitHub repository, including source-backed expected outcomes, safe fixtures, non-secret test harnesses and sanitized results",
-    "app_source": "private phuk-prog/drivemate-app; never copy proprietary app source to public repos",
-    "app_integrated_execution": "authorized private CI checkout runs the publicly available test code against actual private app classes; posts only safe metadata/results back to public",
+    "app_source": "private combined application in phuk-prog/drivemate-app; relevant individual components and necessary test dependencies may be public",
+    "app_integrated_execution": "All tests execute in public testing repositories on the real selected component code; no private batch testing. Combined-app assembly and final APK generation stay private.",
     "credentials": "No TomTom API key, signing material, access tokens, private journeys, or identifiable location logs in public repositories or artifacts",
     "external_reference_rule": "Expected road layout and legality derive from independent official UK sources and corroborated externally sourced road data, not copied DriveMate outputs or simulated competitor claims",
     "evidence_classes": [
@@ -17,7 +17,10 @@
       "emulator_render",
       "navigation_robot",
       "physical_device_advisory"
-    ]
+    ],
+    "test_execution_repository_visibility": "public",
+    "component_source_publication": "allowed",
+    "combined_app_publication": "forbidden"
   },
   "grouped_execution": {
     "minimum_categories": 2,
@@ -27,7 +30,7 @@
     "reporting_rule": "For every category and checklist ID: report independently its baseline, source truth, tests, failures, after-fix result, provenance and unknowns. Show combined batch results only in addition.",
     "acceptance_rule": "Batch fails if any mandatory relevant test is missing, skipped or failed; verified-illegal manoeuvres always block release. A passing simulation never establishes UK-road truth or real API integration.",
     "release_rule": "Test binaries are not released or published merely to run tests. Any APK output requires the mandatory automated/replay/navigation-robot release gates; keep production app private and release nothing while failing or unverified.",
-    "ci_rule": "Use pinned public test commits and a single authorized app CI execution per coherent batch; avoid overlapping/cancelled builds. Run independent public-only contract/schema checks in the public repo."
+    "ci_rule": "Run coherent public CI jobs on exact identified component and test revisions; no private test checkout. Only combined-app assembly/final APK generation is private. Keep separate per-category and checklist-item provenance."
   },
   "batches": [
     {
@@ -45,7 +48,7 @@
         "https://github.com/phuk-prog/drivemate-test-gps-navigation",
         "https://github.com/phuk-prog/drivemate-test-map-display"
       ],
-      "status": "partial_existing_tests; integration/unified run not yet established"
+      "status": "public_component_before_after_verified; UI/route/legal integration incomplete"
     },
     {
       "id": "B",

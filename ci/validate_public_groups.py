@@ -27,6 +27,9 @@ assert len(seen) == len(set(seen)), "A category is grouped twice"
 assert set(seen) == expected, "Missing or unrecognized categories"
 visibility = data["visibility"]
 assert visibility["app_source"].startswith("private ")
+assert visibility["test_execution_repository_visibility"] == "public"
+assert visibility["component_source_publication"] == "allowed"
+assert visibility["combined_app_publication"] == "forbidden"
 assert visibility["test_contracts"].startswith("public ")
 assert "independent" in visibility["external_reference_rule"].lower()
 assert "TomTom" in visibility["credentials"] and "signing" in visibility["credentials"]
