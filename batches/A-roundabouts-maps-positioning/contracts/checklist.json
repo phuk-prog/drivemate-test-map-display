@@ -1,0 +1,122 @@
+{
+  "batch": "A",
+  "category_ids": [
+    "01",
+    "02",
+    "04",
+    "05"
+  ],
+  "requirements": [
+    {
+      "id": "01.01",
+      "category": "01",
+      "requirement": "Show “Position uncertain” after three seconds of continuous uncertainty."
+    },
+    {
+      "id": "01.02",
+      "category": "01",
+      "requirement": "Hide lane-level guidance immediately when positioning becomes unreliable."
+    },
+    {
+      "id": "01.03",
+      "category": "01",
+      "requirement": "While waiting for GPS, retain the last location view, allow panning and provide recentering without forced snap-backs."
+    },
+    {
+      "id": "01.04",
+      "category": "01",
+      "requirement": "Use available phone sensors, including the gyroscope, to support positioning and direction."
+    },
+    {
+      "id": "02.01",
+      "category": "02",
+      "requirement": "Keep the route line on your carriageway, leaving the opposite carriageway visible where possible."
+    },
+    {
+      "id": "02.02",
+      "category": "02",
+      "requirement": "Place the vehicle marker near the bottom of the map so more road ahead is visible."
+    },
+    {
+      "id": "02.03",
+      "category": "02",
+      "requirement": "Colour affected route sections amber for slower traffic and red for heavy congestion."
+    },
+    {
+      "id": "02.04",
+      "category": "02",
+      "requirement": "Keep the vehicle arrow centred on your carriageway, following the road direction and proportional to the map."
+    },
+    {
+      "id": "02.05",
+      "category": "02",
+      "requirement": "Adjust the driving camera using location, road type, actual speed and distance to the next turn."
+    },
+    {
+      "id": "02.06",
+      "category": "02",
+      "requirement": "Far from a junction, tilt toward the horizon and zoom out to show more of the path ahead."
+    },
+    {
+      "id": "02.07",
+      "category": "02",
+      "requirement": "Near a junction, zoom in gradually and tilt toward an overhead view, keeping the vehicle and turn visible."
+    },
+    {
+      "id": "02.08",
+      "category": "02",
+      "requirement": "Keep camera and zoom movement smooth, without sudden jumps."
+    },
+    {
+      "id": "02.09",
+      "category": "02",
+      "requirement": "Include the following turn in the visible map when two turns are close together."
+    },
+    {
+      "id": "04.01",
+      "category": "04",
+      "requirement": "Highlight all suitable lanes, favouring those needed for a closely following turn."
+    },
+    {
+      "id": "04.02",
+      "category": "04",
+      "requirement": "Provide detailed lane diagrams to make driving easier."
+    },
+    {
+      "id": "04.03",
+      "category": "04",
+      "requirement": "Initially show detailed lane diagrams at complex junctions."
+    },
+    {
+      "id": "04.04",
+      "category": "04",
+      "requirement": "Prepare lane guidance early enough to allow time to get into position."
+    },
+    {
+      "id": "04.05",
+      "category": "04",
+      "requirement": "Vary lane-guidance timing with speed: earlier on motorways and later in town."
+    },
+    {
+      "id": "04.06",
+      "category": "04",
+      "requirement": "Provide 3D immersive driving guidance."
+    },
+    {
+      "id": "05.01",
+      "category": "05",
+      "requirement": "Show a faster route using an avoided road as a clearly warned alternative, and use it only when explicitly selected."
+    },
+    {
+      "id": "05.02",
+      "category": "05",
+      "requirement": "Allow the route-results panel to be dragged down to reveal more of the map and the routes beneath it."
+    },
+    {
+      "id": "05.03",
+      "category": "05",
+      "requirement": "Reroute automatically and straight away when the driver goes off-route."
+    }
+  ],
+  "count": 22
+}
