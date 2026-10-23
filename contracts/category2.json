@@ -25,10 +25,18 @@
     {
       "id": "02.03",
       "tests": [
-        "pref02_03_routePaletteIsNotATrafficState"
+        "pref02_03_routePaletteIsNotATrafficState",
+        "pref02_03_tomTomV5ParserRetainsLiveGeometryAndSeverity",
+        "pref02_03_realSourcePathColoursActualRouteRed",
+        "pref02_03_moderateJamIsAmber",
+        "pref02_03_staleTomTomReportsAreNotColoured",
+        "pref02_03_oppositeCarriagewayTrafficCannotColourRoute",
+        "pref02_03_noExtentNoLiveGeometryMeansNoInventedTrafficBand",
+        "pref02_03_futureEventExcluded",
+        "pref02_03_offRoadReportsCannotColourOurRoute"
       ],
       "static_check": "traffic_layer_integration",
-      "remaining": "real traffic data coloured amber/red on route"
+      "remaining": "live TomTom API key, network response and real rendered map acceptance; no API credentials in public CI"
     },
     {
       "id": "02.04",
