@@ -105,7 +105,10 @@
   "traffic_test_mode": "SIMULATION_ONLY_NO_CREDENTIALS",
   "render_expected": [
     "pref02_01_renderedRealOsmRoundaboutFollowsMapControllerRouteAndCarLayers",
-    "pref02_03_nativeMapSnapshotContainsTrafficAndRouteInk"
+    "pref02_03_nativeMapSnapshotContainsTrafficAndRouteInk",
+    "pref02_02_nativeDrivingCameraPositionsCarLowWithRealRoadAhead",
+    "pref02_05_nativeCameraRespondsToFarAndNearTurnWithoutAbruptZoom",
+    "pref02_09_nativeCameraFitsTwoUpcomingPointsOnRealRoad"
   ],
   "legal_reference": "contracts/uk-independent-evidence.json",
   "real_road_source": "OpenStreetMap contributors, ODbL 1.0; Roscoe's Roundabout fresh named-way geometry via Overpass; source geometries are not legal proof"
