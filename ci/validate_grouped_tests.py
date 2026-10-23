@@ -49,7 +49,7 @@ def main():
         cats = group["categories"]
         require(2 <= len(cats) <= 4, "Group should cover 2–4 related categories: " + group["id"])
         require(len(cats) == len(set(cats)), "Duplicate category in a group: " + group["id"])
-        require(all(re.fullmatch(r"\\d{2}", cat) for cat in cats), "Invalid checklist ID")
+        require(all(re.fullmatch(r"\d{2}", cat) for cat in cats), "Invalid checklist ID")
         require(group["shared_fixture"].strip(), "Missing shared-scene reason")
         ids.extend(cats)
     expected = {f"{i:02d}" for i in range(1, 18)}
