@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "batch": "A",
+  "date": "2026-10-23",
+  "integration_pr": "https://github.com/phuk-prog/drivemate-app/pull/10",
+  "candidate_app_sha": "c02bd093332efd614119142ee1939bfbb8b3b359",
+  "source_matches": [
+    {
+      "component": "map overview policy",
+      "name": "MapOverviewPolicy.kt",
+      "blob_sha": "f1f1561e3c7f20db294fa9280c67c04a0e1d8768",
+      "identical": true,
+      "test_run": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40027216043"
+    },
+    {
+      "component": "Compose draggable route panel",
+      "name": "DraggableRoutePanel.kt",
+      "blob_sha": "36b05d5be185c11c78e5db1945c326215166ae2f",
+      "identical": true,
+      "test_run": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40021527920"
+    },
+    {
+      "component": "Avoidance preference options",
+      "name": "AvoidedRouteOptions.kt",
+      "blob_sha": "b602a737c606e5c84bcf595c913002ec10da59bd",
+      "identical": true,
+      "test_run": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40024858622"
+    },
+    {
+      "component": "Supplied road metadata evidence",
+      "name": "PreferenceRoadEvidence.kt",
+      "blob_sha": "38b3042f0ade6eb89cb0d45caee977585e3d5a4f",
+      "identical": true,
+      "test_run": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40024858622"
+    },
+    {
+      "component": "Route shape fingerprint",
+      "name": "RouteShapeKey.kt",
+      "blob_sha": "f5ced00e5079fb4b16c6bb087847ba6d2826694e",
+      "identical": true,
+      "test_run": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40024858622"
+    },
+    {
+      "component": "GPS position uncertainty policy",
+      "name": "PositionUncertainty.kt",
+      "blob_sha": "84c351eff101733ee4e70555141dac34b830c2c6",
+      "identical": true,
+      "test_run": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40021527920"
+    }
+  ],
+  "limitation": "Exact equality of these 6 files is not proof of real Android rendering, safe full routing, actual UK legal lane movement, app-level compilation or navigation robot acceptance. Other app files (e.g. full MotionHeading.kt) differ from public extracted fragments; manifest provenance must be consulted; never claim those exact full-file matches.",
+  "merged_to_main": false,
+  "app_compilation_verified": false,
+  "robot_verified": false,
+  "release_approved": false
+}
