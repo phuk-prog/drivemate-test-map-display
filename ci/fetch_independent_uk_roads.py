@@ -7,6 +7,7 @@ import json
 import sys
 import urllib.parse
 import urllib.request
+import xml.etree.ElementTree as ET
 from datetime import date
 from pathlib import Path
 
@@ -19,6 +20,34 @@ ENDPOINTS = [
 
 def get():
     errors = []
+    # A bounded official OSM API extract is far smaller and more reliable than
+    # searching the entire world by street name on shared Overpass servers.
+    # Location externally corroborated (53.397805,-2.200441), streetlist.co.uk.
+    bbox = "-2.2040,53.3960,-2.1970,53.4000"
+    primary = "https://api.openstreetmap.org/api/0.6/map?bbox=" + bbox
+    try:
+        req = urllib.request.Request(primary, headers={
+            "User-Agent": "DriveMate-public-road-evidence-ci/1.0 (public ODbL road QA)"})
+        with urllib.request.urlopen(req, timeout=25) as response:
+            root = ET.fromstring(response.read(4_000_000))
+        nodes = {n.attrib["id"]: {"lat": float(n.attrib["lat"]), "lon": float(n.attrib["lon"])}
+                 for n in root.findall("node")}
+        elements = []
+        for way in root.findall("way"):
+            tags = {t.attrib["k"]: t.attrib["v"] for t in way.findall("tag")}
+            if tags.get("junction") not in ("circular", "roundabout") or tags.get("name") != "Roscoe's Roundabout":
+                continue
+            geometry = [nodes[nd.attrib["ref"]] for nd in way.findall("nd") if nd.attrib["ref"] in nodes]
+            if len(geometry) >= 3:
+                elements.append({"type": "way", "id": int(way.attrib["id"]),
+                    "version": int(way.attrib.get("version", "0")),
+                    "timestamp": way.attrib.get("timestamp"),
+                    "tags": tags, "geometry": geometry})
+        if elements:
+            return {"elements": elements}, primary
+        errors.append("OSM main API: no named roundabout ways in verified small bounding box")
+    except Exception as e:
+        errors.append("OSM main API: " + type(e).__name__ + " " + str(e)[:90])
     for host in ENDPOINTS:
         try:
             data = urllib.parse.urlencode({"data": QUERY}).encode()
