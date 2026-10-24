@@ -1,0 +1,67 @@
+    private fun soundState(): VoiceSoundState = when (sound) {
+        SoundMode.ALL -> VoiceSoundState.FULL
+        SoundMode.ALERTS -> VoiceSoundState.ALERTS
+        SoundMode.OFF -> VoiceSoundState.MUTED
+    }
+    var sound = SoundMode.ALL
+        set(value) {
+            if (field == value) return
+            field = value
+            onMain {
+                when (value) {
+                    SoundMode.OFF -> queue.clear()
+                    SoundMode.ALERTS -> queue.dropSpeech()
+                    else -> Unit
+                }
+                val message = current
+                if (message != null && !VoicePlaybackPolicy.mayKeepCurrent(soundState(), message.tone, speechStarted)) cancelCurrent()
+                pump()
+            }
+        }
+
+---METHOD---
+    fun say(text: String, interrupt: Boolean = false, alert: Boolean = false, policyRepeat: Boolean = false, mainAlert: Boolean = false) =
+        enqueueSpeech(text, interrupt, alert, preview = false, policyRepeat = policyRepeat, mainAlert = mainAlert)
+---METHOD---
+    /** Ignore late callbacks and synthesis starts; only the currently audible utterance counts. */
+    private fun speechDidStart(id: String?) {
+        if (id != null && id == utterance && file == null && current != null) speechStarted = true
+    }
+
+---METHOD---
+    private fun enqueueSpeech(text: String, interrupt: Boolean, alert: Boolean, preview: Boolean, policyRepeat: Boolean = false, mainAlert: Boolean = false) = onMain {
+        if (closed) return@onMain
+        if (sound == SoundMode.ALERTS && mainAlert) { beep(urgent = true); return@onMain }
+        if (!VoicePlaybackPolicy.canStart(soundState(), tone = false)) return@onMain
+        if (failed) { beep(alert); return@onMain }
+        val now = SystemClock.elapsedRealtime()
+        val incoming = VoiceMessage(text, alert, interrupt, now, queue.routeEpoch, preview = preview, policyRepeat = policyRepeat)
+        if (!preview && current?.suppresses(incoming) == true) return@onMain
+        if (!queue.add(text, alert, interrupt, now, preview, policyRepeat)) return@onMain
+        // Imminent directions cut in; a cut-off warning is resumed afterwards if still fresh.
+        if (interrupt && current?.urgent != true) interruptCurrent()
+        pump()
+    }
+    private fun allowed(message: VoiceMessage) = message.valid(SystemClock.elapsedRealtime(), queue.routeEpoch) &&
+        VoicePlaybackPolicy.canStart(soundState(), message.tone)
+    private fun pump() {
+        if (closed || current != null || sound == SoundMode.OFF) return
+        speechStarted = false
+        current = queue.next(SystemClock.elapsedRealtime(), speechReady = ready,
+            speechAllowed = VoicePlaybackPolicy.canStart(soundState(), tone = false)) ?: return
+        // Do not hijack an actual call or somebody else's communication route: wait instead.
+        if (audio.mode != AudioManager.MODE_NORMAL) { deferCurrent(); return }
+        if (current?.tone == true) { playTone(); return }
+        if (output == VoiceOutput.CALL && startCallRoute()) return
+        speakCurrent()
+    }
+
+---METHOD---
+    fun beep(urgent: Boolean = false) = onMain {
+        if (closed || sound == SoundMode.OFF) return@onMain
+        val now = SystemClock.elapsedRealtime()
+        val incoming = VoiceMessage("", true, false, now, queue.routeEpoch, tone = true, doubleTone = urgent)
+        if (current?.sameAnnouncement(incoming) == true) return@onMain
+        queue.addTone(urgent, now)
+        pump()
+    }
