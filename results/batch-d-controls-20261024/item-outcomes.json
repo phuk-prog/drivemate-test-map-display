@@ -1,0 +1,279 @@
+{
+  "batch": "D",
+  "private_base": "baf6c06de2c3027e2ea7563e9f9e4dacafbbd147",
+  "public_baseline": "a9dfa89421ebae32bfbf295168465f472e2c6b18",
+  "public_candidate": "6e13d80fde2fc126f14d7bed8a12fd7357e11c08",
+  "local_preflight": "UNAVAILABLE: no usable executor; never passed",
+  "acceptance": "No checklist item accepted from helper tests; combined app, UI robot, audio, replay and privacy gates unverified",
+  "items": [
+    {
+      "id": "10.01",
+      "requirement": "Enable spoken turn guidance by default.",
+      "outcome": "Settings.sound defaults ALL; source-inspected only.",
+      "accepted": false
+    },
+    {
+      "id": "10.02",
+      "requirement": "Make lowering guidance during a phone call optional/configurable.",
+      "outcome": "No configurable phone-call ducking preference found; unimplemented.",
+      "accepted": false
+    },
+    {
+      "id": "10.03",
+      "requirement": "Keep all visual guidance and warnings visible while muted.",
+      "outcome": "Driving visuals do not branch on sound; full rendered muted robot missing.",
+      "accepted": false
+    },
+    {
+      "id": "10.04",
+      "requirement": "Tapping the instruction card repeats the current valid spoken instruction while respecting sound mode and remaining silent when fully muted.",
+      "outcome": "Instruction-card repeat integration unverified; requires current-valid instruction and mode robot.",
+      "accepted": false
+    },
+    {
+      "id": "10.05",
+      "requirement": "When there is no instruction to repeat, tapping the instruction card does nothing, with no sound or visual feedback.",
+      "outcome": "No-instruction no-op has no executed UI evidence.",
+      "accepted": false
+    },
+    {
+      "id": "10.06",
+      "requirement": "Do not show a brief confirmation label or toast when changing sound state.",
+      "outcome": "cycleSound currently posts showMessage; B warning worker removes on separate branch.",
+      "accepted": false
+    },
+    {
+      "id": "10.07",
+      "requirement": "Cycle the map sound control in the order Full → Alerts only → Muted → Full.",
+      "outcome": "Actual enum order ALL/ALERTS/OFF passes baseline and after; controller cycles enum ordinal; interaction robot missing.",
+      "accepted": false
+    },
+    {
+      "id": "10.08",
+      "requirement": "Open sound settings when the sound icon is long-pressed.",
+      "outcome": "JourneyBar sound button has click only, no long-press sound settings action; unimplemented.",
+      "accepted": false
+    },
+    {
+      "id": "10.09",
+      "requirement": "Label the three sound states exactly “Full”, “Alerts only” and “Muted”.",
+      "outcome": "Actual enum baseline wrong Full/Muted labels; candidate component changes exact labels and tests.",
+      "accepted": false
+    },
+    {
+      "id": "10.10",
+      "requirement": "Use labels alone for the three state choices, without extra descriptions beneath each label.",
+      "outcome": "Candidate removes soundModeExplanation text beneath sound choices; source integration only, UI robot missing.",
+      "accepted": false
+    },
+    {
+      "id": "10.11",
+      "requirement": "Highlight the whole selected sound-state button.",
+      "outcome": "Choice fills/borders entire selected pill; source-inspected, UI robot missing.",
+      "accepted": false
+    },
+    {
+      "id": "10.12",
+      "requirement": "Reflect changes made in sound settings on the map icon after closing settings.",
+      "outcome": "JourneyBar reads vm.settings.sound.icon; source-inspected reactive integration, UI robot missing.",
+      "accepted": false
+    },
+    {
+      "id": "10.13",
+      "requirement": "Return without confirmation when leaving sound settings without changes.",
+      "outcome": "SettingsSheet dismissal has no sound-specific confirmation; source-only, UI robot missing.",
+      "accepted": false
+    },
+    {
+      "id": "10.14",
+      "requirement": "Save sound-setting changes automatically when leaving.",
+      "outcome": "Choice calls updateSettings immediately; durable Android persistence and dismissal tests missing.",
+      "accepted": false
+    },
+    {
+      "id": "10.15",
+      "requirement": "Do not add an undo action for sound-state changes.",
+      "outcome": "No sound-state undo observed; UI robot missing.",
+      "accepted": false
+    },
+    {
+      "id": "10.16",
+      "requirement": "Update the sound icon picture instantly when it is tapped on the map.",
+      "outcome": "Reactive vm.settings sound binding; tap-to-picture timing unverified.",
+      "accepted": false
+    },
+    {
+      "id": "10.17",
+      "requirement": "Keep sound-state switching silent, without a switching sound effect.",
+      "outcome": "cycleSound does not explicitly invoke audio; no device switching-audio evidence.",
+      "accepted": false
+    },
+    {
+      "id": "10.18",
+      "requirement": "If a sentence is playing when sound mode changes, let it finish before applying the new audio state; no additional wait-time cap is required.",
+      "outcome": "Main updateSettings immediately voice.stop on OFF violates finish-sentence; B voice owner stages pipeline fix separately.",
+      "accepted": false
+    },
+    {
+      "id": "10.19",
+      "requirement": "Apply a sound-mode change immediately if no sentence is playing.",
+      "outcome": "Main sound state updated immediately; actual playback gate proof delegated to B voice owner.",
+      "accepted": false
+    },
+    {
+      "id": "10.20",
+      "requirement": "Swap sound icon pictures without animation.",
+      "outcome": "String picture reads directly without animation; UI frame capture missing.",
+      "accepted": false
+    },
+    {
+      "id": "10.21",
+      "requirement": "Use a speaker with waves for Full and a speaker with a red slash for Muted.",
+      "outcome": "Full uses speaker waves emoji; Muted emoji red slash colour cannot be guaranteed across platform fonts; unresolved rendered icon requirement.",
+      "accepted": false
+    },
+    {
+      "id": "10.22",
+      "requirement": "Use a plain speaker without waves or a slash for Alerts only.",
+      "outcome": "Actual Alerts emoji baseline has wave; candidate uses plain speaker U+1F508, component test; rendered platform proof missing.",
+      "accepted": false
+    },
+    {
+      "id": "10.23",
+      "requirement": "Full mode speaks all enabled guidance and warnings; Muted shows visuals only.",
+      "outcome": "Existing Voice mode gates under B voice owner; full visual/audio integration unverified.",
+      "accepted": false
+    },
+    {
+      "id": "10.24",
+      "requirement": "Alerts only uses tones for main alerts: cameras, speeding and immediate road dangers; exclude speed bumps and minor hazards from its tones.",
+      "outcome": "Existing Alerts warning speech conflicts with tones preference; B voice owner.",
+      "accepted": false
+    },
+    {
+      "id": "10.25",
+      "requirement": "Use distinct short default tones for the main alert types; tone patterns are delegated for recommendation.",
+      "outcome": "Distinct tone playback patterns need actual audio evidence; B voice owner.",
+      "accepted": false
+    },
+    {
+      "id": "10.26",
+      "requirement": "In Full mode, announce all enabled warnings, including minor hazards.",
+      "outcome": "Enabled minor-warning Full-mode coverage unverified; B voice owner.",
+      "accepted": false
+    },
+    {
+      "id": "10.27",
+      "requirement": "Provide a guidance-volume control separate from music volume.",
+      "outcome": "No separate guidance-volume setting found; unimplemented.",
+      "accepted": false
+    },
+    {
+      "id": "10.28",
+      "requirement": "Provide voice and speaking-speed choices in Settings.",
+      "outcome": "Existing timing preference changes early/late not speaking speed; no voice or speaking-rate choices found; unimplemented.",
+      "accepted": false
+    },
+    {
+      "id": "13.01",
+      "requirement": "Provide adjustable text and control sizes in Settings.",
+      "outcome": "Accessibility page links Android settings; no in-app adjustable text/control size settings; unimplemented.",
+      "accepted": false
+    },
+    {
+      "id": "13.02",
+      "requirement": "Choose the default text-size behaviour through the delegated recommendation.",
+      "outcome": "Recommended default: follow Android font scaling with accessible minimum touch targets. Current source follows phone scale with driving-text caps; rendered verification missing.",
+      "accepted": false
+    },
+    {
+      "id": "13.03",
+      "requirement": "Represent every warning on the map with a symbol.",
+      "outcome": "Map hazard rendering exists, but every warning type symbol coverage unverified.",
+      "accepted": false
+    },
+    {
+      "id": "13.04",
+      "requirement": "Keep map warnings symbol-only when tapped, without extra text labels.",
+      "outcome": "Map warning tap behavior not comprehensively tested; symbol-only acceptance unverified.",
+      "accepted": false
+    },
+    {
+      "id": "13.05",
+      "requirement": "Provide a symbol legend in Settings.",
+      "outcome": "No symbol legend found in Settings; unimplemented.",
+      "accepted": false
+    },
+    {
+      "id": "13.06",
+      "requirement": "Make the symbol legend available only outside navigation.",
+      "outcome": "No legend exists; navigation exclusion unimplemented.",
+      "accepted": false
+    },
+    {
+      "id": "13.07",
+      "requirement": "Present the legend as one simple list.",
+      "outcome": "No legend exists; simple-list requirement unimplemented.",
+      "accepted": false
+    },
+    {
+      "id": "13.08",
+      "requirement": "Use a fixed priority order for the legend, with speed cameras first.",
+      "outcome": "No legend exists; fixed camera-first ordering unimplemented.",
+      "accepted": false
+    },
+    {
+      "id": "13.09",
+      "requirement": "Keep the sound control visible and place other routine controls in the appropriate menu.",
+      "outcome": "JourneyBar sound always in actions and other actions in menu; source-inspected, full viewport robot missing.",
+      "accepted": false
+    },
+    {
+      "id": "13.10",
+      "requirement": "Choose measurement units automatically from location.",
+      "outcome": "Format initialized using Locale.getDefault().country, not current location; requirement unimplemented.",
+      "accepted": false
+    },
+    {
+      "id": "14.01",
+      "requirement": "Keep journey recording off until the user enables it.",
+      "outcome": "JourneyEvidenceStore capture defaults off; summary history writes unconditional on main. D adds per-device false-default consent; C gates arrival history write with D flag. Combined app proof missing.",
+      "accepted": false
+    },
+    {
+      "id": "14.02",
+      "requirement": "Allow journey-history retention to be varied and support automatic deletion after the chosen period.",
+      "outcome": "keepDays offers 0/30/90 and startup prune + explicit setting-change deletion. No clock-driven background deletion proof; partial.",
+      "accepted": false
+    },
+    {
+      "id": "14.03",
+      "requirement": "Support backups to a personal account.",
+      "outcome": "AccountBackupSession and DriveAppDataBackup account-scoped backup source exists; authenticated account execution unavailable; not verified.",
+      "accepted": false
+    },
+    {
+      "id": "14.04",
+      "requirement": "Offer backup retention of one week, one month, one year, a custom period, or keep until deleted.",
+      "outcome": "No backup-retention choices found; one-week/month/year/custom/keep-until-deleted unimplemented.",
+      "accepted": false
+    },
+    {
+      "id": "14.05",
+      "requirement": "Delete timed backups automatically when their chosen retention period ends.",
+      "outcome": "No scheduled authenticated cloud expiry/deletion mechanism found; unimplemented.",
+      "accepted": false
+    },
+    {
+      "id": "14.06",
+      "requirement": "Send problem reports automatically without asking the user to review or confirm each report.",
+      "outcome": "DiagnosticReportStore explicitly local, never queued; CrashReporter manual share. Automatic destination/transport not configured; unimplemented.",
+      "accepted": false
+    }
+  ],
+  "private_candidate": "27b653392d78ca950a5d1f9f8245d5d1ce6ed30e",
+  "private_pr": "https://github.com/phuk-prog/drivemate-app/pull/18",
+  "component_baseline_run": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40086403601",
+  "component_after_run": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40086507056",
+  "controller_review_note": "Explicit action uses updateJourneyHistoryEnabled to avoid Kotlin JVM setter name collision; integration compilation still unavailable."
+}

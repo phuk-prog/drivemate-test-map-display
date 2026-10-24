@@ -1,0 +1,19 @@
+{
+  "app_base": "baf6c06de2c3027e2ea7563e9f9e4dacafbbd147",
+  "run_id": "40086403601",
+  "public_head": "a9dfa89421ebae32bfbf295168465f472e2c6b18",
+  "cases": {
+    "explicitHistoryChoicePersists": "missing_consent_api",
+    "failedHistorySaveIsReported": "missing_consent_api",
+    "alertsIconHasNoWaves": "failed",
+    "soundCycleOrder": "passed",
+    "historyDisablePersists": "missing_consent_api",
+    "exactSoundLabels": "failed",
+    "historyStartsDisabled": "missing_consent_api"
+  },
+  "executed": 7,
+  "passed": 1,
+  "failed_assertions": 6,
+  "interpretation": "Four failures mean the consent API is absent; they do not establish original history-enabled Boolean behavior. Actual callsite source separately shows unconditional summary persistence.",
+  "scope": "Bounded enum and LocalPrivacySettings; synthetic preference storage, no UI or Android app."
+}

@@ -1,0 +1,22 @@
+{
+  "app_base": "baf6c06de2c3027e2ea7563e9f9e4dacafbbd147",
+  "run_id": "40086507056",
+  "public_head": "6e13d80fde2fc126f14d7bed8a12fd7357e11c08",
+  "cases": {
+    "explicitHistoryChoicePersists": "passed",
+    "failedHistorySaveIsReported": "passed",
+    "alertsIconHasNoWaves": "passed",
+    "soundCycleOrder": "passed",
+    "historyDisablePersists": "passed",
+    "exactSoundLabels": "passed",
+    "historyStartsDisabled": "passed"
+  },
+  "passed": 7,
+  "expected": 7,
+  "gradle_exit": 0,
+  "scope": "Actual bounded SoundMode enum and actual LocalPrivacySettings against synthetic preference storage. No UI, full app, Android persistence, account, navigation or APK proof.",
+  "source_sha256": {
+    "SoundMode.kt": "ea29f2300d7922c430e157b880515680dad2cbb3b61065ef8a8cabf26a2c3c4d",
+    "LocalPrivacySettings.kt": "1cff59b482b3a4ecb97215bc970c5b48bc2cab30e1c8e125ed83d6317ebe9cb0"
+  }
+}
