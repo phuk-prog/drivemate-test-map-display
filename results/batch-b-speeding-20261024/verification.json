@@ -1,0 +1,67 @@
+{
+  "batch": "B",
+  "requirements": [
+    "09.03",
+    "09.04"
+  ],
+  "app_reference": "f29c40582394817eb7396eb220cbc287f638a479",
+  "public_sha": "2f5441161aea247ef8dc5e6e75f2585ea144023f",
+  "run_id": "40065795005",
+  "scope": "Same16cases on actual extracted legacy controller semantics vs candidate pure policy; no private wiring/Android TTS/live-road/legal proof",
+  "source_hashes": {
+    "src/main/kotlin/com/drivemate/app/nav/SpeedingWarningPolicy.kt": "50db4e4e7ef48303b39af102bff368d221b390769b9291b82794ac19c52f714a",
+    "src/test/kotlin/com/drivemate/app/nav/LegacySpeedingAdapter.kt": "a8c7fd75bd69c4d9bf7e56c26c86977afd2ca773f8b9331396fd1fdab2b9c9a2",
+    "src/test/kotlin/com/drivemate/app/nav/SpeedingWarningContractTest.kt": "0a00105a1d80c4d55d07b91fb1394dd8c4a55caf7fed8dc07bec0cf0109b45f4"
+  },
+  "before": {
+    "passed": 7,
+    "total": 16,
+    "cases": {
+      "unmuteDoesNotWaitForMutedWarningTimer": "failed",
+      "recoveryStartsNewEpisodeImmediately": "failed",
+      "missingSpeedNeverWarns": "passed",
+      "mutedNeverEmitsAudio": "passed",
+      "immediateAtFirstMeasuredExcess": "failed",
+      "repeatAt60000ms": "failed",
+      "silenceAfterDroppingToLimit": "passed",
+      "missingLimitNeverWarns": "passed",
+      "belowLimitIsSilent": "passed",
+      "repeatsEveryFurtherMinute": "failed",
+      "tinyExcessNotHiddenByRoundedDisplay": "failed",
+      "sessionClockZeroCanWarn": "failed",
+      "estimatedSpeedNeverWarns": "passed",
+      "noEarlyRepeatAt59999ms": "failed",
+      "equalLimitIsSilent": "passed",
+      "alertsOnlyUsesTone": "failed"
+    },
+    "gradle_exit": 1
+  },
+  "after": {
+    "passed": 16,
+    "total": 16,
+    "cases": {
+      "unmuteDoesNotWaitForMutedWarningTimer": "passed",
+      "recoveryStartsNewEpisodeImmediately": "passed",
+      "missingSpeedNeverWarns": "passed",
+      "mutedNeverEmitsAudio": "passed",
+      "immediateAtFirstMeasuredExcess": "passed",
+      "repeatAt60000ms": "passed",
+      "silenceAfterDroppingToLimit": "passed",
+      "missingLimitNeverWarns": "passed",
+      "belowLimitIsSilent": "passed",
+      "repeatsEveryFurtherMinute": "passed",
+      "tinyExcessNotHiddenByRoundedDisplay": "passed",
+      "sessionClockZeroCanWarn": "passed",
+      "estimatedSpeedNeverWarns": "passed",
+      "noEarlyRepeatAt59999ms": "passed",
+      "equalLimitIsSilent": "passed",
+      "alertsOnlyUsesTone": "passed"
+    },
+    "gradle_exit": 0
+  },
+  "execution_valid": true,
+  "errors": [],
+  "batch_accepted": false,
+  "private_wired": false,
+  "apk_generated": false
+}
