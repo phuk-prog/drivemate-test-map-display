@@ -1,0 +1,38 @@
+name: Public region mosaic and optional download (exact app files, before/after)
+on:
+  push:
+    branches: [main]
+    paths:
+      - "components/region-mosaic/**"
+      - ".github/workflows/region-mosaic-public.yml"
+  pull_request:
+    paths:
+      - "components/region-mosaic/**"
+      - ".github/workflows/region-mosaic-public.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  region-mosaic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@0b6dd653ba04f4f93bf581ec31e66cbd7dcb644d
+        with:
+          gradle-version: '8.14.3'
+      - name: Old app vs new app files on six driving-overview views, plus component tests
+        run: python3 components/region-mosaic/ci/run.py
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: region-mosaic
+          path: components/region-mosaic/results/region-mosaic.json
+          if-no-files-found: error
+          retention-days: 30

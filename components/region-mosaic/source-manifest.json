@@ -1,0 +1,10 @@
+{
+ "app_repository": "private DriveMate app",
+ "app_commit": "62d8b0ea4a1665e971d8f3ee83924d946bf2d98b",
+ "candidate": {
+  "PublishedRegionCatalog.kt": "d532bfd93354e5fab32e04e591f268b8585fee19",
+  "RegionMosaic.kt": "b2809a16bfaf3a9e35a17a834ba1f17974fe1e04",
+  "RegionPackFiles.kt": "322e9cae33268d422045f2016cc44add647f5d9e"
+ },
+ "baseline": {"commit": "10a2e9766dcab86ce75364e4a1f035f786b1559f", "PublishedRegionCatalog.kt": "f8343000d071bfc8802c0e6ce5f5867922378431"}
+}
