@@ -1,0 +1,539 @@
+package com.drivemate.app.nav
+
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.media.AudioAttributes
+import android.media.AudioDeviceInfo
+import android.media.AudioFocusRequest
+import android.media.AudioManager
+import android.media.MediaPlayer
+import android.media.ToneGenerator
+import android.os.Build
+import android.os.Handler
+import android.os.Looper
+import android.os.SystemClock
+import android.speech.tts.TextToSpeech
+import android.speech.tts.UtteranceProgressListener
+import com.drivemate.app.data.SoundMode
+import java.io.File
+
+/** Where directions go (3.3). Names describe what DriveMate asks Android for; saved values keep their ids. */
+enum class VoiceOutput(val label: String) {
+    CAR("Normal (Bluetooth or phone)"), CALL("Car-call mode (advanced)"), PHONE("Phone speaker only"),
+}
+
+internal enum class VoiceFocusMode { CAR_DUCK, CAR_PAUSE, PHONE_DUCK, PHONE_PAUSE }
+/** A preferred device is not necessarily the device actually playing audio. */
+internal object PhoneSpeakerRoutePolicy {
+    fun speakerOnly(activeOutputTypes: List<Int>, builtInSpeakerType: Int): Boolean =
+        activeOutputTypes.size == 1 && activeOutputTypes[0] == builtInSpeakerType
+}
+
+internal class VoiceSpeechSchedule {
+    private var epoch = 0L
+    fun supersede() { epoch++ }
+    fun delayed(action: () -> Unit): () -> Unit {
+        val scheduled = epoch
+        return { if (epoch == scheduled) action() }
+    }
+}
+internal object VoiceFocusPolicy {
+    fun supportsPhoneSpeaker(apiLevel: Int) = apiLevel >= 28
+    fun mode(route: VoiceOutput, pauseMusic: Boolean) = when {
+        route == VoiceOutput.CAR && pauseMusic -> VoiceFocusMode.CAR_PAUSE
+        route == VoiceOutput.CAR -> VoiceFocusMode.CAR_DUCK
+        pauseMusic -> VoiceFocusMode.PHONE_PAUSE
+        else -> VoiceFocusMode.PHONE_DUCK
+    }
+}
+
+/** Serial, expiring guidance. All Android work is confined to the main looper. */
+class Voice(context: Context) : TextToSpeech.OnInitListener {
+    private val app = context.applicationContext
+    private val audio = app.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+    private val handler = Handler(Looper.getMainLooper())
+    private val queue = VoiceMessageQueue()
+    private lateinit var tts: TextToSpeech
+    private var ready = false
+    private var failed = false
+    private var closed = false
+    private var current: VoiceMessage? = null
+    private var speechStarted = false
+    private var utterance: String? = null
+    private var file: File? = null
+    private var player: MediaPlayer? = null
+    private var phoneRouteConfirmed = false
+    private var heldFocus: AudioFocusRequest? = null
+    private var ownedMode: Int? = null
+    private var ownedDevice: AudioDeviceInfo? = null
+    private var previousDevice: AudioDeviceInfo? = null
+    private var startedSco = false
+    private var scoReceiver: BroadcastReceiver? = null
+    private var communicationListener: AudioManager.OnCommunicationDeviceChangedListener? = null
+    private var waitingCall = false
+    private var problem: String? = null
+    private var status = VoiceStatus()
+    /** Retries held-back speech (phone call, refused audio focus) until it is out of date. */
+    private val retry = Runnable { pump(); if (current == null) scheduleRetry() }
+    private val callTimeout = Runnable {
+        if (waitingCall && current != null) {
+            waitingCall = false
+            restoreRouting()
+            report("The Bluetooth call audio did not connect. Using normal navigation audio.")
+            speakCurrent()
+        }
+    }
+    private val attributes = AudioAttributes.Builder()
+        .setUsage(AudioAttributes.USAGE_ASSISTANCE_NAVIGATION_GUIDANCE)
+        .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH).build()
+    private val callAttributes = AudioAttributes.Builder()
+        .setUsage(AudioAttributes.USAGE_VOICE_COMMUNICATION)
+        .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH).build()
+    private val focusListener = AudioManager.OnAudioFocusChangeListener { change ->
+        onMain {
+            if (change == AudioManager.AUDIOFOCUS_LOSS || change == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT ||
+                change == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
+                // Cut-off speech is put back once and played after the interruption only if it is
+                // still fresh and has not been replaced by a newer direction (VoiceMessageQueue.resume).
+                interruptCurrent()
+                scheduleRetry()
+            }
+        }
+    }
+    private val duckFocus = focusRequest(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK, attributes)
+    private val pauseFocus = focusRequest(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT, attributes)
+    private val callDuckFocus = focusRequest(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK, callAttributes)
+    private val callPauseFocus = focusRequest(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT, callAttributes)
+    private val tones = runCatching { ToneGenerator(AudioManager.STREAM_MUSIC, 90) }.getOrNull()
+
+    var pauseMusic = false
+        set(value) { if (field != value) { field = value; onMain { queue.clear(); cancelCurrent() } } }
+    var output = VoiceOutput.CAR
+        set(value) { if (field != value) { field = value; onMain { queue.clear(); cancelCurrent() } } }
+    private fun soundState(): VoiceSoundState = when (sound) {
+        SoundMode.ALL -> VoiceSoundState.FULL
+        SoundMode.ALERTS -> VoiceSoundState.ALERTS
+        SoundMode.OFF -> VoiceSoundState.MUTED
+    }
+    var sound = SoundMode.ALL
+        set(value) {
+            if (field == value) return
+            field = value
+            onMain {
+                when (value) {
+                    SoundMode.OFF -> queue.clear()
+                    SoundMode.ALERTS -> queue.dropSpeech()
+                    else -> Unit
+                }
+                val message = current
+                if (message != null && !VoicePlaybackPolicy.mayKeepCurrent(soundState(), message.tone, speechStarted)) cancelCurrent()
+                pump()
+            }
+        }
+
+    var onProblem: ((String) -> Unit)? = null
+        set(value) { field = value; problem?.let { value?.invoke(it) } }
+    /** Engine state, held-back speech and the audio route DriveMate last asked Android to use. */
+    var onStatus: ((VoiceStatus) -> Unit)? = null
+        set(value) { field = value; value?.invoke(status) }
+    private fun updateStatus(next: VoiceStatus) {
+        if (next != status) { status = next; onStatus?.invoke(next) }
+    }
+    private fun scheduleRetry() {
+        handler.removeCallbacks(retry)
+        if (!closed && !queue.isEmpty(SystemClock.elapsedRealtime())) {
+            updateStatus(status.copy(waiting = true))
+            handler.postDelayed(retry, 1_000)
+        } else updateStatus(status.copy(waiting = false))
+    }
+    /** Stop what is playing; resume it later only if still relevant. */
+    private fun interruptCurrent() {
+        val message = current ?: return
+        cancelCurrent()
+        queue.resume(message, SystemClock.elapsedRealtime())
+    }
+    /** The current message could not start (call in progress, audio refused): hold it back, then retry. */
+    private fun deferCurrent() {
+        val message = current ?: return
+        cancelCurrent()
+        queue.defer(message, SystemClock.elapsedRealtime())
+        scheduleRetry()
+    }
+
+    init {
+        app.cacheDir.listFiles { f -> f.name.startsWith("guidance-") && f.extension == "wav" }
+            ?.forEach { it.delete() }
+        tts = TextToSpeech(app, this)
+    }
+    private fun onMain(action: () -> Unit) {
+        if (Looper.myLooper() == handler.looper) action() else handler.post { action() }
+    }
+    private fun focusRequest(gain: Int, attrs: AudioAttributes) = AudioFocusRequest.Builder(gain)
+        .setAudioAttributes(attrs).setOnAudioFocusChangeListener(focusListener, handler)
+        .setAcceptsDelayedFocusGain(false).build()
+    private fun report(message: String) {
+        if (problem != message) { problem = message; onProblem?.invoke(message) }
+    }
+    override fun onInit(status: Int) = onMain {
+        if (closed) return@onMain
+        if (status != TextToSpeech.SUCCESS) {
+            failed = true
+            queue.clear()
+            updateStatus(this@Voice.status.copy(engine = VoiceEngineState.BEEPS_ONLY))
+            report("The speech engine could not start. Check Android text-to-speech settings. Beeps will be used instead.")
+            return@onMain
+        }
+        // Network voices cannot guarantee guidance in a tunnel or without a signal.
+        val english = runCatching { tts.voices.orEmpty().filter {
+            OfflineVoicePolicy.rank(it.locale.language, it.locale.country, it.isNetworkConnectionRequired,
+                "notInstalled" !in it.features.orEmpty()) != null
+        }.sortedBy { OfflineVoicePolicy.rank(it.locale.language, it.locale.country, it.isNetworkConnectionRequired,
+                "notInstalled" !in it.features.orEmpty()) }.firstOrNull() }.getOrNull()
+        if (english == null || tts.setVoice(english) != TextToSpeech.SUCCESS) {
+            failed = true
+            queue.clear()
+            updateStatus(this@Voice.status.copy(engine = VoiceEngineState.BEEPS_ONLY))
+            report("Download an offline English voice in Android Settings → Text-to-speech. Beeps will be used until offline voice data is installed.")
+            return@onMain
+        }
+        tts.setAudioAttributes(attributes)
+        tts.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
+            override fun onStart(utteranceId: String?) = onMain { speechDidStart(utteranceId) }
+            override fun onDone(utteranceId: String?) = onMain {
+                if (utteranceId != utterance) return@onMain
+                if (file != null) playPhone() else finish()
+            }
+            override fun onStop(utteranceId: String?, interrupted: Boolean) = onMain {
+                if (utteranceId == utterance) finish()
+            }
+            @Deprecated("Deprecated in Java")
+            override fun onError(utteranceId: String?) = onMain {
+                if (utteranceId == utterance) {
+                    val alert = current?.alert == true
+                    finish()
+                    beep(alert)
+                }
+            }
+        })
+        ready = true
+        updateStatus(this@Voice.status.copy(engine = VoiceEngineState.READY))
+        pump()
+    }
+
+    /** Call when replacing/invalidation of a route makes older directions irrelevant. */
+    fun beginRoute() = onMain {
+        queue.newRoute()
+        if (current?.alert == false) cancelCurrent()
+        pump()
+    }
+    fun beginManoeuvre(index: Int) = onMain {
+        if (queue.newManoeuvre(index)) {
+            if (current?.alert == false) cancelCurrent()
+            pump()
+        }
+    }
+    fun say(text: String, interrupt: Boolean = false, alert: Boolean = false, policyRepeat: Boolean = false, mainAlert: Boolean = false) =
+        enqueueSpeech(text, interrupt, alert, preview = false, policyRepeat = policyRepeat, mainAlert = mainAlert)
+
+    /**
+     * Settings sample: plays through the selected output now, even if just heard, but never
+     * unmutes Silent or starts speech in Alerts only.
+     */
+    fun preview(text: String) = enqueueSpeech(text, interrupt = true, alert = true, preview = true)
+
+    /** Ignore late callbacks and synthesis starts; only the currently audible utterance counts. */
+    private fun speechDidStart(id: String?) {
+        if (id != null && id == utterance && file == null && current != null) speechStarted = true
+    }
+    private fun enqueueSpeech(text: String, interrupt: Boolean, alert: Boolean, preview: Boolean, policyRepeat: Boolean = false, mainAlert: Boolean = false) = onMain {
+        if (closed) return@onMain
+        if (sound == SoundMode.ALERTS && mainAlert) { beep(urgent = true); return@onMain }
+        if (!VoicePlaybackPolicy.canStart(soundState(), tone = false)) return@onMain
+        if (failed) { beep(alert); return@onMain }
+        val now = SystemClock.elapsedRealtime()
+        val incoming = VoiceMessage(text, alert, interrupt, now, queue.routeEpoch, preview = preview, policyRepeat = policyRepeat)
+        if (!preview && current?.suppresses(incoming) == true) return@onMain
+        if (!queue.add(text, alert, interrupt, now, preview, policyRepeat)) return@onMain
+        // Imminent directions cut in; a cut-off warning is resumed afterwards if still fresh.
+        if (interrupt && current?.urgent != true) interruptCurrent()
+        pump()
+    }
+    private fun allowed(message: VoiceMessage) = message.valid(SystemClock.elapsedRealtime(), queue.routeEpoch) &&
+        VoicePlaybackPolicy.canStart(soundState(), message.tone)
+    private fun pump() {
+        if (closed || current != null || sound == SoundMode.OFF) return
+        speechStarted = false
+        current = queue.next(SystemClock.elapsedRealtime(), speechReady = ready,
+            speechAllowed = VoicePlaybackPolicy.canStart(soundState(), tone = false)) ?: return
+        // Do not hijack an actual call or somebody else's communication route: wait instead.
+        if (audio.mode != AudioManager.MODE_NORMAL) { deferCurrent(); return }
+        if (current?.tone == true) { playTone(); return }
+        if (output == VoiceOutput.CALL && startCallRoute()) return
+        speakCurrent()
+    }
+
+    private fun requestFocus(): Boolean {
+        val request = if (ownedMode != null) {
+            if (pauseMusic) callPauseFocus else callDuckFocus
+        } else if (pauseMusic) pauseFocus else duckFocus
+        if (heldFocus === request) return true
+        releaseFocus()
+        val granted = runCatching { audio.requestAudioFocus(request) == AudioManager.AUDIOFOCUS_REQUEST_GRANTED }.getOrDefault(false)
+        if (granted) heldFocus = request
+        return granted
+    }
+    private fun speakCurrent() {
+        val message = current ?: return
+        if (!allowed(message)) { finish(); return }
+        if (ownedMode == null && audio.mode != AudioManager.MODE_NORMAL) { deferCurrent(); return }
+        val id = "dm${System.nanoTime()}"
+        utterance = id
+        if (output == VoiceOutput.PHONE) {
+            if (!VoiceFocusPolicy.supportsPhoneSpeaker(Build.VERSION.SDK_INT)) {
+                report("Phone-speaker directions need Android 9 or newer. Select normal car audio on this phone.")
+                finish(); return
+            }
+            val destination = runCatching { File.createTempFile("guidance-", ".wav", app.cacheDir) }.getOrNull()
+            if (destination == null) { finish(); return }
+            file = destination
+            if (tts.synthesizeToFile(Speech.forVoice(message.text), null, destination, id) != TextToSpeech.SUCCESS) finish()
+        } else {
+            if (!requestFocus()) { deferCurrent(); return }
+            tts.setAudioAttributes(if (ownedMode != null) callAttributes else attributes)
+            if (tts.speak(Speech.forVoice(message.text), TextToSpeech.QUEUE_FLUSH, null, id) != TextToSpeech.SUCCESS) { finish(); return }
+            queue.markSpoken(message, SystemClock.elapsedRealtime())
+            val route = when {
+                ownedMode != null -> VoiceRouteUsed.CALL_AUDIO
+                output == VoiceOutput.CALL -> VoiceRouteUsed.CALL_FALLBACK
+                else -> VoiceRouteUsed.NAVIGATION_AUDIO
+            }
+            // A recovered phone-call route may report a later failure again.
+            if (route == VoiceRouteUsed.CALL_AUDIO) problem = null
+            updateStatus(status.copy(lastRoute = route, waiting = false))
+        }
+    }
+    /** Fail closed if a requested phone-only voice would actually play over Bluetooth/car. */
+    private fun verifyPhoneSpeakerRoute(next: MediaPlayer): Boolean {
+        // getRoutedDevice exists only on Android 9+. Fail closed on older versions.
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) { finish(); return false }
+        val types = runCatching {
+            if (Build.VERSION.SDK_INT >= 36) next.routedDevices.map { it.type }
+            else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) listOfNotNull(next.routedDevice?.type)
+            else emptyList()
+        }.getOrDefault(emptyList())
+        if (audio.mode == AudioManager.MODE_NORMAL &&
+            PhoneSpeakerRoutePolicy.speakerOnly(types, AudioDeviceInfo.TYPE_BUILTIN_SPEAKER)) return true
+        report("Phone-speaker guidance stopped because Android could not confirm speaker-only playback. Car music was not rerouted by DriveMate.")
+        finish()
+        return false
+    }
+
+    private fun playPhone() {
+        if (Build.VERSION.SDK_INT < 28) { finish(); return }
+        val message = current ?: return
+        val source = file ?: return
+        if (!allowed(message)) { finish(); return }
+        if (audio.mode != AudioManager.MODE_NORMAL || !requestFocus()) { deferCurrent(); return }
+        val speaker = audio.getDevices(AudioManager.GET_DEVICES_OUTPUTS).firstOrNull { it.type == AudioDeviceInfo.TYPE_BUILTIN_SPEAKER }
+        if (speaker == null) { finish(); return }
+        val next = MediaPlayer()
+        player = next
+        phoneRouteConfirmed = false
+        runCatching {
+            next.setAudioAttributes(attributes)
+            check(next.setPreferredDevice(speaker)) { "Built-in speaker routing was rejected" }
+            next.setDataSource(source.absolutePath)
+            // Routing can change while speaking (for example, when Bluetooth reconnects).
+            next.addOnRoutingChangedListener({ _ ->
+                if (player === next && phoneRouteConfirmed &&
+                    runCatching { next.isPlaying }.getOrDefault(false)) verifyPhoneSpeakerRoute(next)
+            }, handler)
+            next.setOnCompletionListener { if (player === next) finish() }
+            next.setOnErrorListener { _, _, _ -> if (player === next) finish(); true }
+            next.setOnPreparedListener {
+                if (player === next && current === message) {
+                    if (allowed(message) && audio.mode == AudioManager.MODE_NORMAL) {
+                        // A preferred device does not prove real routing. Prime silently,
+                        // inspect Android's actual output, then unmute only on phone speaker.
+                        runCatching {
+                            next.setVolume(0f, 0f)
+                            next.start()
+                            handler.postDelayed({
+                                if (player === next && current === message) {
+                                    if (!allowed(message) || !runCatching { next.isPlaying }.getOrDefault(false)) finish()
+                                    else if (verifyPhoneSpeakerRoute(next)) {
+                                        phoneRouteConfirmed = true
+                                        speechStarted = true
+                                        queue.markSpoken(message, SystemClock.elapsedRealtime())
+                                        updateStatus(status.copy(lastRoute = VoiceRouteUsed.PHONE_SPEAKER, waiting = false))
+                                        runCatching {
+                                            // Replay the initially muted syllable on the confirmed speaker.
+                                            next.seekTo(0)
+                                            if (player === next && current === message && allowed(message)) next.setVolume(1f, 1f)
+                                            else finish()
+                                        }.onFailure { finish() }
+                                    }
+                                }
+                            }, 150)
+                        }.onFailure { finish() }
+                    } else finish()
+                }
+            }
+            next.prepareAsync()
+        }.onFailure {
+            report("Phone-speaker guidance could not be started without verified speaker routing.")
+            finish()
+        }
+    }
+    /** Wait on Android's route-ready signal, never a guessed fixed delay. */
+    @Suppress("DEPRECATION")
+    private fun startCallRoute(): Boolean {
+        if (audio.mode != AudioManager.MODE_NORMAL) return false
+        waitingCall = true
+        val started = runCatching {
+            // Capture the original device before changing mode, including failure paths.
+            if (Build.VERSION.SDK_INT >= 31) {
+                previousDevice = audio.communicationDevice
+                if (previousDevice?.type == AudioDeviceInfo.TYPE_BLUETOOTH_SCO) return@runCatching false
+            } else if (audio.isBluetoothScoOn) return@runCatching false
+            ownedMode = audio.mode
+            if (!requestFocus()) { ownedMode = null; return@runCatching false }
+            audio.mode = AudioManager.MODE_IN_COMMUNICATION
+            if (Build.VERSION.SDK_INT >= 31) {
+                val device = audio.availableCommunicationDevices.firstOrNull { it.type == AudioDeviceInfo.TYPE_BLUETOOTH_SCO }
+                    ?: return@runCatching false
+                val listener = AudioManager.OnCommunicationDeviceChangedListener { selected ->
+                    onMain {
+                        if (selected?.id == device.id) callReady()
+                        else if (!waitingCall && current != null) finish()
+                    }
+                }
+                communicationListener = listener
+                audio.addOnCommunicationDeviceChangedListener({ command -> handler.post(command) }, listener)
+                if (!audio.setCommunicationDevice(device)) return@runCatching false
+                // Requested is not owned until Android accepts it. On rejection, restore only
+                // our mode change while leaving the original device alone.
+                ownedDevice = device
+                if (audio.communicationDevice?.id == device.id) handler.post { callReady() }
+            } else {
+                val receiver = object : BroadcastReceiver() {
+                    override fun onReceive(context: Context?, intent: Intent?) {
+                        if (scoReceiver !== this) return
+                        when (intent?.getIntExtra(AudioManager.EXTRA_SCO_AUDIO_STATE, -1)) {
+                            AudioManager.SCO_AUDIO_STATE_CONNECTED -> callReady()
+                            AudioManager.SCO_AUDIO_STATE_DISCONNECTED -> {
+                                val previous = intent.getIntExtra(AudioManager.EXTRA_SCO_AUDIO_PREVIOUS_STATE, -1)
+                                if (previous == AudioManager.SCO_AUDIO_STATE_CONNECTING || previous == AudioManager.SCO_AUDIO_STATE_CONNECTED) {
+                                    if (waitingCall) callTimeout.run() else if (current != null) finish()
+                                }
+                            }
+                        }
+                    }
+                }
+                scoReceiver = receiver
+                app.registerReceiver(receiver, IntentFilter(AudioManager.ACTION_SCO_AUDIO_STATE_UPDATED))
+                startedSco = true
+                audio.startBluetoothSco()
+                audio.isBluetoothScoOn = true
+            }
+            true
+        }.getOrDefault(false)
+        if (started) handler.postDelayed(callTimeout, 4_000) else {
+            waitingCall = false
+            restoreRouting()
+            report("Bluetooth call audio is unavailable. Using normal navigation audio.")
+        }
+        return started
+    }
+    private fun callReady() {
+        if (!waitingCall || current == null || audio.mode != AudioManager.MODE_IN_COMMUNICATION) return
+        if (Build.VERSION.SDK_INT >= 31 && audio.communicationDevice?.id != ownedDevice?.id) return
+        waitingCall = false
+        handler.removeCallbacks(callTimeout)
+        speakCurrent()
+    }
+    private fun releaseFocus() {
+        heldFocus?.let { runCatching { audio.abandonAudioFocusRequest(it) } }
+        heldFocus = null
+    }
+    @Suppress("DEPRECATION")
+    private fun restoreRouting() {
+        waitingCall = false
+        handler.removeCallbacks(callTimeout)
+        // Capture ownership before changing the communication device. A different mode/device
+        // belongs to a call or another app; do not reset it to our previous settings.
+        val ownsRoute = ownedMode != null && VoiceRoutingOwnership.mayRestoreMode(
+            audio.mode == AudioManager.MODE_IN_COMMUNICATION,
+            previousDevice?.id, ownedDevice?.id,
+            if (Build.VERSION.SDK_INT >= 31) audio.communicationDevice?.id else null,
+        )
+        runCatching {
+            if (Build.VERSION.SDK_INT >= 31) {
+                communicationListener?.let { audio.removeOnCommunicationDeviceChangedListener(it) }
+                if (ownedDevice != null && ownsRoute && audio.communicationDevice?.id == ownedDevice?.id) {
+                    val previous = previousDevice
+                    if (previous != null && audio.availableCommunicationDevices.any { it.id == previous.id }) audio.setCommunicationDevice(previous)
+                    else audio.clearCommunicationDevice()
+                }
+            } else if (startedSco && ownsRoute) {
+                audio.stopBluetoothSco()
+                audio.isBluetoothScoOn = false
+            }
+        }
+        scoReceiver?.let { runCatching { app.unregisterReceiver(it) } }
+        if (ownedMode != null && ownsRoute) runCatching { audio.mode = ownedMode!! }
+        ownedMode = null
+        ownedDevice = null
+        previousDevice = null
+        communicationListener = null
+        scoReceiver = null
+        startedSco = false
+    }
+    private fun finish() {
+        cancelCurrent()
+        handler.post { pump() }
+    }
+    private fun cancelCurrent() {
+        speechStarted = false
+        utterance = null // Ignore callbacks for the canceled synthesis/speech.
+        current = null
+        runCatching { tones?.stopTone() }
+        if (ready) tts.stop()
+        runCatching { player?.release() }
+        player = null
+        phoneRouteConfirmed = false
+        file?.delete(); file = null
+        releaseFocus()
+        restoreRouting()
+    }
+    fun beep(urgent: Boolean = false) = onMain {
+        if (closed || sound == SoundMode.OFF) return@onMain
+        val now = SystemClock.elapsedRealtime()
+        val incoming = VoiceMessage("", true, false, now, queue.routeEpoch, tone = true, doubleTone = urgent)
+        if (current?.sameAnnouncement(incoming) == true) return@onMain
+        queue.addTone(urgent, now)
+        pump()
+    }
+    /** Uses the same current-message slot as TTS, so warning tones cannot overlap guidance. */
+    private fun playTone() {
+        val message = current ?: return
+        if (!allowed(message)) { finish(); return }
+        if (audio.mode != AudioManager.MODE_NORMAL || !requestFocus()) { deferCurrent(); return }
+        val started = runCatching {
+            tones?.startTone(if (message.doubleTone) ToneGenerator.TONE_PROP_BEEP2 else ToneGenerator.TONE_PROP_BEEP, 300) == true
+        }.getOrDefault(false)
+        if (!started) { finish(); return }
+        handler.postDelayed({ if (current === message) finish() }, 350)
+    }
+    fun stop() = onMain { queue.clear(); cancelCurrent(); handler.removeCallbacks(retry); updateStatus(status.copy(waiting = false)) }
+    fun shutdown() = onMain {
+        closed = true
+        queue.clear()
+        cancelCurrent()
+        handler.removeCallbacksAndMessages(null)
+        tts.shutdown()
+        tones?.release()
+    }
+}

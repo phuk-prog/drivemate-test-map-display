@@ -7,3 +7,5 @@ A policyRepeat flag bypasses spoken-history suppression only for independently p
 No numeric comparable original runtime score exists for this new20-case suite. Separate speeding-policy baseline7/16→16/16 and original selected-warning-method18/18 remain separate evidence. Local pre-upload executionUNAVAILABLE(failed environment); connector source binding/manual review performed. Public CI is post-upload evidence. No private tests/APK/main merge/full Batch B acceptance.
 
 Remaining scope: legacy beepAlerts can still override speech for some Full-mode other hazards; the speed UI uses its old red-state tolerance and existing speedMargin settings/statistics remain separate. Other camera/zone geometry, legal source freshness and complete UI/Android playback remain open.
+
+Full proposed individual Voice source is now recorded in reference/ProposedVoice.kt.txt. CI binds the exact selected fragments to it; MediaPlayer unmute identity and start/reset markers are source assertions only, not Android execution. A new CI run is required for this reconstructed candidate. Source policy bypass is only enabled by speeding dispatch. No complete combined app is public.

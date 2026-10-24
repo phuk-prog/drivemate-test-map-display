@@ -1,0 +1,51 @@
+{
+  "batch": "B",
+  "requirements": [
+    "09.03",
+    "09.04",
+    "10.18",
+    "10.23",
+    "10.24"
+  ],
+  "public_sha": "e326da39377d82bb43f5b2c9d445e38b19250a02",
+  "run_id": "40072690128",
+  "scope": "Actual proposed Voice queue/playback policy + exact say/enqueue/allowed/pump/sound setter/TTS-start callback in deterministic dependency harness; Android engines/scheduling/audio not executed",
+  "passed": 20,
+  "total": 20,
+  "cases": {
+    "playingSentenceCanFinishOnMute": "passed",
+    "policyRepeatActuallyReachesSpeechAfterRecovery": "passed",
+    "fullMainAlertStillSpeaks": "passed",
+    "policyRepeatBypassesOnlyHistory": "passed",
+    "legacyAlertHistoryRemainsSuppressed": "passed",
+    "muteHasNoNewSpeechOrTone": "passed",
+    "waitingSpeechIsCancelledOnModeChange": "passed",
+    "alertsKeepsQueuedTonesWhileCurrentSentenceFinishes": "passed",
+    "policyRepeatDoesNotRestartCurrentAnnouncement": "passed",
+    "mainClassificationExcludesMinorAndUnknownHazards": "passed",
+    "nullOnStartCannotMarkWaitingUtterancePlaying": "passed",
+    "defaultOtherAlertRemainsHistorySuppressed": "passed",
+    "queuedSpeechIsDiscardedOnMute": "passed",
+    "queuedAlertSpeechIsDiscardedOnAlertsOnly": "passed",
+    "queuedDuplicatesStillSuppressed": "passed",
+    "alertsRejectsNewSpeechEvenWhenAlertTrue": "passed",
+    "lateOldOnStartCannotMarkNewUtterancePlaying": "passed",
+    "pumpCannotSelectInjectedSpeechInAlertsOnly": "passed",
+    "alertsConvertsExplicitCameraMainAlertToTone": "passed",
+    "phoneSynthesisStartDoesNotCountAsAudiblePlayback": "passed"
+  },
+  "execution_valid": true,
+  "errors": [],
+  "source_hashes": {
+    "src/main/kotlin/com/drivemate/app/nav/VoiceOutput.kt": "000615ae417e0a86beb4cf1146f36ea6a91c9db1ea8b46f85d29b4cb217ccb49",
+    "src/main/kotlin/com/drivemate/app/nav/VoicePlaybackPolicy.kt": "5d6710b30101c2f0ab8a5351730177f598d64e6e3f0d1ec1ab1474bf3043008d",
+    "src/main/kotlin/com/drivemate/app/nav/VoiceQueue.kt": "83c398a0c9b6890f3e3e3d486eb2cfce7faac41262bd645bff8da0bb6be6a4c1",
+    "src/test/kotlin/com/drivemate/app/nav/VoiceDeliveryHarness.kt": "a662d27f4f0851f25ed9e57f7673452a36e98ad4a42e90a302884d95394e449a",
+    "src/test/kotlin/com/drivemate/app/nav/VoiceDeliveryTest.kt": "677b6baf26280449764e0eadd098c6e3c4022abdc6bf7a7efbc3f1ff7d64c6b5"
+  },
+  "before_runtime_score": null,
+  "physical_audio_verified": false,
+  "whole_android_compile_verified": false,
+  "batch_accepted": false,
+  "apk_generated": false
+}
