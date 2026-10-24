@@ -1,124 +1,24 @@
 {
  "suite": "components/rendered-map",
- "run_url": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40071137577",
- "public_head_sha": "696b65da23232d786ad0d2ec8956bd1bb6717df8",
+ "run_url": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40075224229",
+ "public_head_sha": "b0933e91936534df952b783d55d337f403f17638",
  "scope": "isolated-component",
  "evidence_limits": [
-  "Renders DriveMate's published RouteLayers only, not the combined app, its UK map style or its camera.",
-  "OSM centrelines are observed geography, not legal or lane truth.",
-  "Traffic bands are placed by the test; TrafficRouteOverlay matching of real reports is not exercised here.",
+  "Renders DriveMate's published RouteLayers and CarMarker only, not the combined app, its UK map style or its camera.",
+  "OSM centrelines are observed geography, not legal or lane truth; lane width is the DMRB CD 127 standard 3.65 m, not a measured width.",
+  "Traffic bands and arrow fixes are placed by the test; route matching of real reports and GPS snapping are not exercised here.",
   "Emulator SwiftShader GPU, not a physical phone GPU."
  ],
- "checklist": {
-  "02.01": {
-   "passed": 3,
-   "total": 3,
-   "tests": [
-    {
-     "name": "pref02_01_dayTopDownZoom17RouteStaysOnOwnCarriageway",
-     "status": "passed",
-     "verdict": {
-      "pass": true,
-      "reasons": [],
-      "own_in_view": 61,
-      "own_inked": 61,
-      "median_route_width_dp": 24.38095238095238,
-      "opposite_in_view": 60,
-      "opposite_testable": 60,
-      "opposite_visible": 60,
-      "checklist": "02.01",
-      "night": false,
-      "zoom": 17,
-      "tilt": 0,
-      "test": "pref02_01_dayTopDownZoom17RouteStaysOnOwnCarriageway",
-      "width_px": 1080,
-      "height_px": 2274,
-      "density": 2.625
-     }
-    },
-    {
-     "name": "pref02_01_nightDrivingTiltZoom18RouteStaysOnOwnCarriageway",
-     "status": "passed",
-     "verdict": {
-      "pass": true,
-      "reasons": [],
-      "own_in_view": 55,
-      "own_inked": 55,
-      "median_route_width_dp": 27.80952380952381,
-      "opposite_in_view": 56,
-      "opposite_testable": 56,
-      "opposite_visible": 56,
-      "checklist": "02.01",
-      "night": true,
-      "zoom": 18,
-      "tilt": 50,
-      "test": "pref02_01_nightDrivingTiltZoom18RouteStaysOnOwnCarriageway",
-      "width_px": 1080,
-      "height_px": 2274,
-      "density": 2.625
-     }
-    },
-    {
-     "name": "pref02_01_negativeControlRouteOnOppositeCarriagewayIsRejected",
-     "status": "passed",
-     "verdict": {
-      "pass": false,
-      "reasons": [
-       "route covers 0/61 own-carriageway samples",
-       "route median width 0.0 dp is not legible",
-       "opposite carriageway visible at 0/60 testable samples"
-      ],
-      "own_in_view": 61,
-      "own_inked": 0,
-      "median_route_width_dp": 0,
-      "opposite_in_view": 60,
-      "opposite_testable": 60,
-      "opposite_visible": 0,
-      "checklist": "02.01",
-      "negative_control": true,
-      "test": "pref02_01_negativeControlRouteOnOppositeCarriagewayIsRejected",
-      "width_px": 1080,
-      "height_px": 2274,
-      "density": 2.625
-     }
-    }
-   ]
-  },
-  "02.03": {
-   "passed": 2,
-   "total": 2,
-   "tests": [
-    {
-     "name": "pref02_03_slowIsAmberHeavyIsRedOnlyOnTheirSections",
-     "status": "passed",
-     "verdict": {
-      "pass": true,
-      "reasons": [],
-      "bands": [
-       {
-        "expect": "AMBER",
-        "from_m": 150,
-        "to_m": 240,
-        "expected_colour_samples": 9,
-        "samples": 9
-       },
-       {
-        "expect": "NEITHER",
-        "from_m": 240,
-        "to_m": 320,
-        "expected_colour_samples": 7,
-        "samples": 7
-       },
-       {
-        "expect": "RED",
-        "from_m": 320,
-        "to_m": 450,
-        "expected_colour_samples": 17,
-        "samples": 17
-       }
-      ],
-      "checklist": "02.03",
-      "carriageway": {
+ "phases": {
+  "baseline": {
+   "02.01": {
+    "passed": 3,
+    "total": 3,
+    "tests": [
+     {
+      "name": "pref02_01_dayTopDownZoom17RouteStaysOnOwnCarriageway",
+      "status": "passed",
+      "verdict": {
        "pass": true,
        "reasons": [],
        "own_in_view": 61,
@@ -126,55 +26,715 @@
        "median_route_width_dp": 24.38095238095238,
        "opposite_in_view": 60,
        "opposite_testable": 60,
-       "opposite_visible": 60
-      },
-      "test": "pref02_03_slowIsAmberHeavyIsRedOnlyOnTheirSections",
-      "width_px": 1080,
-      "height_px": 2274,
-      "density": 2.625
+       "opposite_visible": 60,
+       "checklist": "02.01",
+       "night": false,
+       "zoom": 17,
+       "tilt": 0,
+       "test": "pref02_01_dayTopDownZoom17RouteStaysOnOwnCarriageway",
+       "width_px": 1080,
+       "height_px": 2274,
+       "density": 2.625
+      }
+     },
+     {
+      "name": "pref02_01_nightDrivingTiltZoom18RouteStaysOnOwnCarriageway",
+      "status": "passed",
+      "verdict": {
+       "pass": true,
+       "reasons": [],
+       "own_in_view": 55,
+       "own_inked": 55,
+       "median_route_width_dp": 27.80952380952381,
+       "opposite_in_view": 56,
+       "opposite_testable": 56,
+       "opposite_visible": 56,
+       "checklist": "02.01",
+       "night": true,
+       "zoom": 18,
+       "tilt": 50,
+       "test": "pref02_01_nightDrivingTiltZoom18RouteStaysOnOwnCarriageway",
+       "width_px": 1080,
+       "height_px": 2274,
+       "density": 2.625
+      }
+     },
+     {
+      "name": "pref02_01_negativeControlRouteOnOppositeCarriagewayIsRejected",
+      "status": "passed",
+      "verdict": {
+       "pass": false,
+       "reasons": [
+        "route covers 0/61 own-carriageway samples",
+        "route median width 0.0 dp is not legible",
+        "opposite carriageway visible at 0/60 testable samples"
+       ],
+       "own_in_view": 61,
+       "own_inked": 0,
+       "median_route_width_dp": 0,
+       "opposite_in_view": 60,
+       "opposite_testable": 60,
+       "opposite_visible": 0,
+       "checklist": "02.01",
+       "negative_control": true,
+       "test": "pref02_01_negativeControlRouteOnOppositeCarriagewayIsRejected",
+       "width_px": 1080,
+       "height_px": 2274,
+       "density": 2.625
+      }
      }
-    },
-    {
-     "name": "pref02_03_negativeControlSwappedTrafficColoursAreRejected",
-     "status": "passed",
-     "verdict": {
-      "pass": false,
-      "reasons": [
-       "AMBER 150\u2013240 m: 0/9 samples have the expected colour",
-       "RED 320\u2013450 m: 0/17 samples have the expected colour"
-      ],
-      "bands": [
-       {
-        "expect": "AMBER",
-        "from_m": 150,
-        "to_m": 240,
-        "expected_colour_samples": 0,
-        "samples": 9
+    ]
+   },
+   "02.03": {
+    "passed": 2,
+    "total": 2,
+    "tests": [
+     {
+      "name": "pref02_03_slowIsAmberHeavyIsRedOnlyOnTheirSections",
+      "status": "passed",
+      "verdict": {
+       "pass": true,
+       "reasons": [],
+       "bands": [
+        {
+         "expect": "AMBER",
+         "from_m": 150,
+         "to_m": 240,
+         "expected_colour_samples": 9,
+         "samples": 9
+        },
+        {
+         "expect": "NEITHER",
+         "from_m": 240,
+         "to_m": 320,
+         "expected_colour_samples": 7,
+         "samples": 7
+        },
+        {
+         "expect": "RED",
+         "from_m": 320,
+         "to_m": 450,
+         "expected_colour_samples": 17,
+         "samples": 17
+        }
+       ],
+       "checklist": "02.03",
+       "carriageway": {
+        "pass": true,
+        "reasons": [],
+        "own_in_view": 61,
+        "own_inked": 61,
+        "median_route_width_dp": 24.38095238095238,
+        "opposite_in_view": 60,
+        "opposite_testable": 60,
+        "opposite_visible": 60
        },
-       {
-        "expect": "NEITHER",
-        "from_m": 240,
-        "to_m": 320,
-        "expected_colour_samples": 7,
-        "samples": 7
-       },
-       {
-        "expect": "RED",
-        "from_m": 320,
-        "to_m": 450,
-        "expected_colour_samples": 0,
-        "samples": 17
-       }
-      ],
-      "checklist": "02.03",
-      "negative_control": true,
-      "test": "pref02_03_negativeControlSwappedTrafficColoursAreRejected",
-      "width_px": 1080,
-      "height_px": 2274,
-      "density": 2.625
+       "test": "pref02_03_slowIsAmberHeavyIsRedOnlyOnTheirSections",
+       "width_px": 1080,
+       "height_px": 2274,
+       "density": 2.625
+      }
+     },
+     {
+      "name": "pref02_03_negativeControlSwappedTrafficColoursAreRejected",
+      "status": "passed",
+      "verdict": {
+       "pass": false,
+       "reasons": [
+        "AMBER 150\u2013240 m: 0/9 samples have the expected colour",
+        "RED 320\u2013450 m: 0/17 samples have the expected colour"
+       ],
+       "bands": [
+        {
+         "expect": "AMBER",
+         "from_m": 150,
+         "to_m": 240,
+         "expected_colour_samples": 0,
+         "samples": 9
+        },
+        {
+         "expect": "NEITHER",
+         "from_m": 240,
+         "to_m": 320,
+         "expected_colour_samples": 7,
+         "samples": 7
+        },
+        {
+         "expect": "RED",
+         "from_m": 320,
+         "to_m": 450,
+         "expected_colour_samples": 0,
+         "samples": 17
+        }
+       ],
+       "checklist": "02.03",
+       "negative_control": true,
+       "test": "pref02_03_negativeControlSwappedTrafficColoursAreRejected",
+       "width_px": 1080,
+       "height_px": 2274,
+       "density": 2.625
+      }
      }
-    }
-   ]
+    ]
+   },
+   "02.04": {
+    "passed": 5,
+    "total": 7,
+    "tests": [
+     {
+      "name": "pref02_04_northUpZoom16ArrowOnCarriagewayAlongRoadLaneToCarriagewayWide",
+      "status": "failed",
+      "verdict": {
+       "zoom": 16,
+       "camera": "north-up",
+       "test": "pref02_04_northUpZoom16ArrowOnCarriagewayAlongRoadLaneToCarriagewayWide",
+       "phase": "baseline",
+       "checklist": "02.04",
+       "pass": false,
+       "reasons": [
+        "arrow 17.0 m wide, wider than its 3-lane carriageway (10.95 m)"
+       ],
+       "arrow_width_m": 17.013506943195853,
+       "arrow_offset_m": 0.4605956350758868,
+       "arrow_heading_screen_deg": 22,
+       "road_heading_screen_deg": 23.163645801773214,
+       "mirror_match": 0.9850792663972645,
+       "arrow_px": 3217,
+       "lanes": 3,
+       "allowed_width_m": [
+        3.65,
+        10.95
+       ],
+       "width_px": 1080,
+       "density": 2.625
+      }
+     },
+     {
+      "name": "pref02_04_northUpZoom17ArrowOnCarriagewayAlongRoadLaneToCarriagewayWide",
+      "status": "passed",
+      "verdict": {
+       "zoom": 17,
+       "camera": "north-up",
+       "test": "pref02_04_northUpZoom17ArrowOnCarriagewayAlongRoadLaneToCarriagewayWide",
+       "phase": "baseline",
+       "checklist": "02.04",
+       "pass": true,
+       "reasons": [],
+       "arrow_width_m": 8.636389165440841,
+       "arrow_offset_m": 0.23745613631742016,
+       "arrow_heading_screen_deg": 21,
+       "road_heading_screen_deg": 20.143580499736913,
+       "mirror_match": 0.98193315266486,
+       "arrow_px": 3321,
+       "lanes": 3,
+       "allowed_width_m": [
+        3.65,
+        10.95
+       ],
+       "width_px": 1080,
+       "density": 2.625
+      }
+     },
+     {
+      "name": "pref02_04_northUpZoom18ArrowOnCarriagewayAlongRoadLaneToCarriagewayWide",
+      "status": "passed",
+      "verdict": {
+       "zoom": 18,
+       "camera": "north-up",
+       "test": "pref02_04_northUpZoom18ArrowOnCarriagewayAlongRoadLaneToCarriagewayWide",
+       "phase": "baseline",
+       "checklist": "02.04",
+       "pass": true,
+       "reasons": [],
+       "arrow_width_m": 4.394044199759825,
+       "arrow_offset_m": 0.11922597235061913,
+       "arrow_heading_screen_deg": 21,
+       "road_heading_screen_deg": 23.163726593097635,
+       "mirror_match": 0.983997672388711,
+       "arrow_px": 3437,
+       "lanes": 3,
+       "allowed_width_m": [
+        3.65,
+        10.95
+       ],
+       "width_px": 1080,
+       "density": 2.625
+      }
+     },
+     {
+      "name": "pref02_04_drivingViewZoom17ArrowPointsUpTheRoad",
+      "status": "passed",
+      "verdict": {
+       "zoom": 17,
+       "camera": "along road",
+       "test": "pref02_04_drivingViewZoom17ArrowPointsUpTheRoad",
+       "phase": "baseline",
+       "checklist": "02.04",
+       "pass": true,
+       "reasons": [],
+       "arrow_width_m": 8.666362076052991,
+       "arrow_offset_m": 0.17227307782001966,
+       "arrow_heading_screen_deg": 0,
+       "road_heading_screen_deg": 1.7647954848709446,
+       "mirror_match": 0.9948841408365935,
+       "arrow_px": 3323,
+       "lanes": 3,
+       "allowed_width_m": [
+        3.65,
+        10.95
+       ],
+       "width_px": 1080,
+       "density": 2.625
+      }
+     },
+     {
+      "name": "pref02_04_zoom16SizeSurvivesAStyleReload",
+      "status": "failed",
+      "verdict": {
+       "zoom": 16,
+       "camera": "north-up",
+       "style_reloaded": true,
+       "test": "pref02_04_zoom16SizeSurvivesAStyleReload",
+       "phase": "baseline",
+       "checklist": "02.04",
+       "pass": false,
+       "reasons": [
+        "arrow 17.0 m wide, wider than its 3-lane carriageway (10.95 m)"
+       ],
+       "arrow_width_m": 17.013506943195853,
+       "arrow_offset_m": 0.4605956350758868,
+       "arrow_heading_screen_deg": 22,
+       "road_heading_screen_deg": 23.163645801773214,
+       "mirror_match": 0.9850792663972645,
+       "arrow_px": 3217,
+       "lanes": 3,
+       "allowed_width_m": [
+        3.65,
+        10.95
+       ],
+       "width_px": 1080,
+       "density": 2.625
+      }
+     },
+     {
+      "name": "pref02_04_negativeControlArrowFacingAgainstTrafficIsRejected",
+      "status": "passed",
+      "verdict": {
+       "zoom": 17,
+       "negative_control": "reversed heading",
+       "test": "pref02_04_negativeControlArrowFacingAgainstTrafficIsRejected",
+       "phase": "baseline",
+       "checklist": "02.04",
+       "pass": false,
+       "reasons": [
+        "arrow points 178\u00b0 away from the road"
+       ],
+       "arrow_width_m": 8.661654488240936,
+       "arrow_offset_m": 0.24045141381871557,
+       "arrow_heading_screen_deg": 201,
+       "road_heading_screen_deg": 23.163732875332528,
+       "mirror_match": 0.9795242396868413,
+       "arrow_px": 3321,
+       "lanes": 3,
+       "allowed_width_m": [
+        3.65,
+        10.95
+       ],
+       "width_px": 1080,
+       "density": 2.625
+      }
+     },
+     {
+      "name": "pref02_04_negativeControlArrowOffTheCentrelineIsRejected",
+      "status": "passed",
+      "verdict": {
+       "zoom": 17,
+       "negative_control": "5 m off centreline",
+       "test": "pref02_04_negativeControlArrowOffTheCentrelineIsRejected",
+       "phase": "baseline",
+       "checklist": "02.04",
+       "pass": false,
+       "reasons": [
+        "arrow centre 4.7 m off the carriageway centreline"
+       ],
+       "arrow_width_m": 8.739544979068134,
+       "arrow_offset_m": 4.722059290520568,
+       "arrow_heading_screen_deg": 21,
+       "road_heading_screen_deg": 23.163732875332528,
+       "mirror_match": 0.9778988798062368,
+       "arrow_px": 3303,
+       "lanes": 3,
+       "allowed_width_m": [
+        3.65,
+        10.95
+       ],
+       "width_px": 1080,
+       "density": 2.625
+      }
+     }
+    ]
+   }
+  },
+  "candidate": {
+   "02.01": {
+    "passed": 3,
+    "total": 3,
+    "tests": [
+     {
+      "name": "pref02_01_dayTopDownZoom17RouteStaysOnOwnCarriageway",
+      "status": "passed",
+      "verdict": {
+       "pass": true,
+       "reasons": [],
+       "own_in_view": 61,
+       "own_inked": 61,
+       "median_route_width_dp": 24.38095238095238,
+       "opposite_in_view": 60,
+       "opposite_testable": 60,
+       "opposite_visible": 60,
+       "checklist": "02.01",
+       "night": false,
+       "zoom": 17,
+       "tilt": 0,
+       "test": "pref02_01_dayTopDownZoom17RouteStaysOnOwnCarriageway",
+       "width_px": 1080,
+       "height_px": 2274,
+       "density": 2.625
+      }
+     },
+     {
+      "name": "pref02_01_nightDrivingTiltZoom18RouteStaysOnOwnCarriageway",
+      "status": "passed",
+      "verdict": {
+       "pass": true,
+       "reasons": [],
+       "own_in_view": 55,
+       "own_inked": 55,
+       "median_route_width_dp": 27.80952380952381,
+       "opposite_in_view": 56,
+       "opposite_testable": 56,
+       "opposite_visible": 56,
+       "checklist": "02.01",
+       "night": true,
+       "zoom": 18,
+       "tilt": 50,
+       "test": "pref02_01_nightDrivingTiltZoom18RouteStaysOnOwnCarriageway",
+       "width_px": 1080,
+       "height_px": 2274,
+       "density": 2.625
+      }
+     },
+     {
+      "name": "pref02_01_negativeControlRouteOnOppositeCarriagewayIsRejected",
+      "status": "passed",
+      "verdict": {
+       "pass": false,
+       "reasons": [
+        "route covers 0/61 own-carriageway samples",
+        "route median width 0.0 dp is not legible",
+        "opposite carriageway visible at 0/60 testable samples"
+       ],
+       "own_in_view": 61,
+       "own_inked": 0,
+       "median_route_width_dp": 0,
+       "opposite_in_view": 60,
+       "opposite_testable": 60,
+       "opposite_visible": 0,
+       "checklist": "02.01",
+       "negative_control": true,
+       "test": "pref02_01_negativeControlRouteOnOppositeCarriagewayIsRejected",
+       "width_px": 1080,
+       "height_px": 2274,
+       "density": 2.625
+      }
+     }
+    ]
+   },
+   "02.03": {
+    "passed": 2,
+    "total": 2,
+    "tests": [
+     {
+      "name": "pref02_03_slowIsAmberHeavyIsRedOnlyOnTheirSections",
+      "status": "passed",
+      "verdict": {
+       "pass": true,
+       "reasons": [],
+       "bands": [
+        {
+         "expect": "AMBER",
+         "from_m": 150,
+         "to_m": 240,
+         "expected_colour_samples": 9,
+         "samples": 9
+        },
+        {
+         "expect": "NEITHER",
+         "from_m": 240,
+         "to_m": 320,
+         "expected_colour_samples": 7,
+         "samples": 7
+        },
+        {
+         "expect": "RED",
+         "from_m": 320,
+         "to_m": 450,
+         "expected_colour_samples": 17,
+         "samples": 17
+        }
+       ],
+       "checklist": "02.03",
+       "carriageway": {
+        "pass": true,
+        "reasons": [],
+        "own_in_view": 61,
+        "own_inked": 61,
+        "median_route_width_dp": 24.38095238095238,
+        "opposite_in_view": 60,
+        "opposite_testable": 60,
+        "opposite_visible": 60
+       },
+       "test": "pref02_03_slowIsAmberHeavyIsRedOnlyOnTheirSections",
+       "width_px": 1080,
+       "height_px": 2274,
+       "density": 2.625
+      }
+     },
+     {
+      "name": "pref02_03_negativeControlSwappedTrafficColoursAreRejected",
+      "status": "passed",
+      "verdict": {
+       "pass": false,
+       "reasons": [
+        "AMBER 150\u2013240 m: 0/9 samples have the expected colour",
+        "RED 320\u2013450 m: 0/17 samples have the expected colour"
+       ],
+       "bands": [
+        {
+         "expect": "AMBER",
+         "from_m": 150,
+         "to_m": 240,
+         "expected_colour_samples": 0,
+         "samples": 9
+        },
+        {
+         "expect": "NEITHER",
+         "from_m": 240,
+         "to_m": 320,
+         "expected_colour_samples": 7,
+         "samples": 7
+        },
+        {
+         "expect": "RED",
+         "from_m": 320,
+         "to_m": 450,
+         "expected_colour_samples": 0,
+         "samples": 17
+        }
+       ],
+       "checklist": "02.03",
+       "negative_control": true,
+       "test": "pref02_03_negativeControlSwappedTrafficColoursAreRejected",
+       "width_px": 1080,
+       "height_px": 2274,
+       "density": 2.625
+      }
+     }
+    ]
+   },
+   "02.04": {
+    "passed": 7,
+    "total": 7,
+    "tests": [
+     {
+      "name": "pref02_04_northUpZoom16ArrowOnCarriagewayAlongRoadLaneToCarriagewayWide",
+      "status": "passed",
+      "verdict": {
+       "zoom": 16,
+       "camera": "north-up",
+       "test": "pref02_04_northUpZoom16ArrowOnCarriagewayAlongRoadLaneToCarriagewayWide",
+       "phase": "candidate",
+       "checklist": "02.04",
+       "pass": true,
+       "reasons": [],
+       "arrow_width_m": 9.117598632376499,
+       "arrow_offset_m": 0.4698450845435484,
+       "arrow_heading_screen_deg": 21,
+       "road_heading_screen_deg": 23.163645801773214,
+       "mirror_match": 0.9759036144578314,
+       "arrow_px": 913,
+       "lanes": 3,
+       "allowed_width_m": [
+        3.65,
+        10.95
+       ],
+       "width_px": 1080,
+       "density": 2.625
+      }
+     },
+     {
+      "name": "pref02_04_northUpZoom17ArrowOnCarriagewayAlongRoadLaneToCarriagewayWide",
+      "status": "passed",
+      "verdict": {
+       "zoom": 17,
+       "camera": "north-up",
+       "test": "pref02_04_northUpZoom17ArrowOnCarriagewayAlongRoadLaneToCarriagewayWide",
+       "phase": "candidate",
+       "checklist": "02.04",
+       "pass": true,
+       "reasons": [],
+       "arrow_width_m": 8.992380376630667,
+       "arrow_offset_m": 0.2326735086777897,
+       "arrow_heading_screen_deg": 21,
+       "road_heading_screen_deg": 23.163732875332528,
+       "mirror_match": 0.9827490261547023,
+       "arrow_px": 3594,
+       "lanes": 3,
+       "allowed_width_m": [
+        3.65,
+        10.95
+       ],
+       "width_px": 1080,
+       "density": 2.625
+      }
+     },
+     {
+      "name": "pref02_04_northUpZoom18ArrowOnCarriagewayAlongRoadLaneToCarriagewayWide",
+      "status": "passed",
+      "verdict": {
+       "zoom": 18,
+       "camera": "north-up",
+       "test": "pref02_04_northUpZoom18ArrowOnCarriagewayAlongRoadLaneToCarriagewayWide",
+       "phase": "candidate",
+       "checklist": "02.04",
+       "pass": true,
+       "reasons": [],
+       "arrow_width_m": 8.972329024966298,
+       "arrow_offset_m": 0.12321952520688453,
+       "arrow_heading_screen_deg": 21,
+       "road_heading_screen_deg": 20.143559717395647,
+       "mirror_match": 0.9823083403538332,
+       "arrow_px": 14244,
+       "lanes": 3,
+       "allowed_width_m": [
+        3.65,
+        10.95
+       ],
+       "width_px": 1080,
+       "density": 2.625
+      }
+     },
+     {
+      "name": "pref02_04_drivingViewZoom17ArrowPointsUpTheRoad",
+      "status": "passed",
+      "verdict": {
+       "zoom": 17,
+       "camera": "along road",
+       "test": "pref02_04_drivingViewZoom17ArrowPointsUpTheRoad",
+       "phase": "candidate",
+       "checklist": "02.04",
+       "pass": true,
+       "reasons": [],
+       "arrow_width_m": 8.937185890929646,
+       "arrow_offset_m": 0.1736801936670384,
+       "arrow_heading_screen_deg": 0,
+       "road_heading_screen_deg": 1.7647954848709446,
+       "mirror_match": 0.995258019525802,
+       "arrow_px": 3585,
+       "lanes": 3,
+       "allowed_width_m": [
+        3.65,
+        10.95
+       ],
+       "width_px": 1080,
+       "density": 2.625
+      }
+     },
+     {
+      "name": "pref02_04_zoom16SizeSurvivesAStyleReload",
+      "status": "passed",
+      "verdict": {
+       "zoom": 16,
+       "camera": "north-up",
+       "style_reloaded": true,
+       "test": "pref02_04_zoom16SizeSurvivesAStyleReload",
+       "phase": "candidate",
+       "checklist": "02.04",
+       "pass": true,
+       "reasons": [],
+       "arrow_width_m": 9.117598632376499,
+       "arrow_offset_m": 0.4698450845435484,
+       "arrow_heading_screen_deg": 21,
+       "road_heading_screen_deg": 23.163645801773214,
+       "mirror_match": 0.9759036144578314,
+       "arrow_px": 913,
+       "lanes": 3,
+       "allowed_width_m": [
+        3.65,
+        10.95
+       ],
+       "width_px": 1080,
+       "density": 2.625
+      }
+     },
+     {
+      "name": "pref02_04_negativeControlArrowFacingAgainstTrafficIsRejected",
+      "status": "passed",
+      "verdict": {
+       "zoom": 17,
+       "negative_control": "reversed heading",
+       "test": "pref02_04_negativeControlArrowFacingAgainstTrafficIsRejected",
+       "phase": "candidate",
+       "checklist": "02.04",
+       "pass": false,
+       "reasons": [
+        "arrow points 178\u00b0 away from the road"
+       ],
+       "arrow_width_m": 9.011544301711607,
+       "arrow_offset_m": 0.24252907157487144,
+       "arrow_heading_screen_deg": 201,
+       "road_heading_screen_deg": 23.163732875332528,
+       "mirror_match": 0.9835837506956038,
+       "arrow_px": 3594,
+       "lanes": 3,
+       "allowed_width_m": [
+        3.65,
+        10.95
+       ],
+       "width_px": 1080,
+       "density": 2.625
+      }
+     },
+     {
+      "name": "pref02_04_negativeControlArrowOffTheCentrelineIsRejected",
+      "status": "passed",
+      "verdict": {
+       "zoom": 17,
+       "negative_control": "5 m off centreline",
+       "test": "pref02_04_negativeControlArrowOffTheCentrelineIsRejected",
+       "phase": "candidate",
+       "checklist": "02.04",
+       "pass": false,
+       "reasons": [
+        "arrow centre 4.7 m off the carriageway centreline"
+       ],
+       "arrow_width_m": 9.089434792538805,
+       "arrow_offset_m": 4.715543395080242,
+       "arrow_heading_screen_deg": 21,
+       "road_heading_screen_deg": 23.163732875332528,
+       "mirror_match": 0.9747545582047685,
+       "arrow_px": 3565,
+       "lanes": 3,
+       "allowed_width_m": [
+        3.65,
+        10.95
+       ],
+       "width_px": 1080,
+       "density": 2.625
+      }
+     }
+    ]
+   }
   }
  },
  "problems": [],
