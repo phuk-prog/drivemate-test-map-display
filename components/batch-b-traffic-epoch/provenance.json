@@ -1,0 +1,16 @@
+{
+  "requirement": "08.02",
+  "private_source_base": "9f01c0a1f7154861941eee57fb52a471917b7ce5",
+  "source": "New actual shared controller/TrafficRequestEpoch.kt",
+  "before_score": null,
+  "local_execution": "UNAVAILABLE",
+  "private_execution": false,
+  "http_executed": false,
+  "private_wiring_runtime_verified": false,
+  "approved_preference": "Saving provider key grants permission; clearing it stops future requests, no separate opt-in",
+  "limits": [
+    "State-machine protocol only",
+    "Private controller review separate",
+    "No live provider or legal acceptance"
+  ]
+}
