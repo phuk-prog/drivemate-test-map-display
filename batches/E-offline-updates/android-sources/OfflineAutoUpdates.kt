@@ -10,6 +10,8 @@ import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import androidx.work.workDataOf
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import java.util.concurrent.TimeUnit
 
 /**
@@ -47,11 +49,11 @@ object OfflineAutoUpdates {
     }
 
     class Worker(ctx: Context, params: WorkerParameters) : CoroutineWorker(ctx, params) {
-        override suspend fun doWork(): Result {
+        override suspend fun doWork(): Result = withContext(Dispatchers.IO) {
             val scheduledRevision = inputData.getLong(REVISION, -1L)
             fun approved() = OfflineUpdatePolicy.permits(approval(applicationContext), scheduledRevision)
-            if (!approved()) return Result.success()
-            return try {
+            if (!approved()) return@withContext Result.success()
+            try {
                 RegionalMaps.updateApproved(applicationContext, ::approved)
                 Result.success()
             } catch (cancelled: CancellationException) {

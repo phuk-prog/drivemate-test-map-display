@@ -1,0 +1,11 @@
+[
+  {
+    "run": 40086534836,
+    "job": 120850514533,
+    "classification": "public_test_harness_configuration",
+    "cause": "AndroidX dependencies require android.useAndroidX=true; harness omitted property",
+    "fix": "Explicit AndroidX property in isolated Android harness",
+    "impact": "No Android scheduler tests executed in failed run; Kotlin paired job succeeded",
+    "prevention": "Keep Android-specific properties versioned with each isolated Android harness"
+  }
+]
