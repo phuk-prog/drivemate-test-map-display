@@ -30,10 +30,10 @@ internal class RegionalMapDownloader(
     private val fetch: (url: String, dest: File, onBytes: (Long) -> Unit) -> Unit = ResumableDownload::fetch,
     private val companionTarget: (String) -> File?,
     private val fetchCompanion: (name: String, dest: File) -> Unit = MapData::downloadWeekly,
-    private val attempts: Int = 3,
+    private val attempts: Int = 1,
 ) {
     init {
-        require(attempts in 1..10) { "Unsupported retry count" }
+        require(attempts == 1) { "Failed downloads require explicit user retry" }
         require(store.matchesCatalog(catalog)) { "Store and download plan belong to different generations" }
     }
 

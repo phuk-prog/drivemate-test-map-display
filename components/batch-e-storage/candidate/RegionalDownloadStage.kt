@@ -118,6 +118,6 @@ object RegionalDownloadText {
             else "Paused. Nothing partly downloaded is kept, so it starts from the beginning."
         RegionalDownloadStage.Step.DONE -> "Finished. Every piece was checked before use."
         RegionalDownloadStage.Step.FAILED ->
-            "Stopped: ${s.note ?: "download failed"}. Your maps already on the phone are unchanged."
+            "Download failed. Your maps already on the phone are unchanged."
     }
 }
