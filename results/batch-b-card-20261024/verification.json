@@ -1,0 +1,112 @@
+{
+  "baseline": {
+    "passed": 5,
+    "total": 10,
+    "tests": [
+      {
+        "name": "betweenJunctionsDistanceWithoutArrow",
+        "passed": false
+      },
+      {
+        "name": "arrivalRemovesTurnArrow",
+        "passed": false
+      },
+      {
+        "name": "motorwayApproachRevealsArrow",
+        "passed": true
+      },
+      {
+        "name": "roundaboutKeepsArrow",
+        "passed": true
+      },
+      {
+        "name": "compactSignLayoutHasArrowOnLeft",
+        "passed": true
+      },
+      {
+        "name": "townApproachRevealsArrow",
+        "passed": true
+      },
+      {
+        "name": "staleSpeedDoesNotRevealEarly",
+        "passed": false
+      },
+      {
+        "name": "nowRevealsArrow",
+        "passed": true
+      },
+      {
+        "name": "invalidDistanceDoesNotInventApproach",
+        "passed": false
+      },
+      {
+        "name": "beyondApproachDoesNotShowArrow",
+        "passed": false
+      }
+    ],
+    "exit_code": 1
+  },
+  "candidate": {
+    "passed": 10,
+    "total": 10,
+    "tests": [
+      {
+        "name": "betweenJunctionsDistanceWithoutArrow",
+        "passed": true
+      },
+      {
+        "name": "arrivalRemovesTurnArrow",
+        "passed": true
+      },
+      {
+        "name": "motorwayApproachRevealsArrow",
+        "passed": true
+      },
+      {
+        "name": "roundaboutKeepsArrow",
+        "passed": true
+      },
+      {
+        "name": "compactSignLayoutHasArrowOnLeft",
+        "passed": true
+      },
+      {
+        "name": "townApproachRevealsArrow",
+        "passed": true
+      },
+      {
+        "name": "staleSpeedDoesNotRevealEarly",
+        "passed": true
+      },
+      {
+        "name": "nowRevealsArrow",
+        "passed": true
+      },
+      {
+        "name": "invalidDistanceDoesNotInventApproach",
+        "passed": true
+      },
+      {
+        "name": "beyondApproachDoesNotShowArrow",
+        "passed": true
+      }
+    ],
+    "exit_code": 0
+  },
+  "limitations": [
+    "Individual real Compose header; published Shield model subset and synthetic display inputs.",
+    "Baseline wrapper represents actual unconditional TurnBanner icon call; candidate wrapper supplies proposed policy.",
+    "No private controller, real GPS, road legality, Android Auto host or live provider proof.",
+    "Local preflight UNAVAILABLE: executor failed."
+  ],
+  "source": {
+    "private_base": "baf6c06de2c3027e2ea7563e9f9e4dacafbbd147",
+    "header_git_blob": "c491d7785af9d50107a29f1cc764d05f6925ff91",
+    "baseline_header_sha256": "9d59cac87bcd7730a6dc2a2778ce5a9b4a209c788a553119f97f96eb2b0eb12b",
+    "candidate_header_sha256": "8e7b3fbcface573fbc2dfe6662448c4c0dc896115786628b445ecaca2ef4fbc7"
+  },
+  "run_url": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40086441258",
+  "tested_source_head": "6e546651af2c46524a1072b2d810866439e160cb",
+  "executed_merge_sha": "55cad92317339609b9c4a9d6ec0830b10eff406e",
+  "artifact_id": 12556929419
+}
