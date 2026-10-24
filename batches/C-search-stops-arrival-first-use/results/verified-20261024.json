@@ -1,0 +1,673 @@
+{
+  "scope": "isolated public source components, synthetic UK geometry/provider timings; no UI, legal accessibility, APK or full checklist acceptance",
+  "local_preflight": "UNAVAILABLE",
+  "results": {
+    "baseline": {
+      "total": 53,
+      "passed": 32,
+      "failed": 21,
+      "cases": [
+        {
+          "name": "15.01 measured route end",
+          "status": "PASS"
+        },
+        {
+          "name": "15.01 estimated route end cannot arrive",
+          "status": "PASS"
+        },
+        {
+          "name": "15.01 opposite road near destination",
+          "status": "FAIL"
+        },
+        {
+          "name": "15.01 long remaining route near destination",
+          "status": "PASS"
+        },
+        {
+          "name": "15.01 invalid remaining NaN",
+          "status": "PASS"
+        },
+        {
+          "name": "15.01 invalid offroute NaN",
+          "status": "FAIL"
+        },
+        {
+          "name": "15.01 invalid endpoint NaN",
+          "status": "FAIL"
+        },
+        {
+          "name": "15.01 invalid remaining infinite",
+          "status": "PASS"
+        },
+        {
+          "name": "15.01 invalid offroute infinite",
+          "status": "FAIL"
+        },
+        {
+          "name": "15.01 invalid endpoint infinite",
+          "status": "FAIL"
+        },
+        {
+          "name": "15.01 invalid remaining negative",
+          "status": "FAIL"
+        },
+        {
+          "name": "15.01 invalid offroute negative",
+          "status": "FAIL"
+        },
+        {
+          "name": "15.01 invalid endpoint negative",
+          "status": "FAIL"
+        },
+        {
+          "name": "15.01 no turn side borrowed",
+          "status": "PASS"
+        },
+        {
+          "name": "15.01 explicit destination right",
+          "status": "PASS"
+        },
+        {
+          "name": "15.01 malformed arrival side",
+          "status": "PASS"
+        },
+        {
+          "name": "15.01 arrival ahead wording",
+          "status": "PASS"
+        },
+        {
+          "name": "15.01 stop wording",
+          "status": "PASS"
+        },
+        {
+          "name": "15.01 completed has no approach",
+          "status": "PASS"
+        },
+        {
+          "name": "07.01 actual road detour arithmetic",
+          "status": "PASS"
+        },
+        {
+          "name": "07.01 missing road timing stays unknown",
+          "status": "PASS"
+        },
+        {
+          "name": "07.01 shorter alternative never negative",
+          "status": "PASS"
+        },
+        {
+          "name": "07.01 invalid timing NaN",
+          "status": "FAIL"
+        },
+        {
+          "name": "07.01 invalid label NaN",
+          "status": "FAIL"
+        },
+        {
+          "name": "07.01 invalid timing infinite",
+          "status": "FAIL"
+        },
+        {
+          "name": "07.01 invalid label infinite",
+          "status": "FAIL"
+        },
+        {
+          "name": "07.01 invalid timing negative",
+          "status": "FAIL"
+        },
+        {
+          "name": "07.01 invalid label negative",
+          "status": "FAIL"
+        },
+        {
+          "name": "07.01 overflow timing",
+          "status": "FAIL"
+        },
+        {
+          "name": "07.01 smaller real detour before rounded minute tie",
+          "status": "FAIL"
+        },
+        {
+          "name": "07.01 known before unknown and excessive omitted",
+          "status": "PASS"
+        },
+        {
+          "name": "07.01 precise duration tie prefers ahead",
+          "status": "PASS"
+        },
+        {
+          "name": "07.01 real route polyline and injected road durations",
+          "status": "PASS"
+        },
+        {
+          "name": "07.01 road engine failure remains unknown",
+          "status": "PASS"
+        },
+        {
+          "name": "07.04 essential stop categories",
+          "status": "PASS"
+        },
+        {
+          "name": "07.08 nearest parking filters outside radius",
+          "status": "PASS"
+        },
+        {
+          "name": "06.02 absent entrance not invented",
+          "status": "PASS"
+        },
+        {
+          "name": "07.07 measured past first stop continues prefix",
+          "status": "PASS"
+        },
+        {
+          "name": "07.07 measured before stop retains it",
+          "status": "PASS"
+        },
+        {
+          "name": "07.07 estimated position cannot complete stop",
+          "status": "FAIL"
+        },
+        {
+          "name": "07.07 wrong road cannot complete stop",
+          "status": "FAIL"
+        },
+        {
+          "name": "07.07 invalid progress cannot complete stop",
+          "status": "FAIL"
+        },
+        {
+          "name": "07.07 malformed stop order cannot skip first",
+          "status": "FAIL"
+        },
+        {
+          "name": "07.07 invalid stop position not completed",
+          "status": "FAIL"
+        },
+        {
+          "name": "07.07 measured beyond all stops continues destination",
+          "status": "PASS"
+        },
+        {
+          "name": "06.01 partial prefix prioritises nearest relevant place",
+          "status": "PASS"
+        },
+        {
+          "name": "06.01 partial result remains suggested",
+          "status": "PASS"
+        },
+        {
+          "name": "06.01 partial result never auto selected as exact",
+          "status": "PASS"
+        },
+        {
+          "name": "06.01 missing house number never auto selected",
+          "status": "PASS"
+        },
+        {
+          "name": "06.01 far-away result never auto selected",
+          "status": "PASS"
+        },
+        {
+          "name": "06.01 duplicates merged while different areas retained",
+          "status": "PASS"
+        },
+        {
+          "name": "06.01 progressive results visible before second source releases",
+          "status": "PASS"
+        },
+        {
+          "name": "06.01 one failed local source preserves successful answers",
+          "status": "PASS"
+        }
+      ]
+    },
+    "candidate": {
+      "total": 53,
+      "passed": 53,
+      "failed": 0,
+      "cases": [
+        {
+          "name": "15.01 measured route end",
+          "status": "PASS"
+        },
+        {
+          "name": "15.01 estimated route end cannot arrive",
+          "status": "PASS"
+        },
+        {
+          "name": "15.01 opposite road near destination",
+          "status": "PASS"
+        },
+        {
+          "name": "15.01 long remaining route near destination",
+          "status": "PASS"
+        },
+        {
+          "name": "15.01 invalid remaining NaN",
+          "status": "PASS"
+        },
+        {
+          "name": "15.01 invalid offroute NaN",
+          "status": "PASS"
+        },
+        {
+          "name": "15.01 invalid endpoint NaN",
+          "status": "PASS"
+        },
+        {
+          "name": "15.01 invalid remaining infinite",
+          "status": "PASS"
+        },
+        {
+          "name": "15.01 invalid offroute infinite",
+          "status": "PASS"
+        },
+        {
+          "name": "15.01 invalid endpoint infinite",
+          "status": "PASS"
+        },
+        {
+          "name": "15.01 invalid remaining negative",
+          "status": "PASS"
+        },
+        {
+          "name": "15.01 invalid offroute negative",
+          "status": "PASS"
+        },
+        {
+          "name": "15.01 invalid endpoint negative",
+          "status": "PASS"
+        },
+        {
+          "name": "15.01 no turn side borrowed",
+          "status": "PASS"
+        },
+        {
+          "name": "15.01 explicit destination right",
+          "status": "PASS"
+        },
+        {
+          "name": "15.01 malformed arrival side",
+          "status": "PASS"
+        },
+        {
+          "name": "15.01 arrival ahead wording",
+          "status": "PASS"
+        },
+        {
+          "name": "15.01 stop wording",
+          "status": "PASS"
+        },
+        {
+          "name": "15.01 completed has no approach",
+          "status": "PASS"
+        },
+        {
+          "name": "07.01 actual road detour arithmetic",
+          "status": "PASS"
+        },
+        {
+          "name": "07.01 missing road timing stays unknown",
+          "status": "PASS"
+        },
+        {
+          "name": "07.01 shorter alternative never negative",
+          "status": "PASS"
+        },
+        {
+          "name": "07.01 invalid timing NaN",
+          "status": "PASS"
+        },
+        {
+          "name": "07.01 invalid label NaN",
+          "status": "PASS"
+        },
+        {
+          "name": "07.01 invalid timing infinite",
+          "status": "PASS"
+        },
+        {
+          "name": "07.01 invalid label infinite",
+          "status": "PASS"
+        },
+        {
+          "name": "07.01 invalid timing negative",
+          "status": "PASS"
+        },
+        {
+          "name": "07.01 invalid label negative",
+          "status": "PASS"
+        },
+        {
+          "name": "07.01 overflow timing",
+          "status": "PASS"
+        },
+        {
+          "name": "07.01 smaller real detour before rounded minute tie",
+          "status": "PASS"
+        },
+        {
+          "name": "07.01 known before unknown and excessive omitted",
+          "status": "PASS"
+        },
+        {
+          "name": "07.01 precise duration tie prefers ahead",
+          "status": "PASS"
+        },
+        {
+          "name": "07.01 real route polyline and injected road durations",
+          "status": "PASS"
+        },
+        {
+          "name": "07.01 road engine failure remains unknown",
+          "status": "PASS"
+        },
+        {
+          "name": "07.04 essential stop categories",
+          "status": "PASS"
+        },
+        {
+          "name": "07.08 nearest parking filters outside radius",
+          "status": "PASS"
+        },
+        {
+          "name": "06.02 absent entrance not invented",
+          "status": "PASS"
+        },
+        {
+          "name": "07.07 measured past first stop continues prefix",
+          "status": "PASS"
+        },
+        {
+          "name": "07.07 measured before stop retains it",
+          "status": "PASS"
+        },
+        {
+          "name": "07.07 estimated position cannot complete stop",
+          "status": "PASS"
+        },
+        {
+          "name": "07.07 wrong road cannot complete stop",
+          "status": "PASS"
+        },
+        {
+          "name": "07.07 invalid progress cannot complete stop",
+          "status": "PASS"
+        },
+        {
+          "name": "07.07 malformed stop order cannot skip first",
+          "status": "PASS"
+        },
+        {
+          "name": "07.07 invalid stop position not completed",
+          "status": "PASS"
+        },
+        {
+          "name": "07.07 measured beyond all stops continues destination",
+          "status": "PASS"
+        },
+        {
+          "name": "06.01 partial prefix prioritises nearest relevant place",
+          "status": "PASS"
+        },
+        {
+          "name": "06.01 partial result remains suggested",
+          "status": "PASS"
+        },
+        {
+          "name": "06.01 partial result never auto selected as exact",
+          "status": "PASS"
+        },
+        {
+          "name": "06.01 missing house number never auto selected",
+          "status": "PASS"
+        },
+        {
+          "name": "06.01 far-away result never auto selected",
+          "status": "PASS"
+        },
+        {
+          "name": "06.01 duplicates merged while different areas retained",
+          "status": "PASS"
+        },
+        {
+          "name": "06.01 progressive results visible before second source releases",
+          "status": "PASS"
+        },
+        {
+          "name": "06.01 one failed local source preserves successful answers",
+          "status": "PASS"
+        }
+      ]
+    }
+  },
+  "run": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40087193945",
+  "job": 120852427747,
+  "tested_public_source_commit": "d35aaa104441b25c40a506eff1ae712b944de017",
+  "private_candidate": "f34e18283a42ef8919b9e2b1bf5e166c98721850",
+  "full_checklist_acceptance": "NOT_VERIFIED",
+  "source_parity": [
+    {
+      "file": "ArrivalPolicy.kt",
+      "private_candidate_blob": "e480c2a8abb49e7f0289e39a6ad86bc5533817d9",
+      "public_candidate_blob": "e480c2a8abb49e7f0289e39a6ad86bc5533817d9"
+    },
+    {
+      "file": "StopDetour.kt",
+      "private_candidate_blob": "373075938ad61991df8f217dd939e9ce856758b9",
+      "public_candidate_blob": "373075938ad61991df8f217dd939e9ce856758b9"
+    },
+    {
+      "file": "StopCompletionPolicy.kt",
+      "private_candidate_blob": "cdc74831274b77a7a26a47197315da3ea1d9036f",
+      "public_candidate_blob": "cdc74831274b77a7a26a47197315da3ea1d9036f"
+    }
+  ],
+  "outcomes": [
+    {
+      "id": "06.01",
+      "status": "COMPONENT_ONLY",
+      "behavior": "Eight actual unchanged Geocoder/SearchMatch/ParallelSearch component scenarios pass before+after: partial nearby ranking, suggested quality, unsafe autoselection prevention, deduplication, progressive delivery and source-failure isolation. As-you-type app UI not executed.",
+      "evidence": "SearchController.kt; NavigationSession.kt:833; Geocoder.kt",
+      "full_acceptance": "NOT_VERIFIED",
+      "full_app_tests": null,
+      "local_preflight": "UNAVAILABLE",
+      "requirement": "Search as the user types, match partial names and prioritise the closest relevant locations."
+    },
+    {
+      "id": "06.02",
+      "status": "NOT_IMPLEMENTED",
+      "behavior": "Missing approximate entrance fallback: AlongRoute.arrivalHelp always entrance=null; no vehicle-accessibility evidence",
+      "evidence": "AlongRoute.kt:arrivalHelp",
+      "full_acceptance": "NOT_VERIFIED",
+      "full_app_tests": null,
+      "local_preflight": "UNAVAILABLE",
+      "requirement": "Show an approximate destination entrance when an exact one is unavailable, clearly labelled as approximate."
+    },
+    {
+      "id": "06.03",
+      "status": "PARTIAL",
+      "behavior": "Directions opens route preview then Start; separate initial Go/Start and full-screen Preview acceptance not demonstrated",
+      "evidence": "BrowseScreen.kt; MainScreen.kt:PreviewUi",
+      "full_acceptance": "NOT_VERIFIED",
+      "full_app_tests": null,
+      "local_preflight": "UNAVAILABLE",
+      "requirement": "Offer separate Go/Start and full-screen Preview actions before navigation."
+    },
+    {
+      "id": "06.04",
+      "status": "NOT_IMPLEMENTED",
+      "behavior": "Only button-launched phone speech recognition found; no wake-phrase implementation located",
+      "evidence": "MainScreen.kt:speechLauncher",
+      "full_acceptance": "NOT_VERIFIED",
+      "full_app_tests": null,
+      "local_preflight": "UNAVAILABLE",
+      "requirement": "Support a wake phrase for voice search."
+    },
+    {
+      "id": "06.05",
+      "status": "DEFERRED",
+      "behavior": "Remains deferred acceptance; optional ACTION_SEND/geo imports already exist and are preserved",
+      "evidence": "MainActivity.kt:handleSharedDestination",
+      "full_acceptance": "NOT_VERIFIED",
+      "full_app_tests": null,
+      "local_preflight": "UNAVAILABLE",
+      "requirement": "Add destination sharing from other apps after the core features are stable; retain this as deferred work."
+    },
+    {
+      "id": "07.01",
+      "status": "COMPONENT_ONLY",
+      "behavior": "Road-based detour search implemented; baseline invalid-time/ordering defects reproduced and candidate corrected; live UI/integration not verified",
+      "evidence": "StopDetour.kt; NavigationSession.kt:searchAlongRoute",
+      "full_acceptance": "NOT_VERIFIED",
+      "full_app_tests": null,
+      "local_preflight": "UNAVAILABLE",
+      "requirement": "Let Add stop find places along the route and show the extra journey time for each."
+    },
+    {
+      "id": "07.02",
+      "status": "NOT_IMPLEMENTED",
+      "behavior": "Stop rows explicitly show opening times not checked; no opening-hours/open-now data model or pipeline",
+      "evidence": "Sheets.kt:RoutePlaceRow; AlongRoute.kt:RoutePlace",
+      "full_acceptance": "NOT_VERIFIED",
+      "full_app_tests": null,
+      "local_preflight": "UNAVAILABLE",
+      "requirement": "Show opening hours and “open now” for stop options."
+    },
+    {
+      "id": "07.03",
+      "status": "PARTIAL",
+      "behavior": "Retailer feed enrichment exists but in-memory entries never expire during process lifetime; live freshness not established",
+      "evidence": "FuelPrices.kt:ensureLoaded; NavigationSession.kt:withPrices",
+      "full_acceptance": "NOT_VERIFIED",
+      "full_app_tests": null,
+      "local_preflight": "UNAVAILABLE",
+      "requirement": "Show live fuel prices where available."
+    },
+    {
+      "id": "07.04",
+      "status": "COMPONENT_ONLY",
+      "behavior": "Fuel, food, toilets and parking filter categories and callbacks present; component taxonomy checked, UI interaction not executed",
+      "evidence": "AlongRoute.kt:PlaceKind; Sheets.kt:TripSheet",
+      "full_acceptance": "NOT_VERIFIED",
+      "full_app_tests": null,
+      "local_preflight": "UNAVAILABLE",
+      "requirement": "Filter stops by categories such as fuel, food, toilets and parking."
+    },
+    {
+      "id": "07.05",
+      "status": "UNVERIFIED",
+      "behavior": "addStop appends to intermediate list and reroutes; live multi-stop route execution not performed",
+      "evidence": "NavigationSession.kt:addStop",
+      "full_acceptance": "NOT_VERIFIED",
+      "full_app_tests": null,
+      "local_preflight": "UNAVAILABLE",
+      "requirement": "Allow another destination or intermediate stop to be added."
+    },
+    {
+      "id": "07.06",
+      "status": "NOT_IMPLEMENTED",
+      "behavior": "Stops are plain text; no drag-to-reorder callback or UI located",
+      "evidence": "Sheets.kt:TripSheet",
+      "full_acceptance": "NOT_VERIFIED",
+      "full_app_tests": null,
+      "local_preflight": "UNAVAILABLE",
+      "requirement": "Allow stops to be dragged into the preferred order, with the final destination last."
+    },
+    {
+      "id": "07.07",
+      "status": "COMPONENT_ONLY",
+      "behavior": "Continuous route progression present; candidate uses measured on-route stop completion instead of predicted progress; no end-to-end replay",
+      "evidence": "NavigationSession.kt:updateNavigation; StopCompletionPolicy.kt",
+      "full_acceptance": "NOT_VERIFIED",
+      "full_app_tests": null,
+      "local_preflight": "UNAVAILABLE",
+      "requirement": "Continue navigation automatically to the next stop after finishing a stop."
+    },
+    {
+      "id": "07.08",
+      "status": "COMPONENT_ONLY",
+      "behavior": "Nearby parking query and button present; synthetic nearest-radius behavior checked; destination UI not executed",
+      "evidence": "AlongRoute.kt:near; MainScreen.kt:offerParking/arrival",
+      "full_acceptance": "NOT_VERIFIED",
+      "full_app_tests": null,
+      "local_preflight": "UNAVAILABLE",
+      "requirement": "Show parking options when requested, with a small nearby-parking button near the destination."
+    },
+    {
+      "id": "15.01",
+      "status": "COMPONENT_ONLY",
+      "behavior": "Ahead/side/arrival wording present; arrival gate corrected for wrong-road and invalid measurements; actual speech/replay not verified",
+      "evidence": "ArrivalApproachInstruction.kt; ArrivalPolicy.kt; NavigationSession.kt:updateNavigation",
+      "full_acceptance": "NOT_VERIFIED",
+      "full_app_tests": null,
+      "local_preflight": "UNAVAILABLE",
+      "requirement": "Announce the destination ahead shortly before arrival, including left or right when known, then announce arrival."
+    },
+    {
+      "id": "15.02",
+      "status": "UNVERIFIED",
+      "behavior": "Arrival retains map and parking control; finish callback present; no visual robot verification",
+      "evidence": "MainScreen.kt:NavigationUi; NavigationSession.kt:arrival",
+      "full_acceptance": "NOT_VERIFIED",
+      "full_app_tests": null,
+      "local_preflight": "UNAVAILABLE",
+      "requirement": "Keep the map visible after arrival with Finish journey and Find parking actions."
+    },
+    {
+      "id": "15.03",
+      "status": "PARTIAL",
+      "behavior": "Dismissible summary has time/distance and time saved, but no journey-delay total",
+      "evidence": "TripStats.kt; MainScreen.kt:TripSummaryCard",
+      "full_acceptance": "NOT_VERIFIED",
+      "full_app_tests": null,
+      "local_preflight": "UNAVAILABLE",
+      "requirement": "Offer an optional trip summary showing journey time, distance and delays."
+    },
+    {
+      "id": "15.04",
+      "status": "INTEGRATION_PENDING",
+      "behavior": "Candidate gates tripHistory.add using D authoritative default-off journeyHistoryEnabled flag; cross-branch integrated test pending",
+      "evidence": "NavigationSession.kt:arrival; D consent dependency",
+      "full_acceptance": "NOT_VERIFIED",
+      "full_app_tests": null,
+      "local_preflight": "UNAVAILABLE",
+      "requirement": "Do not save the journey summary unless journey history is enabled."
+    },
+    {
+      "id": "17.01",
+      "status": "COMPONENT_ONLY",
+      "behavior": "Actual Compose help tested4/4: first-use render, dismiss+persist, remount no-repeat, no journey-history consent change. Combined app launch not verified.",
+      "evidence": "FirstUseTripHelp.kt; MainScreen.kt",
+      "full_acceptance": "NOT_VERIFIED",
+      "full_app_tests": null,
+      "local_preflight": "UNAVAILABLE",
+      "requirement": "Show a short first-use tutorial."
+    }
+  ],
+  "first_use_runtime": {
+    "requirement": "17.01",
+    "scope": "Actual isolated Compose tutorial in Robolectric native graphics; no combined-app launch or APK",
+    "before": {
+      "runtime_score": null,
+      "status": "No prior tutorial source exists; baseline absence observed by source inspection only"
+    },
+    "after": {
+      "total": 4,
+      "passed": 4,
+      "cases": {
+        "firstUseShowsShortTripHelpAndOneAcknowledgement": "passed",
+        "gotItDismissesAndPersistsAcknowledgement": "passed",
+        "tutorialAcknowledgementNeverChangesJourneyHistoryConsent": "passed",
+        "acknowledgedHelpRemainsAbsentWhenComponentRemounts": "passed"
+      }
+    },
+    "run_id": "40086909854",
+    "private_candidate": "f34e18283a42ef8919b9e2b1bf5e166c98721850",
+    "app_integration_verified": false,
+    "apk_generated": false,
+    "url": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40086909854",
+    "job_id": 120851613993,
+    "tested_public_source_commit": "ceef1659a2a5811f3d91642b307ba77ce36ca69b"
+  }
+}

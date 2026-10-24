@@ -1,0 +1,91 @@
+{
+  "base": "baf6c06de2c3027e2ea7563e9f9e4dacafbbd147",
+  "private_candidate": "f34e18283a42ef8919b9e2b1bf5e166c98721850",
+  "tested_public_source_commit": "2ffba250f541750347d0d89a6b884cf46f85c5d1",
+  "candidate_parity": [
+    {
+      "file": "ArrivalPolicy.kt",
+      "private_candidate_blob": "e480c2a8abb49e7f0289e39a6ad86bc5533817d9",
+      "public_candidate_blob": "e480c2a8abb49e7f0289e39a6ad86bc5533817d9"
+    },
+    {
+      "file": "StopDetour.kt",
+      "private_candidate_blob": "373075938ad61991df8f217dd939e9ce856758b9",
+      "public_candidate_blob": "373075938ad61991df8f217dd939e9ce856758b9"
+    },
+    {
+      "file": "StopCompletionPolicy.kt",
+      "private_candidate_blob": "cdc74831274b77a7a26a47197315da3ea1d9036f",
+      "public_candidate_blob": "cdc74831274b77a7a26a47197315da3ea1d9036f"
+    },
+    {
+      "file": "FirstUseTripHelp.kt",
+      "private_candidate_blob": "733f38818a8c8d2605dd3595d2a40b0533dc477b",
+      "public_candidate_blob": "733f38818a8c8d2605dd3595d2a40b0533dc477b"
+    }
+  ],
+  "source_files": [
+    {
+      "path": "batches/C-search-stops-arrival-first-use/baseline/ArrivalPolicy.kt",
+      "blob": "04c58715315d8756731bdc0ae99dd536668f334c"
+    },
+    {
+      "path": "batches/C-search-stops-arrival-first-use/baseline/StopCompletionPolicy.kt",
+      "blob": "daf763e7dadf7dcb5a85fc19493d16839d3f4a70"
+    },
+    {
+      "path": "batches/C-search-stops-arrival-first-use/baseline/StopDetour.kt",
+      "blob": "8cffb3f929faf981cedb4e575360e6996d0cefd8"
+    },
+    {
+      "path": "batches/C-search-stops-arrival-first-use/candidate/ArrivalPolicy.kt",
+      "blob": "e480c2a8abb49e7f0289e39a6ad86bc5533817d9"
+    },
+    {
+      "path": "batches/C-search-stops-arrival-first-use/candidate/StopCompletionPolicy.kt",
+      "blob": "cdc74831274b77a7a26a47197315da3ea1d9036f"
+    },
+    {
+      "path": "batches/C-search-stops-arrival-first-use/candidate/StopDetour.kt",
+      "blob": "373075938ad61991df8f217dd939e9ce856758b9"
+    },
+    {
+      "path": "batches/C-search-stops-arrival-first-use/common/AlongRoute.kt",
+      "blob": "3229641961cca09cfcc94c523893c7bb61f13d66"
+    },
+    {
+      "path": "batches/C-search-stops-arrival-first-use/common/ArrivalApproachInstruction.kt",
+      "blob": "ea95de941648fd253e8829c82854f56d89eb1467"
+    },
+    {
+      "path": "batches/C-search-stops-arrival-first-use/common/Boundaries.kt",
+      "blob": "c2174c9ae8620c47984f2a2d4c20663b6fbf4395"
+    },
+    {
+      "path": "batches/C-search-stops-arrival-first-use/common/DmnBoundary.kt",
+      "blob": "3091666233d48fafac2eced51d21032af56610e6"
+    },
+    {
+      "path": "batches/C-search-stops-arrival-first-use/common/Geo.kt",
+      "blob": "0120933d40824a9da333847272167d31ebc503c4"
+    },
+    {
+      "path": "batches/C-search-stops-arrival-first-use/common/Geocoder.kt",
+      "blob": "bbdfe178dacf58984250e101f3ef57758842a850"
+    },
+    {
+      "path": "batches/C-search-stops-arrival-first-use/common/ParallelSearch.kt",
+      "blob": "212c1cf2b0a446a85194a26c735b01c7a5828ea8"
+    },
+    {
+      "path": "batches/C-search-stops-arrival-first-use/common/SearchMatch.kt",
+      "blob": "31731316d4d15fdd22bcbb84e2cbe9b84d63ebbe"
+    },
+    {
+      "path": "batches/C-search-stops-arrival-first-use/first-use-android/src/main/kotlin/com/drivemate/app/ui/FirstUseTripHelp.kt",
+      "blob": "733f38818a8c8d2605dd3595d2a40b0533dc477b"
+    }
+  ],
+  "boundary": "Boundaries.kt and DmnBoundary.kt are synthetic; baseline StopCompletionPolicy is an adapter of the baseline NavigationSession count expression, not a copied production class",
+  "current_search_source_commit": "f8a4fee07eb7a8e6b1ff48f8907b27af10f81b10"
+}
