@@ -16,9 +16,10 @@ def blob(p):
     raw = p.read_bytes()
     return hashlib.sha1(b"blob " + str(len(raw)).encode() + b"\0" + raw).hexdigest()
 
-for name, sha in manifest["candidate"].items():
-    assert blob(root / "src/main/kotlin" / pkg / name) == sha, "candidate source mismatch: " + name
-assert blob(root / "baseline/PublishedRegionCatalog.kt") == manifest["baseline"]["PublishedRegionCatalog.kt"], "baseline mismatch"
+for entry in manifest["published_files"] + manifest["baseline_files"]:
+    assert blob(root / entry["public"]) == entry["git_blob"], "source mismatch: " + entry["public"]
+assert sorted(e["public"] for e in manifest["published_files"]) == sorted(
+    str(p.relative_to(root)) for p in (root / "src/main/kotlin" / pkg).glob("*.kt")), "unlisted app file"
 
 def names(paths):
     found = []
@@ -74,7 +75,7 @@ cov_after = sum(after["cases"][n] == "passed" for n in coverage_names)
 result = {
     "suite": "region-mosaic", "checklist": ["02.x map overview: no blank published areas", "optional region download rules"],
     "scope": "exact app components (JVM); MapLibre rendering and MapData wiring are covered by the private full-app run",
-    "app_commit": manifest["app_commit"], "public_run_id": os.getenv("GITHUB_RUN_ID"),
+    "app_commit": manifest["phases"]["candidate"]["app_commit"], "public_run_id": os.getenv("GITHUB_RUN_ID"),
     "public_head_sha": os.getenv("GITHUB_SHA"),
     "before": {"overview_views": f'{before["passed"]}/6', **before},
     "after": {"overview_views": f"{cov_after}/6", "all": f'{after["passed"]}/{after["total"]}', **after},
