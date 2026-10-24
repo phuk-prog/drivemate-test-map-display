@@ -1,0 +1,40 @@
+{
+  "requirement": "08.02",
+  "run_id": "40072064956",
+  "public_sha": "ef855a4f0097e2f9bca26315ceb5f43e46ae7cb1",
+  "scope": "Actual credential request epoch component; synthetic scheduling/cancellation scenarios, not private NavigationSession or HTTP execution",
+  "before": {
+    "score": null,
+    "reason": "No comparable executed original request-generation component suite"
+  },
+  "after": {
+    "passed": 14,
+    "total": 14,
+    "cases": {
+      "invalidationWithoutActiveRequestDoesNotBlockNextRequest": "passed",
+      "concurrentAcquisitionHasExactlyOneOwner": "passed",
+      "freshTicketMayPublish": "passed",
+      "newRequestWaitsUntilOldBlockingWorkFinishes": "passed",
+      "cancellationKeepsReservationUntilBlockingWorkActuallyReturns": "passed",
+      "ordinaryFinishDoesNotScheduleAnotherFetch": "passed",
+      "nonCooperativeLateResultLosesAuthorityWithoutCancellation": "passed",
+      "invalidationRevokesPublicationImmediately": "passed",
+      "finishRevokesPublication": "passed",
+      "completedOldTicketCannotConsumeANewerRetry": "passed",
+      "repeatedInvalidationsYieldOnePendingRefresh": "passed",
+      "foreignTicketCannotReleaseAReservation": "passed",
+      "keyAToBToADoesNotRestoreAnOldTicket": "passed",
+      "oldFinallyCannotUnlockANewerRequest": "passed"
+    }
+  },
+  "source_hashes": {
+    "src/test/kotlin/com/drivemate/app/controller/TrafficRequestEpochTest.kt": "f04fa4bbb87f88c305bdbcc204bf98bd924b3bb3e6155ed01a7b0e99241fa085",
+    "src/main/kotlin/com/drivemate/app/controller/TrafficRequestEpoch.kt": "9ef5f11be67fd4a7f88a35353e74c050cd2643de7f2c75da266f49130a4ad61f"
+  },
+  "execution_valid": true,
+  "errors": [],
+  "private_controller_runtime_verified": false,
+  "live_api_verified": false,
+  "batch_accepted": false,
+  "apk_generated": false
+}
