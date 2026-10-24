@@ -9,3 +9,5 @@ result={"app_base":"baf6c06de2c3027e2ea7563e9f9e4dacafbbd147","run_id":os.getenv
 out=root/"results/controls.json"; out.parent.mkdir(exist_ok=True);out.write_text(json.dumps(result,indent=2)+"\n");print(json.dumps(result))
 assert len(cases)==7, "All seven tests must execute"
 # Baseline failures are recorded; candidate check is enabled in the subsequent source-only change.
+
+assert p.returncode == 0 and all(v=="passed" for v in cases.values()), "Candidate must pass all unchanged tests"
