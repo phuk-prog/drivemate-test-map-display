@@ -90,6 +90,7 @@ class PositionUncertainBannerTest {
         // Timing starts only once accurate fixes have kept it away for 4 s.
         feed(12_000, accuracy = 4f, label = "start-healthy")
         captureScreen("after-start")
+        requireAppInFront()
         val late = seen.lastOrNull()
         assertTrue("Banner still shown at $late ms of a healthy start: $timeline", late == null || late < 8_000)
     }
@@ -188,6 +189,19 @@ class PositionUncertainBannerTest {
         }.getOrDefault(emptyList())
         timeline.put(JSONObject().put("event", "screen-$tag").put("package", device.currentPackageName ?: JSONObject.NULL)
             .put("visible_texts", JSONArray(texts)))
+    }
+
+    /**
+     * The timing checks only mean something while DriveMate is the screen being read. Run
+     * 40089243895 spent every test behind "Pixel Launcher isn't responding", and two no-banner
+     * cases passed vacuously; such a run must fail as a harness fault instead.
+     */
+    private fun requireAppInFront() {
+        val blocker = device.findObject(By.textContains("isn't responding"))?.text
+        assertTrue("Harness: system dialog over the app: $blocker", blocker == null)
+        assertTrue("Harness: ${device.currentPackageName} in front, not ${context.packageName}",
+            device.currentPackageName == context.packageName)
+        assertTrue("Harness: DriveMate map screen not shown", device.hasObject(By.text("Where to?")))
     }
 
     private fun outputDir(): File? = (InstrumentationRegistry.getArguments().getString("additionalTestOutputDir")?.let(::File)
