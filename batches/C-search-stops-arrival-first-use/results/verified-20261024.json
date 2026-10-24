@@ -3,8 +3,8 @@
   "local_preflight": "UNAVAILABLE",
   "results": {
     "baseline": {
-      "total": 45,
-      "passed": 24,
+      "total": 53,
+      "passed": 32,
       "failed": 21,
       "cases": [
         {
@@ -186,12 +186,44 @@
         {
           "name": "07.07 measured beyond all stops continues destination",
           "status": "PASS"
+        },
+        {
+          "name": "06.01 partial prefix prioritises nearest relevant place",
+          "status": "PASS"
+        },
+        {
+          "name": "06.01 partial result remains suggested",
+          "status": "PASS"
+        },
+        {
+          "name": "06.01 partial result never auto selected as exact",
+          "status": "PASS"
+        },
+        {
+          "name": "06.01 missing house number never auto selected",
+          "status": "PASS"
+        },
+        {
+          "name": "06.01 far-away result never auto selected",
+          "status": "PASS"
+        },
+        {
+          "name": "06.01 duplicates merged while different areas retained",
+          "status": "PASS"
+        },
+        {
+          "name": "06.01 progressive results visible before second source releases",
+          "status": "PASS"
+        },
+        {
+          "name": "06.01 one failed local source preserves successful answers",
+          "status": "PASS"
         }
       ]
     },
     "candidate": {
-      "total": 45,
-      "passed": 45,
+      "total": 53,
+      "passed": 53,
       "failed": 0,
       "cases": [
         {
@@ -373,13 +405,45 @@
         {
           "name": "07.07 measured beyond all stops continues destination",
           "status": "PASS"
+        },
+        {
+          "name": "06.01 partial prefix prioritises nearest relevant place",
+          "status": "PASS"
+        },
+        {
+          "name": "06.01 partial result remains suggested",
+          "status": "PASS"
+        },
+        {
+          "name": "06.01 partial result never auto selected as exact",
+          "status": "PASS"
+        },
+        {
+          "name": "06.01 missing house number never auto selected",
+          "status": "PASS"
+        },
+        {
+          "name": "06.01 far-away result never auto selected",
+          "status": "PASS"
+        },
+        {
+          "name": "06.01 duplicates merged while different areas retained",
+          "status": "PASS"
+        },
+        {
+          "name": "06.01 progressive results visible before second source releases",
+          "status": "PASS"
+        },
+        {
+          "name": "06.01 one failed local source preserves successful answers",
+          "status": "PASS"
         }
       ]
     }
   },
-  "run": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40086568200",
-  "job": 120850614463,
-  "tested_public_source_commit": "2ffba250f541750347d0d89a6b884cf46f85c5d1",
+  "run": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40087193945",
+  "job": 120852427747,
+  "tested_public_source_commit": "d35aaa104441b25c40a506eff1ae712b944de017",
   "private_candidate": "f34e18283a42ef8919b9e2b1bf5e166c98721850",
   "full_checklist_acceptance": "NOT_VERIFIED",
   "source_parity": [
@@ -402,8 +466,8 @@
   "outcomes": [
     {
       "id": "06.01",
-      "status": "UNVERIFIED",
-      "behavior": "Partial source support; incremental delayed progressive search and ranking present; real as-you-type/partial/closest behavior not executed",
+      "status": "COMPONENT_ONLY",
+      "behavior": "Eight actual unchanged Geocoder/SearchMatch/ParallelSearch component scenarios pass before+after: partial nearby ranking, suggested quality, unsafe autoselection prevention, deduplication, progressive delivery and source-failure isolation. As-you-type app UI not executed.",
       "evidence": "SearchController.kt; NavigationSession.kt:833; Geocoder.kt",
       "full_acceptance": "NOT_VERIFIED",
       "full_app_tests": null,

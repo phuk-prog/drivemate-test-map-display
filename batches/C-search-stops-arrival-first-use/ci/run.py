@@ -6,7 +6,7 @@ for phase in ("baseline","candidate"):
     print(p.stdout,flush=True)
     if p.returncode: raise SystemExit(phase+" infrastructure/compile failure: no result claimed")
     cases=[line.split("|",3) for line in p.stdout.splitlines() if line.startswith("CASE|")]
-    if len(cases)<35: raise SystemExit("Missing behavioral case output")
+    if len(cases)!=53: raise SystemExit("Missing behavioral case output")
     results[phase]={"total":len(cases),"passed":sum(c[2]=="PASS" for c in cases),"failed":sum(c[2]=="FAIL" for c in cases),"cases":[{"name":c[1],"status":c[2]} for c in cases]}
 out=root/"results";out.mkdir(exist_ok=True)
 report={"scope":"isolated public source components, synthetic UK geometry/provider timings; no UI, legal accessibility, APK or full checklist acceptance","local_preflight":"UNAVAILABLE","results":results}
