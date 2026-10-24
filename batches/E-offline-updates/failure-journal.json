@@ -2,10 +2,15 @@
   {
     "run": 40086534836,
     "job": 120850514533,
-    "classification": "public_test_harness_configuration",
-    "cause": "AndroidX dependencies require android.useAndroidX=true; harness omitted property",
-    "fix": "Explicit AndroidX property in isolated Android harness",
-    "impact": "No Android scheduler tests executed in failed run; Kotlin paired job succeeded",
-    "prevention": "Keep Android-specific properties versioned with each isolated Android harness"
+    "cause": "AndroidX property omitted",
+    "fix": "android.useAndroidX=true",
+    "tests_executed": false
+  },
+  {
+    "run": 40086678017,
+    "job": 120850941113,
+    "cause": "Java target1.8 differs from Kotlin17",
+    "fix": "Explicit Java17 compileOptions paired with Kotlin target17",
+    "tests_executed": false
   }
 ]

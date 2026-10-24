@@ -6,6 +6,7 @@ android {
     namespace = "com.drivemate.offline.publictest"
     compileSdk = 36
     defaultConfig { minSdk = 26 }
+    compileOptions { sourceCompatibility = JavaVersion.VERSION_17; targetCompatibility = JavaVersion.VERSION_17 }
     testOptions { unitTests.isIncludeAndroidResources = true }
     sourceSets["main"].java.setSrcDirs(listOf("../android-sources"))
     sourceSets["test"].java.setSrcDirs(listOf("../android-tests"))
