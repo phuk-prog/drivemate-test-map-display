@@ -1,5 +1,12 @@
 package com.drivemate.app.ui
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.size
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.graphics.Color
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -36,7 +43,10 @@ internal fun WarningSymbolLegend(navigating: Boolean) {
     Column(Modifier.fillMaxWidth().testTag("warning-symbol-legend"), verticalArrangement = Arrangement.spacedBy(8.dp)) {
         entries.forEach { type ->
             Row(Modifier.fillMaxWidth().testTag("warning-symbol-${type.name}").padding(vertical = 4.dp)) {
-                Text(type.emoji, fontSize = 24.sp)
+                Box(Modifier.size(38.dp).background(Color(("FF" + type.color.removePrefix("#")).toLong(16)), CircleShape)
+                    .border(2.5.dp, Color.White, CircleShape).testTag("warning-icon-${type.name}"), contentAlignment = Alignment.Center) {
+                    Text(type.emoji, fontSize = 18.sp)
+                }
                 Spacer(Modifier.width(12.dp))
                 Text(type.label, modifier = Modifier.testTag("warning-label-${type.name}"))
             }
