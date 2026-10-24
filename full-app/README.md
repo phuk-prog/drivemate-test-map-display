@@ -52,6 +52,13 @@ walked once; the AOSP image crashes MapLibre's Vulkan renderer; the emulator lau
 front of the app; the screen can sleep during long cases. A run where DriveMate is not on screen
 fails as a harness fault, never as a pass.
 
+**Timing fix (2026-10-24):** `bannerAppearsAfterGpsIsLost` timed the banner from the start of
+the no-fix phase, which begins after the start-up screenshot, not from the last fix. Private
+[run 40103590161](https://github.com/phuk-prog/drivemate-app/actions/runs/40103590161) then
+read 2.638 s and failed, although the real gap since the last fix was longer by an unrecorded
+amount. The test now records when the last fix reached both sources and measures from there,
+for both the 3 s lower bound and the 7 s upper bound.
+
 ## Limits
 - Both sources get identical fixes, so disagreement between them is not exercised.
 - Fixes are synthetic; real GNSS noise, tunnels and multipath are not modelled.

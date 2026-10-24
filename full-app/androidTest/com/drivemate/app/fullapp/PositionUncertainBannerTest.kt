@@ -137,7 +137,12 @@ class PositionUncertainBannerTest {
         }
         locations.setTestProviderLocation(LocationManager.GPS_PROVIDER, fix(LocationManager.GPS_PROVIDER))
         Tasks.await(fused.setMockLocation(fix("fused")), 5, TimeUnit.SECONDS)
+        lastFixAt = SystemClock.elapsedRealtime()
     }
+
+    /** When the last fix reached both sources. Run 40103590161 timed GPS loss from the phase start
+     *  instead, which came after the start-up screenshot, and under-reported the gap. */
+    private var lastFixAt = 0L
 
     private var phaseStart = 0L
     private val seen = ArrayList<Long>()
@@ -224,8 +229,10 @@ class PositionUncertainBannerTest {
 
     @Test fun pref01_01_bannerAppearsAfterGpsIsLost() {
         feed(9_000, accuracy = null, label = "gps-lost")
-        val first = firstSeen()
-        timeline.put(JSONObject().put("event", "verdict").put("first_seen_ms", first ?: JSONObject.NULL))
+        val sinceFix = phaseStart - lastFixAt
+        val first = firstSeen()?.plus(sinceFix)
+        timeline.put(JSONObject().put("event", "verdict").put("last_fix_before_phase_ms", sinceFix)
+            .put("first_seen_after_last_fix_ms", first ?: JSONObject.NULL))
         assertTrue("Banner never appeared within 9 s of GPS loss: $timeline", first != null)
         assertTrue("Banner appeared $first ms after the last fix, sooner than 3 s", first!! >= 2_900)
         assertTrue("Banner took $first ms after the last fix, beyond 7 s", first <= 7_000)
