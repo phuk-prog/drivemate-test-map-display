@@ -1,0 +1,24 @@
+    /** Immediate measured-speed warning, repeated each minute; limits come from shownLimit. */
+    private fun warnIfSpeeding(loc: Location, limitKmh: Double?) {
+        val now = SystemClock.elapsedRealtime()
+        val nowNanos = SystemClock.elapsedRealtimeNanos()
+        val fixAgeMs = loc.elapsedRealtimeNanos.takeIf { it > 0 && it <= nowNanos }
+            ?.let { (nowNanos - it) / 1_000_000 }
+        val measured = com.drivemate.app.ui.PositionKind.of(loc.provider) == com.drivemate.app.ui.PositionKind.MEASURED
+        val gpsSpeed = loc.speed.takeIf { measured && loc.hasSpeed() && fixAgeMs != null && fixAgeMs in 0..5_000 && it.isFinite() && it >= 0f }
+        // CarBridge independently expires measured Android Auto speed after five seconds.
+        val speed = CarBridge.carSpeed?.takeIf { it.isFinite() && it >= 0f } ?: gpsSpeed
+        val sound = when (settings.sound) {
+            SoundMode.ALL -> com.drivemate.app.nav.SpeedingWarningPolicy.Sound.FULL
+            SoundMode.ALERTS -> com.drivemate.app.nav.SpeedingWarningPolicy.Sound.ALERTS
+            SoundMode.OFF -> com.drivemate.app.nav.SpeedingWarningPolicy.Sound.MUTED
+        }
+        val result = speedingWarningPolicy.update(now, speed?.toDouble(), limitKmh,
+            measured = speed != null, sound = sound)
+        when (result.signal) {
+            com.drivemate.app.nav.SpeedingWarningPolicy.Signal.SPEECH ->
+                voice.say("Speed limit ${format.limit(limitKmh!!)}", alert = true)
+            com.drivemate.app.nav.SpeedingWarningPolicy.Signal.TONE -> voice.beep(urgent = true)
+            com.drivemate.app.nav.SpeedingWarningPolicy.Signal.NONE -> Unit
+        }
+    }

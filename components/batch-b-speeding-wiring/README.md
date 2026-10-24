@@ -1,0 +1,9 @@
+# Batch B actual warning-method wiring proof
+
+Runs the proposed private NavigationSession.warnIfSpeeding method unchanged in a deterministic dependency harness, together with exact earlier tested SpeedingWarningPolicy SHA256 50db4e4e7ef48303b39af102bff368d221b390769b9291b82794ac19c52f714a. The18cases cover actual method speech/tone routing, silent mute, measured versus estimated speed, timestamp validity and5-second freshness boundaries, independently fresh car speed precedence, null/invalid inputs, one-minute repeat, invalid-input/trip reset and unmute.
+
+Private base9f01c0a1f7154861941eee57fb52a471917b7ce5. The current shownLimit source-selection pipeline remains unchanged; numerical validity is not proof of a legally applicable/current limit. No new limit or location trust is fabricated. Category09.13 provenance remains open. Existing5-second freshness is an app engineering setting, not law.
+
+The private controller method is identical to reference/ProposedPrivateMethod.txt. Android clock/Location, stable settings enum, formatter and output sinks are harness adapters. PositionKind enum is copied from actualsource; CarBridge's existing5-second expiration expression uses the deterministic clock. Tests prove selected-method control flow and pure policy, not the combined Android controller, realVoice output, OS scheduling, lifecycle callback execution, real traffic/limit truth or UI indication. Newtrip andstop reset insertion points in the complete private controller require independent source review and eventual integration verification.
+
+Before: prior public policy baseline7/16→16/16 is separate; no executed original full-method wiring baseline exists for these18newcases. Local pre-upload execution:UNAVAILABLE(failed environment). Public CI is post-upload proof, not retroactive local preflight. No private tests, APK or category acceptance.
