@@ -50,6 +50,12 @@ object Wording {
         if (step.modifier in setOf("straight", "through") && instr.startsWith("Continue straight")) {
             return "$use to ${instr.replaceFirstChar { it.lowercase() }}"
         }
+        // Explicit route direction, not a guess from the generic Continue wording.
+        if (step.type in setOf("continue", "new name", "notification") &&
+            step.modifier in setOf("straight", "through") &&
+            (instr == "Continue" || instr.startsWith("Continue onto "))) {
+            return "$use to continue straight" + instr.removePrefix("Continue")
+        }
         return "$lane, then $instr"
     }
 
