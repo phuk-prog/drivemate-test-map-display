@@ -17,7 +17,7 @@
             measured = speed != null, sound = sound)
         when (result.signal) {
             com.drivemate.app.nav.SpeedingWarningPolicy.Signal.SPEECH ->
-                voice.say("Speed limit ${format.limit(limitKmh!!)}", alert = true)
+                voice.say("Speed limit ${format.limit(limitKmh!!)}", alert = true, policyRepeat = true)
             com.drivemate.app.nav.SpeedingWarningPolicy.Signal.TONE -> voice.beep(urgent = true)
             com.drivemate.app.nav.SpeedingWarningPolicy.Signal.NONE -> Unit
         }

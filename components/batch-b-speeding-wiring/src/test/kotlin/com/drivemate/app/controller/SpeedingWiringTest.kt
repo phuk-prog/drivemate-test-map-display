@@ -5,6 +5,7 @@ import com.drivemate.app.controller.SpeedingWiringHarness.SoundMode.*
 
 class SpeedingWiringTest {
     private val h = SpeedingWiringHarness()
+    @Test fun controllerMarksOnlyPolicyOwnedSpeechForHistoryBypass() { h.sample(); assertTrue(h.policyOwned()) }
     @Test fun fullRoutesImmediateWarningToSpeech() { assertEquals(listOf("speech:Speed limit 50:true"),h.sample()) }
     @Test fun alertsRoutesOnlyToTone() { assertEquals(listOf("tone:true"),h.sample(sound=ALERTS)) }
     @Test fun mutedHasNoSpeechOrTone() { assertTrue(h.sample(sound=OFF).isEmpty()) }

@@ -26,18 +26,20 @@ internal class SpeedingWiringHarness {
     private object format { fun limit(kmh: Double) = kmh.roundToInt() }
     private class Sink {
         val calls = mutableListOf<String>()
-        fun say(text: String, alert: Boolean) { calls += "speech:"+text+":"+alert }
+        var lastPolicyRepeat = false
+        fun say(text: String, alert: Boolean, policyRepeat: Boolean = false) { lastPolicyRepeat = policyRepeat; calls += "speech:"+text+":"+alert }
         fun beep(urgent: Boolean) { calls += "tone:"+urgent }
     }
     private val voice = Sink()
     private var speedingWarningPolicy = com.drivemate.app.nav.SpeedingWarningPolicy()
+    fun policyOwned() = voice.lastPolicyRepeat
     fun resetTrip() { speedingWarningPolicy = com.drivemate.app.nav.SpeedingWarningPolicy() }
     fun sample(now: Long = 200_000, speed: Float? = 15f, limit: Double? = 50.0, provider: String? = "gps",
                ageMs: Long? = 1_000, car: Float? = null, carAgeMs: Long = 0, sound: SoundMode = SoundMode.ALL, beepSetting: Boolean = false): List<String> {
         SystemClock.now = now
         settings.sound = sound; settings.beepAlerts = beepSetting
         CarBridge.set(car,carAgeMs)
-        voice.calls.clear()
+        voice.calls.clear(); voice.lastPolicyRepeat = false
         val fix = if (ageMs == null) 0L else (now-ageMs)*1_000_000
         warnIfSpeeding(Location(provider,speed ?: 0f,speed != null,fix),limit)
         return voice.calls.toList()
@@ -61,7 +63,7 @@ internal class SpeedingWiringHarness {
             measured = speed != null, sound = sound)
         when (result.signal) {
             com.drivemate.app.nav.SpeedingWarningPolicy.Signal.SPEECH ->
-                voice.say("Speed limit ${format.limit(limitKmh!!)}", alert = true)
+                voice.say("Speed limit ${format.limit(limitKmh!!)}", alert = true, policyRepeat = true)
             com.drivemate.app.nav.SpeedingWarningPolicy.Signal.TONE -> voice.beep(urgent = true)
             com.drivemate.app.nav.SpeedingWarningPolicy.Signal.NONE -> Unit
         }
