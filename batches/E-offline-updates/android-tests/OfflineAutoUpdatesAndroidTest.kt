@@ -63,7 +63,7 @@ class OfflineAutoUpdatesAndroidTest {
         manager.enqueueUniqueWork("regional-map-area", androidx.work.ExistingWorkPolicy.KEEP, manual).result.get()
         OfflineAutoUpdates.setEnabled(ctx, true)
         OfflineAutoUpdates.setEnabled(ctx, false)
-        assertNotEquals(WorkInfo.State.CANCELLED, manager.getWorkInfoById(manual.id).get().state)
+        assertNotEquals(WorkInfo.State.CANCELLED, manager.getWorkInfoById(manual.id).get()!!.state)
     }
     @Test fun revokeCancelsRunningAutomaticCoroutine() {
         RegionalMaps.waitForCancellation = true
@@ -72,11 +72,11 @@ class OfflineAutoUpdatesAndroidTest {
         WorkManagerTestInitHelper.getTestDriver(ctx)!!.setAllConstraintsMet(id)
         assertTrue("Automatic download boundary must actually start",
             RegionalMaps.started.await(10, java.util.concurrent.TimeUnit.SECONDS))
-        assertEquals(WorkInfo.State.RUNNING, manager.getWorkInfoById(id).get().state)
+        assertEquals(WorkInfo.State.RUNNING, manager.getWorkInfoById(id).get()!!.state)
         OfflineAutoUpdates.setEnabled(ctx, false)
         assertTrue("Cancellation must propagate through the running suspend operation",
             RegionalMaps.stopped.await(10, java.util.concurrent.TimeUnit.SECONDS))
-        assertEquals(WorkInfo.State.CANCELLED, manager.getWorkInfoById(id).get().state)
+        assertEquals(WorkInfo.State.CANCELLED, manager.getWorkInfoById(id).get()!!.state)
     }
     @Test fun redundantToggleDoesNotReplaceWorker() {
         OfflineAutoUpdates.setEnabled(ctx, true)
