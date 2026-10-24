@@ -1,0 +1,117 @@
+    private fun checkHazards(loc: Location) {
+        // Just arrived: no warnings around the destination (they come back once you drive on).
+        arrivedAt?.let { a -> if (Geo.distance(a, LatLon(loc.latitude, loc.longitude)) < 300) return }
+        val now = System.currentTimeMillis()
+        if (hazards.any { it.expired(now) }) {
+            hazards = hazards.filterNot { it.expired(now) }
+            refreshVisibleHazards(force = true)
+            storage.saveHazards(hazards)
+        }
+        // Live reports not re-confirmed by their source in time expire (they are only in memory).
+        if (liveIncidents.any { com.drivemate.app.data.TrafficDetails.stale(it, now) }) {
+            liveIncidents = liveIncidents.filterNot { com.drivemate.app.data.TrafficDetails.stale(it, now) }
+            refreshVisibleHazards(force = true)
+            recomputeHazardAlong()
+        }
+        val p = LatLon(loc.latitude, loc.longitude)
+        val pr = progress
+        val navigating = mode == Mode.NAVIGATING && engine != null && pr != null
+        val speedAge = loc.elapsedRealtimeNanos.takeIf { it > 0 && it <= SystemClock.elapsedRealtimeNanos() }
+            ?.let { (SystemClock.elapsedRealtimeNanos() - it) / 1_000_000 }
+        val cameraSpeed = com.drivemate.app.nav.CameraApproachPolicy.freshSpeed(
+            loc.speed.toDouble().takeIf { loc.hasSpeed() },
+            com.drivemate.app.ui.PositionKind.of(loc.provider) == com.drivemate.app.ui.PositionKind.MEASURED, speedAge)
+        for (h in hazards + liveIncidents + roadAlerts + bends) {
+            val routeCamera = navigating && h.type.isCamera
+            if (h.id in alertedHazards && !routeCamera) continue
+            if (routeCamera && !positionReliable) continue
+            val d = if (routeCamera) (hazardAlong[h.id]?.minus(pr!!.along) ?: continue) else Geo.distance(p, h.pos)
+            val range = if (routeCamera) com.drivemate.app.nav.CameraApproachPolicy.approachMetres(cameraSpeed) else h.type.alertRange.toDouble()
+            if (d > range) continue
+            if (h.type.navOnly && !navigating) continue
+            if (loc.speed < h.type.minSpeed) continue
+            if (h.type == HazardType.SCHOOL && !isSchoolTime()) continue
+            val heading = if (loc.hasBearing() && loc.speed > 3) loc.bearing.toDouble() else null
+            val ahead = when {
+                // Following a route: only what's on your route ahead (already checked to be on
+                // your side of the road when the route was matched).
+                navigating && pr != null -> (hazardAlong[h.id] ?: -1.0) > pr.along
+                // No route, driving: only things ahead on the road you're on, for your direction.
+                heading != null && loc.speed > 7 -> {
+                    val road = roadHere(loc)
+                    val inFront = d < 500 && Geo.angleDiff(heading, Geo.bearing(p, h.pos)) < 60 && h.appliesTo(heading)
+                    if (road != null) {
+                        val reach = if (h.type == HazardType.SCHOOL) 150.0 else 20.0
+                        inFront && road.segments.any { (a, b) -> Geo.project(h.pos, a, b).distance < reach }
+                    } else false // Unknown road: do not guess warnings on a parallel road.
+                }
+                // Parked or crawling without a route: only very close things.
+                else -> roadHere(loc)?.segments?.any { (a, b) -> Geo.project(h.pos, a, b).distance < 20 } == true && d < 150 && h.appliesTo(heading)
+            }
+            if (!ahead) continue
+            if (routeCamera && h.id in cameraApproaches) {
+                if (h.id in cameraSpeedWarnings ||
+                    d > com.drivemate.app.nav.CameraApproachPolicy.extraMetres(cameraSpeed) ||
+                    !com.drivemate.app.nav.CameraApproachPolicy.isOver(cameraSpeed, h.limitKmh)) continue
+                cameraSpeedWarnings += h.id
+                voice.say("Speed camera ahead. You are over the limit", alert = true, mainAlert = true)
+                break
+            }
+            alertedHazards += h.id
+            if (routeCamera) cameraApproaches += h.id
+            hazardAlert = h
+            alertClosest = d
+            // A run of speed bumps (each within ~150 m of the next): one warning, like Yandex.
+            val run = if (h.type == HazardType.SPEED_BUMP) bumpRun(h, navigating, pr, loc) else emptyList()
+            if (run.isNotEmpty()) {
+                alertedHazards += run.map { it.id }
+                voice.say("Several speed bumps ahead", alert = true)
+                break
+            }
+            if (settings.beepAlerts && settings.sound == SoundMode.ALL && h.type != HazardType.SPEED_BUMP && !h.type.isCamera) {
+                voice.beep(urgent = h.type.isCamera)
+            } else {
+                val limit = h.limitKmh?.let { ", limit ${format.limit(it)}" } ?: ""
+                val what = h.note ?: h.type.spoken
+                voice.say(if (h.fixed) "$what ahead$limit" else "$what reported ahead", alert = true,
+                    mainAlert = com.drivemate.app.nav.VoicePlaybackPolicy.mainHazard(h.type.name))
+            }
+            break
+        }
+    }
+
+    /** The speed bumps following [first] on your way, each within ~150 m of the one before. */
+    private fun bumpRun(first: Hazard, navigating: Boolean, pr: Progress?, loc: Location): List<Hazard> {
+        var bumps = (hazards + roadAlerts).filter { it.type == HazardType.SPEED_BUMP && it.id != first.id }
+        if (!navigating || pr == null) {
+            // No route: only bumps in front of you on the road you're on (never side streets).
+            val p = LatLon(loc.latitude, loc.longitude)
+            val heading = if (loc.hasBearing()) loc.bearing.toDouble() else null
+            val road = roadHere(loc)
+            bumps = bumps.filter { b ->
+                (heading == null || Geo.angleDiff(heading, Geo.bearing(p, b.pos)) < 60) &&
+                    road != null && road.segments.any { (a, c) -> Geo.project(b.pos, a, c).distance < 20 }
+            }
+        }
+        val out = ArrayList<Hazard>()
+        if (navigating && pr != null) {
+            var at = hazardAlong[first.id] ?: return emptyList()
+            val ahead = bumps.mapNotNull { b -> hazardAlong[b.id]?.let { b to it } }.filter { it.second > at }.sortedBy { it.second }
+            for ((b, a) in ahead) {
+                if (a - at > 150) break
+                out += b
+                at = a
+            }
+        } else {
+            var last = first.pos
+            val left = bumps.filter { Geo.distance(it.pos, first.pos) < 600 }.toMutableList()
+            while (true) {
+                val next = left.minByOrNull { Geo.distance(it.pos, last) }?.takeIf { Geo.distance(it.pos, last) < 150 } ?: break
+                out += next
+                left.remove(next)
+                last = next.pos
+            }
+        }
+        return out
+    }
+

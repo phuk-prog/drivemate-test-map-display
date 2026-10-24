@@ -1,0 +1,9 @@
+# Batch B camera and bump candidate
+
+20 new cases run exact proposed private checkHazards/bumpRun methods with actual CameraApproachPolicy and HazardType enum. Android locations, geometry, route matching, clocks, providers and output sink are deterministic adapters. Existing Voice20case proof is separate. Tests prove neither geographical accuracy nor physical audio nor rendered map collisions.
+
+User-approved camera recommendation:20seconds preparation, bounded200–800route metres; final speeding warning5seconds, bounded80–250metres. The 20-second approach timing is user-approved; caps and the extra-warning timing are delegated engineering defaults, not legal stopping distances. Only cameras already matched ahead on the active route are eligible; unreliable position suppresses audio. Extra warning needs fresh measured GPS speed and a known camera limit; unknown/invalid/stale/estimated speed never claims speeding. A camera approach and extra warning are independently remembered until trip reset; reroutes preserve them. Ordinary/full camera warning always speaks; Voice handles Alerts main tones/Muted silence separately.
+
+Bumps group from2nearby bumps instead of3 and ignore legacy beep option. Each mapped bump has onMap=true; actual zoom/collision rendering remains unverified. No numerical comparable original runtime score exists for this new suite. Source inspection found explicit onMap=false and run.size>=2following-bumps in original. Local unified_preflight/Gradle UNAVAILABLE(failed executor); public CI is post-upload proof. No APK/main merge or acceptance.
+
+09.05/09.06 still need exact lower-limit transition placement/render proof. 09.10–12 cannot claim real average-zone entry/exit: legacy code starts from nearby camera proximity and ends2500m after lastcamera without identified endpoint. No endpoint is guessed here. 09.13 needs active limit provider provenance/freshness evidence; no active variable limit is fabricated.
