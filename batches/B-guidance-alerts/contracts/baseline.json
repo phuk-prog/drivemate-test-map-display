@@ -11,7 +11,7 @@
   "phase": "baseline",
   "app": "phuk-prog/drivemate-app",
   "public_repository": "phuk-prog/drivemate-test-map-display",
-  "test_mode": "test definitions/expected results public; execute against actual private app in private GitHub Actions; never upload private app source, TomTom key or APK",
+  "test_mode": "All test execution, relevant individual source components, fixtures and sanitized results are public. Combined app, keys, personal data and APK generation stay private. Earlier private execution is historical and superseded.",
   "independent_sources": [
     {
       "id": "HC160_184",
@@ -183,5 +183,6 @@
     }
   ],
   "test_boundary": "Logic assertions and static code inspections are baseline diagnostic only. Real junction truth and UI visual/audio/Android Auto robot acceptance remain separate; no category completion or APK release from this suite alone.",
-  "current_reference_status": "Independent official guidance URLs recorded; actual local junction sign/traffic orders and active temporary limits not yet obtained."
+  "current_reference_status": "Independent official guidance URLs recorded; actual local junction sign/traffic orders and active temporary limits not yet obtained.",
+  "current_execution_status": "Public baseline migration in progress on 2026-10-24; no new runtime score claimed."
 }
