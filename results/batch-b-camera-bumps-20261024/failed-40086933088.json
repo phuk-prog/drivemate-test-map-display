@@ -1,0 +1,37 @@
+{
+  "batch": "B",
+  "requirements": [
+    "09.01",
+    "09.02",
+    "09.07",
+    "09.08",
+    "09.09"
+  ],
+  "public_sha": "518fd60ed05affa30c3102c339d0838cb7b3a06f",
+  "run_id": "40086933088",
+  "scope": "Exact proposed checkHazards+bumpRun and actual CameraApproachPolicy/HazardType enum; synthetic route distances and adapted geometry/Android/output/provider dependencies. Map visibility flag is not rendered-map proof.",
+  "passed": 0,
+  "total": 20,
+  "cases": {},
+  "execution_valid": false,
+  "errors": [
+    "missing/unexpected",
+    "Gradle failure"
+  ],
+  "source_hashes": {
+    "src/main/kotlin/com/drivemate/app/nav/CameraApproachPolicy.kt": "ca02e3688c2e739e6c79d7c8980819c32cfc7fd37ddb2d4531e203b699d33539",
+    "reference/ProposedWarningMethods.txt": "a339af6faad282e226f507d0b9742f9ced8d1b737ff392e651916f96c53dd1f3",
+    "reference/ProposedHazardType.txt": "29c4033bc3331cbc1b17163d0ea5f988198f13e6995a0ec2aee584984c6986b8"
+  },
+  "before_runtime_score": null,
+  "physical_audio_verified": false,
+  "whole_android_compile_verified": false,
+  "rendered_map_verified": false,
+  "camera_provider_accuracy_verified": false,
+  "average_zone_endpoints_verified": false,
+  "batch_accepted": false,
+  "apk_generated": false,
+  "failure_stage": "compileTestKotlin",
+  "first_failure": "Unresolved reference VoicePlaybackPolicy in dependency harness; missing real production dependency, no tests executed",
+  "prevention": "Include exact already tested VoicePlaybackPolicy component source; retain compile failures distinctly from runtime assertions."
+}
