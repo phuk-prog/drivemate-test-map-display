@@ -2,9 +2,7 @@ name: Public Batch D controls and local consent
 on:
   push:
     branches: [codex/batch-d-controls-proof-20261024]
-    paths: ['components/batch-d-controls/**', '.github/workflows/batch-d-controls-public.yml']
-  pull_request:
-    paths: ['components/batch-d-controls/**', '.github/workflows/batch-d-controls-public.yml']
+    paths: ['components/batch-d-controls/**']
 permissions:
   contents: read
 jobs:

@@ -12,7 +12,9 @@ class WarningSymbolLegendTest {
  @Test fun speedCamerasComeFirstInFixedOrder() { assertEquals(listOf(HazardType.CAMERA,HazardType.RED_LIGHT,HazardType.AVERAGE_SPEED),warningLegendEntries(false).take(3)) }
  @Test fun everyExistingMapTypeAppearsExactlyOnce() { val rows=warningLegendEntries(false);assertEquals(HazardType.entries.filter{it.onMap}.toSet(),rows.toSet());assertEquals(rows.size,rows.distinct().size) }
  @Test fun nonMapTypesAreExcluded() { assertTrue(warningLegendEntries(false).all{it.onMap}); assertFalse(warningLegendEntries(false).contains(HazardType.SHARP_BEND)) }
- @Test fun listOrderIsStableAcrossRepeatedReads() { assertEquals(warningLegendEntries(false),warningLegendEntries(false)) }
+ @Test fun camerasPrecedeEveryNonCameraWarning() { val types=warningLegendEntries(false); assertTrue(types.take(3).all { it.isCamera }); assertTrue(types.drop(3).none { it.isCamera }) }
+ @Test fun settingsDirectoryFindsLegendOutsideNavigation() { assertEquals(listOf(SettingsSection.SYMBOLS),settingsSectionsMatching("warning symbols",false)) }
+ @Test fun settingsDirectoryHidesLegendDuringNavigation() { assertFalse(SettingsSection.SYMBOLS in settingsSectionsMatching("",true)); assertTrue(settingsSectionsMatching("warning symbols",true).isEmpty()) }
  @Test fun navigatingHasNoLegendEntries() { assertTrue(warningLegendEntries(true).isEmpty()) }
  @Test fun actualComposeShowsExactExistingSymbolsAndLabels() {
   compose.setContent { MaterialTheme { WarningSymbolLegend(false) } }
