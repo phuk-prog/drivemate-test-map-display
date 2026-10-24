@@ -33,6 +33,25 @@ The timing rules come from the checklist wording plus stated engineering budgets
 constants. The parked case targets a source finding: after 60 s stopped the app asks for a fix
 only every 15 s, while it treats fixes older than 2.5 s as unreliable.
 
+**Result: before 4/5 → after 5/5** (`results/full-app-01.01.json`).
+
+| Test | Before: unfixed app, [run 40087951766](https://github.com/phuk-prog/drivemate-app/actions/runs/40087951766) | After: [run 40090338519](https://github.com/phuk-prog/drivemate-app/actions/runs/40090338519), confirmed by [run 40091412313](https://github.com/phuk-prog/drivemate-app/actions/runs/40091412313) |
+|---|---|---|
+| Poor accuracy | pass, 3.5 s | pass, 3.4 s / 3.4 s |
+| GPS lost | pass, 3.1 s | pass, 3.3 s / 3.0 s |
+| Clears on recovery | pass, under 0.2 s | pass, 0.24 s / 0.02 s |
+| 2 s glitch | pass, never shown | pass, never shown |
+| Parked 80 s, accurate GPS | **fail: shown at 65.8 s, flickering** | **pass: never shown** |
+
+The fix: while parked, fixes asked for every 15 s stay current for 20 s (was 2.5 s for the banner
+and 8 s for source selection), and parked fixes are no longer batched. Navigation keeps 2.5 s.
+The private runs are links for the owner; the numbers above are the public record.
+
+Harness lessons, each now guarded: the banner is unreadable until the accessibility tree has been
+walked once; the AOSP image crashes MapLibre's Vulkan renderer; the emulator launcher can freeze in
+front of the app; the screen can sleep during long cases. A run where DriveMate is not on screen
+fails as a harness fault, never as a pass.
+
 ## Limits
 - Both sources get identical fixes, so disagreement between them is not exercised.
 - Fixes are synthetic; real GNSS noise, tunnels and multipath are not modelled.
