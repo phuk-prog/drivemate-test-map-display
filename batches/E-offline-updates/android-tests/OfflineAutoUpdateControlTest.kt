@@ -2,6 +2,9 @@ package com.drivemate.app.ui
 
 import android.content.Context
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.assertIsOff
 import androidx.compose.ui.test.assertIsOn
@@ -39,6 +42,17 @@ class OfflineAutoUpdateControlTest {
         compose.onNode(isToggleable()).performClick().assertIsOff()
         compose.runOnIdle { assertFalse(OfflineAutoUpdates.enabled(ctx)) }
         compose.onAllNodesWithText("cancel", substring = true, ignoreCase = true).assertCountEquals(0)
+    }
+    @Test fun regionSearchUpdatesAsUserTypesAndKeepsSizes() {
+        compose.setContent { MaterialTheme {
+            OfflineRegionSearchControl { query ->
+                listOf("Alpha County" to 100_000_000L, "Beta County" to 200_000_000L)
+                    .filter { it.first.contains(query, ignoreCase = true) }
+            }
+        } }
+        compose.onNodeWithText("Search regions").performTextInput("PHA")
+        compose.onNodeWithText("Alpha County · 100 MB").assertIsDisplayed()
+        compose.onAllNodesWithText("Beta County", substring = true).assertCountEquals(0)
     }
     @Test fun existingApprovalAppearsWhenOpeningSettings() {
         OfflineAutoUpdates.setEnabled(ctx, true)

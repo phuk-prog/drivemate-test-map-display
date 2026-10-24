@@ -1,6 +1,6 @@
 {
   "source_sha": "baf6c06de2c3027e2ea7563e9f9e4dacafbbd147",
-  "candidate_private_sha": "0c48d0893c83330926a29e755bc9d3b02b46d11d",
+  "candidate_private_sha": "f62ee8c0d668d72260cdaa9b1f4e5678adf201e0",
   "local_preflight": "UNAVAILABLE: no usable executor",
   "runtime_scope": "isolated components; source audit is not runtime proof",
   "items": [
@@ -147,23 +147,23 @@
     {
       "id": "11.21",
       "baseline": "not_implemented_search",
-      "candidate": "component_test",
+      "candidate": "source_integrated_component",
       "accepted": false,
-      "limitation": "Local nearest-bounds sort tested in isolated candidate; region picker wiring absent."
+      "limitation": "Offline Maps now reads published catalogue ordered by local focus distance; isolated catalogue sort tested, full MapData provider integration not executed."
     },
     {
       "id": "11.22",
       "baseline": "not_implemented_search",
-      "candidate": "component_test",
+      "candidate": "compose_component_test_pending",
       "accepted": false,
-      "limitation": "Partial case-insensitive matching tested in isolated candidate; live search UI absent."
+      "limitation": "Exact Compose search field filters as text changes using catalogue query API; provider boundary is explicit in isolated UI tests."
     },
     {
       "id": "11.23",
       "baseline": "partial_source_existing",
-      "candidate": "component_test",
+      "candidate": "compose_component_test_pending",
       "accepted": false,
-      "limitation": "Catalogue map.bytes retained in search results; result display UI absent."
+      "limitation": "Search results display declared map-archive sizes via exact OfflineStorage formatter; provider boundary explicit; companion downloads remain separate."
     },
     {
       "id": "11.24",

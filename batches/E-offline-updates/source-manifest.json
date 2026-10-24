@@ -1,8 +1,8 @@
 {
   "baseline_private_app": "baf6c06de2c3027e2ea7563e9f9e4dacafbbd147",
-  "candidate_private_app": "0c48d0893c83330926a29e755bc9d3b02b46d11d",
+  "candidate_private_app": "f62ee8c0d668d72260cdaa9b1f4e5678adf201e0",
   "private_pr": "https://github.com/phuk-prog/drivemate-app/pull/20",
   "baseline_catalog_blob": "f8343000d071bfc8802c0e6ce5f5867922378431",
-  "parity": "public candidate Kotlin policy/catalogue/scheduler are exact private source copies; Android RegionalMaps is an explicit boundary fake",
+  "parity": "public candidate policy/catalogue/scheduler/control/storage are exact private source copies; Android RegionalMaps and MapData provider are explicit boundary fakes; RegionalLiveMap constant is a boundary fake",
   "local_preflight": "UNAVAILABLE"
 }
