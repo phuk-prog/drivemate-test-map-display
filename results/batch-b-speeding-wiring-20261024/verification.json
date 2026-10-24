@@ -1,0 +1,40 @@
+{
+  "batch": "B",
+  "requirements": [
+    "09.03",
+    "09.04"
+  ],
+  "private_base": "9f01c0a1f7154861941eee57fb52a471917b7ce5",
+  "public_sha": "0da16361d57ecdb9da771208277565395b0996ea",
+  "run_id": "40071945057",
+  "scope": "Actual proposed private warnIfSpeeding method executed unchanged inside deterministic dependency harness; not complete private controller Android/UI/Voice execution",
+  "cases": {
+    "alertsRoutesOnlyToTone": "passed",
+    "legacyBeepSettingDoesNotReplaceFullSpeech": "passed",
+    "invalidNumericInputsDoNotDispatch": "passed",
+    "minuteRepeatUsesMonotonicClock": "passed",
+    "tripResetAllowsFirstWarningOnNewTrip": "passed",
+    "futureGpsTimestampIsRejected": "passed",
+    "exactFiveSecondGpsBoundaryIsUsable": "passed",
+    "fullRoutesImmediateWarningToSpeech": "passed",
+    "unmuteCanWarnWithoutWaitingForMutedSample": "passed",
+    "expiredCarSpeedCannotSupportEstimatedPosition": "passed",
+    "freshCarSpeedCanSupportEstimatedPosition": "passed",
+    "missingSpeedAndLimitStayUnknown": "passed",
+    "estimatedPositionAloneDoesNotProvideMeasuredSpeed": "passed",
+    "measuredCarSpeedTakesPrecedenceOverGps": "passed",
+    "missingGpsTimestampIsRejected": "passed",
+    "invalidSampleResetsEpisodeForNextValidSpeed": "passed",
+    "staleGpsDoesNotDispatchAudio": "passed",
+    "mutedHasNoSpeechOrTone": "passed"
+  },
+  "passed": 18,
+  "total": 18,
+  "execution_valid": true,
+  "errors": [],
+  "policy_sha256": "50db4e4e7ef48303b39af102bff368d221b390769b9291b82794ac19c52f714a",
+  "method_sha256": "67f81dd14cf9b949254bb3c5bf17f7ff831ca12bfff440e7383a73b29e891e6b",
+  "private_wiring_staged": false,
+  "batch_accepted": false,
+  "apk_generated": false
+}
