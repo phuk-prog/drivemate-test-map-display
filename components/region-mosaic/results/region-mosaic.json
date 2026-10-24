@@ -1,0 +1,81 @@
+{
+ "suite": "region-mosaic",
+ "checklist": [
+  "02.x map overview: no blank published areas",
+  "optional region download rules"
+ ],
+ "scope": "exact app components (JVM); MapLibre rendering and MapData wiring are covered by the private full-app run",
+ "app_commit": "62d8b0ea4a1665e971d8f3ee83924d946bf2d98b",
+ "public_run_id": "40103389810",
+ "public_head_sha": "c0924c90ffea6d29f0c0f5f5ab14ecc6da05564b",
+ "before": {
+  "overview_views": "3/6",
+  "cases": {
+   "m62ManchesterToLiverpool": "failed",
+   "bristolAndBath": "failed",
+   "leedsAndBradford": "passed",
+   "centralLondon": "passed",
+   "manchesterOverviewFromTheOwnersScreenshot": "failed",
+   "englandScotlandBorderAtCarlisle": "passed"
+  },
+  "failures": {
+   "m62ManchesterToLiverpool": "java.lang.AssertionError: Only 294 of 441 published sample points drawn (66.7%) by [cheshire]",
+   "bristolAndBath": "java.lang.AssertionError: Only 399 of 441 published sample points drawn (90.5%) by [somerset]",
+   "manchesterOverviewFromTheOwnersScreenshot": "java.lang.AssertionError: Only 399 of 441 published sample points drawn (90.5%) by [greater-manchester]"
+  },
+  "views": [
+   "VIEW -0.3,51.42,0.05,51.58 drawn=[greater-london] shown=441/441 (100.0%)",
+   "VIEW -1.85,53.7,-1.4,53.88 drawn=[west-yorkshire] shown=441/441 (100.0%)",
+   "VIEW -2.45,53.3,-2.05,53.62 drawn=[greater-manchester] shown=399/441 (90.5%)",
+   "VIEW -2.75,51.32,-2.25,51.52 drawn=[somerset] shown=399/441 (90.5%)",
+   "VIEW -3.0,53.33,-2.2,53.55 drawn=[cheshire] shown=294/441 (66.7%)",
+   "VIEW -3.1,54.82,-2.75,55.05 drawn=[cumbria] shown=441/441 (100.0%)"
+  ],
+  "passed": 3,
+  "total": 6,
+  "gradle_exit": 1
+ },
+ "after": {
+  "overview_views": "6/6",
+  "all": "20/20",
+  "cases": {
+   "everyPublishedTagIsRecognised": "passed",
+   "similarlyNamedRegionsAreNotConfused": "passed",
+   "olderVersionIsDeletedOnlyOnceItsReplacementIsComplete": "passed",
+   "regionNoLongerPublishedIsDeletedAndOtherFilesAreLeftAlone": "passed",
+   "currentVersionIsPreferredAndAnOlderOneStillDrawsOffline": "passed",
+   "fileNameCarriesTheRegionsOwnReleaseTag": "passed",
+   "everyPublishedRegionIsWantedOnAFreshPhone": "passed",
+   "m62ManchesterToLiverpool": "passed",
+   "bristolAndBath": "passed",
+   "leedsAndBradford": "passed",
+   "centralLondon": "passed",
+   "manchesterOverviewFromTheOwnersScreenshot": "passed",
+   "englandScotlandBorderAtCarlisle": "passed",
+   "eachNeighbourGetsItsOwnSourceAndACopyOfEveryMapLayerBelowTheOriginal": "passed",
+   "neighboursAreCappedAndOrderedByShareOfTheView": "passed",
+   "noViewMeansNoNeighbours": "passed",
+   "gapSaysWhetherZoomingInOrPublishingIsNeeded": "passed",
+   "noNeighboursLeavesTheStyleUnchanged": "passed",
+   "overviewAcrossGreaterManchesterDrawsTheSurroundingRegions": "passed",
+   "regionSuffixDoesNotHideACasingLayer": "passed"
+  },
+  "failures": {},
+  "views": [
+   "VIEW -0.3,51.42,0.05,51.58 drawn=[greater-london, surrey, essex, hertfordshire] shown=441/441 (100.0%)",
+   "VIEW -1.85,53.7,-1.4,53.88 drawn=[west-yorkshire, north-yorkshire, south-yorkshire, greater-manchester] shown=441/441 (100.0%)",
+   "VIEW -2.45,53.3,-2.05,53.62 drawn=[greater-manchester, cheshire, lancashire, north-yorkshire, west-yorkshire, derbyshire, staffordshire] shown=441/441 (100.0%)",
+   "VIEW -2.75,51.32,-2.25,51.52 drawn=[somerset, gloucestershire, wiltshire, wales, bristol] shown=441/441 (100.0%)",
+   "VIEW -3.0,53.33,-2.2,53.55 drawn=[cheshire, greater-manchester, merseyside, wales, lancashire, west-yorkshire, derbyshire] shown=441/441 (100.0%)",
+   "VIEW -3.1,54.82,-2.75,55.05 drawn=[cumbria, scotland] shown=441/441 (100.0%)"
+  ],
+  "passed": 20,
+  "total": 20,
+  "gradle_exit": 0
+ },
+ "limits": [
+  "Catalogue fixed at 2026-10-24 (46 regions); regions published later are not included.",
+  "Coverage is checked on region bounds, not on tiles actually drawn on screen.",
+  "Drawn.kt restates MapData's one-line neighbour request; MapData needs Android."
+ ]
+}

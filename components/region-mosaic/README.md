@@ -40,5 +40,20 @@ replacement is complete, every published tag recognised).
   `MapData` needs Android.
 - Regions published after 2026-10-24 are not in the fixture.
 
-## Result
-Recorded in `results/region-mosaic.json` after the first run.
+## Result: before 3/6 → after 6/6 overview views; all 20/20 tests pass after
+
+[Run 40103389810](https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40103389810)
+at `b5493a2`, app commit `62d8b0e` (`results/region-mosaic.json`).
+
+| View | Before: drawn, published points shown | After: drawn, shown |
+|---|---|---|
+| Owner's Manchester screenshot | greater-manchester only, **399/441 (90.5%), fail** | + cheshire, lancashire, north/west-yorkshire, derbyshire, staffordshire: 441/441 |
+| M62 Manchester–Liverpool | cheshire only, **294/441 (66.7%), fail** | + greater-manchester, merseyside, wales, lancashire, west-yorkshire, derbyshire: 441/441 |
+| Bristol–Bath | somerset only, **399/441 (90.5%), fail** | + gloucestershire, wiltshire, wales, bristol: 441/441 |
+| Leeds–Bradford | west-yorkshire: 441/441 | + 3 neighbours: 441/441 |
+| Central London | greater-london: 441/441 | + surrey, essex, hertfordshire: 441/441 |
+| Carlisle border | cumbria: 441/441 | + scotland: 441/441 |
+
+The three "before" passes are views whose selected region's bounds happen to cover the whole
+view; bounds are rectangles, so real coastline or border gaps inside them are not seen by this
+check. Component tests after: 14/14.
