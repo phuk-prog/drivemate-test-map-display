@@ -49,5 +49,5 @@ class OfflineUpdateTest {
     @Test fun approvedCurrentWorkerIsAllowed() { assertTrue(permits(true, 1, 1)) }
     @Test fun revocationStopsCurrentWorker() { assertFalse(permits(false, 2, 1)) }
     @Test fun reapprovalDoesNotReviveOldWorker() { assertFalse(permits(true, 3, 1)) }
-    @Test fun globalApprovalIndependentOfAreaIdentity() { repeat(20) { assertTrue(permits(true, 4, 4)) } }
+    @Test fun unknownScheduledRevisionIsDenied() { assertFalse(permits(true, 4, -1)) }
 }

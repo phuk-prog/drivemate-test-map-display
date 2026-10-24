@@ -1,8 +1,5 @@
 name: Batch E11 offline update components
 on:
-  push:
-    branches: ['codex/batch-e11-offline-updates-20261024']
-    paths: ['batches/E-offline-updates/**', '.github/workflows/batch-e11-offline-updates.yml']
   pull_request:
     paths: ['batches/E-offline-updates/**', '.github/workflows/batch-e11-offline-updates.yml']
 permissions:
@@ -49,8 +46,12 @@ jobs:
           gradle-version: '8.14.3'
       - run: gradle -p batches/E-offline-updates/android-harness testDebugUnitTest --no-daemon
       - if: always()
+        run: python3 batches/E-offline-updates/export_android.py
+      - if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: batch-e11-android-scheduler
-          path: batches/E-offline-updates/android-harness/build/test-results/testDebugUnitTest
+          path: |
+            batches/E-offline-updates/android-results.json
+            batches/E-offline-updates/android-harness/build/test-results/testDebugUnitTest
           if-no-files-found: error

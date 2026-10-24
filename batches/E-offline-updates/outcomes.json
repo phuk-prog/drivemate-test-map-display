@@ -1,5 +1,6 @@
 {
   "source_sha": "baf6c06de2c3027e2ea7563e9f9e4dacafbbd147",
+  "candidate_private_sha": "0c48d0893c83330926a29e755bc9d3b02b46d11d",
   "local_preflight": "UNAVAILABLE: no usable executor",
   "runtime_scope": "isolated components; source audit is not runtime proof",
   "items": [
@@ -20,9 +21,9 @@
     {
       "id": "11.03",
       "baseline": "not_implemented",
-      "candidate": "not_implemented",
+      "candidate": "source_candidate_dependency_E12",
       "accepted": false,
-      "limitation": "Current regional downloads require unmetered network; no large mobile-download warning in this change."
+      "limitation": "E12 dependency adds explicit mobile-data approval dialog warning that downloads can be large; exact dialog rendering not executed in E11 tests."
     },
     {
       "id": "11.04",
@@ -111,9 +112,9 @@
     {
       "id": "11.16",
       "baseline": "not_implemented_regional",
-      "candidate": "integration_pending",
+      "candidate": "source_integration_candidate",
       "accepted": false,
-      "limitation": "New control hook agreed with category12 worker; final private integration source to be pinned."
+      "limitation": "E12 OfflinePackagesPanel invokes the exact new control at its Offline Maps section top; full panel runtime not yet executed."
     },
     {
       "id": "11.17",
