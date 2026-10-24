@@ -68,6 +68,8 @@ class PositionUncertainBannerTest {
 
     @Before fun setUp() {
         shell("appops set ${context.packageName} android:mock_location allow")
+        val mock = shell("appops get ${context.packageName} android:mock_location")
+        assertTrue("Mock location not allowed for the app: $mock", mock.contains("allow"))
         runCatching { locations.removeTestProvider(LocationManager.GPS_PROVIDER) }
         if (Build.VERSION.SDK_INT >= 31) {
             locations.addTestProvider(LocationManager.GPS_PROVIDER, false, true, false, false, true, true, true,
@@ -93,7 +95,10 @@ class PositionUncertainBannerTest {
         runCatching { locations.removeTestProvider(LocationManager.GPS_PROVIDER) }
     }
 
-    private fun shell(cmd: String) = instrumentation.uiAutomation.executeShellCommand(cmd).close()
+    /** Runs [cmd] as the shell user and waits for it to finish (closing early can cancel it). */
+    private fun shell(cmd: String): String =
+        android.os.ParcelFileDescriptor.AutoCloseInputStream(instrumentation.uiAutomation.executeShellCommand(cmd))
+            .bufferedReader().use { it.readText() }
 
     /** The point [metres] along the north-east-bound carriageway, and its bearing. */
     private fun along(metres: Double): Pair<DoubleArray, Double> {
