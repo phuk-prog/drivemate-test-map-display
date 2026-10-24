@@ -245,6 +245,7 @@ class PositionUncertainBannerTest {
         val duringGlitch = firstSeen()
         feed(4_000, accuracy = 4f, label = "recovered")
         val after = firstSeen()
+        requireAppInFront()   // a no-banner pass needs the app still on screen
         timeline.put(JSONObject().put("event", "verdict").put("seen_during_ms", duringGlitch ?: JSONObject.NULL)
             .put("seen_after_ms", after ?: JSONObject.NULL))
         assertTrue("Banner shown for a 2 s glitch: $timeline", duringGlitch == null && after == null)
@@ -254,6 +255,7 @@ class PositionUncertainBannerTest {
         // Stopped with accurate fixes every second for 80 s: past the app's 60 s parked threshold.
         feed(80_000, accuracy = 4f, speed = 0f, label = "parked-healthy")
         val first = firstSeen()
+        requireAppInFront()   // run 40090338519's end capture was blank: screen may have slept
         timeline.put(JSONObject().put("event", "verdict").put("first_seen_ms", first ?: JSONObject.NULL))
         assertTrue("Banner shown at $first ms while parked with accurate GPS every second: $timeline", first == null)
     }
