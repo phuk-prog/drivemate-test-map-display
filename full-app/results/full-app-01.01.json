@@ -1,0 +1,146 @@
+{
+ "checklist": "01.01",
+ "requirement": "Show 'Position uncertain' after three seconds of continuous uncertainty.",
+ "scope": "exact-combined-app",
+ "runner": "private-app-repository",
+ "environment": "Android emulator API 30 x86_64, Google APIs image; fixes via GPS test provider and fused mock mode",
+ "before": {
+  "run_url": "https://github.com/phuk-prog/drivemate-app/actions/runs/40087951766",
+  "app_commit": "3da80d078e4311696ef68f4f01a821f0651a0169",
+  "android_source_tree_sha": "e7ab9ca776cecb0a8d7b9d946da5bc652cf4da7d",
+  "public_tests_sha": "8f208538c9fdeb26d24f9fed4a0a51223240ad8a",
+  "score": "4/5",
+  "tests": {
+   "pref01_01_bannerAppearsThreeSecondsIntoContinuousPoorAccuracy": {
+    "status": "passed",
+    "verdict": {
+     "first_seen_ms": 3544
+    }
+   },
+   "pref01_01_bannerAppearsAfterGpsIsLost": {
+    "status": "passed",
+    "verdict": {
+     "first_seen_ms": 3138
+    }
+   },
+   "pref01_01_bannerClearsWhenPositionRecovers": {
+    "status": "passed",
+    "verdict": {
+     "last_seen_after_recovery_ms": 43
+    }
+   },
+   "pref01_01_shortGlitchUnderThreeSecondsNeverShowsBanner": {
+    "status": "passed",
+    "verdict": {
+     "seen_during_ms": null,
+     "seen_after_ms": null
+    }
+   },
+   "pref01_01_parkedWithHealthyGpsNeverShowsBanner": {
+    "status": "failed",
+    "verdict": {
+     "first_seen_ms": 65845
+    }
+   }
+  },
+  "note": "Unfixed app. Parked failed: banner at 65.8 s, then flickering (off 68.3 s, on 73.9 s, off 76.2 s)."
+ },
+ "after": [
+  {
+   "run_url": "https://github.com/phuk-prog/drivemate-app/actions/runs/40090338519",
+   "app_commit": "2d95ea17693bccfb4bd0615e64d14c6f94518e13",
+   "android_source_tree_sha": "e93579d1cee96b4d07676c9d8a4a1fbd96c0e96f",
+   "public_tests_sha": "ae550b5948c1756bc9a64104f40fb1e67af1b80e",
+   "score": "5/5",
+   "tests": {
+    "pref01_01_bannerAppearsThreeSecondsIntoContinuousPoorAccuracy": {
+     "status": "passed",
+     "verdict": {
+      "first_seen_ms": 3441
+     }
+    },
+    "pref01_01_bannerAppearsAfterGpsIsLost": {
+     "status": "passed",
+     "verdict": {
+      "first_seen_ms": 3326
+     }
+    },
+    "pref01_01_bannerClearsWhenPositionRecovers": {
+     "status": "passed",
+     "verdict": {
+      "last_seen_after_recovery_ms": 82
+     }
+    },
+    "pref01_01_shortGlitchUnderThreeSecondsNeverShowsBanner": {
+     "status": "passed",
+     "verdict": {
+      "seen_during_ms": null,
+      "seen_after_ms": null
+     }
+    },
+    "pref01_01_parkedWithHealthyGpsNeverShowsBanner": {
+     "status": "passed",
+     "verdict": {
+      "first_seen_ms": null
+     }
+    }
+   },
+   "note": "App with the parked fix (5b7d7d7) and Android Auto lane fix (f55aa6f)."
+  },
+  {
+   "run_url": "https://github.com/phuk-prog/drivemate-app/actions/runs/40091412313",
+   "app_commit": "fad749879a3ec68320c3577bb0899774e2824faf",
+   "android_source_tree_sha": "e93579d1cee96b4d07676c9d8a4a1fbd96c0e96f",
+   "public_tests_sha": "dbbf5793fb9ee8445ad4c95c3eaec603571cb53e",
+   "score": "5/5",
+   "tests": {
+    "pref01_01_bannerAppearsThreeSecondsIntoContinuousPoorAccuracy": {
+     "status": "passed",
+     "verdict": {
+      "first_seen_ms": 3403
+     }
+    },
+    "pref01_01_bannerAppearsAfterGpsIsLost": {
+     "status": "passed",
+     "verdict": {
+      "first_seen_ms": 3013
+     }
+    },
+    "pref01_01_bannerClearsWhenPositionRecovers": {
+     "status": "passed",
+     "verdict": {
+      "last_seen_after_recovery_ms": 17
+     }
+    },
+    "pref01_01_shortGlitchUnderThreeSecondsNeverShowsBanner": {
+     "status": "passed",
+     "verdict": {
+      "seen_during_ms": null,
+      "seen_after_ms": null
+     }
+    },
+    "pref01_01_parkedWithHealthyGpsNeverShowsBanner": {
+     "status": "passed",
+     "verdict": {
+      "first_seen_ms": null
+     }
+    }
+   },
+   "note": "Confirming run: screen kept awake; no-banner cases require DriveMate still on screen at the end."
+  }
+ ],
+ "invalid_runs": {
+  "40082592842": "emulator out of disk",
+  "40083764139": "mock-location grant not applied",
+  "40085233590": "MapLibre Vulkan crash on AOSP image",
+  "40086048743": "same crash, logs captured",
+  "40086626435": "banner unreadable until accessibility tree first walked",
+  "40089243895": "'Pixel Launcher isn't responding' dialog over the app"
+ },
+ "evidence_limits": [
+  "Both location sources receive identical synthetic fixes; disagreement between them is not exercised.",
+  "Fixes are synthetic along an OSM centreline; real GNSS noise and multipath are not modelled.",
+  "Emulator, not a physical phone.",
+  "Pass/fail rules identical before and after; later test commits add only harness checks (app on screen, screen captures)."
+ ]
+}
