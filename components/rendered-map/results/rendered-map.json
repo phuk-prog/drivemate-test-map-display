@@ -1,0 +1,182 @@
+{
+ "suite": "components/rendered-map",
+ "run_url": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40071137577",
+ "public_head_sha": "696b65da23232d786ad0d2ec8956bd1bb6717df8",
+ "scope": "isolated-component",
+ "evidence_limits": [
+  "Renders DriveMate's published RouteLayers only, not the combined app, its UK map style or its camera.",
+  "OSM centrelines are observed geography, not legal or lane truth.",
+  "Traffic bands are placed by the test; TrafficRouteOverlay matching of real reports is not exercised here.",
+  "Emulator SwiftShader GPU, not a physical phone GPU."
+ ],
+ "checklist": {
+  "02.01": {
+   "passed": 3,
+   "total": 3,
+   "tests": [
+    {
+     "name": "pref02_01_dayTopDownZoom17RouteStaysOnOwnCarriageway",
+     "status": "passed",
+     "verdict": {
+      "pass": true,
+      "reasons": [],
+      "own_in_view": 61,
+      "own_inked": 61,
+      "median_route_width_dp": 24.38095238095238,
+      "opposite_in_view": 60,
+      "opposite_testable": 60,
+      "opposite_visible": 60,
+      "checklist": "02.01",
+      "night": false,
+      "zoom": 17,
+      "tilt": 0,
+      "test": "pref02_01_dayTopDownZoom17RouteStaysOnOwnCarriageway",
+      "width_px": 1080,
+      "height_px": 2274,
+      "density": 2.625
+     }
+    },
+    {
+     "name": "pref02_01_nightDrivingTiltZoom18RouteStaysOnOwnCarriageway",
+     "status": "passed",
+     "verdict": {
+      "pass": true,
+      "reasons": [],
+      "own_in_view": 55,
+      "own_inked": 55,
+      "median_route_width_dp": 27.80952380952381,
+      "opposite_in_view": 56,
+      "opposite_testable": 56,
+      "opposite_visible": 56,
+      "checklist": "02.01",
+      "night": true,
+      "zoom": 18,
+      "tilt": 50,
+      "test": "pref02_01_nightDrivingTiltZoom18RouteStaysOnOwnCarriageway",
+      "width_px": 1080,
+      "height_px": 2274,
+      "density": 2.625
+     }
+    },
+    {
+     "name": "pref02_01_negativeControlRouteOnOppositeCarriagewayIsRejected",
+     "status": "passed",
+     "verdict": {
+      "pass": false,
+      "reasons": [
+       "route covers 0/61 own-carriageway samples",
+       "route median width 0.0 dp is not legible",
+       "opposite carriageway visible at 0/60 testable samples"
+      ],
+      "own_in_view": 61,
+      "own_inked": 0,
+      "median_route_width_dp": 0,
+      "opposite_in_view": 60,
+      "opposite_testable": 60,
+      "opposite_visible": 0,
+      "checklist": "02.01",
+      "negative_control": true,
+      "test": "pref02_01_negativeControlRouteOnOppositeCarriagewayIsRejected",
+      "width_px": 1080,
+      "height_px": 2274,
+      "density": 2.625
+     }
+    }
+   ]
+  },
+  "02.03": {
+   "passed": 2,
+   "total": 2,
+   "tests": [
+    {
+     "name": "pref02_03_slowIsAmberHeavyIsRedOnlyOnTheirSections",
+     "status": "passed",
+     "verdict": {
+      "pass": true,
+      "reasons": [],
+      "bands": [
+       {
+        "expect": "AMBER",
+        "from_m": 150,
+        "to_m": 240,
+        "expected_colour_samples": 9,
+        "samples": 9
+       },
+       {
+        "expect": "NEITHER",
+        "from_m": 240,
+        "to_m": 320,
+        "expected_colour_samples": 7,
+        "samples": 7
+       },
+       {
+        "expect": "RED",
+        "from_m": 320,
+        "to_m": 450,
+        "expected_colour_samples": 17,
+        "samples": 17
+       }
+      ],
+      "checklist": "02.03",
+      "carriageway": {
+       "pass": true,
+       "reasons": [],
+       "own_in_view": 61,
+       "own_inked": 61,
+       "median_route_width_dp": 24.38095238095238,
+       "opposite_in_view": 60,
+       "opposite_testable": 60,
+       "opposite_visible": 60
+      },
+      "test": "pref02_03_slowIsAmberHeavyIsRedOnlyOnTheirSections",
+      "width_px": 1080,
+      "height_px": 2274,
+      "density": 2.625
+     }
+    },
+    {
+     "name": "pref02_03_negativeControlSwappedTrafficColoursAreRejected",
+     "status": "passed",
+     "verdict": {
+      "pass": false,
+      "reasons": [
+       "AMBER 150\u2013240 m: 0/9 samples have the expected colour",
+       "RED 320\u2013450 m: 0/17 samples have the expected colour"
+      ],
+      "bands": [
+       {
+        "expect": "AMBER",
+        "from_m": 150,
+        "to_m": 240,
+        "expected_colour_samples": 0,
+        "samples": 9
+       },
+       {
+        "expect": "NEITHER",
+        "from_m": 240,
+        "to_m": 320,
+        "expected_colour_samples": 7,
+        "samples": 7
+       },
+       {
+        "expect": "RED",
+        "from_m": 320,
+        "to_m": 450,
+        "expected_colour_samples": 0,
+        "samples": 17
+       }
+      ],
+      "checklist": "02.03",
+      "negative_control": true,
+      "test": "pref02_03_negativeControlSwappedTrafficColoursAreRejected",
+      "width_px": 1080,
+      "height_px": 2274,
+      "density": 2.625
+     }
+    }
+   ]
+  }
+ },
+ "problems": [],
+ "pass": true
+}
