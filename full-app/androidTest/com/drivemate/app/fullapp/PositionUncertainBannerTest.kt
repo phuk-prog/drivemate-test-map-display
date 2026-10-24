@@ -89,11 +89,13 @@ class PositionUncertainBannerTest {
         // Before the first fix the position really is uncertain, so the banner may show at launch.
         // Timing starts only once accurate fixes have kept it away for 4 s.
         feed(12_000, accuracy = 4f, label = "start-healthy")
+        captureScreen("after-start")
         val late = seen.lastOrNull()
         assertTrue("Banner still shown at $late ms of a healthy start: $timeline", late == null || late < 8_000)
     }
 
     @After fun tearDown() {
+        captureScreen("end")
         writeResult()
         scenario?.close()
         runCatching { Tasks.await(fused.setMockMode(false), 10, TimeUnit.SECONDS) }
@@ -173,10 +175,26 @@ class PositionUncertainBannerTest {
 
     private fun firstSeen(): Long? = seen.firstOrNull()
 
+    /**
+     * What is on screen right now: a screenshot and the accessibility tree, so a missing banner can
+     * be told apart from a different screen in front (run 40086626435 never saw the banner).
+     */
+    private fun captureScreen(tag: String) {
+        val dir = outputDir() ?: return
+        runCatching { device.takeScreenshot(File(dir, "${name.methodName}-$tag.png")) }
+        runCatching { File(dir, "${name.methodName}-$tag.xml").outputStream().use { device.dumpWindowHierarchy(it) } }
+        val texts = runCatching {
+            device.findObjects(By.textContains("")).mapNotNull { it.text?.takeIf { t -> t.isNotBlank() } }.distinct().take(40)
+        }.getOrDefault(emptyList())
+        timeline.put(JSONObject().put("event", "screen-$tag").put("package", device.currentPackageName ?: JSONObject.NULL)
+            .put("visible_texts", JSONArray(texts)))
+    }
+
+    private fun outputDir(): File? = (InstrumentationRegistry.getArguments().getString("additionalTestOutputDir")?.let(::File)
+        ?: context.getExternalFilesDir("full-app"))?.also { it.mkdirs() }
+
     private fun writeResult() {
-        val dir = InstrumentationRegistry.getArguments().getString("additionalTestOutputDir")?.let(::File)
-            ?: context.getExternalFilesDir("full-app") ?: return
-        dir.mkdirs()
+        val dir = outputDir() ?: return
         File(dir, "${name.methodName}.json").writeText(JSONObject().put("test", name.methodName)
             .put("checklist", "01.01").put("timeline", timeline).toString(1))
     }
