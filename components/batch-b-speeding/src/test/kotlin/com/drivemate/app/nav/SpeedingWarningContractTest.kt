@@ -16,8 +16,8 @@ class SpeedingWarningContractTest {
     @Test fun equalLimitIsSilent() { assertEquals(NONE,tick(200_000,50.0/3.6)) }
     @Test fun belowLimitIsSilent() { assertEquals(NONE,tick(200_000,49.99/3.6)) }
     @Test fun noEarlyRepeatAt59999ms() { tick(200_000); assertEquals(NONE,tick(259_999)) }
-    @Test fun repeatAt60000ms() { tick(200_000); assertEquals(SPEECH,tick(260_000)) }
-    @Test fun repeatsEveryFurtherMinute() { tick(200_000); tick(260_000); assertEquals(SPEECH,tick(320_000)) }
+    @Test fun repeatAt60000ms() { assertEquals(SPEECH,tick(200_000)); assertEquals(SPEECH,tick(260_000)) }
+    @Test fun repeatsEveryFurtherMinute() { assertEquals(SPEECH,tick(200_000)); assertEquals(SPEECH,tick(260_000)); assertEquals(SPEECH,tick(320_000)) }
     @Test fun recoveryStartsNewEpisodeImmediately() { tick(200_000);tick(201_000,10.0);assertEquals(SPEECH,tick(202_000)) }
     @Test fun missingSpeedNeverWarns() { assertEquals(NONE,tick(200_000,null)) }
     @Test fun missingLimitNeverWarns() { assertEquals(NONE,tick(200_000,limit=null)) }

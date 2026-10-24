@@ -19,3 +19,5 @@ Local execution/pre-upload command preflight: **UNAVAILABLE**, executor failed. 
 - [Voice stable-state gate](https://github.com/phuk-prog/drivemate-app/blob/f29c40582394817eb7396eb220cbc287f638a479/app/src/main/java/com/drivemate/app/nav/Voice.kt#L238)
 
 The first CI attempt reproduced 8/16 baseline vs16/16 candidate but its overall harness guard wrongly expected repeatAt60000ms to fail. In the legacy method that sample is the first delayed warning, so it passes without proving actual repeat behavior. The guard now checks the reproduced immediate-warning failure and repeatsEveryFurtherMinute failure; test cases and production policy are unchanged. Missing/duplicate/skipped cases still fail the runner. Candidate invalid finite-input/clock-regression branches remain uncovered by this16case subset.
+
+Final review additionally strengthened repeatAt60000ms and repeatsEveryFurtherMinute to assert the initial warning and every expected subsequent warning. This prevents a first late legacy warning being mistaken for a repeat. The final paired denominator stays16; earlier8/16 baseline score is historical and must not be reported as the final strengthened-suite result.
