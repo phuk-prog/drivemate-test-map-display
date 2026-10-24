@@ -1,0 +1,47 @@
+{
+ "schema_version": 2,
+ "component": "region mosaic and optional region download",
+ "app_repository": "phuk-prog/drivemate-app (private)",
+ "phases": {
+  "baseline": {
+   "app_commit": "10a2e9766dcab86ce75364e4a1f035f786b1559f",
+   "note": "one region drawn"
+  },
+  "candidate": {
+   "app_commit": "62d8b0ea4a1665e971d8f3ee83924d946bf2d98b",
+   "note": "region plus neighbours; download every region"
+  }
+ },
+ "baseline_files": [
+  {
+   "public": "baseline/PublishedRegionCatalog.kt",
+   "app": "app/src/main/java/com/drivemate/app/data/PublishedRegionCatalog.kt",
+   "app_commit": "10a2e9766dcab86ce75364e4a1f035f786b1559f",
+   "git_blob": "f8343000d071bfc8802c0e6ce5f5867922378431",
+   "sha256": "61def80e00f1553eb627f3b73777d148d5cda1ccef656b23246d6b5979a2bd08"
+  }
+ ],
+ "published_files": [
+  {
+   "public": "src/main/kotlin/com/drivemate/app/data/PublishedRegionCatalog.kt",
+   "app": "app/src/main/java/com/drivemate/app/data/PublishedRegionCatalog.kt",
+   "app_commit": "62d8b0ea4a1665e971d8f3ee83924d946bf2d98b",
+   "git_blob": "d532bfd93354e5fab32e04e591f268b8585fee19",
+   "sha256": "51828296b2f6f37177b17f5ada1d03315cb5520783c87fadbd53893debbf0789"
+  },
+  {
+   "public": "src/main/kotlin/com/drivemate/app/data/RegionMosaic.kt",
+   "app": "app/src/main/java/com/drivemate/app/data/RegionMosaic.kt",
+   "app_commit": "62d8b0ea4a1665e971d8f3ee83924d946bf2d98b",
+   "git_blob": "b2809a16bfaf3a9e35a17a834ba1f17974fe1e04",
+   "sha256": "551dfbaa553db9515f56f5c34a89b286f1e63cebd22a5cfba3bb107434a53007"
+  },
+  {
+   "public": "src/main/kotlin/com/drivemate/app/data/RegionPackFiles.kt",
+   "app": "app/src/main/java/com/drivemate/app/data/RegionPackFiles.kt",
+   "app_commit": "62d8b0ea4a1665e971d8f3ee83924d946bf2d98b",
+   "git_blob": "322e9cae33268d422045f2016cc44add647f5d9e",
+   "sha256": "94c39d1d64d1d5db034ddc8a8deafef067efd5f381b097b0b5bc509950a8842d"
+  }
+ ]
+}
