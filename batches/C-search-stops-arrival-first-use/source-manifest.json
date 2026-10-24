@@ -17,6 +17,11 @@
       "file": "StopCompletionPolicy.kt",
       "private_candidate_blob": "cdc74831274b77a7a26a47197315da3ea1d9036f",
       "public_candidate_blob": "cdc74831274b77a7a26a47197315da3ea1d9036f"
+    },
+    {
+      "file": "FirstUseTripHelp.kt",
+      "private_candidate_blob": "733f38818a8c8d2605dd3595d2a40b0533dc477b",
+      "public_candidate_blob": "733f38818a8c8d2605dd3595d2a40b0533dc477b"
     }
   ],
   "source_files": [
@@ -54,7 +59,7 @@
     },
     {
       "path": "batches/C-search-stops-arrival-first-use/common/Boundaries.kt",
-      "blob": "1d87f7c41f416df613f710c388281f33ee10f242"
+      "blob": "c2174c9ae8620c47984f2a2d4c20663b6fbf4395"
     },
     {
       "path": "batches/C-search-stops-arrival-first-use/common/DmnBoundary.kt",
