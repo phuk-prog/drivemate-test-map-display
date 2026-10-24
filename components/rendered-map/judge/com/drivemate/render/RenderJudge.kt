@@ -201,4 +201,101 @@ object RenderJudge {
         }
         return TrafficVerdict(counts, reasons)
     }
+
+    // ---- car arrow (02.04) --------------------------------------------------------------------
+
+    /** One UK traffic lane, metres: the standard lane width in DMRB CD 127 (all-purpose roads). */
+    const val LANE_M = 3.65
+    /** Furthest the arrow's centre may sit from its carriageway centreline: about a quarter lane. */
+    const val MAX_ARROW_OFFSET_M = 1.0
+    /** Largest angle between the arrow and the road it is on. */
+    const val MAX_ARROW_HEADING_DEG = 10.0
+
+    /** Pixels that differ between two renders of the same scene: what the second one added. */
+    fun added(without: Picture, with: Picture, tol: Int = 12): List<Px> {
+        require(without.width == with.width && without.height == with.height)
+        val out = ArrayList<Px>()
+        for (y in 0 until with.height) for (x in 0 until with.width)
+            if (!close(without.pixel(x, y), with.pixel(x, y), tol)) out += Px(x.toFloat(), y.toFloat())
+        return out
+    }
+
+    /** Screen bearing of a direction: 0 is up the screen, 90 is right. */
+    fun screenBearing(dx: Double, dy: Double) = (Math.toDegrees(kotlin.math.atan2(dx, -dy)) + 360.0) % 360.0
+
+    fun angleBetween(a: Double, b: Double): Double { val d = abs(a - b) % 360.0; return if (d > 180) 360 - d else d }
+
+    data class ArrowShape(val centre: Px, val headingDeg: Double, val widthPx: Double, val symmetry: Double, val pixels: Int)
+
+    /**
+     * Finds an arrow's pointing direction from its pixels alone: the mirror axis that maps the
+     * most pixels onto other pixels, then the end of that axis reaching furthest from the centre
+     * (the tip). Width is the extent across that axis.
+     */
+    fun arrowShape(mask: List<Px>): ArrowShape? {
+        if (mask.size < 30) return null
+        val cx = mask.sumOf { it.x.toDouble() } / mask.size
+        val cy = mask.sumOf { it.y.toDouble() } / mask.size
+        val set = HashSet<Long>(mask.size * 2)
+        fun key(x: Int, y: Int) = (x.toLong() shl 32) or (y.toLong() and 0xFFFFFFFFL)
+        mask.forEach { set += key(it.x.toInt(), it.y.toInt()) }
+        var best = 0.0; var bestScore = -1.0
+        for (deg in 0 until 180) {
+            val t = Math.toRadians(deg.toDouble())
+            val ux = sin(t); val uy = -cos(t)            // axis direction, screen bearing [deg]
+            var hit = 0
+            for (p in mask) {
+                val dx = p.x - cx; val dy = p.y - cy
+                val along = dx * ux + dy * uy
+                // Mirror across the axis: keep the along-axis part, flip the across part.
+                val rx = cx + 2 * along * ux - dx; val ry = cy + 2 * along * uy - dy
+                if (key(Math.round(rx).toInt(), Math.round(ry).toInt()) in set) hit++
+            }
+            val score = hit.toDouble() / mask.size
+            if (score > bestScore) { bestScore = score; best = deg.toDouble() }
+        }
+        val t = Math.toRadians(best)
+        val ux = sin(t); val uy = -cos(t)
+        var fwd = 0.0; var back = 0.0; var lo = Double.MAX_VALUE; var hi = -Double.MAX_VALUE
+        for (p in mask) {
+            val dx = p.x - cx; val dy = p.y - cy
+            val along = dx * ux + dy * uy
+            fwd = max(fwd, along); back = max(back, -along)
+            val across = dx * -uy + dy * ux
+            lo = min(lo, across); hi = max(hi, across)
+        }
+        val heading = if (fwd >= back) best else (best + 180.0) % 360.0
+        return ArrowShape(Px(cx.toFloat(), cy.toFloat()), heading, hi - lo + 1.0, bestScore, mask.size)
+    }
+
+    data class ArrowVerdict(
+        val widthM: Double, val offsetM: Double, val headingDeg: Double, val roadDeg: Double,
+        val symmetry: Double, val pixels: Int, val reasons: List<String>,
+    ) { val pass get() = reasons.isEmpty() }
+
+    /**
+     * 02.04 on a top-down render. The arrow must sit on its carriageway's centreline, point along
+     * the road the way traffic flows (the order of [own]'s samples), and be between one lane and
+     * the whole carriageway ([lanes] × [LANE_M]) wide on the ground. Scale comes from [own]'s
+     * samples: their known ground spacing against their screen spacing.
+     */
+    fun arrow(mask: List<Px>, own: List<Sample>, lanes: Int): ArrowVerdict {
+        val shape = arrowShape(mask)
+            ?: return ArrowVerdict(0.0, 0.0, 0.0, 0.0, 0.0, mask.size, listOf("no arrow found (${mask.size} px)"))
+        val near = own.zipWithNext().minByOrNull { (a, b) -> distanceToPolyline(shape.centre, listOf(a.px, b.px)) }!!
+        val (a, b) = near
+        val pxPerM = hypot((b.px.x - a.px.x).toDouble(), (b.px.y - a.px.y).toDouble()) / (b.station - a.station)
+        val road = screenBearing((b.px.x - a.px.x).toDouble(), (b.px.y - a.px.y).toDouble())
+        val widthM = shape.widthPx / pxPerM
+        val offsetM = distanceToPolyline(shape.centre, own.map { it.px }) / pxPerM
+        val carriageway = lanes * LANE_M
+        val reasons = ArrayList<String>()
+        if (shape.symmetry < 0.8) reasons += "no clear arrow shape (mirror match %.2f)".format(shape.symmetry)
+        if (widthM < LANE_M) reasons += "arrow %.1f m wide, narrower than one lane (%.2f m)".format(widthM, LANE_M)
+        if (widthM > carriageway) reasons += "arrow %.1f m wide, wider than its %d-lane carriageway (%.2f m)".format(widthM, lanes, carriageway)
+        if (offsetM > MAX_ARROW_OFFSET_M) reasons += "arrow centre %.1f m off the carriageway centreline".format(offsetM)
+        val err = angleBetween(shape.headingDeg, road)
+        if (err > MAX_ARROW_HEADING_DEG) reasons += "arrow points %.0f° away from the road".format(err)
+        return ArrowVerdict(widthM, offsetM, shape.headingDeg, road, shape.symmetry, shape.pixels, reasons)
+    }
 }

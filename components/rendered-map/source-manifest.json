@@ -1,20 +1,78 @@
 {
- "schema_version": 1,
- "component": "rendered-map route and traffic layers",
+ "schema_version": 2,
+ "component": "rendered-map route, traffic and car arrow layers",
  "app_repository": "phuk-prog/drivemate-app (private)",
- "app_commit": "0075ab288ac774b05c5749a9612ef7b4e6e8df74",
  "app_branch": "ccr-f8e68f01-sof1k3",
- "app_android_source_tree_sha": "100c68ef5aa74802d32f7b228d54979e1088c56c",
+ "phases": {
+  "baseline": {
+   "app_commit": "d8d601204e6cbf0d828402e90df2c7010620a57b",
+   "note": "CarMarker moved out of MapController unchanged; arrow scaled linearly 0.8-1.25 over zoom 0-25.5"
+  },
+  "candidate": {
+   "app_commit": "7c045a87cacf2231662fd1678626636713e9552d",
+   "app_android_source_tree_sha": "e7ab9ca776cecb0a8d7b9d946da5bc652cf4da7d",
+   "note": "02.04 arrow kept 8 m wide on the ground at zooms 16-18"
+  }
+ },
+ "shared_files_identical_in_both_phases": true,
  "published_files": [
-  {"public": "app-src/com/drivemate/app/map/RouteLayers.kt", "app": "app/src/main/java/com/drivemate/app/map/RouteLayers.kt", "sha256": "e2d791bc539af91603fd662f7681c7bddcea384ee41ed073eca1ab70c62f6d1b"},
-  {"public": "app-src/com/drivemate/app/nav/RoutePalette.kt", "app": "app/src/main/java/com/drivemate/app/nav/RoutePalette.kt", "sha256": "7ea2f1433ceaf2502032d3395d821b55f7008e3af3efb31f759e664c92e66b8b"},
-  {"public": "app-src/com/drivemate/app/nav/Geo.kt", "app": "app/src/main/java/com/drivemate/app/nav/Geo.kt", "sha256": "4aa42c796ccb9f89d2384b5f84394215a54574e0b41e574e763c2d62031eea12"}
+  {
+   "public": "app-src/com/drivemate/app/map/RouteLayers.kt",
+   "app": "app/src/main/java/com/drivemate/app/map/RouteLayers.kt",
+   "app_commit": "7c045a87cacf2231662fd1678626636713e9552d",
+   "sha256": "e2d791bc539af91603fd662f7681c7bddcea384ee41ed073eca1ab70c62f6d1b"
+  },
+  {
+   "public": "app-src/com/drivemate/app/map/MapOverviewPolicy.kt",
+   "app": "app/src/main/java/com/drivemate/app/map/MapOverviewPolicy.kt",
+   "app_commit": "7c045a87cacf2231662fd1678626636713e9552d",
+   "sha256": "f2e83aa6613da3d4defd62276b0f4f84fbb68aff66048f21d16ad586ce920f89"
+  },
+  {
+   "public": "app-src/com/drivemate/app/map/MapLayerOrder.kt",
+   "app": "app/src/main/java/com/drivemate/app/map/MapLayerOrder.kt",
+   "app_commit": "7c045a87cacf2231662fd1678626636713e9552d",
+   "sha256": "ad8a9ed70ba0170034658021755a2a76d53567723568b4b9adfb652c866ec9b2"
+  },
+  {
+   "public": "app-src/com/drivemate/app/nav/RoutePalette.kt",
+   "app": "app/src/main/java/com/drivemate/app/nav/RoutePalette.kt",
+   "app_commit": "7c045a87cacf2231662fd1678626636713e9552d",
+   "sha256": "7ea2f1433ceaf2502032d3395d821b55f7008e3af3efb31f759e664c92e66b8b"
+  },
+  {
+   "public": "app-src/com/drivemate/app/nav/Geo.kt",
+   "app": "app/src/main/java/com/drivemate/app/nav/Geo.kt",
+   "app_commit": "7c045a87cacf2231662fd1678626636713e9552d",
+   "sha256": "4aa42c796ccb9f89d2384b5f84394215a54574e0b41e574e763c2d62031eea12"
+  },
+  {
+   "public": "app-res/drawable/ic_car_arrow.xml",
+   "app": "app/src/main/res/drawable/ic_car_arrow.xml",
+   "app_commit": "7c045a87cacf2231662fd1678626636713e9552d",
+   "sha256": "9f75bf36903b60469e9dfa34496463676cea7e58df6d342f57dfa09886e55d92"
+  },
+  {
+   "public": "app-src-baseline/com/drivemate/app/map/CarMarker.kt",
+   "app": "app/src/main/java/com/drivemate/app/map/CarMarker.kt",
+   "app_commit": "d8d601204e6cbf0d828402e90df2c7010620a57b",
+   "sha256": "9d949d6768e702f216ad61297ecb1fbc2b2564cff9317a52899bd9444fa32bd8"
+  },
+  {
+   "public": "app-src-candidate/com/drivemate/app/map/CarMarker.kt",
+   "app": "app/src/main/java/com/drivemate/app/map/CarMarker.kt",
+   "app_commit": "7c045a87cacf2231662fd1678626636713e9552d",
+   "sha256": "f7b398a303d5cc81d06ae4c6364a405b44da774182a6e6f4dd7d6a1dc1ee12fb"
+  }
  ],
  "app_wiring_not_published": [
   "MapController.addLayers calls RouteLayers.add(style, night) under the car layer",
   "MapController.showRoutes and setRouteProgress fill RouteLayers.SRC_ROUTE / SRC_DRIVEN via RouteLayers.lines",
   "MapController.applyTraffic fills RouteLayers.TRAFFIC_SRC via RouteLayers.traffic when the Traffic toggle is on",
-  "TrafficRouteOverlay.Level SLOW/HEAVY take RouteLayers.SLOW_COLOR / HEAVY_COLOR"
+  "TrafficRouteOverlay.Level SLOW/HEAVY take RouteLayers.SLOW_COLOR / HEAVY_COLOR",
+  "MapController.enableLocation (after every style load) calls CarMarker.show; setCarIcon calls CarMarker.restyle",
+  "MapController.applyFollow sets RenderMode.GPS and CameraMode.NONE while navigating",
+  "NavigationSession chooses the arrow's position and bearing (route snap, matched road or raw GPS)"
  ],
  "scope": "isolated-component",
  "not_scope": "exact-combined-app"

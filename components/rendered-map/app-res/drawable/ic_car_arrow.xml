@@ -1,0 +1,16 @@
+<!-- Driving arrow: indigo with a white outline, pointing up (the map rotates it to your heading). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="32dp"
+    android:height="32dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <path
+        android:fillColor="#40000000"
+        android:pathData="M24,5 L39,42 L24,34 L9,42 Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M24,3 L38.5,40 L24,32 L9.5,40 Z" />
+    <path
+        android:fillColor="#FF3730A3"
+        android:pathData="M24,8 L34.5,35 L24,29 L13.5,35 Z" />
+</vector>
