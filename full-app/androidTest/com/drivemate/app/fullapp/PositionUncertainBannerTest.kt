@@ -14,6 +14,8 @@ import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.GrantPermissionRule
 import androidx.test.uiautomator.By
 import androidx.test.uiautomator.UiDevice
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.tasks.Tasks
 import com.drivemate.app.MainActivity
 import org.json.JSONArray
 import org.json.JSONObject
@@ -25,15 +27,16 @@ import org.junit.Test
 import org.junit.rules.TestName
 import org.junit.runner.RunWith
 import java.io.File
+import java.util.concurrent.TimeUnit
 import kotlin.math.cos
 
 /**
  * Checklist 01.01 on the real combined DriveMate app: "Show 'Position uncertain' after three
  * seconds of continuous uncertainty."
  *
- * Runs inside the private app build on an emulator image without Google Play services, so the
- * app's own GPS-provider path receives every fix. Fixes come from Android's test-provider API
- * along Princess Road (A5103), Manchester (public OSM fixture), moving at 8 m/s unless parked.
+ * Runs inside the private app build on a Google APIs emulator image. Every fix goes to both of the
+ * app's sources: Android's GPS test provider and Google Play's fused location (mock mode), along
+ * Princess Road (A5103), Manchester (public OSM fixture), moving at 8 m/s unless parked.
  * The banner is read from the screen through accessibility (UiAutomator), as a driver sees it.
  *
  * Timing rules (independent of the app's own constants):
@@ -56,6 +59,7 @@ class PositionUncertainBannerTest {
     private val context = instrumentation.targetContext
     private val locations = context.getSystemService(LocationManager::class.java)
     private var scenario: ActivityScenario<MainActivity>? = null
+    private val fused = LocationServices.getFusedLocationProviderClient(context)
     private val timeline = JSONArray()
 
     private val road: List<DoubleArray> by lazy {
@@ -80,6 +84,7 @@ class PositionUncertainBannerTest {
                 android.location.Criteria.POWER_HIGH, android.location.Criteria.ACCURACY_FINE)
         }
         locations.setTestProviderEnabled(LocationManager.GPS_PROVIDER, true)
+        Tasks.await(fused.setMockMode(true), 10, TimeUnit.SECONDS)
         scenario = ActivityScenario.launch(Intent(context, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
         // Before the first fix the position really is uncertain, so the banner may show at launch.
         // Timing starts only once accurate fixes have kept it away for 4 s.
@@ -91,6 +96,7 @@ class PositionUncertainBannerTest {
     @After fun tearDown() {
         writeResult()
         scenario?.close()
+        runCatching { Tasks.await(fused.setMockMode(false), 10, TimeUnit.SECONDS) }
         runCatching { locations.setTestProviderEnabled(LocationManager.GPS_PROVIDER, false) }
         runCatching { locations.removeTestProvider(LocationManager.GPS_PROVIDER) }
     }
@@ -120,12 +126,14 @@ class PositionUncertainBannerTest {
 
     private fun sendFix(accuracy: Float, speed: Float) {
         val (p, bearing) = along(travelled)
-        locations.setTestProviderLocation(LocationManager.GPS_PROVIDER, Location(LocationManager.GPS_PROVIDER).apply {
+        fun fix(provider: String) = Location(provider).apply {
             latitude = p[0]; longitude = p[1]; this.accuracy = accuracy; this.speed = speed
             this.bearing = bearing.toFloat(); altitude = 40.0
             if (Build.VERSION.SDK_INT >= 26) { bearingAccuracyDegrees = 5f; speedAccuracyMetersPerSecond = 0.5f; verticalAccuracyMeters = 5f }
             time = System.currentTimeMillis(); elapsedRealtimeNanos = SystemClock.elapsedRealtimeNanos()
-        })
+        }
+        locations.setTestProviderLocation(LocationManager.GPS_PROVIDER, fix(LocationManager.GPS_PROVIDER))
+        Tasks.await(fused.setMockLocation(fix("fused")), 5, TimeUnit.SECONDS)
     }
 
     private var phaseStart = 0L

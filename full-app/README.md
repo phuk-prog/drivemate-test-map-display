@@ -10,14 +10,15 @@ is `exact-combined-app`.
 1. The private workflow `.github/workflows/full-app-gates.yml` reads the pinned commit of this
    repository from `.github/full-app-tests.lock`, checks it out, and copies `full-app/androidTest`
    into the app's `androidTest` sources and `components/rendered-map/fixtures` into its test assets.
-2. It runs `connectedDebugAndroidTest` for these classes on an API 30 x86_64 emulator **without
-   Google Play services**, so the app's own GPS-provider path gets every test fix.
+2. It runs `connectedDebugAndroidTest` for these classes on an API 30 x86_64 **Google APIs**
+   emulator. (The AOSP image crashed MapLibre's Vulkan renderer in SwiftShader, run 40086048743.)
 3. `ci/summarize_full_app.py` writes one result per checklist ID with the app commit, the exact
    `app/src/main` tree SHA and this repository's test commit. A missing, skipped or failed test fails
    the run.
 
 ## 01.01 — "Position uncertain" after three seconds (`PositionUncertainBannerTest`)
-GPS fixes come from Android's test-provider API along Princess Road (A5103), Manchester, at 8 m/s.
+Every fix goes to both of the app's location sources, Android's GPS test provider and Google
+Play's fused location in mock mode, along Princess Road (A5103), Manchester, at 8 m/s.
 The banner is read from the screen through accessibility (UiAutomator), as a driver sees it.
 
 | Test | Must |
@@ -33,6 +34,6 @@ constants. The parked case targets a source finding: after 60 s stopped the app 
 only every 15 s, while it treats fixes older than 2.5 s as unreliable.
 
 ## Limits
-- Google Play fused location is not exercised, because the image has no Play services.
+- Both sources get identical fixes, so disagreement between them is not exercised.
 - Fixes are synthetic; real GNSS noise, tunnels and multipath are not modelled.
 - Browse mode only here. The navigating-mode notice and lane hiding (01.02) need a route and come next.

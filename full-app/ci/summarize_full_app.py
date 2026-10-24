@@ -55,9 +55,9 @@ def main(junit_dir, output_dir, out, run_url, app_commit, app_tree, public_sha):
         "suite": "full-app", "scope": "exact-combined-app", "runner": "private-app-repository",
         "run_url": run_url, "app_commit": app_commit, "android_source_tree_sha": app_tree,
         "public_tests_sha": public_sha,
-        "environment": "Android emulator API 30 x86_64, AOSP image without Google Play services; GPS via test provider",
+        "environment": "Android emulator API 30 x86_64, Google APIs image; fixes via GPS test provider and fused mock mode",
         "evidence_limits": [
-            "Google Play fused location is not exercised (no Play services on the image).",
+            "Both location sources receive identical synthetic fixes; disagreement between them is not exercised.",
             "Fixes are synthetic along an OSM centreline; real GNSS noise and multipath are not modelled.",
             "Emulator, not a physical phone.",
         ],
