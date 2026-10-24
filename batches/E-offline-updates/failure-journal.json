@@ -1,0 +1,30 @@
+[
+  {
+    "run": 40086534836,
+    "job": 120850514533,
+    "cause": "AndroidX property omitted",
+    "fix": "android.useAndroidX=true",
+    "tests_executed": false
+  },
+  {
+    "run": 40086678017,
+    "job": 120850941113,
+    "cause": "Java target1.8 differs from Kotlin17",
+    "fix": "Explicit Java17 compileOptions paired with Kotlin17",
+    "tests_executed": false
+  },
+  {
+    "run": 40086831904,
+    "job": 120851390102,
+    "cause": "Test assertions read nullable WorkInfo without non-null check",
+    "fix": "Require returned WorkInfo before reading state; a missing job fails test",
+    "production_compiled": true,
+    "tests_executed": false
+  },
+  {
+    "run": 40086964494,
+    "head": "5fd1fb581ff3a1ff2b97238b6d69b35a112e3cad",
+    "conclusion": "success",
+    "scope": "Kotlin paired and Android scheduler/Compose jobs"
+  }
+]

@@ -1,0 +1,176 @@
+{
+  "source_sha": "baf6c06de2c3027e2ea7563e9f9e4dacafbbd147",
+  "candidate_private_sha": "f62ee8c0d668d72260cdaa9b1f4e5678adf201e0",
+  "local_preflight": "UNAVAILABLE: no usable executor",
+  "runtime_scope": "isolated components; source audit is not runtime proof",
+  "items": [
+    {
+      "id": "11.01",
+      "baseline": "partial_source_existing",
+      "candidate": "partial_unchanged",
+      "accepted": false,
+      "limitation": "OfflineInventory exposes route coverage; no downloaded-area navigation replay executed."
+    },
+    {
+      "id": "11.02",
+      "baseline": "partial_source_existing",
+      "candidate": "regional_scheduler_candidate",
+      "accepted": false,
+      "limitation": "MapPack already schedules monthly/weekly Wi-Fi work; regional candidate schedules unmetered work."
+    },
+    {
+      "id": "11.03",
+      "baseline": "not_implemented",
+      "candidate": "source_candidate_dependency_E12",
+      "accepted": false,
+      "limitation": "E12 dependency adds explicit mobile-data approval dialog warning that downloads can be large; exact dialog rendering not executed in E11 tests."
+    },
+    {
+      "id": "11.04",
+      "baseline": "not_implemented",
+      "candidate": "not_implemented",
+      "accepted": false,
+      "limitation": "Authenticated area expiry metadata and reminder UI absent; no expiry date invented."
+    },
+    {
+      "id": "11.05",
+      "baseline": "partial_source_existing",
+      "candidate": "partial_unchanged",
+      "accepted": false,
+      "limitation": "Generic cleanup confirmation exists; expired-area review flow not supplied."
+    },
+    {
+      "id": "11.06",
+      "baseline": "partial_source_existing",
+      "candidate": "partial_unchanged",
+      "accepted": false,
+      "limitation": "Verified older generations retained; newer-version inventory wording exists, no full outdated-map lifecycle proof."
+    },
+    {
+      "id": "11.07",
+      "baseline": "not_implemented",
+      "candidate": "not_implemented",
+      "accepted": false,
+      "limitation": "No top-of-map outdated label found in MainScreen."
+    },
+    {
+      "id": "11.08",
+      "baseline": "not_implemented",
+      "candidate": "not_implemented",
+      "accepted": false,
+      "limitation": "No connected Update now action beside a top-map outdated label."
+    },
+    {
+      "id": "11.09",
+      "baseline": "not_implemented_regional",
+      "candidate": "regional_scheduler_candidate",
+      "accepted": false,
+      "limitation": "Prior approval schedules persistent constrained work, reconnect handled by WorkManager; transfer integration pending."
+    },
+    {
+      "id": "11.10",
+      "baseline": "not_implemented_regional",
+      "candidate": "partial_component",
+      "accepted": false,
+      "limitation": "Approval is device-wide, but RegionalMaps remembers only last area; all-installed-area update integration not proved."
+    },
+    {
+      "id": "11.11",
+      "baseline": "not_implemented_regional",
+      "candidate": "regional_control_candidate",
+      "accepted": false,
+      "limitation": "New Offline Maps control persists approval and revocation; whole-map MapPack jobs separate."
+    },
+    {
+      "id": "11.12",
+      "baseline": "not_implemented_regional",
+      "candidate": "regional_android_test",
+      "accepted": false,
+      "limitation": "Real WorkManager test cancels queued unique regional work; broad MapPack cancellation unimplemented."
+    },
+    {
+      "id": "11.13",
+      "baseline": "not_implemented_regional",
+      "candidate": "partial_component",
+      "accepted": false,
+      "limitation": "Revision guard plus WorkManager cancellation added; active real HTTP transfer cancellation not executed."
+    },
+    {
+      "id": "11.14",
+      "baseline": "not_implemented_regional",
+      "candidate": "source_candidate",
+      "accepted": false,
+      "limitation": "No cancellation confirmation or toast emitted by new control; no rendered UI test."
+    },
+    {
+      "id": "11.15",
+      "baseline": "not_implemented_regional",
+      "candidate": "source_candidate",
+      "accepted": false,
+      "limitation": "Control immediately shows saved off state and adds no cancellation log; no rendered UI test."
+    },
+    {
+      "id": "11.16",
+      "baseline": "not_implemented_regional",
+      "candidate": "source_integration_candidate",
+      "accepted": false,
+      "limitation": "E12 OfflinePackagesPanel invokes the exact new control at its Offline Maps section top; full panel runtime not yet executed."
+    },
+    {
+      "id": "11.17",
+      "baseline": "not_implemented",
+      "candidate": "not_implemented",
+      "accepted": false,
+      "limitation": "Existing radius selector is not rectangular drawing."
+    },
+    {
+      "id": "11.18",
+      "baseline": "not_implemented",
+      "candidate": "not_implemented",
+      "accepted": false,
+      "limitation": "No exact rectangle workflow; package bounds alone cannot satisfy drawn geometry."
+    },
+    {
+      "id": "11.19",
+      "baseline": "not_implemented",
+      "candidate": "not_implemented",
+      "accepted": false,
+      "limitation": "Existing spaceCheck has size calculation, no live rectangle resizing UI."
+    },
+    {
+      "id": "11.20",
+      "baseline": "partial_source_existing",
+      "candidate": "partial_unchanged",
+      "accepted": false,
+      "limitation": "Published named regions exist but county/country availability cannot be invented."
+    },
+    {
+      "id": "11.21",
+      "baseline": "not_implemented_search",
+      "candidate": "source_integrated_component",
+      "accepted": false,
+      "limitation": "Offline Maps now reads published catalogue ordered by local focus distance; isolated catalogue sort tested, full MapData provider integration not executed."
+    },
+    {
+      "id": "11.22",
+      "baseline": "not_implemented_search",
+      "candidate": "compose_component_test_pending",
+      "accepted": false,
+      "limitation": "Exact Compose search field filters as text changes using catalogue query API; provider boundary is explicit in isolated UI tests."
+    },
+    {
+      "id": "11.23",
+      "baseline": "partial_source_existing",
+      "candidate": "compose_component_test_pending",
+      "accepted": false,
+      "limitation": "Search results display declared map-archive sizes via exact OfflineStorage formatter; provider boundary explicit; companion downloads remain separate."
+    },
+    {
+      "id": "11.24",
+      "baseline": "partial_source_existing",
+      "candidate": "partial_unchanged",
+      "accepted": false,
+      "limitation": "OfflineInventory area options use MB sizes; region search display not yet wired."
+    }
+  ]
+}
