@@ -1,0 +1,24 @@
+package com.drivemate.render
+
+import android.app.Activity
+import android.os.Bundle
+import org.maplibre.android.MapLibre
+import org.maplibre.android.maps.MapView
+
+/** Test-only full-screen map host. Never part of the shipped app. */
+class RenderHostActivity : Activity() {
+    lateinit var mapView: MapView
+    override fun onCreate(state: Bundle?) {
+        super.onCreate(state)
+        MapLibre.getInstance(applicationContext)
+        mapView = MapView(this)
+        mapView.onCreate(state)
+        setContentView(mapView)
+    }
+    override fun onStart() { super.onStart(); mapView.onStart() }
+    override fun onResume() { super.onResume(); mapView.onResume() }
+    override fun onPause() { mapView.onPause(); super.onPause() }
+    override fun onStop() { mapView.onStop(); super.onStop() }
+    override fun onLowMemory() { super.onLowMemory(); mapView.onLowMemory() }
+    override fun onDestroy() { mapView.onDestroy(); super.onDestroy() }
+}

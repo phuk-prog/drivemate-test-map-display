@@ -1,0 +1,21 @@
+{
+ "schema_version": 1,
+ "component": "rendered-map route and traffic layers",
+ "app_repository": "phuk-prog/drivemate-app (private)",
+ "app_commit": "0075ab288ac774b05c5749a9612ef7b4e6e8df74",
+ "app_branch": "ccr-f8e68f01-sof1k3",
+ "app_android_source_tree_sha": "100c68ef5aa74802d32f7b228d54979e1088c56c",
+ "published_files": [
+  {"public": "app-src/com/drivemate/app/map/RouteLayers.kt", "app": "app/src/main/java/com/drivemate/app/map/RouteLayers.kt", "sha256": "e2d791bc539af91603fd662f7681c7bddcea384ee41ed073eca1ab70c62f6d1b"},
+  {"public": "app-src/com/drivemate/app/nav/RoutePalette.kt", "app": "app/src/main/java/com/drivemate/app/nav/RoutePalette.kt", "sha256": "7ea2f1433ceaf2502032d3395d821b55f7008e3af3efb31f759e664c92e66b8b"},
+  {"public": "app-src/com/drivemate/app/nav/Geo.kt", "app": "app/src/main/java/com/drivemate/app/nav/Geo.kt", "sha256": "4aa42c796ccb9f89d2384b5f84394215a54574e0b41e574e763c2d62031eea12"}
+ ],
+ "app_wiring_not_published": [
+  "MapController.addLayers calls RouteLayers.add(style, night) under the car layer",
+  "MapController.showRoutes and setRouteProgress fill RouteLayers.SRC_ROUTE / SRC_DRIVEN via RouteLayers.lines",
+  "MapController.applyTraffic fills RouteLayers.TRAFFIC_SRC via RouteLayers.traffic when the Traffic toggle is on",
+  "TrafficRouteOverlay.Level SLOW/HEAVY take RouteLayers.SLOW_COLOR / HEAVY_COLOR"
+ ],
+ "scope": "isolated-component",
+ "not_scope": "exact-combined-app"
+}

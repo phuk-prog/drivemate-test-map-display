@@ -1,0 +1,96 @@
+name: Rendered map — route on own carriageway and traffic colours (02.01, 02.03)
+on:
+  push:
+    branches: [main]
+    paths: ['components/rendered-map/**', '.github/workflows/rendered-map-public.yml']
+  pull_request:
+    paths: ['components/rendered-map/**', '.github/workflows/rendered-map-public.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  judge:
+    name: Judge self-tests and negative controls (JVM)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@0b6dd653ba04f4f93bf581ec31e66cbd7dcb644d
+        with:
+          gradle-version: '8.14.3'
+      - name: Check published app files and OSM fixture
+        run: python3 components/rendered-map/ci/validate.py
+      - name: Run the judge against deliberately broken pictures
+        working-directory: components/rendered-map/judge-jvm
+        run: gradle test --no-daemon
+  render:
+    name: MapLibre GPU render on emulator
+    needs: judge
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@be39fa834029ff78f1a44aa3bb0819b8fc2bd8fd
+        with:
+          log-accepted-android-sdk-licenses: false
+      - run: sdkmanager 'platforms;android-36' 'build-tools;35.0.0'
+      - uses: gradle/actions/setup-gradle@0b6dd653ba04f4f93bf581ec31e66cbd7dcb644d
+        with:
+          gradle-version: '8.14.3'
+      - name: Enable KVM for the emulator
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Build test APK before booting the emulator
+        working-directory: components/rendered-map/android
+        run: gradle assembleDebugAndroidTest --no-daemon
+      # TODO before merge: pin to the release's full commit SHA, like the other actions here.
+      - name: Render and judge on emulator
+        uses: reactivecircus/android-emulator-runner@v2.33.0
+        with:
+          api-level: 30
+          arch: x86_64
+          target: google_apis
+          profile: pixel_6
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
+          working-directory: components/rendered-map/android
+          # Keep the test APK installed so its fallback output folder can be pulled as well.
+          script: |
+            gradle connectedDebugAndroidTest --no-daemon --continue -Pandroid.injected.androidTest.leaveApksInstalledAfterRun=true || echo "connected tests failed; summarize decides"
+            adb pull /sdcard/Android/data/com.drivemate.render.test/files/render build/outputs/connected_android_test_additional_output/fallback || true
+      - name: Summarize per checklist item
+        if: always()
+        run: |
+          python3 components/rendered-map/ci/summarize.py \
+            components/rendered-map/android/build/outputs/androidTest-results \
+            components/rendered-map/android/build/outputs/connected_android_test_additional_output \
+            components/rendered-map/results/rendered-map.json \
+            "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" "$GITHUB_SHA" | tee -a "$GITHUB_STEP_SUMMARY"
+          echo 'Isolated RouteLayers render only: not the combined app, not the APK release gate.' >> "$GITHUB_STEP_SUMMARY"
+      - name: Publish screenshots and verdicts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: rendered-map-02.01-02.03
+          path: |
+            components/rendered-map/results/rendered-map.json
+            components/rendered-map/source-manifest.json
+            components/rendered-map/fixtures/princess-road-a5103-osm.json
+            components/rendered-map/android/build/outputs/connected_android_test_additional_output/**
+            components/rendered-map/android/build/outputs/androidTest-results/**
+          if-no-files-found: error
+          retention-days: 30
