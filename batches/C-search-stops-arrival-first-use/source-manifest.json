@@ -17,6 +17,11 @@
       "file": "StopCompletionPolicy.kt",
       "private_candidate_blob": "cdc74831274b77a7a26a47197315da3ea1d9036f",
       "public_candidate_blob": "cdc74831274b77a7a26a47197315da3ea1d9036f"
+    },
+    {
+      "file": "FirstUseTripHelp.kt",
+      "private_candidate_blob": "733f38818a8c8d2605dd3595d2a40b0533dc477b",
+      "public_candidate_blob": "733f38818a8c8d2605dd3595d2a40b0533dc477b"
     }
   ],
   "source_files": [
@@ -63,7 +68,12 @@
     {
       "path": "batches/C-search-stops-arrival-first-use/common/Geo.kt",
       "blob": "0120933d40824a9da333847272167d31ebc503c4"
+    },
+    {
+      "path": "batches/C-search-stops-arrival-first-use/first-use-android/src/main/kotlin/com/drivemate/app/ui/FirstUseTripHelp.kt",
+      "blob": "733f38818a8c8d2605dd3595d2a40b0533dc477b"
     }
   ],
-  "boundary": "Boundaries.kt and DmnBoundary.kt are synthetic; baseline StopCompletionPolicy is an adapter of the baseline NavigationSession count expression, not a copied production class"
+  "boundary": "Boundaries.kt and DmnBoundary.kt are synthetic; baseline StopCompletionPolicy is an adapter of the baseline NavigationSession count expression, not a copied production class",
+  "tested_tutorial_commit": "ceef1659a2a5811f3d91642b307ba77ce36ca69b"
 }
