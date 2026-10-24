@@ -8,6 +8,10 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+# bash -eo pipefail: a failing summary piped through tee must fail its step.
+defaults:
+  run:
+    shell: bash
 jobs:
   judge:
     name: Judge self-tests and negative controls (JVM)

@@ -9,6 +9,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.GrantPermissionRule
 import com.drivemate.app.map.CarMarker
+import com.drivemate.app.map.MapLayerOrder
 import com.drivemate.render.RenderJudge.Geo
 import com.drivemate.render.RenderJudge.Picture
 import com.drivemate.render.RenderJudge.Px
@@ -101,7 +102,11 @@ class CarArrowTest {
         val refs = JSONObject().put("type", "FeatureCollection")
             .put("features", JSONArray().put(feature(own)).put(feature(opposite)))
         style.addSource(GeoJsonSource("ref-src", refs.toString()))
-        style.addLayer(LineLayer("ref-roads", "ref-src").withProperties(lineColor(hex(REFERENCE)), lineWidth(8f)))
+        // Under the car, as MapController.addUnderCar does: after a style reload MapLibre has
+        // already put the car layers back, and a plain addLayer would draw the road over it.
+        val roads = LineLayer("ref-roads", "ref-src").withProperties(lineColor(hex(REFERENCE)), lineWidth(8f))
+        val car = MapLayerOrder.firstCarLayer(style.layers.map { it.id })
+        if (car != null) style.addLayerBelow(roads, car) else style.addLayer(roads)
         val c = pointAt(station)
         map.moveCamera(CameraUpdateFactory.newCameraPosition(CameraPosition.Builder()
             .target(LatLng(c.lat, c.lon)).zoom(zoom).tilt(0.0).bearing(cameraBearing).build()))
