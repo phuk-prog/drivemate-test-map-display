@@ -36,7 +36,7 @@ class DownloadStoragePreferencesTest {
  }
  @Test fun pref12_11_storageShortfallVisible() {
   val t=OfflineStorage.spaceText(OfflineStorage.SpaceNeed(2_000_000,1_000_000,0),1_000_000)
-  assertTrue(t,t.contains("2 MB"))
+  assertTrue(t,t.contains("Free up 2 MB first"))
  }
  @Test fun cleanupProtectsPrivateUserData() {
   val root=Files.createTempDirectory("synthetic-storage").toFile()

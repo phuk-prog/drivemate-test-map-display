@@ -1,0 +1,51 @@
+{
+  "scope": "Actual individual production components; synthetic file/network boundaries. UI and combined app unverified.",
+  "source_app_sha": "baf6c06de2c3027e2ea7563e9f9e4dacafbbd147",
+  "public_commit": "6a672690c26993de134409d681752e1f3973e78b",
+  "run_id": "40086727105",
+  "results": {
+    "baseline": {
+      "cases": {
+        "cleanupNeverDeletesActiveGeneration": "passed",
+        "pref12_28_failedItemHasNoReason": "failed",
+        "cleanupProtectsPrivateUserData": "passed",
+        "pref12_02_savedBytesBounded": "passed",
+        "pref12_21_progressUsesPercentage": "passed",
+        "pref12_02_exactFreeStorageBoundary": "passed",
+        "pref12_11_storageShortfallVisible": "passed",
+        "pref12_25_failedTransferWaitsForUser": "failed"
+      },
+      "passed": 6,
+      "total": 8,
+      "execution_available": true,
+      "source_hashes": {
+        "ResumableDownload.kt": "c67c425fc2406ea969e1036f2310ab1de715dac0d3fed111308eaddee408d348",
+        "RegionalDownloadStage.kt": "9e4349b59b6e5a1f98a42a199381dcdca3b81df820700555dd04c70eca49c7cb",
+        "OfflineStorage.kt": "982087514f7759f769a9cae5a01dfd55b319d1ba63b2b7dca84589dd6958b5a9",
+        "RegionalMapDownloader.kt": "0be6f8c85af6b78e49c548216bc5f8e6ab812be367d8ddc0e815b3a54fbb8db6"
+      }
+    },
+    "candidate": {
+      "cases": {
+        "cleanupNeverDeletesActiveGeneration": "passed",
+        "pref12_28_failedItemHasNoReason": "passed",
+        "cleanupProtectsPrivateUserData": "passed",
+        "pref12_02_savedBytesBounded": "passed",
+        "pref12_21_progressUsesPercentage": "passed",
+        "pref12_02_exactFreeStorageBoundary": "passed",
+        "pref12_11_storageShortfallVisible": "passed",
+        "pref12_25_failedTransferWaitsForUser": "passed"
+      },
+      "passed": 8,
+      "total": 8,
+      "execution_available": true,
+      "source_hashes": {
+        "ResumableDownload.kt": "c67c425fc2406ea969e1036f2310ab1de715dac0d3fed111308eaddee408d348",
+        "RegionalDownloadStage.kt": "379dc6770319215e5161f6e4e28b9e08d83df8e6e0e687d987bfe707062632af",
+        "OfflineStorage.kt": "982087514f7759f769a9cae5a01dfd55b319d1ba63b2b7dca84589dd6958b5a9",
+        "RegionalMapDownloader.kt": "87ebb4f32029e9ab2f222464566fa504f9eed16a3de00c55a74b140ca649f420"
+      }
+    }
+  },
+  "accepted": false
+}

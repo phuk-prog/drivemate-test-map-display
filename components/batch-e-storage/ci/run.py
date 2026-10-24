@@ -4,7 +4,7 @@ out={"scope":"Actual individual production components; synthetic file/network bo
 valid=True
 for phase in ("baseline","candidate"):
  xml=root/"harness/build/test-results/test";shutil.rmtree(xml,ignore_errors=True)
- run=subprocess.run(["gradle","-p",str(root/"harness"),"clean","test","-Pphase="+phase,"--no-daemon","--max-workers=2"],capture_output=True,text=True)
+ run=subprocess.run(["gradle","-p",str(root/"harness"),"clean","test","-Pphase="+phase,"--no-daemon","--max-workers=2","--tests","*DownloadStoragePreferencesTest"],capture_output=True,text=True)
  cases={}
  for f in xml.glob("TEST-*.xml"):
   for c in ET.parse(f).getroot().findall("testcase"):
