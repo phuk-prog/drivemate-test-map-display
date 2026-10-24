@@ -50,5 +50,13 @@ fun main() {
         expect(AlongRoute.near(PlaceKind.PARKING,origin).map{it.place.name}==listOf("near"))
     }
     case("06.02 absent entrance not invented") { expect(AlongRoute.arrivalHelp(origin).entrance==null) }
+    case("07.07 measured past first stop continues prefix") { expect(StopCompletionPolicy.passed(listOf(100.0,500.0),150.0,0.0,false)==1) }
+    case("07.07 measured before stop retains it") { expect(StopCompletionPolicy.passed(listOf(100.0),110.0,0.0,false)==0) }
+    case("07.07 estimated position cannot complete stop") { expect(StopCompletionPolicy.passed(listOf(100.0),200.0,0.0,true)==0) }
+    case("07.07 wrong road cannot complete stop") { expect(StopCompletionPolicy.passed(listOf(100.0),200.0,40.0,false)==0) }
+    case("07.07 invalid progress cannot complete stop") { expect(StopCompletionPolicy.passed(listOf(100.0),Double.POSITIVE_INFINITY,0.0,false)==0) }
+    case("07.07 malformed stop order cannot skip first") { expect(StopCompletionPolicy.passed(listOf(500.0,100.0),200.0,0.0,false)==0) }
+    case("07.07 invalid stop position not completed") { expect(StopCompletionPolicy.passed(listOf(-1.0),200.0,0.0,false)==0) }
+    case("07.07 measured beyond all stops continues destination") { expect(StopCompletionPolicy.passed(listOf(100.0,500.0),600.0,0.0,false)==2) }
     println("TOTAL_FAILURES|"+failures)
 }
