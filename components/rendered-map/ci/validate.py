@@ -20,9 +20,11 @@ def main():
     for f in manifest["published_files"]:
         path = HERE / f["public"]
         digest = hashlib.sha256(path.read_bytes()).hexdigest()
-        assert digest == f["sha256"], f"{f['public']} differs from app commit {manifest['app_commit'][:12]}"
+        assert digest == f["sha256"], f"{f['public']} differs from app commit {f['app_commit'][:12]}"
         listed.add(path.relative_to(HERE).as_posix())
-    present = {p.relative_to(HERE).as_posix() for p in (HERE / "app-src").rglob("*") if p.is_file()}
+    present = {p.relative_to(HERE).as_posix()
+               for d in ("app-src", "app-src-baseline", "app-src-candidate", "app-res")
+               for p in (HERE / d).rglob("*") if p.is_file()}
     assert present == listed, f"unlisted app files: {sorted(present - listed)}"
     subprocess.check_call([sys.executable, "-I", str(HERE / "ci" / "make_fixture.py"), "--check",
                            str(HERE / "fixtures" / "princess-road-a5103-osm.json")])

@@ -1,4 +1,4 @@
-# Rendered map — route on own carriageway (02.01) and traffic colours (02.03)
+# Rendered map — route on own carriageway (02.01), traffic colours (02.03), car arrow (02.04)
 
 Real MapLibre GPU renders on an Android emulator, judged pixel by pixel against independently
 sourced UK road geometry.
@@ -13,7 +13,42 @@ its `public_head_sha` (`696b65d…`) is GitHub's temporary PR merge commit of th
 `05284e5`. Later runs record the branch head. No earlier run of this suite exists, so there is no
 before/after score.
 
-## What is tested
+## Car arrow (02.04) — before/after
+
+Owner's definition (2026-10-24) of "proportional to the map": at driving zooms 16–18 the arrow
+covers **between one lane (3.65 m, the DMRB CD 127 standard lane width) and its whole carriageway**
+(OSM `lanes` × 3.65 m; Princess Road north-east-bound has 3 lanes, so 10.95 m). It must also sit
+within 1 m of its carriageway centreline and point within 10° of the road's direction of travel.
+
+The arrow is DriveMate's `ic_car_arrow` drawn by MapLibre's location component through the app's
+`CarMarker.kt`, in GPS render mode as when navigating. The judge finds it by comparing renders
+with and without it, then takes the arrow's mirror axis as its direction and the tip as its front.
+The same seven tests run twice: `-Pphase=baseline` (app `d8d6012`, `CarMarker` moved out of
+`MapController` unchanged) and `-Pphase=candidate` (app `7c045a8`, the 02.04 change).
+
+| Test | Checks |
+|---|---|
+| `pref02_04_northUpZoom16/17/18…` | north-up camera, so the arrow must turn to the road's ~26° bearing; size at each driving zoom |
+| `pref02_04_drivingViewZoom17ArrowPointsUpTheRoad` | camera along the road: the arrow points up the screen |
+| `pref02_04_zoom16SizeSurvivesAStyleReload` | a new map style (night mode, new map), then the app's re-show |
+| `pref02_04_negativeControl…AgainstTraffic` / `…OffTheCentreline` | judge rejects a reversed arrow and one 5 m towards the central reservation |
+
+**Run [40075224229](https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40075224229)** at
+`b0933e9` (emulator API 30, 1080×2274 px): **02.04 baseline 5/7 → candidate 7/7**; 02.01 3/3 and
+02.03 2/2 in both phases. Measured arrow width (it includes MapLibre's default white disc
+behind the arrow): baseline 17.0 / 8.6 / 4.4 m at zoom 16 / 17 / 18 (zoom 16 fails, also after a
+style reload); candidate 9.1 / 9.0 / 9.0 m, passing all three and after the reload. Every arrow was
+within 0.5 m of the centreline and within 3° of the road. Both negative controls were rejected in
+both phases: reversed (178° off) and 4.7 m off-centre. Summary in `results/rendered-map.json`. The
+earlier run 40074518861 failed the reload case because of a test-harness fault (reference roads
+added over the car after the reload; fixed), and reported green because the summary step lacked
+`pipefail` (fixed).
+
+Expected from the source: the baseline arrow is about 15.4 m wide at zoom 16 (wider than the
+carriageway), 7.8 m at zoom 17 and 4.0 m at zoom 18. The candidate is 8.1 m at all three zooms
+here (exact 8 m at 54°N). Outside zooms 16–18 it keeps its end size: about 11 dp below zoom 16 and
+46 dp above zoom 18.
+
 
 | Checklist | Test | Must |
 |---|---|---|
@@ -22,6 +57,7 @@ before/after score.
 | 02.01 | `pref02_01_negativeControlRouteOnOppositeCarriagewayIsRejected` | judge rejects a route drawn on the wrong carriageway |
 | 02.03 | `pref02_03_slowIsAmberHeavyIsRedOnlyOnTheirSections` | pass, and traffic stays off the opposite carriageway |
 | 02.03 | `pref02_03_negativeControlSwappedTrafficColoursAreRejected` | judge rejects red-for-slow / amber-for-heavy |
+| 02.04 | `CarArrowTest`, seven cases, both phases | see above |
 
 ## Where each part comes from
 
@@ -46,9 +82,10 @@ before/after score.
   - *Amber / red:* hue 30–50° / within 15° of red, strongly saturated. An engineering definition
     for this test, not a legal colour standard. ≥95% of samples inside each band (25 m clear of
     its ends) must match, and free route outside the bands must be neither.
-- **Judge self-tests:** `judge-tests/RenderJudgeTest.kt`, 13 plain-JVM cases including 11 broken
+- **Judge self-tests:** `judge-tests/RenderJudgeTest.kt` and `ArrowJudgeTest.kt`, 24 plain-JVM cases. The route judge has 13, including 11 broken
   pictures (wrong carriageway, between carriageways, too wide, hairline, too close to test,
-  off-screen, swapped/missing/spilling traffic, orange/yellow/pink look-alikes).
+  off-screen, swapped/missing/spilling traffic, orange/yellow/pink look-alikes). The arrow judge has 11,
+  including reversed, turned, off-centre, too wide, too narrow, missing and lopsided arrows.
 
 ## Running
 
@@ -66,7 +103,7 @@ the run.
 ## Evidence limits
 
 - Isolated component, **not** the combined app: no DriveMate UK map style, camera controller,
-  car arrow (02.04) or UI occlusion. It cannot satisfy the APK gate's `exact-combined-app` scope.
+  arrow positioning by GPS/route snapping, or UI occlusion. It cannot satisfy the APK gate's `exact-combined-app` scope.
 - Traffic bands are placed by the test. Matching real reports to the route
   (`TrafficRouteOverlay.sections`) is covered by the existing simulated-traffic logic tests, not here.
 - One dual carriageway at two zooms. Other road layouts (slip roads, roundabouts, single
