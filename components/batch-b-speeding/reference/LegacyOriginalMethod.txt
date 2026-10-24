@@ -1,0 +1,20 @@
+    private fun warnIfSpeeding(loc: Location, limitKmh: Double?) {
+        val now = SystemClock.elapsedRealtime()
+        // 8.1: never a speeding warning from a speed the app only estimated (no GPS); the car's
+        // own speed from Android Auto is measured and still counts.
+        val estimated = com.drivemate.app.ui.PositionKind.of(loc.provider) == com.drivemate.app.ui.PositionKind.ESTIMATED
+        if (limitKmh == null || !loc.hasSpeed() || (estimated && CarBridge.carSpeed == null)) { overSince = 0L; return }
+        if (!format.isOverBy(loc.speed, limitKmh, settings.speedMargin)) {
+            overSince = 0L
+            if (legalSince == 0L) legalSince = now
+            if (now - legalSince > 30_000) lastSpeedWarning = 0L
+            return
+        }
+        legalSince = 0L
+        if (overSince == 0L) overSince = now
+        if (now - overSince >= 5_000 && now - lastSpeedWarning > 120_000) {
+            lastSpeedWarning = now
+            if (settings.beepAlerts) voice.beep(urgent = true)
+            else voice.say("Speed limit ${format.limit(limitKmh)}", alert = true)
+        }
+    }
