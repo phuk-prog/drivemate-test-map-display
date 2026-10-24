@@ -1,0 +1,19 @@
+{
+  "app_source": "f29c40582394817eb7396eb220cbc287f638a479",
+  "public_base": "74eea170feb5bfebdfe89e08d6c1cf39a6a4172c",
+  "baseline_unchanged_files": [
+    "Wording.kt",
+    "DrivingDisplayPolicy.kt"
+  ],
+  "candidate_changes": [
+    "positive usable edge lane wording",
+    "numeric explicit lane counts",
+    "combined straight-on lane instruction"
+  ],
+  "expected_source": "Owner checklist03.03 and approved exact example; engineering Now-cue boundary tests; no law claim",
+  "local_execution": "UNAVAILABLE",
+  "private_execution": false,
+  "combined_app_published": false,
+  "ui_verified": false,
+  "android_auto_verified": false
+}

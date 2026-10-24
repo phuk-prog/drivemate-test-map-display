@@ -1,0 +1,99 @@
+{
+  "requirement_ids": [
+    "03.03"
+  ],
+  "approach_policy_only": "03.02; not arrow visibility or UI acceptance",
+  "run_id": "40071840169",
+  "commit": "53510775c6e88d973eae3c136692cf731661b609",
+  "results": {
+    "baseline": {
+      "passed": 15,
+      "total": 26,
+      "cases": {
+        "GuidancePreferenceTest#rightTwoLanesHasExplicitCount": "failed",
+        "GuidancePreferenceTest#realNewNameFormatterPreservesRoadOnExplicitStraightDirection": "failed",
+        "GuidancePreferenceTest#rightThreeOfFiveHasExplicitCount": "failed",
+        "GuidancePreferenceTest#turnInstructionRetainsTurnRatherThanInventingStraight": "passed",
+        "GuidancePreferenceTest#busLaneIsExcludedFromRecommendation": "passed",
+        "GuidancePreferenceTest#genericContinueWithoutDirectionCannotInventStraight": "passed",
+        "GuidancePreferenceTest#allLanesUsableNeedsNoSpecificAdvice": "passed",
+        "GuidancePreferenceTest#singleRightLaneStaysSingular": "passed",
+        "GuidancePreferenceTest#malformedDistanceCannotClaimNow": "passed",
+        "GuidancePreferenceTest#rightThreeOfFourNamesUsableLanes": "failed",
+        "GuidancePreferenceTest#realContinueFormatterWithoutRoadStillUsesExplicitStraightDirection": "failed",
+        "GuidancePreferenceTest#arrivalCannotClaimTurnNow": "passed",
+        "GuidancePreferenceTest#separatedLanesCannotBeNamedAsOneEdgeBlock": "passed",
+        "GuidancePreferenceTest#bendingContinueCannotBecomeStraightInstruction": "passed",
+        "GuidancePreferenceTest#realNotificationFormatterUsesExplicitThroughDirection": "failed",
+        "GuidancePreferenceTest#realContinueFormatterWithExplicitStraightDirectionCombinesLaneInstruction": "failed",
+        "GuidancePreferenceTest#staleSpeedCannotExtendApproachThreshold": "passed",
+        "GuidancePreferenceTest#leftThreeOfFourNamesUsableLanes": "failed",
+        "GuidancePreferenceTest#combinedStraightInstructionRetainsRoadSuffix": "failed",
+        "GuidancePreferenceTest#nearTurnPolicyUsesFreshActualSpeed": "passed",
+        "GuidancePreferenceTest#fourUsableLanesKeepsTheirCount": "failed",
+        "GuidancePreferenceTest#noUsableLaneDoesNotInventAdvice": "passed",
+        "GuidancePreferenceTest#combinedStraightInstructionMatchesOwnerExample": "failed",
+        "GuidancePreferenceTest#unknownMarkingIsExcludedFromRecommendation": "passed",
+        "GuidancePreferenceTest#absentLaneAdviceRetainsOriginalInstruction": "passed",
+        "GuidancePreferenceTest#farTurnPolicyDoesNotClaimNow": "passed"
+      }
+    },
+    "candidate": {
+      "passed": 26,
+      "total": 26,
+      "cases": {
+        "GuidancePreferenceTest#rightTwoLanesHasExplicitCount": "passed",
+        "GuidancePreferenceTest#realNewNameFormatterPreservesRoadOnExplicitStraightDirection": "passed",
+        "GuidancePreferenceTest#rightThreeOfFiveHasExplicitCount": "passed",
+        "GuidancePreferenceTest#turnInstructionRetainsTurnRatherThanInventingStraight": "passed",
+        "GuidancePreferenceTest#busLaneIsExcludedFromRecommendation": "passed",
+        "GuidancePreferenceTest#genericContinueWithoutDirectionCannotInventStraight": "passed",
+        "GuidancePreferenceTest#allLanesUsableNeedsNoSpecificAdvice": "passed",
+        "GuidancePreferenceTest#singleRightLaneStaysSingular": "passed",
+        "GuidancePreferenceTest#malformedDistanceCannotClaimNow": "passed",
+        "GuidancePreferenceTest#rightThreeOfFourNamesUsableLanes": "passed",
+        "GuidancePreferenceTest#realContinueFormatterWithoutRoadStillUsesExplicitStraightDirection": "passed",
+        "GuidancePreferenceTest#arrivalCannotClaimTurnNow": "passed",
+        "GuidancePreferenceTest#separatedLanesCannotBeNamedAsOneEdgeBlock": "passed",
+        "GuidancePreferenceTest#bendingContinueCannotBecomeStraightInstruction": "passed",
+        "GuidancePreferenceTest#realNotificationFormatterUsesExplicitThroughDirection": "passed",
+        "GuidancePreferenceTest#realContinueFormatterWithExplicitStraightDirectionCombinesLaneInstruction": "passed",
+        "GuidancePreferenceTest#staleSpeedCannotExtendApproachThreshold": "passed",
+        "GuidancePreferenceTest#leftThreeOfFourNamesUsableLanes": "passed",
+        "GuidancePreferenceTest#combinedStraightInstructionRetainsRoadSuffix": "passed",
+        "GuidancePreferenceTest#nearTurnPolicyUsesFreshActualSpeed": "passed",
+        "GuidancePreferenceTest#fourUsableLanesKeepsTheirCount": "passed",
+        "GuidancePreferenceTest#noUsableLaneDoesNotInventAdvice": "passed",
+        "GuidancePreferenceTest#combinedStraightInstructionMatchesOwnerExample": "passed",
+        "GuidancePreferenceTest#unknownMarkingIsExcludedFromRecommendation": "passed",
+        "GuidancePreferenceTest#absentLaneAdviceRetainsOriginalInstruction": "passed",
+        "GuidancePreferenceTest#farTurnPolicyDoesNotClaimNow": "passed"
+      }
+    }
+  },
+  "source_hashes": {
+    "tests/GuidancePreferenceTest.kt": "5753ec4e996665243f0c603c2d9c0822973d8b5cbc60058edac36cabc76178ab",
+    "baseline/src/main/kotlin/com/drivemate/app/nav/Wording.kt": "3e10bc43b0dde463836cfc5564a4248d50f9120b7da9f58854b1aee35242a8dd",
+    "common/src/main/kotlin/com/drivemate/app/ui/PreferLanes.kt": "ccfd9ce5e7af9ff0de51bc6b648919b1156b6fbc8a36355448663cd005715ea4",
+    "common/src/main/kotlin/com/drivemate/app/ui/DrivingDisplayPolicy.kt": "e3f0ae67874fde3b2f96cf37195381ffa25ac13e7c817aec0e1c99fc80b45f56",
+    "common/src/main/kotlin/com/drivemate/app/data/Models.kt": "4e560487e2f303c16048c895a5eb2f52827ca580689d51737f5a7142f723a4fb",
+    "common/src/main/kotlin/com/drivemate/app/nav/ArrivalPolicy.kt": "b22987528ffab763cfc3730c0d78c64ab1a30bb5828f79bb7053f63bb587f141",
+    "common/src/main/kotlin/com/drivemate/app/nav/TurnInstructions.kt": "37c1482c6b61abedddea3b24496297ae1fa6b2aea1533ed8ad9fb72a4a768214",
+    "common/src/main/kotlin/com/drivemate/app/nav/LanePlan.kt": "f5615c818fe8819ed7c8c7f1e52b837b3aac006dc21c60fe68abe6d44809db57",
+    "common/src/main/kotlin/com/drivemate/app/nav/Geo.kt": "4aa42c796ccb9f89d2384b5f84394215a54574e0b41e574e763c2d62031eea12",
+    "common/src/main/kotlin/com/drivemate/app/nav/LaneDirections.kt": "7549043fcf065ba80283f75cebc62e7e5de93f761a23870b1b4c3fb217c9229d",
+    "candidate/src/main/kotlin/com/drivemate/app/nav/Wording.kt": "c2816efefcb46f88eb29b3a07d8b38bca51f2cdbb170d907e0bdf8a20a0bc326"
+  },
+  "errors": [],
+  "execution_valid": true,
+  "ui_runtime_verified": false,
+  "android_auto_verified": false,
+  "batch_accepted": false,
+  "apk_generated": false,
+  "preflight": {
+    "local_syntax_tests": "UNAVAILABLE: execution environment failed",
+    "connector_review": "Exact source and branch binding, scoped source/caller review before upload",
+    "post_upload_ci": "40071840169 separate exact-SHA execution",
+    "dependencies": "Already-public model subset plus exact private TurnInstructions.kt and ArrivalPolicy.kt from9f01c0a1"
+  }
+}
