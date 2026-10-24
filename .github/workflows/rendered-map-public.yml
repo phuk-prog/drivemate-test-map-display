@@ -57,9 +57,8 @@ jobs:
       - name: Build test APK before booting the emulator
         working-directory: components/rendered-map/android
         run: gradle assembleDebugAndroidTest --no-daemon
-      # TODO before merge: pin to the release's full commit SHA, like the other actions here.
       - name: Render and judge on emulator
-        uses: reactivecircus/android-emulator-runner@v2.33.0
+        uses: reactivecircus/android-emulator-runner@62dbb605bba737720e10b196cb4220d374026a6d # v2.33.0
         with:
           api-level: 30
           arch: x86_64
@@ -74,12 +73,15 @@ jobs:
             adb pull /sdcard/Android/data/com.drivemate.render.test/files/render build/outputs/connected_android_test_additional_output/fallback || true
       - name: Summarize per checklist item
         if: always()
+        env:
+          # On a pull request GITHUB_SHA is GitHub's temporary merge commit; record the tested branch head.
+          TESTED_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
         run: |
           python3 components/rendered-map/ci/summarize.py \
             components/rendered-map/android/build/outputs/androidTest-results \
             components/rendered-map/android/build/outputs/connected_android_test_additional_output \
             components/rendered-map/results/rendered-map.json \
-            "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" "$GITHUB_SHA" | tee -a "$GITHUB_STEP_SUMMARY"
+            "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" "$TESTED_SHA" | tee -a "$GITHUB_STEP_SUMMARY"
           echo 'Isolated RouteLayers render only: not the combined app, not the APK release gate.' >> "$GITHUB_STEP_SUMMARY"
       - name: Publish screenshots and verdicts
         if: always()

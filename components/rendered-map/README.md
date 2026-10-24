@@ -1,7 +1,17 @@
 # Rendered map — route on own carriageway (02.01) and traffic colours (02.03)
 
 Real MapLibre GPU renders on an Android emulator, judged pixel by pixel against independently
-sourced UK road geometry. **Status: drafted, not yet run in CI.**
+sourced UK road geometry.
+
+**First run:** [run 40071137577](https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40071137577)
+at branch head `0443fcbdcfba60ed3b967e934482179b6e2e1159` (Pixel 6 profile, 1080×2274 px, API 30):
+**02.01 3/3, 02.03 2/2**. 02.01 samples: day z17 own 61/61 inked, opposite visible 60/60, route
+24.4 dp; night tilted z18 own 55/55, opposite 56/56, route 27.8 dp. 02.03 samples: amber 9/9,
+free 7/7, red 17/17. Both rendered negative controls were rejected (wrong carriageway: own 0/61,
+opposite 0/60; swapped colours: amber 0/9, red 0/17). Saved summary in `results/rendered-map.json`;
+its `public_head_sha` (`696b65d…`) is GitHub's temporary PR merge commit of that head into main
+`05284e5`. Later runs record the branch head. No earlier run of this suite exists, so there is no
+before/after score.
 
 ## What is tested
 
