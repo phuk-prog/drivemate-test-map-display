@@ -1,0 +1,85 @@
+{
+  "requirement_ids": [
+    "03.03"
+  ],
+  "approach_policy_only": "03.02; not arrow visibility or UI acceptance",
+  "run_id": "40065679236",
+  "commit": "a8670eeacf14b201493ec415230e354f9bcfd10e",
+  "results": {
+    "baseline": {
+      "passed": 13,
+      "total": 20,
+      "cases": {
+        "GuidancePreferenceTest#rightTwoLanesHasExplicitCount": "failed",
+        "GuidancePreferenceTest#rightThreeOfFiveHasExplicitCount": "failed",
+        "GuidancePreferenceTest#turnInstructionRetainsTurnRatherThanInventingStraight": "passed",
+        "GuidancePreferenceTest#busLaneIsExcludedFromRecommendation": "passed",
+        "GuidancePreferenceTest#allLanesUsableNeedsNoSpecificAdvice": "passed",
+        "GuidancePreferenceTest#singleRightLaneStaysSingular": "passed",
+        "GuidancePreferenceTest#malformedDistanceCannotClaimNow": "passed",
+        "GuidancePreferenceTest#rightThreeOfFourNamesUsableLanes": "failed",
+        "GuidancePreferenceTest#arrivalCannotClaimTurnNow": "passed",
+        "GuidancePreferenceTest#separatedLanesCannotBeNamedAsOneEdgeBlock": "passed",
+        "GuidancePreferenceTest#staleSpeedCannotExtendApproachThreshold": "passed",
+        "GuidancePreferenceTest#leftThreeOfFourNamesUsableLanes": "failed",
+        "GuidancePreferenceTest#combinedStraightInstructionRetainsRoadSuffix": "failed",
+        "GuidancePreferenceTest#nearTurnPolicyUsesFreshActualSpeed": "passed",
+        "GuidancePreferenceTest#fourUsableLanesKeepsTheirCount": "failed",
+        "GuidancePreferenceTest#noUsableLaneDoesNotInventAdvice": "passed",
+        "GuidancePreferenceTest#combinedStraightInstructionMatchesOwnerExample": "failed",
+        "GuidancePreferenceTest#unknownMarkingIsExcludedFromRecommendation": "passed",
+        "GuidancePreferenceTest#absentLaneAdviceRetainsOriginalInstruction": "passed",
+        "GuidancePreferenceTest#farTurnPolicyDoesNotClaimNow": "passed"
+      }
+    },
+    "candidate": {
+      "passed": 20,
+      "total": 20,
+      "cases": {
+        "GuidancePreferenceTest#rightTwoLanesHasExplicitCount": "passed",
+        "GuidancePreferenceTest#rightThreeOfFiveHasExplicitCount": "passed",
+        "GuidancePreferenceTest#turnInstructionRetainsTurnRatherThanInventingStraight": "passed",
+        "GuidancePreferenceTest#busLaneIsExcludedFromRecommendation": "passed",
+        "GuidancePreferenceTest#allLanesUsableNeedsNoSpecificAdvice": "passed",
+        "GuidancePreferenceTest#singleRightLaneStaysSingular": "passed",
+        "GuidancePreferenceTest#malformedDistanceCannotClaimNow": "passed",
+        "GuidancePreferenceTest#rightThreeOfFourNamesUsableLanes": "passed",
+        "GuidancePreferenceTest#arrivalCannotClaimTurnNow": "passed",
+        "GuidancePreferenceTest#separatedLanesCannotBeNamedAsOneEdgeBlock": "passed",
+        "GuidancePreferenceTest#staleSpeedCannotExtendApproachThreshold": "passed",
+        "GuidancePreferenceTest#leftThreeOfFourNamesUsableLanes": "passed",
+        "GuidancePreferenceTest#combinedStraightInstructionRetainsRoadSuffix": "passed",
+        "GuidancePreferenceTest#nearTurnPolicyUsesFreshActualSpeed": "passed",
+        "GuidancePreferenceTest#fourUsableLanesKeepsTheirCount": "passed",
+        "GuidancePreferenceTest#noUsableLaneDoesNotInventAdvice": "passed",
+        "GuidancePreferenceTest#combinedStraightInstructionMatchesOwnerExample": "passed",
+        "GuidancePreferenceTest#unknownMarkingIsExcludedFromRecommendation": "passed",
+        "GuidancePreferenceTest#absentLaneAdviceRetainsOriginalInstruction": "passed",
+        "GuidancePreferenceTest#farTurnPolicyDoesNotClaimNow": "passed"
+      }
+    }
+  },
+  "source_hashes": {
+    "tests/GuidancePreferenceTest.kt": "f626a47b9debceefc5350a3348a545c0c819ba0bcedacaff38f495696fcc052a",
+    "baseline/src/main/kotlin/com/drivemate/app/nav/Wording.kt": "3e10bc43b0dde463836cfc5564a4248d50f9120b7da9f58854b1aee35242a8dd",
+    "common/src/main/kotlin/com/drivemate/app/ui/PreferLanes.kt": "ccfd9ce5e7af9ff0de51bc6b648919b1156b6fbc8a36355448663cd005715ea4",
+    "common/src/main/kotlin/com/drivemate/app/ui/DrivingDisplayPolicy.kt": "e3f0ae67874fde3b2f96cf37195381ffa25ac13e7c817aec0e1c99fc80b45f56",
+    "common/src/main/kotlin/com/drivemate/app/data/Models.kt": "4e560487e2f303c16048c895a5eb2f52827ca580689d51737f5a7142f723a4fb",
+    "common/src/main/kotlin/com/drivemate/app/nav/LanePlan.kt": "f5615c818fe8819ed7c8c7f1e52b837b3aac006dc21c60fe68abe6d44809db57",
+    "common/src/main/kotlin/com/drivemate/app/nav/Geo.kt": "4aa42c796ccb9f89d2384b5f84394215a54574e0b41e574e763c2d62031eea12",
+    "common/src/main/kotlin/com/drivemate/app/nav/LaneDirections.kt": "7549043fcf065ba80283f75cebc62e7e5de93f761a23870b1b4c3fb217c9229d",
+    "candidate/src/main/kotlin/com/drivemate/app/nav/Wording.kt": "9a35fee299bfd9436f32d9fce86dab48e5289be9c3ab287045a5ca9f56f55c7d"
+  },
+  "errors": [],
+  "execution_valid": true,
+  "ui_runtime_verified": false,
+  "android_auto_verified": false,
+  "batch_accepted": false,
+  "apk_generated": false,
+  "preflight": {
+    "local_syntax_and_runtime": "UNAVAILABLE: execution environment failed",
+    "connector_review": "Exact source baseline and branch binding, scoped candidate diff, independent review and workflow review completed before publication",
+    "post_upload_ci": "40065679236: separate exact-SHA public execution, not retroactive preflight",
+    "dependencies": "Already-public Batch A individual components; Models.kt is the published subset, not a claim of private entire Models.kt byte identity"
+  }
+}
