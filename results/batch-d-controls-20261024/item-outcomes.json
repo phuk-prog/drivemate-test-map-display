@@ -271,8 +271,9 @@
       "accepted": false
     }
   ],
-  "private_candidate": "c782d7be68c6fc1a106a9e94c0cb76a2f7fde19b",
+  "private_candidate": "27b653392d78ca950a5d1f9f8245d5d1ce6ed30e",
   "private_pr": "https://github.com/phuk-prog/drivemate-app/pull/18",
   "component_baseline_run": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40086403601",
-  "component_after_run": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40086507056"
+  "component_after_run": "https://github.com/phuk-prog/drivemate-test-map-display/actions/runs/40086507056",
+  "controller_review_note": "Explicit action uses updateJourneyHistoryEnabled to avoid Kotlin JVM setter name collision; integration compilation still unavailable."
 }
